@@ -1,72 +1,26 @@
-<!-- Type: OpenGraph -->
-<div class="collection-item--content-wrapper">
-  <a [href]="itemUrl.url" target="_blank" rel="nofollow" class="collection-item--embeded-container">
-    <div class="collection-item--embeded-cover">
-      <img [src]="getImageProxyUrl(itemUrl.image)" class="collection-item--embeded-cover-image" onError="this.style.display='none';"  *ngIf="itemUrl.image"/>
-      <span class="collection-item--embeded-cover-icon" *ngIf="!itemUrl.image">image</span>
-    </div>
-    <div class="collection-item--embeded-content">
-      <h4 class="collection-item--embeded-content-title" title="{{itemUrl.title}}" *ngIf="itemUrl.title">{{itemUrl.title}}</h4>
-      <p class="collection-item--embeded-content-description" *ngIf="itemUrl.description">{{itemUrl.description}}</p>
-      <ul class="collection-item--embeded-details">
-        <li>{{item.host}}</li>
-      </ul>
-    </div>
-  </a>
+<div class="collection-item--body is-medium">
+
+  <div class="collection-item--details">
+
+    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--cover-link">
+      <div class="collection-item--cover">
+        <img [src]="getImageProxyUrl(itemUrl.image)" class="collection-item--cover-image" onError="this.style.display='none';"  *ngIf="itemUrl.image"/>
+        <span class="collection-item--cover-icon" *ngIf="!itemUrl.image">image</span>
+
+        <div class="collection-item--favicon">
+          <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+        </div>
+      </div>
+    </a>
+
+    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
+      <div class="collection-item--link-pane">
+        <div class="collection-item--title">{{item.title}}</div>
+        <div class="collection-item--description">{{item._content.description}}</div>
+        <div class="collection-item--host">{{item._content.host}}</div>
+      </div>
+    </a>
+
+  </div>
+
 </div>
-
-<!-- <div class="item-embeded-container item-website" [class.item-no-image]="!itemUrl.image" *ngIf="itemUrl.type == 'website'">
-  <a [href]="itemUrl.url" target="_blank">
-    <div class="item-embeded-image" *ngIf="itemUrl.image">
-      <img [src]="getImageProxyUrl(itemUrl.image)" />
-    </div>
-    <div class="item-embeded-content" [class.item-no-img]="!itemUrl.image">
-      <div class="item-embeded-content-wrapper">
-        <h3 class="item-title" *ngIf="itemUrl.title">{{itemUrl.title}}</h3>
-        <p class="item-desc" *ngIf="itemUrl.description">{{itemUrl.description}}</p>
-        <p class="item-metas" *ngIf="itemUrl.host || itemUrl.author">
-            <span class="item-host">{{itemUrl.host}}</span>
-            <span class="item-author" *ngIf="itemUrl.author">| by {{itemUrl.author}}</span>
-        </p>
-      </div>
-    </div>
-  </a>
-</div> -->
-
-<!-- Type: Article -->
-<!-- <div class="item-embeded-container item-article" [class.item-no-image]="!itemUrl.image" *ngIf="itemUrl.type == 'article'">
-  <a [href]="itemUrl.url" target="_blank">
-    <div class="item-embeded-image" *ngIf="itemUrl.image">
-      <img [src]="getImageProxyUrl(itemUrl.image)" />
-    </div>
-    <div class="item-embeded-content" [class.item-no-img]="!itemUrl.image">
-      <div class="item-embeded-content-wrapper">
-        <h3 class="item-title" *ngIf="itemUrl.title">{{itemUrl.title}}</h3>
-        <p class="item-desc" *ngIf="itemUrl.description">{{itemUrl.description}}</p>
-        <p class="item-metas" *ngIf="itemUrl.host || itemUrl.author">
-          <span class="item-host">{{itemUrl.host}}</span>
-          <span class="item-author" *ngIf="itemUrl.author">| by {{itemUrl.author}}</span>
-        </p>
-      </div>
-    </div>
-  </a>
-</div> -->
-
-<!-- Type: Default -->
-<!-- <div class="item-embeded-container no-type" [class.item-no-image]="!itemUrl.image" *ngIf="!itemUrl.type || !(itemUrl.type == 'article' || itemUrl.type == 'website')">
-  <a [href]="itemUrl.url" target="_blank">
-    <div class="item-embeded-image" *ngIf="itemUrl.image">
-      <img [src]="getImageProxyUrl(itemUrl.image)" />
-    </div>
-    <div class="item-embeded-content">
-      <div class="item-embeded-content-wrapper">
-        <h3 class="item-title" *ngIf="itemUrl.title">{{itemUrl.title}}</h3>
-        <p class="item-desc" *ngIf="itemUrl.description">{{itemUrl.description}}</p>
-        <p class="item-metas" *ngIf="itemUrl.host || itemUrl.author">
-          <span class="item-host">{{itemUrl.host}}</span>
-          <span class="item-author" *ngIf="itemUrl.author">| by {{itemUrl.author}}</span>
-        </p>
-      </div>
-    </div>
-  </a>
-</div> -->

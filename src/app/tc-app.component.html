@@ -8,13 +8,7 @@
 
     <router-outlet></router-outlet>
 
-    <div class="application-footer"> <!-- TODO: tc-footer -->
-
-      <div class="footer-container" *ngIf="!headerService.noHeader && !headerService.noFooter">
-        <tc-footer></tc-footer>
-      </div>
-
-    </div>
+    <tc-footer class="application-footer" *ngIf="!headerService.noHeader && !headerService.noFooter"></tc-footer>
 
   </div>
 

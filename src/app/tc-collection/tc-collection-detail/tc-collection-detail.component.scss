@@ -2,8 +2,13 @@
    COLLECTION PAGE COMPONENT
    ========================================================================== */
 
-@import '../../../styles/settings/_variables.scss';
-@import '../../../styles/settings/_mixins.scss';
+   @import '../../../styles/settings/_variables.scss';
+   @import '../../../styles/settings/_mixins.scss';
+
+   @import '../../../styles/settings/_bootstrap-variables.scss';
+   @import "~bootstrap/scss/functions";
+   @import "~bootstrap/scss/variables";
+   @import "~bootstrap/scss/mixins";
 
 
 .collection-container {
@@ -13,7 +18,7 @@
   background-color: $white;
   width: 100%;
   height: auto;
-  padding: 1rem;
+  padding: 1rem 1rem 2rem;
   margin: 0;
   border-radius: $border-radius-base;
   box-shadow: 0 .125rem .25rem $box-shadow-color;
@@ -42,7 +47,11 @@
   display: flex;
   flex-direction: row;
   padding: 0 0 0 .5rem;
-  margin: 0 0 1rem;
+  margin: 0 0 2rem;
+
+  // @include media-breakpoint-down(sm) {
+  //   flex-direction: column;
+  // }
 }
 
 .collection-container--publication {
@@ -51,6 +60,7 @@
   flex-direction: row;
   flex: 2 1 auto;
   width: 100%;
+  overflow: hidden;
 }
 
 .collection-container--publication-infos {
@@ -70,6 +80,11 @@
   flex: 1 0 auto;
   line-height: 2rem;
   margin: 0 0 0 1.5rem;
+
+  // @include media-breakpoint-down(md) {
+  //   margin: 1rem 0 0;
+  //   justify-content: flex-end;
+  // }
 }
 
 .collection-container--stats-list {

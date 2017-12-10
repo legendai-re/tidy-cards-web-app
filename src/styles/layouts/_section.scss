@@ -1,15 +1,21 @@
 .section {
+  &:not(:last-child) {
     margin: 0 0 2.5rem;
+  }
 }
 
 .section-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: $gray-900;
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: $gray-900;
 
-    &.withDescription {
-        margin-bottom: .25rem;
-    }
+  &.withDescription {
+      margin-bottom: .25rem;
+  }
 }
 
 .section-description {
@@ -40,4 +46,5 @@
     font-weight: normal;
     padding: .25rem .5rem;
     border-radius: 3px;
+    margin-left: auto;
 }

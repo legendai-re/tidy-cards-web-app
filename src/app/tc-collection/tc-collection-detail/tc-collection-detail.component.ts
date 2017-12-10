@@ -17,6 +17,8 @@ import { TcItem }                         from '../../tc-item/tc-item.class';
 import { TcStar }                         from '../../tc-star/tc-star.class';
 import { TcDataLimit }                    from '../../tc-shared/tc-data-limit';
 
+declare var $: any;
+
 @Component({
     templateUrl: './tc-collection-detail.component.html',
     styleUrls: ['tc-collection-detail.component.scss', '../../tc-item/tc-item.component.scss']

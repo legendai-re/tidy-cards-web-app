@@ -1,3 +1,19 @@
-<div class="collection-item--media-container">
-  <div class="collection-item--media-tweet" [innerHtml]="itemTweet.html"></div>
+<div class="collection-item--body is-large">
+
+  <div class="collection-item--details">
+    <div class="collection-item--cover is-tweet">
+      <div class="collection-item--media-tweet" [innerHtml]="itemTweet.html"></div>
+    </div>
+
+    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link is-tweet">
+      <div class="collection-item--link-pane is-horizontal">
+        <div class="collection-item--favicon">
+          <img src="https://www.google.com/s2/favicons?domain=http://twitter.com" />
+        </div>
+        <div class="collection-item--title">Tweeted by {{itemTweet.author_name}}</div>
+      </div>
+
+    </a>
+  </div>
+
 </div>

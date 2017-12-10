@@ -7,7 +7,6 @@ import { HttpModule } from '@angular/http';
 import { TcAppComponent }               from './tc-app.component';
 import { routing, appRoutingProviders } from './tc-app.routing';
 
-
 //Modules
 import { TcAuthModule }           from './tc-auth/tc-auth.module';
 import { TcCollectionModule }     from './tc-collection/tc-collection.module';

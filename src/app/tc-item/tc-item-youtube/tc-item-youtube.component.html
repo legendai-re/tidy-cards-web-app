@@ -1,6 +1,32 @@
-<div class="collection-item--media-container">
-  <div class="collection-item--media-video">
-    <img class="collection-item--media-video-image" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo = true" *ngIf="!displayVideo"/>
-    <iframe class="collection-item--media-video-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
+<div class="collection-item--body is-large">
+
+  <div class="collection-item--details">
+
+    <div class="collection-item--cover-link">
+      <div class="collection-item--cover is-youtube">
+        <img class="collection-item--cover-image" [class.is-blur]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo = true"/>
+
+        <div class="collection-item--cover-play" *ngIf="!displayVideo">
+          <span class="collection-item--cover-play-icon">play_circle_filled</span>
+          <span class="collection-item--cover-play-text">Play</span>
+        </div>
+
+        <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
+
+        <div class="collection-item--favicon">
+          <img src="https://www.google.com/s2/favicons?domain=http://youtube.com" />
+        </div>
+      </div>
+    </div>
+
+    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
+      <div class="collection-item--link-pane">
+        <div class="collection-item--title">{{item.title}}</div>
+        <div class="collection-item--description">{{item._content.snippet.description}}</div>
+        <div class="collection-item--host">youtube.com</div>
+      </div>
+    </a>
+
   </div>
+
 </div>

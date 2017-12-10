@@ -12,10 +12,10 @@ import { TcApiUrl } from '../../tc-shared/tc-api-url';
 export class TcItemUrlComponent implements OnInit{
 
 	@Input() item: TcItem;
-  
+
     public itemUrl: TcItemUrl;
     public getImageProxyUrl = TcApiUrl.getImageProxyUrl;
-    
+
     constructor() {
     }
 

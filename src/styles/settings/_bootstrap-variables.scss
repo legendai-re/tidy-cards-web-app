@@ -9,6 +9,20 @@ $grid-gutter-width:                 20px;
 // $input-btn-padding-y:         .25rem;
 // $input-btn-padding-x:         1rem;
 
+$grid-breakpoints: (
+  xs: 0,
+  sm: 500px,
+  md: 618px,
+  lg: 887px,
+  xl: 1200px
+) !default;
+
+$container-max-widths: (
+  sm: 500px,
+  md: 570px,
+  lg: 855px,
+  xl: 1140px
+) !default;
 
 // Border radius
 

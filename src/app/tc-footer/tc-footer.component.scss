@@ -5,6 +5,12 @@
 @import '../../styles/settings/_variables.scss';
 @import '../../styles/settings/_mixins.scss';
 
+@import '../../styles/settings/_bootstrap-variables.scss';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+
 .footer-container {
   position: relative;
   display: flex;
@@ -21,6 +27,10 @@
   padding: 2rem 0 3rem;
   color: $black-light;
   margin-top: 4rem;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 2rem;
+  }
 
   &.is-hidden {
     display: none;

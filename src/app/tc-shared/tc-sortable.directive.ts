@@ -1,9 +1,11 @@
-import { Directive, ElementRef, EventEmitter, Output, Input, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { TcCollectionService }   from '../tc-collection/tc-collection.service';
 import { TcCollection }   from '../tc-collection/tc-collection.class';
 
+declare var $: any;
+
 @Directive({ selector: '[tc-sortable]' })
-export class TcSortableDirective implements AfterViewInit{
+export class TcSortableDirective {
 
     @Input('ignoreItem') ignoreItem = 0;
     @Input('list') list: any[];
@@ -15,7 +17,7 @@ export class TcSortableDirective implements AfterViewInit{
     constructor(public el: ElementRef, private collectionService: TcCollectionService) {
     }
 
-    ngAfterViewInit() {
+    ngOnInit() {
         this.element = this.el.nativeElement;
         var elCopy = this.element;
         let newIndex;

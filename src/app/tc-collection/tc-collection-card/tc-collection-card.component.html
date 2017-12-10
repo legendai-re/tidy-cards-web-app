@@ -1,7 +1,7 @@
-<article dnd-sortable *ngIf="collection" class="card card-collection">
-  <span *ngIf="sortable" class="card-collection--drag-handle" dnd-sortable-handle >
+<article *ngIf="collection" class="card card-collection">
+  <div *ngIf="sortable" class="card-collection--drag-handle">
     <i class="material-icons move-item-button">drag_handle</i>
-  </span>
+  </div>
   <a [routerLink]="['/c', collection._id]" class="card-collection--container">
 
     <div class="card-collection--content" [class.has-thumbnail]="collection._thumbnail">
