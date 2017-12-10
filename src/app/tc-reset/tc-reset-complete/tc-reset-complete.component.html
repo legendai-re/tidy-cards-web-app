@@ -1,0 +1,21 @@
+<section class="auth-section">
+  <div class="auth-container">
+    <a href="javascript:void(0)" [routerLink]="['/']">
+      <h1 class="icon-invow logo auth-logo">{{t._.app_name_capitals}}</h1>
+    </a>
+    <h2 class="auth-heading">{{t._.reset_password?.title}}</h2>
+
+    <div class="auth-wrapper" >
+      <div class="auth-content">
+        <p class="auth-top-content">{{t._.reset_password?.enter_new_password}}</p>
+        <div class="form-group">
+          <input [(ngModel)]='password' type="password" class="form-control" placeholder="{{t._.reset_password?.new_password}}" required="" autofocus="" />
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]='passwordRepeat' type="password" class="form-control" placeholder="{{t._.reset_password?.new_password_repeat}}" required="" />
+        </div>
+        <input (click)="completeReset()" [disabled]="!password && password!=passwordRepeat" type="submit" value="{{t._.reset_password?.update_password}}" class="btn btn-primary btn-block"/>
+      </div>
+    </div>
+  </div>
+</section>

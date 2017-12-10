@@ -1,0 +1,54 @@
+.item-container-metas {
+    visibility: hidden;
+
+    .item-settings {
+        font-size: .875rem;
+        text-align: right;
+        float: right;
+    }
+
+    .date, .edit-item, .delete-item {
+        opacity: 0;
+        top: 15px;
+        transition: all .2s;
+        position: relative;
+        margin-left: 4px;
+    }
+
+    .delete-item {
+        transition-delay: .1s;
+    }
+
+    .material-icons {
+        font-size: 1rem;
+        vertical-align: middle;
+    }
+}
+
+.item:hover .item-container-metas {
+    visibility: visible;
+
+    .date, .edit-item, .delete-item {
+        opacity: 1;
+        top: 0;
+        transition: all .2s;
+    }
+
+    .edit-item {
+        transition-delay: .2s;
+    }
+
+    .delete-item {
+        transition-delay: .1s;
+    }
+}
+
+.collection-item-ghost {
+    position: relative;
+    display: flex;
+    flex: 1 0 auto;
+    background-color: $brand-primary;
+    height: 2px;
+    margin: .5rem 0 1rem;
+    border-radius: $border-radius-small;
+}

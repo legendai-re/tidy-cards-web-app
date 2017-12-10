@@ -1,0 +1,173 @@
+.btn, button {
+  cursor: pointer;
+}
+
+.btn + .btn {
+  &:not(.btn-block) {
+    margin-left: .5rem;
+  }
+}
+
+.btn-icon {
+  padding: .375rem;
+
+  .icon {
+    font-family: $font-mi;
+    font-weight: normal;
+    font-size: 1.25rem;
+    font-style: normal;
+    line-height: 1.25rem;
+    margin: 0 .25rem 0 -.5rem;
+    text-decoration: none;
+
+    &:only-child {
+      margin: 0;
+    }
+  }
+}
+
+.btn-icon-narrow {
+  padding: .375rem 0;
+}
+
+.btn-alt {
+  padding: .4375rem 1rem;
+  box-shadow: 0 .125rem .75rem rgba($black, .15);
+  transition: all .3s ease;
+
+  &:hover {
+    box-shadow: 0 .125rem .5rem rgba($black, .25);
+    margin-top: -1px;
+    margin-bottom: 1px;
+    border-color: transparent;
+  }
+
+  &.btn-secondary {
+    &:hover {
+      background-color: $white;
+    }
+  }
+}
+
+.btn-yellow {
+  background-color: $collection-yellow;
+  color: color-yiq($collection-yellow);
+
+  &:hover {
+    background-color: darken($collection-yellow, 15%);
+    color: color-yiq($collection-yellow);
+  }
+}
+.btn {
+}
+
+.btn-sm {
+  line-height: 1.1;
+  padding: 6px 10px 5px;
+  font-size: .875rem;
+}
+
+// TODO : clean
+
+// .btn-create {
+//     background: transparent;
+//     font-weight: 500;
+//     color: rgba($black, .75);
+//     outline: none;
+//     text-transform: uppercase;
+//
+//     &:hover {
+//         background: $hover-dark-color;
+//     }
+// }
+
+// .btn-outline-secondary {
+//     color: $black-light;
+// }
+//
+// .btn--light-op {
+//     background: rgba(0,0,0,.1);
+//     color: $white;
+//     border: 1px solid transparent;
+//
+//     &:hover {
+//         background: rgba(0,0,0,.25);
+//     }
+// }
+//
+// .btn--dark-op {
+//     background: rgba(255,255,255,.25);
+//     color: $black;
+//     border: 1px solid transparent;
+//
+//     &:hover {
+//         background: rgba(255,255,255,.5);
+//     }
+// }
+
+.btn-icon {
+    display: inline-flex;
+    position: relative;
+    background: transparent;
+    width: auto;
+    height: auto;
+    padding: 7px;
+    border: none;
+    border-radius: 3px;
+    overflow: hidden;
+    font-size: 1.25rem!important;
+
+    .icon {
+        font-size: inherit;
+    }
+
+    &:hover {
+        background: $hover-dark-color;
+    }
+
+    &:before {
+        position: relative;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: none;
+        padding: 0;
+    }
+
+    &:after {
+        display: none;
+    }
+}
+
+.btn--facebook, .btn--twitter, .btn--google {
+    color: $white!important;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.btn--facebook {
+    background: $color-facebook;
+
+    &:hover {
+        background: darken($color-facebook, 15%);
+    }
+}
+
+.btn--twitter {
+    background: $color-twitter;
+
+    &:hover {
+        background: darken($color-twitter, 15%);
+    }
+}
+
+.btn--google {
+    background: $color-google;
+
+    &:hover {
+        background: darken($color-google, 15%);
+    }
+}

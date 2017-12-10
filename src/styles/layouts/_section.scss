@@ -1,0 +1,43 @@
+.section {
+    margin: 0 0 2.5rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: $gray-900;
+
+    &.withDescription {
+        margin-bottom: .25rem;
+    }
+}
+
+.section-description {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 1.5rem;
+  font-size: 1.125rem;
+  color: $gray-700;
+}
+
+.section:first-child {
+    // margin-top: -130px;
+}
+
+.section-title.dark-bg {
+    color: $white;
+
+    a {
+        &:hover, &:active, &:focus {
+            opacity: .75;
+        }
+    }
+}
+
+.section-title-more {
+    font-size: 1rem;
+    font-weight: normal;
+    padding: .25rem .5rem;
+    border-radius: 3px;
+}

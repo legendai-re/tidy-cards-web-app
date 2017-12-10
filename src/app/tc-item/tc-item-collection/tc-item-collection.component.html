@@ -1,0 +1,47 @@
+<article class="card card-collection" *ngIf="collection">
+    <a href="javascript:void(0)" [routerLink]="['/c', collection._id]" >
+        <div *ngIf="collection._thumbnail" class="thumbnail card-collection-thumbnail">
+            <img [src]="collection._thumbnail?.getPath('300x250')" />
+        </div>
+        <div *ngIf="!collection._thumbnail" [style.background-color]="'#'+collection.color" class="card-collection-color"></div>
+    </a>
+    <div class="card-collection-container">
+        <a href="javascript:void(0)" [routerLink]="['/c', collection._id]" >
+            <div class="card-collection-content" [class.has-thumbnail]="collection._thumbnail">
+                <h3 class="card-collection-title">{{collection.title}}</h3>
+                <p class="card-collection-caption">{{collection.bio}}</p>
+            </div>
+        </a>
+        <div class="card-collection-details">
+            <a href="javascript:void(0)" [routerLink]="['/', collection._author?.username]" title="{{collection._author?.name}}">
+                <div class="card-avatar avatar avatar--60">
+                    <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('60x60')" alt="{{collection._author?.name}} avatar">
+                    {{collection._author?.name?.charAt(0)}}
+                </div>
+            </a>
+            <div class="card-collection-details-infos">
+                <div class="card-collection-stats" [class.has-thumbnail]="collection._thumbnail">
+                    <div *ngIf="sortable" class="stat-item-list">
+                        <span class="move-item-button">Drag me</span>
+                    </div>
+                    <ul *ngIf="collection.visibility.id != 'PRIVATE'" class="stats-list">
+                        <li class="stat-item-list">
+                            <i class="material-icons stat-icon">mode_comment</i> 0
+                        </li>
+                        <li class="stat-item-list" [class.starred]="collection._star"  (click)="onStarCliked()" >
+                            <i class="material-icons stat-icon">star</i> {{collection.starsCount}}
+                        </li>
+                    </ul>
+                    <div *ngIf="collection.visibility.id == 'PRIVATE'" class="card-collection-visibility" title="Visibility: {{collection.visibility.desc}}">
+                        <i class="material-icons stat-icon">visibility_off</i>
+                    </div>
+                </div>
+                <div class="card-collection-nb">
+                    {{collection.itemsCount}}
+                    <span *ngIf="collection.itemsCount < 2">{{t._.collection?.item_sing}}</span>
+                    <span *ngIf="collection.itemsCount > 1">{{t._.collection?.item_plur}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

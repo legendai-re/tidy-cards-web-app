@@ -1,0 +1,36 @@
+<div class="auth-content">
+  <form class="form-signin" (ngSubmit)="onSignupSubmit()">
+    <div class="form-group">
+      <label for="inputEmail" class="sr-only">{{t._.auth?.username_placeholder}}</label>
+      <input [(ngModel)]="signupData.username" name="username" (keyup)="onUsernameKeyUp()" (keydown)="onUsernameKeyDown()" (blur)="checkUsername()" type="text" id="inputEmail" class="form-control" placeholder="{{t._.auth?.username_placeholder}}" required="" autofocus="">
+      <div *ngIf="signupData.username">
+        <small class="text-muted" *ngIf="usernameState == 'VALIDATING'">{{t._.auth?.status?.valisation_progress}}</small>
+        <small class="text-success" *ngIf="usernameState == 'FREE'">{{t._.auth?.status?.username_avalaible}}</small>
+        <small class="text-danger" *ngIf="usernameState == 'INVALID'">{{t._.auth?.status?.username_invalid}}</small>
+        <small class="text-danger" *ngIf="usernameState == 'TAKEN'">{{t._.auth?.status?.username_not_avalaible}}</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail" class="sr-only">{{t._.auth?.email_placeholder}}</label>
+      <input [(ngModel)]="signupData.email" name="email" (keyup)="onEmailKeyUp()" (keydown)="onEmailKeyDown()" (blur)="checkEmail()" type="email" id="inputEmail" class="form-control" placeholder="{{t._.auth?.email_placeholder}}" required="" autofocus="">
+      <div *ngIf="signupData.email">
+        <small class="text-muted" *ngIf="emailState == 'VALIDATING'">{{t._.auth?.status?.valisation_progress}}</small>
+        <small class="text-success" *ngIf="emailState == 'FREE'">{{t._.auth?.status?.email_avalaible}}</small>
+        <small class="text-danger" *ngIf="emailState == 'INVALID'">{{t._.auth?.status?.email_invalid}}</small>
+        <small class="text-danger" *ngIf="emailState == 'TAKEN'">{{t._.auth?.status?.email_not_avalaible}}</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="sr-only">{{t._.auth?.password_placeholder}}</label>
+      <input [(ngModel)]="signupData.password" name="password" type="password" id="inputPassword" class="form-control" placeholder="{{t._.auth?.password_placeholder}}" required="">
+      <small class="text-danger" *ngIf="signupData.password && signupData.password.length < 3">{{t._.auth?.status?.password_too_short}}</small>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="sr-only">{{t._.auth?.password_repeat_placeholder}}</label>
+      <input [(ngModel)]="signupData.passwordRepeat" name="passwordRepeat" type="password" id="inputPassword" class="form-control" placeholder="{{t._.auth?.password_repeat_placeholder}}" required="">
+      <small class="text-danger" *ngIf="signupData.password && signupData.passwordRepeat && signupData.password != signupData.passwordRepeat">{{t._.auth?.status?.password_not_match}}</small>
+    </div>
+    <button [disabled]='!isFormValid() || signupInProgress' class="btn btn-primary btn-block" type="submit">{{t._.auth?.signup_button}}</button>
+    <small *ngIf="signupInProgress">{{t._.auth?.status?.signup_progress}}</small>
+  </form>
+</div>

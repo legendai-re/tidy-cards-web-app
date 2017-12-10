@@ -1,0 +1,60 @@
+body {
+    background: $whitesmoke;
+    font-family: $font-primary;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    position: relative;
+}
+
+a,
+area,
+button,
+.btn,
+.button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea {
+    &:hover, &:active, &:focus {
+        outline: none;
+    }
+}
+
+a {
+    cursor: pointer!important;
+    transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    a {
+        color: inherit;
+
+        &:hover {
+            color: inherit;
+        }
+    }
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+
+b, strong {
+  font-weight: 500;
+}
+
+iframe {
+  border: none;
+}

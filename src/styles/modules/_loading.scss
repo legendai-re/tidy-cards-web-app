@@ -1,0 +1,22 @@
+.load-more, .loading-more, .no-more {
+    display: block;
+    text-align: center;
+    color: $black-light;
+    padding: 15px 0;
+}
+
+.load-more {
+    background: $grey;
+    border-radius: 3px;
+    font-weight: bold;
+
+    &:hover {
+        background: darken($grey, 25%);
+        color: $white;
+        text-decoration: none;
+    }
+}
+
+.no-more {
+    color: $grey-light;
+}

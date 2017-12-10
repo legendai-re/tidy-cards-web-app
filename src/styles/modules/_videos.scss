@@ -1,0 +1,20 @@
+.video-container {
+  position: relative;
+  background-color: $gray-300;
+  height: 0;
+  padding-top: 56.25%;
+  border-radius: $border-radius-base;
+  overflow: hidden;
+
+  .video {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  iframe {
+    height: 100%;
+  }
+}

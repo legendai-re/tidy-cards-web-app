@@ -1,0 +1,21 @@
+<main class="application-ui" [class.is-hidden]="!authService.authInitialized || !t.langInitialized">
+
+  <div class="application-flash"></div>
+
+  <div class="application-container">
+
+    <tc-header class="application-header"></tc-header>
+
+    <router-outlet></router-outlet>
+
+    <div class="application-footer"> <!-- TODO: tc-footer -->
+
+      <div class="footer-container" *ngIf="!headerService.noHeader && !headerService.noFooter">
+        <tc-footer></tc-footer>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>

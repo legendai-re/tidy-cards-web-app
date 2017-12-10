@@ -1,0 +1,130 @@
+<div class="header"
+    [class.is-searching]="headerState == 'search'"
+    [class.is-hidden]="noHeader"
+    [class.is-page]="headerState == 'collection' || headerState == 'page'"
+    [class.has-jumbotron]="!authService.isLoggedIn && (headerState == 'discover' || headerState == 'search')"
+    *ngIf="!headerService.noHeader">
+
+  <nav class="header-nav navbar navbar-expand-md navbar-dark">
+    <div class="container">
+      <a class="header-nav--brand navbar-brand" href="javascript:void(0)" [routerLink]="['/']">
+        <h1 class="icon beta">Invow</h1>
+      </a>
+
+      <form class="header-search-bar">
+        <span id="header-search" class="header-search-bar--icon">search</span>
+        <input class="header-search-bar--input"
+               name="searchQuery"
+               placeholder="{{t._?.header?.search_placeholder}}"
+               aria-describedby="header-search"
+               [(ngModel)]="searchQuery"
+               (focus)="searchIntent()"
+               (click)="searchIntent()"
+               (keyup)="onQueryKeyUp()"
+               (keydown)="onQueryKeyDown()">
+        <a href="javascript:void(0)" class="header-search-bar--cancel" [class.hidden]="headerState != 'search' "(click)="cancelSearch()">{{t._.action?.cancel}}</a>
+      </form>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavbar" aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="appNavbar">
+
+        <ul class="header-navbar navbar-nav ml-auto">
+
+          <li class="header-navbar--nav-item nav-item" *ngIf="authService.isLoggedIn">
+            <a class="header-navbar--nav-link nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">
+              {{t._?.header?.dashboard_title}}
+            </a>
+          </li>
+
+          <li class="header-navbar--nav-item nav-item" *ngIf="authService.isLoggedIn">
+            <a class="header-navbar--nav-link nav-link" routerLinkActive="active" [routerLink]="['/discover']">
+              {{t._?.header?.discover_title}}
+            </a>
+          </li>
+
+          <li class="header-navbar--nav-item nav-item dropdown" *ngIf="authService.isLoggedIn">
+            <a class="header-navbar--nav-link nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span>{{authService.currentUser.name}}</span>
+              <div class="header-navbar--avatar avatar">
+                <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('40x40')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
+                <span class="avatar-char">{{authService.currentUser.name.charAt(0)}}</span>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-item--infos">
+                <div class="dropdown-item--infos-title">
+                  {{authService.currentUser.name}}
+                </div>
+                <div class="dropdown-item--infos-subtitle">
+                  @{{authService.currentUser.username}}
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="['/', authService.currentUser.username]">
+                {{t._?.header?.profile_menu}}
+              </a>
+              <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/logout']">
+                {{t._?.header?.logout_menu}}
+              </a>
+              <div class="dropdown-divider" *ngIf="authService.currentUser?.isGranted('ROLE_ADMIN')"></div>
+              <a class="dropdown-item" *ngIf="authService.currentUser?.isGranted('ROLE_ADMIN')" [routerLink]="['/admin']">
+                {{t._?.header?.admin_menu}}
+              </a>
+            </div>
+          </li>
+
+          <li class="header-navbar--nav-item nav-item" *ngIf="!authService.isLoggedIn && headerState == 'discover'" >
+            <div class="header-navbar--nav-item-content">
+              <span class="header-navbar--nav-link-text">
+                {{t._?.auth?.already_member_title}}
+              </span>
+              <a class="header-navbar--nav-link nav-link active" routerLinkActive="active" [routerLink]="['/signin']">
+                {{t._?.header?.signin_title}}
+              </a>
+            </div>
+          </li>
+
+          <li class="header-navbar--nav-item nav-item" *ngIf="!authService.isLoggedIn && headerState != 'discover'" >
+            <div class="header-navbar--nav-item-content">
+              <span class="header-navbar--nav-link-text">
+                {{t._?.auth?.not_member_title}}
+              </span>
+              <a class="header-navbar--nav-link nav-link cta" routerLinkActive="active" [routerLink]="['/signin']">
+                {{t._?.auth?.signup_today_button}}
+              </a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <tc-search-header class="header-search" *ngIf="headerState == 'search'"></tc-search-header>
+
+  <div class="header-jumbotron" *ngIf="!authService.isLoggedIn && headerState == 'discover'">
+    <div class="container">
+      <div class="row">
+
+        <div class="header-jumbotron-container col-12 col-md-10 mx-md-auto">
+          <h1 class="header-jumbotron--title">{{t._?.header?.jumbotron?.slogan}}</h1>
+          <div class="header-jumbotron--lead">
+            <p>{{t._?.header?.jumbotron?.description_line_1}}</p>
+            <p>{{t._?.header?.jumbotron?.description_line_2}}</p>
+          </div>
+          <div class="header-jumbotron--actions">
+            <a class="btn btn-yellow btn-alt" routerLinkActive="active" [routerLink]="['/signin']">{{t._?.auth?.signup_today_button}}</a>
+            <a class="btn btn-secondary btn-alt" [routerLink]="['/about']">{{t._?.header?.jumbotron?.about_button}}</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="header-cover" *ngIf="image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}"></div>
+
+</div>

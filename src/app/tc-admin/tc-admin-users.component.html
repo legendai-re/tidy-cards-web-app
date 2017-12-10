@@ -1,0 +1,42 @@
+<div class="application-content is-list-collection">
+  <div class="container">
+
+    <div class="section">
+      <h2 class="section-title dark-bg">Users management</h2>
+      <input type="text" name="userId" placeholder="userId" [(ngModel)]="userIdDeactivate" />
+      <input type="submit" name="deactivate"  value="Deactivate" (click)="deactivateAccount()" />
+
+      <input type="text" name="userId" placeholder="userId" [(ngModel)]="userIdActivate" />
+      <input type="submit" name="deactivate" value="Activate" (click)="activateAccount()" />
+      <div class="row">
+
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let user of users">
+          <article class="card card-user">
+              <a class="card-user-content" [routerLink]="['/', user.username]" title="{{user.name}}">
+                <div class="card-avatar avatar avatar--40">
+                  <img *ngIf="user._avatar" [src]="user._avatar?.getPath('40x40')" alt="{{user.name}} avatar">
+                  {{user.name.charAt(0)}}
+                </div>
+                <h3 class="card-profile-name">{{user.name}}</h3>
+                <h4 class="card-profile-username">@{{user.username}}</h4>
+              </a>
+          </article>
+          <h4 class="card-profile-username" (click)="collapse(user)">show info</h4>
+          <div [class.collapse]="!user.isCollapsed" >
+            <pre>
+              {{user | json}}
+            </pre>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <a href="javascript:void(0)" class="load-more" *ngIf="haveMoreUsers && !loadingUsers"(click)="loadNextPage()">Load more...</a>
+          <p class="loading-more" *ngIf="loadingUsers">Loading...</p>
+          <p class="no-more" *ngIf="!haveMoreUsers">You’ve reached the end of the list</p>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,15 @@
+
+<div *ngIf="!paidSuccess && !processing">
+	<input type="number" [(ngModel)]="inputAmount" placeholder="Choose a value" />
+	<button (click)="handlePayment()">
+	  Help TidyCards!
+	</button>
+</div>
+
+<div *ngIf="processing">
+	Processing...
+</div>
+
+<div *ngIf="!processing && paidSuccess">
+	Thanks for your donation!
+</div>

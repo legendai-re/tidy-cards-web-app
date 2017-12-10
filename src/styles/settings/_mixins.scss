@@ -1,0 +1,125 @@
+@mixin vendor-property($property, $value) {
+    @each $vendor in ('-moz-', '-webkit-', '-o-', '-ms-', '') {
+        #{$vendor}#{$property}: #{$value};
+    }
+}
+
+@mixin vendor-value($property, $value) {
+    @each $vendor in ('-moz-', '-webkit-', '-o-', '-ms-', '') {
+        #{$property}: #{$vendor}#{$value};
+    }
+}
+
+@mixin vendor($property, $value) {
+    @each $vendor in ('-moz-', '-webkit-', '-o-', '-ms-', '') {
+        #{$vendor}#{$property}: #{$vendor}#{$value};
+    }
+}
+
+@mixin color-placeholder ( $c ) {
+    &::-webkit-input-placeholder { color: $c; }
+    &::-moz-placeholder { color: $c; }
+    &:-ms-input-placeholder { color: $c; }
+    &:-moz-placeholder { color: $c; }
+}
+
+@mixin vendor-keyframes($name) {
+    @-moz-keyframes #{$name} { @content; }
+    @-webkit-keyframes #{$name} { @content; }
+    @-o-keyframes #{$name} { @content; }
+    @-ms-keyframes #{$name} { @content; }
+    @keyframes #{$name} { @content; }
+}
+
+@mixin scrollTouch( $ox: hidden, $oy: auto ) {
+    overflow: auto;
+    overflow-x: $ox;
+    overflow-y: $oy;
+    -webkit-overflow-scrolling: touch;
+}
+
+@mixin retina() {
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+
+     @content;
+
+  }
+}
+
+@mixin respond-to($m, $px:0) {
+    @if $m == xs {
+        @media (min-width: $screen-xs) {
+            @content;
+        }
+    }
+    @else if $m == sm {
+        @media (min-width: $screen-sm) {
+            @content;
+        }
+    }
+    @else if $m == md {
+        @media (min-width: $screen-md) {
+            @content;
+        }
+    }
+    @else if $m == lg {
+        @media (min-width: $screen-lg) {
+            @content;
+        }
+    }
+    @else if $m == xl {
+        @media (min-width: $screen-xl) {
+            @content;
+        }
+    }
+    @else if $m == no-retina {
+        @media screen and (-webkit-max-device-pixel-ratio: 1) {
+            @content;
+        }
+    }
+    @else if $m == retina {
+        @media screen and (-webkit-min-device-pixel-ratio: 2) {
+            @content;
+        }
+    }
+    @else {
+        @media only screen and (max-width: $px) {
+            @content;
+        }
+    }
+}
+
+@mixin rwd-xs () {
+    @include respond-to (xs) { @content };
+}
+
+@mixin rwd-sm () {
+    @include respond-to (sm) { @content };
+}
+
+@mixin rwd-md () {
+    @include respond-to (md) { @content };
+}
+
+
+@mixin rwd-lg () {
+    @include respond-to (lg) { @content };
+}
+
+@mixin rwd-no-retina () {
+    @include respond-to (no-retina) { @content };
+}
+
+@mixin rwd-retina () {
+    @include respond-to (retina) { @content };
+}
+
+@mixin rwd-max-width ( $px ) {
+    @include respond-to ( "", $px ) { @content };
+}

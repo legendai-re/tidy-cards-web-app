@@ -1,0 +1,6 @@
+<div class="collection-item--media-container">
+  <div class="collection-item--media-video">
+    <img class="collection-item--media-video-image" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo = true" *ngIf="!displayVideo"/>
+    <iframe class="collection-item--media-video-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
+  </div>
+</div>

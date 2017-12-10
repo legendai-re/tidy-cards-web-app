@@ -1,0 +1,30 @@
+<section class="auth-section">
+  <div class="auth-container">
+    <a href="javascript:void(0)" [routerLink]="['/']">
+      <h1 class="icon-invow logo auth-logo">{{t._.app_name_capitals}}</h1>
+    </a>
+
+    <h2 class="auth-heading">{{t._.auth?.signin_title}}</h2>
+
+    <div class="auth-wrapper" *ngIf="mode == 'socials'">
+      <tc-socials></tc-socials>
+      <div class="auth-footer">
+        <a href="javascript:void(0)" (click)="mode = 'signin'">{{t._.auth?.signin_button}}</a> {{t._.word?.or}} <a href="javascript:void(0)" (click)="mode = 'signup'">{{t._.auth?.signup_button}}</a> {{t._.word?.with_email}}
+      </div>
+    </div>
+
+    <div class="auth-wrapper" *ngIf="mode == 'signin'">
+      <tc-signin></tc-signin>
+      <div class="auth-footer">
+        <a href="javascript:void(0)" (click)="mode = 'socials'">← {{t._.auth?.all_signin_options}}</a>
+      </div>
+    </div>
+
+    <div class="auth-wrapper" *ngIf="mode == 'signup'">
+      <tc-signup></tc-signup>
+      <div class="auth-footer">
+        <a href="javascript:void(0)" (click)="mode = 'socials'">← {{t._.auth?.all_signin_options}}</a>
+      </div>
+    </div>
+  </div>
+</section>

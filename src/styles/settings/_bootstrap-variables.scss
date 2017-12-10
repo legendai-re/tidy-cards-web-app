@@ -1,0 +1,38 @@
+
+// Grid
+
+$grid-gutter-width:                 20px;
+
+
+// Buttons
+
+// $input-btn-padding-y:         .25rem;
+// $input-btn-padding-x:         1rem;
+
+
+// Border radius
+
+$border-radius-sm:                  2px;
+$border-radius:                     3px;
+$border-radius-lg:                  4px;
+
+
+// Modals
+
+$modal-content-border-color:        transparent;
+$modal-content-border-width:        none;
+
+$modal-lg:                          700px;
+$modal-md:                          500px;
+$modal-sm:                          300px;
+
+$custom-file-text: (
+  placeholder: (
+    en: "Choose file...",
+    fr: "Choisir un fichier..."
+  ),
+  button-label: (
+    en: "Browse",
+    fr: "Explorer"
+  )
+);

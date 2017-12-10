@@ -1,0 +1,70 @@
+<article dnd-sortable *ngIf="collection" class="card card-collection">
+  <span *ngIf="sortable" class="card-collection--drag-handle" dnd-sortable-handle >
+    <i class="material-icons move-item-button">drag_handle</i>
+  </span>
+  <a [routerLink]="['/c', collection._id]" class="card-collection--container">
+
+    <div class="card-collection--content" [class.has-thumbnail]="collection._thumbnail">
+
+      <h3 class="card-collection--title">{{collection.title | truncate:[40] }}</h3>
+      <p class="card-collection--caption">{{collection.bio | truncate:[160] }}</p>
+
+      <div class="card-collection--details">
+        <div class="card-avatar avatar avatar--32">
+          <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('60x60')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+          <span class="avatar-char">{{collection._author?.name?.charAt(0)}}</span>
+        </div>
+        <ul class="card-collection--stats" *ngIf="collection.visibility.id != 'PRIVATE'">
+          <!-- <li class="card-collection--stat">
+            <span class="card-collection--stat-icon">mode_comment</span>
+            <span>0</span>
+          </li> -->
+          <li class="card-collection--stat">
+            <span class="card-collection--stat-icon" [class.is-highlighted]="collection._star">star</span>
+            <span>{{collection.starsCount}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-collection--background is-color" *ngIf="!collection._thumbnail" [style.background-color]="'#'+collection.color"></div>
+      <div class="card-collection--background is-thumbnail" *ngIf="collection._thumbnail">
+        <img [src]="collection._thumbnail?.getPath('300x250')" onError="this.style.display='none';" />
+      </div>
+
+    </div>
+
+    <div class="card-collection--footer">
+
+      <ul class="card-collection--tags">
+        <li class="card-collection--tag is-featured" *ngIf="collection.isFeatured">
+          <span class="card-collection--tag-icon">bookmark</span>
+          <span>{{t._.collection?.featured_title}}</span>
+        </li>
+
+        <li class="card-collection--tag has-visibility" *ngIf="collection.visibility.id == 'UNINDEXED'">
+          <span class="card-collection--tag-icon">visibility_off</span>
+          <span>{{collection.visibility.desc}}</span>
+        </li>
+
+        <li class="card-collection--tag has-visibility" *ngIf="collection.visibility.id == 'PRIVATE'">
+          <span class="card-collection--tag-icon">lock</span>
+          <span>{{collection.visibility.desc}}</span>
+        </li>
+      </ul>
+
+      <ul class="card-collection--f-stats">
+        <li *ngIf="collection.itemsCount == 0">
+          {{collection.itemsCount}} {{t._.collection?.item_plur}}
+        </li>
+        <li *ngIf="collection.itemsCount == 1">
+          {{collection.itemsCount}} {{t._.collection?.item_sing}}
+        </li>
+        <li *ngIf="collection.itemsCount > 1">
+          {{collection.itemsCount}} {{t._.collection?.item_plur}}
+        </li>
+      </ul>
+
+    </div>
+
+  </a>
+</article>

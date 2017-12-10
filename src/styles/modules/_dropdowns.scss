@@ -1,0 +1,41 @@
+.dropdown-menu {
+    border-radius: 3px;
+    border: 1px solid $border-color;
+
+}
+
+.dropdown-header {
+    margin-bottom: .125rem;
+    color: $black-light;
+}
+
+.dropdown-item {
+    padding: 3px 15px;
+}
+
+.dropdown-divider {
+    background-color: $border-color;
+}
+
+.dropdown-item small {
+    margin-top: -3px;
+    display: block;
+    color: $black-light;
+}
+
+.dropdown-item--infos {
+  padding: 3px 15px;
+}
+
+.dropdown-item--infos-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.dropdown-item--infos-subtitle {
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.25rem;
+  color: $gray-600;
+}

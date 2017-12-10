@@ -1,0 +1,103 @@
+/* ==========================================================================
+   AUTH COMPONENT
+   ========================================================================== */
+
+@import '../../styles/settings/_variables.scss';
+@import '../../styles/settings/_mixins.scss';
+
+.auth-section {
+    position: fixed;
+    overflow: auto;
+    text-align: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: block;
+    z-index: 900;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    padding: 30px 0;
+
+    @include rwd-sm {
+        &:before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -.25em;
+        }
+    }
+}
+
+.auth-container {
+    padding: 0;
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    outline: 0;
+    overflow: hidden;
+
+    @include rwd-sm {
+        max-width: 350px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.auth-logo {
+    width: 60px;
+    height: 60px;
+    color: $purple;
+    margin: 0 auto;
+    font-size: 45px;
+    line-height: 70px;
+    text-indent: 0;
+}
+
+.auth-heading {
+    margin: 10px auto 20px;
+}
+
+.auth-wrapper {
+    background: $white;
+    border: 1px solid $border-color;
+    border-left: none;
+    border-right: none;
+    color: $black;
+
+    @include rwd-sm {
+        border-radius: 3px;
+        border: 1px solid $border-color;
+        box-shadow: 0 1px 4px $box-shadow-color;
+    }
+}
+
+.auth-content {
+    padding: 20px;
+}
+
+.auth-content-card {
+  display: flex;
+  align-items: center;
+  background-color: $gray-100;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  border-radius: $border-radius-base;
+  margin: 0 0 .5rem;
+}
+
+.auth-top-content {
+    color: $black-light;
+}
+
+.auth-footer {
+    background: $whitesmoke;
+    padding: 15px 0;
+    border-top: 1px solid $border-color;
+}

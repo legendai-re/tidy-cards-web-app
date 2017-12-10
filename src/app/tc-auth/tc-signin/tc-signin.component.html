@@ -1,0 +1,20 @@
+<div class="auth-content">
+    <form class="form-signin" *ngIf="!authService.isLoggedIn" (ngSubmit)="onLoginSubmit()">
+      <div class="form-group">
+        <label for="inputUsername" class="sr-only">{{t._.auth?.username_placeholder}}</label>
+        <input [(ngModel)]="username" name="username" type="text" id="inputUsername" class="form-control" placeholder="{{t._.auth?.username_placeholder}}" required="" autofocus="" />
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="sr-only">{{t._.auth?.password_placeholder}}</label>
+        <input [(ngModel)]="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="{{t._.auth?.password_placeholder}}" required="" />
+      </div>
+      <small *ngIf="longinInProgress" class="text-muted">{{t._.auth?.status?.signin_attempt}}</small>
+      <div *ngIf="!longinInProgress && loginFailed">
+        <small *ngIf="errorStatusCode == 401" class="text-danger">{{t._.auth?.status?.error_wrong}}</small>
+        <small *ngIf="errorStatusCode == 429" class="text-danger">{{t._.auth?.status?.error_too_many_attempt}}</small>
+        <small *ngIf="errorStatusCode != 401 && errorStatusCode != 429" class="text-danger">{{t._.auth?.status?.error_unknown}}</small>
+      </div>
+      <button [disabled]='!username || !password' class="btn btn-primary btn-block" type="submit">{{t._.auth?.signin_button}}</button>
+      <a href="javascript:void(0)" class="d-inline-flex mt-2" [routerLink]="['/reset/initiate']">{{t._.auth?.password_lost}}</a>
+    </form>
+</div>

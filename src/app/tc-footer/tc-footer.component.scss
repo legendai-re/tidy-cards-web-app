@@ -1,0 +1,85 @@
+/* ==========================================================================
+   FOOTER COMPONENT
+   ========================================================================== */
+
+@import '../../styles/settings/_variables.scss';
+@import '../../styles/settings/_mixins.scss';
+
+.footer-container {
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: $gray-100;
+  padding: 2rem 0 3rem;
+  color: $black-light;
+  margin-top: 4rem;
+
+  &.is-hidden {
+    display: none;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    text-indent: 0;
+    font-size: 30px;
+    line-height: 48px;
+  }
+
+  .footer-logo {
+    float: left;
+    display: inline-block;
+    margin: 0 10px 0 0;
+  }
+
+  .footer-copy {
+    float: left;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 40px;
+  }
+}
+
+.footer-nav {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 2.5rem;
+  padding: 0;
+  margin: 0 0 0 auto;
+  list-style: none;
+  justify-content: flex-end;
+}
+
+.footer-nav--item {
+  font-size: .875rem;
+  line-height: 1.25rem;
+
+  &:not(:first-child) {
+    margin-left: .5rem;
+  }
+
+  a {
+    position: relative;
+    display: flex;
+    background-color: transparent;
+    padding: 0 .5rem;
+    line-height: 2.5rem;
+    color: $gray-600;
+    border-radius: $border-radius-small;
+    transition: background-color .3s ease;
+
+    &:hover {
+      background-color: rgba($black, .1);
+      text-decoration: none;
+    }
+  }
+}

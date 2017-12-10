@@ -1,0 +1,138 @@
+$white:                     #FFFFFF;
+$gray-050:                  #FAFAFA;
+$gray-100:                  #F1F1F1;
+$gray-200:                  #EAEAEA;
+$gray-300:                  #DEDEDE;
+$gray-400:                  #BCBCBC;
+$gray-500:                  #999999;
+$gray-600:                  #777777;
+$gray-700:                  #666666;
+$gray-800:                  #444444;
+$gray-900:                  #282828;
+$black:                     #000000;
+
+$grays: (
+  100:                      $gray-100,
+  200:                      $gray-200,
+  300:                      $gray-300,
+  400:                      $gray-400,
+  500:                      $gray-500,
+  600:                      $gray-600,
+  700:                      $gray-700,
+  800:                      $gray-800,
+  900:                      $gray-900
+);
+
+$blue:                      #007BFF;
+$indigo:                    #6610F2;
+$purple:                    #6B5DFF;
+$pink:                      #E83E8C;
+$red:                       #DC3545;
+$orange:                    #FF8247;
+$yellow:                    #F8D047;//#ffc107;
+$green:                     #4FE88D;
+$teal:                      #20C997;
+$cyan:                      #17A2B8;
+
+$brand-primary:             $purple;
+
+$collection-grey:           #CFD8DC;
+$collection-red:            #FF887A;
+$collection-orange:         #FFD373;
+$collection-yellow:         #FFFF7C;
+$collection-purple:         #A4ABFF;
+$collection-blue:           #78D6FF;
+$collection-cyan:           #A4FFEB;
+$collection-green:          #CBFF8A;
+
+$theme-colors: (
+  primary:                  $brand-primary,
+  secondary:                $gray-100,
+  success:                  $green,
+  info:                     $cyan,
+  warning:                  $yellow,
+  danger:                   $red,
+  light:                    $gray-100,
+  dark:                     $gray-800
+);
+
+$box-shadow-color:          rgba($black, .1);
+
+$font-brand:                Fira Sans, Helvetica, sans-serif;
+$font-primary:              $font-brand;
+$font-icons:                "TidyCards Icons";
+$font-mi:                   "Material Icons";
+
+
+$border-radius-small:      .125rem;
+$border-radius-base:       .1875rem;
+$border-radius-large:      .325rem;
+
+$border-color:              rgba(0,0,0,.1);
+
+$btn-font-weight:          500;
+
+
+
+// OLD WIP
+
+// VARS
+
+// fonts
+
+//colors
+
+$black-light:               #777777;
+$grey:                      #DDDDDD;
+$grey-light:                #BBBBBB;
+
+$whitesmoke:                #F5F5F5;
+
+// collection colors
+
+
+
+$collection-default-color:  $collection-grey;
+
+$color-facebook:            #3B5998;
+$color-twitter:             #55ACEE;
+$color-google:              #DD4B39;
+
+// color palette
+
+$palette-yellow:            #FFE847;
+
+// components
+
+$images-overlay:            rgba(0,0,0,.6);
+$hover-dark-color:          rgba(0,0,0,.1);
+$hover-light-color:         rgba(255,255,255,.1);
+$box-shadow-color:          rgba(0,0,0,.04);
+
+$black-op-1-4:              rgba(0,0,0,.25);
+$black-op-1-3:              rgba(0,0,0,.33);
+$black-op-1-2:              rgba(0,0,0,.5);
+$black-op-2-3:              rgba(0,0,0,.66);
+$black-op-3-4:              rgba(0,0,0,.75);
+
+$white-op-1-4:              rgba(255,255,255,.25);
+$white-op-1-3:              rgba(255,255,255,.33);
+$white-op-1-2:              rgba(255,255,255,.5);
+$white-op-2-3:              rgba(255,255,255,.66);
+$white-op-3-4:              rgba(255,255,255,.75);
+
+$text-blacker:              $black-op-1-2;
+$text-whiter:               $white-op-1-2;
+$placeholder-blacker:       $black-op-1-2;
+$placeholder-whiter:        $white-op-3-4;
+
+$screen-xs:                 0;
+$screen-sm:                 425px; // 380px
+$screen-md:                 610px; // 700px
+$screen-lg:                 885px; // 1020px
+$screen-xl:                 1140px; // 1320px
+
+$container-sm:              100%; // 320px
+$container-md:              550px; // 640px
+$container-lg:              825px; // 960px
+$container-xl:              1100px; // 1280px

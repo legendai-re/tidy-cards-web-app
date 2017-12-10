@@ -1,0 +1,256 @@
+/* ==========================================================================
+   CREATE COLLECTION CARD COMPONENT
+   ========================================================================== */
+
+@import '../../../styles/settings/_variables.scss';
+@import '../../../styles/settings/_mixins.scss';
+
+.create-collection {
+  z-index: 2;
+}
+
+.create-collection .card-collection--container {
+  z-index: 3;
+}
+
+.create-collection .card-collection--thumbnail {
+  height: 300px;
+  border-radius: 3px;
+}
+
+.input-card-collection--title, .input-card-collection--caption {
+  background: transparent;
+  width: 100%;
+  padding: 0;
+  border: none;
+  @include color-placeholder($placeholder-blacker);
+}
+
+.has-thumbnail {
+  .card-collection--visibility {
+    color: $white-op-3-4;
+  }
+
+  .input-card-collection--title, .input-card-collection--caption {
+    color: $white;
+    @include color-placeholder($placeholder-whiter);
+  }
+}
+
+.input-card-collection--caption {
+  height: 120px;
+  resize: none;
+}
+
+.card-collection--visibility {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: .875rem;
+  color: $text-blacker;
+  transition: opacity .4s ease;
+  transition-delay: .8s;
+
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .icon {
+    font-family: $font-mi;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.125rem;
+    vertical-align: sub;
+    line-height: 1;
+    word-wrap: normal;
+  }
+}
+
+.card-collection--create-footer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: $white;
+  padding: .25rem;
+  border-radius: 0 0 $border-radius-base $border-radius-base;
+}
+
+.card-collection--create {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+  transition: opacity .6s ease;
+
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.card-collection--action-btn, .card-collection--btn {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  border: none;
+  background-color: transparent;
+  line-height: 2rem;
+  padding: 0;
+  border-radius: $border-radius-base;
+  overflow: hidden;
+
+  &:hover {
+    background-color: $gray-200;
+  }
+}
+
+.card-collection--action-btn {
+  margin-right: .25rem;
+
+  .icon {
+    font-family: $font-mi;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.125rem;
+    vertical-align: sub;
+    line-height: 2rem;
+    word-wrap: normal;
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+  }
+
+  input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+}
+
+.card-collection--btn {
+  padding: 0 .5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 2rem;
+  text-transform: uppercase;
+  color: $gray-900;
+}
+
+.color-card {
+  &:hover {
+    background: $hover-dark-color;
+  }
+}
+
+.file-card, .color-card {
+  color: $black-light;
+}
+
+.color-card {
+  background: transparent;
+  border: none;
+  padding: 7px;
+  line-height: 1rem;
+  vertical-align: middle;
+}
+
+.dropdown-menu-color {
+  padding-left: 5px;
+  padding-right: 5px;
+  min-width: 148px;
+}
+
+.dropdown-item-color {
+  width: 24px;
+  height: 24px;
+  background: $collection-default-color;
+  display: inline-block;
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 50%;
+  float: left;
+  position: relative;
+  color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid $border-color;
+
+    &.selected:after {
+      padding: 2px 0;
+    }
+  }
+
+  &.selected {
+    &:after {
+      content: "check";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      color: $images-overlay;
+      text-align: center;
+      padding: 4px 0;
+
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
+
+.collection-color-grey {
+  background: $collection-grey;
+}
+
+.collection-color-red {
+  background: $collection-red;
+}
+
+.collection-color-orange {
+  background: $collection-orange;
+}
+
+.collection-color-yellow {
+  background: $collection-yellow;
+}
+
+.collection-color-purple {
+  background: $collection-purple;
+}
+
+.collection-color-blue {
+  background: $collection-blue;
+}
+
+.collection-color-cyan {
+  background: $collection-cyan;
+}
+
+.collection-color-green {
+  background: $collection-green;
+}

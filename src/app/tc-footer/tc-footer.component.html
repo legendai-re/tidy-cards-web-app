@@ -1,0 +1,30 @@
+<div class="footer">
+  <div class="container">
+
+    <h1 class="icon-invow logo footer-logo">Invow</h1>
+    <span class="footer-copy">TidyCards© 2017</span>
+
+    <nav class="footer-nav">
+      <li class="footer-nav--item">
+          <select class="custom-select select-sm" (change)="updateLanguage()" [(ngModel)]="t.unsafeCurrentLanguage" name="language" [disabled]="isUpdatingLanguage">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+          </select>
+          <small *ngIf="isUpdatingLanguage">Update in progress..</small>
+      </li>
+      <li class="footer-nav--item">
+        <a [routerLink]="['/about']" >{{t._.page?.about?.title}}</a>
+      </li>
+      <!-- <li class="footer-nav--item">
+        <a [routerLink]="['/contact']" >{{t._.page?.contact?.title}}</a>
+      </li>
+      <li class="footer-nav--item">
+        <a [routerLink]="['/team']" >{{t._.page?.team?.title}}</a>
+      </li>
+      <li class="footer-nav--item">
+        <a [routerLink]="['/terms']">{{t._.page?.terms?.title}}</a>
+      </li> -->
+    </nav>
+
+  </div>
+</div>

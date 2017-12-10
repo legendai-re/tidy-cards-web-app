@@ -1,0 +1,18 @@
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Featured</h2>
+        <div class="row">
+            <div *ngIf="!collection">
+                <input type="text" [(ngModel)]="searchCollectionId" />
+                <input type="submit" value="Search" (click)="searchColletion()" />
+            </div>
+            <div *ngIf="collection"  class="col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
+                <input type="checkbox" [(ngModel)]="collection.isFeatured" />isFeatured
+                <input type="checkbox" [(ngModel)]="collection.isOnDiscover" />isOnDiscover
+                <input type="submit" value="Update" (click)="updateCollection()" />
+                <input type="submit" value="Search an other" (click)="searchAnother()" />
+            </div>
+        </div>
+    </div>
+</section>
