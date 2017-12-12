@@ -1,16 +1,17 @@
 {
   "name": "tidy-cards-web-app",
-  "version": "0.0.0",
   "description": "The web application of TidyCards",
   "author": "Legendai.re",
+  "version": "1.0.0-beta",
   "license": "MIT",
+  "homepage": "readme.md",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "build": "ng build --env=prod",
+    "watch": "ng build -w",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "postinstall": "build"
   },
   "private": true,
   "dependencies": {
@@ -40,5 +41,9 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/legendai-re/tidy-cards-web-app.git"
   }
 }
