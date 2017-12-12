@@ -112,8 +112,8 @@
 
       </div>
 
-      <div class="collection-container--list row" tc-sortable [list]=collection._items [ghostClass]="'collection-item-ghost'" (itemMoved)="onItemMoved($event)" *ngIf="itemLoaded && collection._items.length > 0">
-        <tc-item class="ui-state-default collection-item--container col-12" [item]=item [isAuthor]=isAuthor (deletedItem)="onDeletedItem($event)" *ngFor="let item of collection._items"></tc-item>
+      <div class="collection-container--list" tc-sortable [list]=collection._items [ghostClass]="'collection-item-ghost'" (itemMoved)="onItemMoved($event)" *ngIf="itemLoaded && collection._items.length > 0">
+        <tc-item class="ui-state-default collection-item--container" [item]=item [isAuthor]=isAuthor (deletedItem)="onDeletedItem($event)" *ngFor="let item of collection._items"></tc-item>
       </div>
 
       <div class="collection-container--footer" *ngIf="itemLoaded && collection._items.length > 0">

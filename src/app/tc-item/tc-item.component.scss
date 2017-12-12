@@ -35,7 +35,7 @@
   }
 
   &.is-caption {
-    // border: none;
+    border: none;
   }
 
   &.is-empty {
@@ -48,16 +48,6 @@
     }
   }
 }
-
-// .collection-item ~ .collection-item.is-caption {
-//   border-radius: $border-radius-base $border-radius-base 0 0;
-//   background-color: red;
-// }
-//
-// .collection-item + .collection-item.is-caption {
-//   background-color: $gray-050;
-//   margin: -.5rem auto .5rem;
-// }
 
 .collection-item--body {
   position: relative;

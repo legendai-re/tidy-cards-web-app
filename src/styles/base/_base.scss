@@ -58,3 +58,16 @@ b, strong {
 iframe {
   border: none;
 }
+
+form {
+  margin: 0;
+}
+
+input:required {
+    box-shadow:none;
+}
+
+input:invalid {
+  // box-shadow:0 0 3px red;
+  box-shadow: none;
+}

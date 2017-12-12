@@ -48,101 +48,101 @@
 
       </div>
 
-    </div>
-
-    <div class="card-collection--create-footer">
-      <div class="card-collection--create" [class.is-hidden]="!actionIntent">
-        <div class="btn-group form-action dropup">
-          <button class="card-collection--action-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="icon">palette</span>
-          </button>
-          <div class="dropdown-menu dropdown-menu-color">
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('CFD8DC')"
-              [class.selected]="collection.color=='CFD8DC'"
-              class="dropdown-item-color collection-color-grey"
-            >
-              Grey
-            </a>
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('FF887A')"
-              [class.selected]="collection.color=='FF887A'"
-              class="dropdown-item-color collection-color-red"
-            >
-              Red
-            </a>
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('FFD373')"
-              [class.selected]="collection.color=='FFD373'"
-              class="dropdown-item-color collection-color-orange"
-            >
-              Orange
-            </a>
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('FFFF7C')"
-              [class.selected]="collection.color=='FFFF7C'"
-              class="dropdown-item-color collection-color-yellow"
-            >
-              Yellow
-            </a>
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('A4ABFF')"
-              [class.selected]="collection.color=='A4ABFF'"
-              class="dropdown-item-color collection-color-purple"
-            >
-              Purple
-            </a>
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('78D6FF')"
-              [class.selected]="collection.color=='78D6FF'"
-              class="dropdown-item-color collection-color-blue"
-            >
-                Blue
-            </a>
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('A4FFEB')"
-              [class.selected]="collection.color=='A4FFEB'"
-              class="dropdown-item-color collection-color-cyan"
-            >
-              Cyan
-            </a>
-            <a
-              href="javascript:void(0)"
-              (click)="clickColor('CBFF8A')"
-              [class.selected]="collection.color=='CBFF8A'"
-              class="dropdown-item-color collection-color-green"
-            >
-              Green
-            </a>
+      <div class="card-collection--create-footer">
+        <div class="card-collection--create" [class.is-hidden]="!actionIntent">
+          <div class="btn-group form-action dropup">
+            <button class="card-collection--action-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="icon">palette</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-color">
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('CFD8DC')"
+                [class.selected]="collection.color=='CFD8DC'"
+                class="dropdown-item-color collection-color-grey"
+              >
+                Grey
+              </a>
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('FF887A')"
+                [class.selected]="collection.color=='FF887A'"
+                class="dropdown-item-color collection-color-red"
+              >
+                Red
+              </a>
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('FFD373')"
+                [class.selected]="collection.color=='FFD373'"
+                class="dropdown-item-color collection-color-orange"
+              >
+                Orange
+              </a>
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('FFFF7C')"
+                [class.selected]="collection.color=='FFFF7C'"
+                class="dropdown-item-color collection-color-yellow"
+              >
+                Yellow
+              </a>
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('A4ABFF')"
+                [class.selected]="collection.color=='A4ABFF'"
+                class="dropdown-item-color collection-color-purple"
+              >
+                Purple
+              </a>
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('78D6FF')"
+                [class.selected]="collection.color=='78D6FF'"
+                class="dropdown-item-color collection-color-blue"
+              >
+                  Blue
+              </a>
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('A4FFEB')"
+                [class.selected]="collection.color=='A4FFEB'"
+                class="dropdown-item-color collection-color-cyan"
+              >
+                Cyan
+              </a>
+              <a
+                href="javascript:void(0)"
+                (click)="clickColor('CBFF8A')"
+                [class.selected]="collection.color=='CBFF8A'"
+                class="dropdown-item-color collection-color-green"
+              >
+                Green
+              </a>
+            </div>
           </div>
+
+          <div class="card-collection--action-btn custom-file file form-action">
+            <input (change)="onThumbnailFileChange($event)" [uploader]="uploader" class="custom-file-input" [attr.id]="'avatar_file_'+collection._id" name="file" ng2FileSelect type="file">
+            <label class="icon" [attr.for]="'avatar_file_'+collection._id">
+              photo
+            </label>
+          </div>
+
+          <button class="card-collection--btn ml-auto" *ngIf="mode == 'CREATE'" type="submit">
+            <span>{{t._.action?.create}}</span>
+          </button>
+
+          <button class="card-collection--btn ml-auto" *ngIf="mode == 'CREATE_SUB_COLLECTION'" type="submit">
+            <span>Create sub collection</span>
+          </button>
+
+          <button class="card-collection--btn ml-auto" *ngIf="mode == 'UPDATE'" type="submit">
+            <span>{{t._.action?.update}}</span>
+          </button>
         </div>
-
-        <div class="card-collection--action-btn custom-file file form-action">
-          <input (change)="onThumbnailFileChange($event)" [uploader]="uploader" class="custom-file-input" [attr.id]="'avatar_file_'+collection._id" name="file" ng2FileSelect type="file">
-          <label class="icon" [attr.for]="'avatar_file_'+collection._id">
-            photo
-          </label>
-        </div>
-
-        <button class="card-collection--btn ml-auto" *ngIf="mode == 'CREATE'" type="submit">
-          <span>{{t._.action?.create}}</span>
-        </button>
-
-        <button class="card-collection--btn ml-auto" *ngIf="mode == 'CREATE_SUB_COLLECTION'" type="submit">
-          <span>Create sub collection</span>
-        </button>
-
-        <button class="card-collection--btn ml-auto" *ngIf="mode == 'UPDATE'" type="submit">
-          <span>{{t._.action?.update}}</span>
-        </button>
       </div>
     </div>
+
   </form>
 </article>
