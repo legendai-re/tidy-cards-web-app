@@ -36,11 +36,13 @@
     </li>
   </ul>
 
+  <markdown class="collection-item--footer-caption" [data]="item.description" *ngIf="item.description && item.type.id != itemTypes.TEXT.id"></markdown>
+
 </div>
 
 
 <!-- Type: Description -->
-<div class="collection-item is-caption" [class.is-linked]="item.type.id != itemTypes.TEXT.id" *ngIf="item.description">
+<div class="collection-item is-caption" [class.is-linked]="item.type.id != itemTypes.TEXT.id" *ngIf="item.type.id == itemTypes.TEXT.id">
 
   <markdown class="collection-item--caption" [data]="item.description"></markdown>
 
