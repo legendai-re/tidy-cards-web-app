@@ -171,10 +171,10 @@
   flex-direction: row;
 
   width: 100%;
-  // max-width: 24rem;
   background-color: $white;
   border-radius: $border-radius-base;
   overflow: hidden;
+  margin: 0;
 }
 
 .header-search-bar--icon {

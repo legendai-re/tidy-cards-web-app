@@ -83,15 +83,15 @@
 
       <div class="collection-container--list" *ngIf="itemLoaded && collection._items.length == 0">
 
-        <div class="collection-item is-content is-empty" *ngIf="isAuthor">
+        <div class="collection-item is-empty" *ngIf="isAuthor">
           <div class="collection-item--content collection-item--empty-phase">
-            <img class="collection-item--image empty-phase" src="assets/img/illustration-empty--send-new.png" />
+            <img class="collection-item--empty-image" src="assets/img/illustration-empty--send-new.png" />
             <h3 class="collection-item--empty-title">{{t._.item?.new_title}}</h3>
             <p class="collection-item--empty-caption">
               {{t._.collection?.first_item_caption}}
             </p>
-            <ul class="collection-item--actions">
-              <li class="collection-item--action">
+            <ul class="collection-item--empty-actions">
+              <li class="collection-item--empty-action">
                 <button type="button" class="btn btn-primary" (click)="openModal(newItemModal, 'lg')">
                   {{t._.collection?.first_item_button}}
                 </button>
@@ -100,9 +100,9 @@
           </div>
         </div>
 
-        <div class="collection-item is-content is-empty" *ngIf="!isAuthor">
+        <div class="collection-item is-empty" *ngIf="!isAuthor">
           <div class="collection-item--content collection-item--empty-phase">
-            <img class="collection-item--image empty-phase" src="assets/img/illustration-empty--send-new.png" />
+            <img class="collection-item--empty-image" src="assets/img/illustration-empty--send-new.png" />
             <h3 class="collection-item--empty-title">{{t._.collection?.empty_title}}</h3>
             <p class="collection-item--empty-caption">
               {{t._.collection?.empty_caption}}
