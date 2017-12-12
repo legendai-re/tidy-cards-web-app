@@ -1,4 +1,8 @@
-# TidyCards Webapp
+# TidyCards WebApp
+
+Visit the website: [tidy.cards](http://www.tidy.cards)
+
+## To do for local development:
 
 Install dependencies `npm install`.
 

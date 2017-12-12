@@ -18,6 +18,7 @@ export class TcItem {
     public title: string;
     public host: string;
     public isCollapsed: boolean;
+    public displayMode: string;
 
     constructor(
         _id?: string,
@@ -29,7 +30,8 @@ export class TcItem {
         _collection?: string,
         position?: number,
         title?: string,
-        host?: string) {
+        host?: string,
+        displayMode?: string) {
         this._id = _id;
         this.createdAt = typeof createdAt === 'string' ? new Date(createdAt) : createdAt;
         this.updatedAt = typeof updatedAt === 'string' ? new Date(updatedAt) : updatedAt;
@@ -41,6 +43,7 @@ export class TcItem {
         this.title = title;
         this.host = host;
         this.isCollapsed = false;
+        this.displayMode = typeof displayMode === 'string' ? TcItem.DISPLAY_MODES[displayMode] : displayMode;
     }
 
     public static get ITEM_TYPES() {
@@ -66,6 +69,20 @@ export class TcItem {
         }; 
     }
 
+    public static get DISPLAY_MODES() {
+        return {
+            "SMALL": {
+                "id": "SMALL"
+            },
+            "MEDIUM": {
+                "id": "MEDIUM"
+            },
+            "LARGE": {
+                "id": "LARGE"
+            }
+        }; 
+    }
+
     public static createFormJson(obj) {
         if(!obj)
             return null;
@@ -79,7 +96,8 @@ export class TcItem {
             obj._collection,
             obj.position,
             obj.title,
-            obj.host
+            obj.host,
+            obj.displayMode
             );
     }
 

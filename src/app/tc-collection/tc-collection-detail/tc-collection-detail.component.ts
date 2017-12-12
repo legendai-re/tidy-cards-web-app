@@ -143,8 +143,9 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
             if(a.position > b.position) return 1;
             return 0;
         });
-        for(let i in items)
+        for(let i in items){
             this.collection._items.push(items[i]);
+        }
         this.haveMoreItems = (items.length===TcDataLimit.ITEM);
         this.loadingItems = false;
         this.itemLoaded = true;
