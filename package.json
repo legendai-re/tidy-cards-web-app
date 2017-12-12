@@ -11,7 +11,7 @@
     "build": "ng build --env=prod",
     "watch": "ng build -w",
     "lint": "ng lint",
-    "postinstall": "build"
+    "postinstall": "npm run build"
   },
   "private": true,
   "dependencies": {
