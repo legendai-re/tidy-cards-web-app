@@ -1,4 +1,4 @@
-<div class="collection-item" [class.is-caption]="item.type.id != itemTypes.TEXT.id" *ngIf="item._id">
+<div class="collection-item" [class.is-caption]="item.type.id == itemTypes.TEXT.id" *ngIf="item._id">
 
   <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]="item"></tc-item-url>
   <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]="item"></tc-item-image>
