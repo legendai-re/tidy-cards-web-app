@@ -1,3 +1,19 @@
-<a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--cover-media-container">
+<div class="collection-item--body is-small" *ngIf="item.displayMode.id == 'SMALL'">
+
+  <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
+
+    <div class="collection-item--favicon">
+      <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+    </div>
+
+    <div class="collection-item--title">
+      {{item.title}}
+    </div>
+
+  </a>
+
+</div>
+
+<a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--cover-media-container" *ngIf="item.displayMode.id != 'SMALL'">
   <img class="collection-item--cover-media" data-src="" alt="" [src]="getImageProxyUrl(itemImage.url)">
 </a>

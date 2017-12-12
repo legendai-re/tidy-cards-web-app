@@ -1,29 +1,13 @@
-<div class="collection-item" *ngIf="item.type.id != itemTypes.TEXT.id">
+<div class="collection-item" [class.is-caption]="item.type.id != itemTypes.TEXT.id" *ngIf="item._id">
 
-  <div class="collection-item--body is-small" *ngIf="item.displayMode.id == 'SMALL'">
+  <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]="item"></tc-item-url>
+  <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]="item"></tc-item-image>
+  <tc-item-youtube *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]="item"></tc-item-youtube>
+  <tc-item-tweet *ngIf="item.type.id == itemTypes.TWEET.id" [item]="item"></tc-item-tweet>
+  <tc-item-text *ngIf="item.type.id == itemTypes.TEXT.id" [item]="item"></tc-item-text>
+  <tc-collection-card *ngIf="item.type == itemTypes.COLLECTION" [collection]="item._content"></tc-collection-card>
 
-    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
-
-      <div class="collection-item--favicon">
-        <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
-      </div>
-
-      <div class="collection-item--title">
-        {{item.title}}
-      </div>
-
-    </a>
-
-  </div>
-
-  <!-- if medium or large -->
-  <div *ngIf="item.displayMode.id != 'SMALL'">
-    <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]="item"></tc-item-url>
-    <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]="item"></tc-item-image>
-    <tc-item-youtube *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]="item"></tc-item-youtube>
-    <tc-item-tweet *ngIf="item.type.id == itemTypes.TWEET.id" [item]="item"></tc-item-tweet>
-    <!-- <tc-collection-card *ngIf="item.type == itemTypes.COLLECTION" [collection]="item._content"></tc-collection-card> -->
-  </div>
+  <markdown class="collection-item--footer-caption" [data]="item.description" *ngIf="item.description && item.type.id != itemTypes.TEXT.id"></markdown>
 
   <ul class="collection-item--actions">
     <li class="collection-item--action">
@@ -37,151 +21,16 @@
     </li>
   </ul>
 
-  <markdown class="collection-item--footer-caption" [data]="item.description" *ngIf="item.description && item.type.id != itemTypes.TEXT.id"></markdown>
 </div>
+
 <div class="collection-item">
   <a (click)="updateItemDisplayMode('SMALL')">small</a>
   <a (click)="updateItemDisplayMode('MEDIUM')">medium</a>
-  <a *ngIf="item.type.id == itemTypes.URL.id" (click)="updateItemDisplayMode('LARGE')">large</a>
-</div>
-<!-- Type: Description -->
-<div class="collection-item is-caption" [class.is-linked]="item.type.id != itemTypes.TEXT.id" *ngIf="item.type.id == itemTypes.TEXT.id">
-  <markdown class="collection-item--caption" [data]="item.description"></markdown>
-
-  <ul class="collection-item--actions" *ngIf="item.type.id == itemTypes.TEXT.id">
-
-    <li class="collection-item--action">
-      <a class="btn btn-secondary btn-icon btn-icon-narrow btn-sm" *ngIf="isAuthor" [class.card-collection--drag-handle]="isAuthor" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="icon">more_vert</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-        <a href="javascript:void(0)" class="dropdown-item" (click)="openUpdateModal('lg')">{{t._.action?.update}}</a>
-        <a href="javascript:void(0)" class="dropdown-item" (click)="openDeleteItemModal(itemDeleteModal)">{{t._.action?.delete}}</a>
-      </div>
-    </li>
-
-  </ul>
-
+  <a (click)="updateItemDisplayMode('LARGE')">large</a>
+  <!--<a *ngIf="item.type.id == itemTypes.URL.id || item.type.id == itemTypes.YOUTUBE.id" (click)="updateItemDisplayMode('LARGE')">large</a>-->
 </div>
 
-
-<!-- OLD -->
-
-<!-- Pour le sortable ghost -->
-<!-- <div class="collection-item-ghost"></div> -->
-
-<!-- <div class="collection-item "  [class.is-content]="!item._content"> -->
-
-  <!-- <div class="collection-item--header" [class.is-top]="item.type == itemTypes.IMAGE"> -->
-
-    <!-- Type: Caption header -->
-    <!-- <div class="collection-item--header-details" *ngIf="item.type == itemTypes.TEXT">
-      <div class="collection-item--header-detail collection-item--icon">
-        comment
-      </div>
-      <div class="collection-item--header-detail collection-item--title">
-        Caption: {{item.title}}
-      </div>
-    </div> -->
-
-    <!-- Type: URL header -->
-    <!-- <div class="collection-item--header-details" (click)="collapse()" *ngIf="item.type == itemTypes.URL">
-      <div class="collection-item--header-detail collection-item--favicon">
-        <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
-      </div>
-      <div class="collection-item--header-detail">
-        <div class="collection-item--title">
-          {{item.title}}
-        </div>
-      </div>
-    </div> -->
-
-    <!-- Type: Image header -->
-    <!-- <div class="collection-item--header-details" (click)="collapse()" *ngIf="item.type == itemTypes.IMAGE">
-      <div class="collection-item--header-detail collection-item--icon">
-        image
-      </div>
-      <div class="collection-item--header-detail collection-item--title" *ngIf="item.title">{{item.title}}</div>
-    </div> -->
-
-    <!-- Type: YouTube header -->
-    <!-- <div class="collection-item--header-details" (click)="collapse()" *ngIf="item.type == itemTypes.YOUTUBE">
-      <div class="collection-item--header-detail collection-item--favicon">
-        <img src="https://www.google.com/s2/favicons?domain=youtube.com" />
-      </div>
-      <div class="collection-item--header-detail collection-item--title">
-        <span class="collection-item--title-wrapper">{{item.title}}</span>
-        <span class="collection-item--host">youtube.com</span>
-      </div>
-    </div> -->
-
-    <!-- Type: Tweet header -->
-    <!-- <div class="collection-item--header-details" (click)="collapse()" *ngIf="item.type == itemTypes.TWEET">
-      <div class="collection-item--header-detail collection-item--favicon">
-        <img src="https://www.google.com/s2/favicons?domain=twitter.com" />
-      </div>
-      <div class="collection-item--header-detail collection-item--title">
-        <span class="collection-item--title-wrapper" *ngIf="item.title">{{item.title}}</span>
-        <span class="collection-item--caption-title">Tweeted by {{item._content.author_name}}</span>
-      </div>
-    </div> -->
-
-    <!-- Actions -->
-    <!-- <ul class="collection-item--header-actions">
-
-      <li class="collection-item--header-action">
-        <a [href]="item._content.url" target="_blank" class="collection-item--header-action-icon" *ngIf="item.type != itemTypes.TEXT">open_in_browser</a>
-      </li> -->
-
-      <!-- <li class="collection-item--header-action">
-        <span class="collection-item--header-action-icon">star</span>
-        <span class="collection-item--header-star-value">0</span>
-      </li> -->
-
-      <!-- <li class="collection-item--header-action">
-        <a class="btn btn-secondary btn-icon btn-icon-narrow btn-sm" *ngIf="isAuthor" [class.card-collection--drag-handle]="isAuthor" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="icon">more_vert</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-          <a href="javascript:void(0)" class="dropdown-item" (click)="openUpdateModal('lg')">{{t._.action?.update}}</a>
-          <a href="javascript:void(0)" class="dropdown-item" (click)="openDeleteItemModal(itemDeleteModal)">{{t._.action?.delete}}</a>
-        </div>
-      </li>
-
-    </ul> -->
-
-  <!-- </div> -->
-
-  <!-- Type: Description (only) -->
-  <!-- <div class="collection-item--content collection-item--caption" *ngIf="item.type == itemTypes.TEXT">
-    <markdown class="collection-item--content-wrapper" [data]="item.description"></markdown>
-  </div> -->
-
-  <!-- Type: URL -->
-  <!-- <tc-item-url [class.collapse]="!item.isCollapsed" class="collection-item--content collection-item--website" *ngIf="item.type == itemTypes.URL" [item]="item"></tc-item-url> -->
-
-  <!-- Type: Image -->
-  <!-- <tc-item-image [class.collapse]="!item.isCollapsed" class="collection-item--content collection-item--media" *ngIf="item.type == itemTypes.IMAGE" [item]="item"></tc-item-image> -->
-
-  <!-- Type: YouTube -->
-  <!-- <tc-item-youtube [class.collapse]="!item.isCollapsed" class="collection-item--content collection-item--media" *ngIf="item.type == itemTypes.YOUTUBE" [item]="item"></tc-item-youtube> -->
-
-  <!-- Type: Tweet -->
-  <!-- <tc-item-tweet [class.collapse]="!item.isCollapsed" class="collection-item--content collection-item--media" *ngIf="item.type == itemTypes.TWEET" [item]="item"></tc-item-tweet> -->
-
-  <!-- Type: Collection -->
-  <!-- <tc-collection-card *ngIf="item.type == itemTypes.COLLECTION" [collection]="item._content"></tc-collection-card> -->
-
-  <!-- <span class="date">{{item.createdAt | date}}</span> -->
-
-  <!-- Type: Description (without collapsing) -->
-  <!-- <div class="collection-item--content collection-item--description" *ngIf="item.description && item.type != itemTypes.TEXT">
-    <span class="collection-item--description-icon">comment</span>
-    <markdown class="collection-item--description-content" [data]="item.description"></markdown>
-  </div> -->
-
-<!-- </div> -->
-
+<!-- <span class="date" [attr.title]="item.createdAt | date:'EEEE, LLLL dd, y h:mm a'">{{item.createdAt | date}}</span> -->
 
 <ng-template #updateItemModal let-c="close" let-d="dismiss">
     <tc-item-create [item]=item (newItem)="onItemUpdated($event);" (updateCanceled)="onItemUpdatedCanceled($event)"></tc-item-create>

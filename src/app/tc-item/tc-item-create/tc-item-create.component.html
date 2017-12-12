@@ -43,6 +43,13 @@
           [(ngModel)]="item.description"
           (ngModelChange)="parseDescriptionForUrl()"
           ></textarea>
+
+          <div *ngIf="!loadingContent && item._content">
+            <a (click)="item.displayMode.id = 'SMALL'">small</a>
+            <a (click)="item.displayMode.id = 'MEDIUM'">medium</a>
+            <a (click)="item.displayMode.id = 'LARGE'">large</a>
+          </div>
+
       </div>
     </div>
 

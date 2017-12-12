@@ -13,6 +13,7 @@ import { TcItemImageComponent }   from './tc-item-image/tc-item-image.component'
 import { TcItemTweetComponent }   from './tc-item-tweet/tc-item-tweet.component';
 import { TcItemYoutubeComponent } from './tc-item-youtube/tc-item-youtube.component';
 import { TcItemCollectionComponent } from './tc-item-collection/tc-item-collection.component';
+import { TcItemTextComponent }    from './tc-item-text/tc-item-text.component';
 import { TcItemComponent }        from './tc-item.component';
 import { TcItemCreateComponent }  from './tc-item-create/tc-item-create.component';
 
@@ -24,6 +25,7 @@ import { TcItemCreateComponent }  from './tc-item-create/tc-item-create.componen
     TcItemTweetComponent,
     TcItemYoutubeComponent,
     TcItemCollectionComponent,
+    TcItemTextComponent,
     TcItemComponent,
     TcItemCreateComponent
   ],

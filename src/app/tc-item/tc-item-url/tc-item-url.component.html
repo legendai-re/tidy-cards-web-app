@@ -1,4 +1,20 @@
-<div class="collection-item--body" [class.is-medium]="item.displayMode.id == 'MEDIUM'" [class.is-large]="item.displayMode.id == 'LARGE'">
+<div class="collection-item--body is-small" *ngIf="item.displayMode.id == 'SMALL'">
+
+  <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
+
+    <div class="collection-item--favicon">
+      <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+    </div>
+
+    <div class="collection-item--title">
+      {{item.title}}
+    </div>
+
+  </a>
+
+</div>
+
+<div class="collection-item--body" [class.is-medium]="item.displayMode.id == 'MEDIUM'" [class.is-large]="item.displayMode.id == 'LARGE'" *ngIf="item.displayMode.id != 'SMALL'">
 
   <div class="collection-item--details">
 
