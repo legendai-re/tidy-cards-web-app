@@ -1,4 +1,4 @@
-<div class="collection-item" *ngIf="item.type != itemTypes.TEXT">
+<div class="collection-item" *ngIf="item.type.id != itemTypes.TEXT.id">
 
   <!-- if small -->
   <!-- <div class="collection-item--body is-small">
@@ -18,10 +18,10 @@
   </div> -->
 
   <!-- if medium or large -->
-  <tc-item-url *ngIf="item.type == itemTypes.URL" [item]="item"></tc-item-url>
-  <tc-item-image *ngIf="item.type == itemTypes.IMAGE" [item]="item"></tc-item-image>
-  <tc-item-youtube *ngIf="item.type == itemTypes.YOUTUBE" [item]="item"></tc-item-youtube>
-  <tc-item-tweet *ngIf="item.type == itemTypes.TWEET" [item]="item"></tc-item-tweet>
+  <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]="item"></tc-item-url>
+  <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]="item"></tc-item-image>
+  <tc-item-youtube *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]="item"></tc-item-youtube>
+  <tc-item-tweet *ngIf="item.type.id == itemTypes.TWEET.id" [item]="item"></tc-item-tweet>
   <!-- <tc-collection-card *ngIf="item.type == itemTypes.COLLECTION" [collection]="item._content"></tc-collection-card> -->
 
   <ul class="collection-item--actions">
@@ -40,11 +40,11 @@
 
 
 <!-- Type: Description -->
-<div class="collection-item is-caption" [class.is-linked]="item.type != itemTypes.TEXT" *ngIf="item.description">
+<div class="collection-item is-caption" [class.is-linked]="item.type.id != itemTypes.TEXT.id" *ngIf="item.description">
 
   <markdown class="collection-item--caption" [data]="item.description"></markdown>
 
-  <ul class="collection-item--actions" *ngIf="item.type == itemTypes.TEXT">
+  <ul class="collection-item--actions" *ngIf="item.type.id == itemTypes.TEXT.id">
 
     <li class="collection-item--action">
       <a class="btn btn-secondary btn-icon btn-icon-narrow btn-sm" *ngIf="isAuthor" [class.card-collection--drag-handle]="isAuthor" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

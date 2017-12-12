@@ -17,10 +17,10 @@
         <div class="collection-item-new--embeded-container" *ngIf="!loadingContent && item._content && validUrl">
           <a class="collection-item-new--embeded-reset" href="javascript:void(0)" (click)="resetItemContent()">close</a>
 
-          <tc-item-url class="collection-item-new--embeded-wrapper" *ngIf="item.type == itemTypes.URL" [item]=item ></tc-item-url>
-          <tc-item-image class="collection-item-new--embeded-wrapper" *ngIf="item.type == itemTypes.IMAGE" [item]=item ></tc-item-image>
-          <tc-item-tweet class="collection-item-new--embeded-wrapper" *ngIf="item.type == itemTypes.TWEET" [item]=item ></tc-item-tweet>
-          <tc-item-youtube class="collection-item-new--embeded-wrapper" *ngIf="item.type == itemTypes.YOUTUBE" [item]=item ></tc-item-youtube>
+          <tc-item-url class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.URL.id" [item]=item ></tc-item-url>
+          <tc-item-image class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.IMAGE.id" [item]=item ></tc-item-image>
+          <tc-item-tweet class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.TWEET.id" [item]=item ></tc-item-tweet>
+          <tc-item-youtube class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]=item ></tc-item-youtube>
         </div>
 
 
