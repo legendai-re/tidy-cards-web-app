@@ -17,6 +17,7 @@ export class TcItemComponent implements OnInit{
     public intentToUpdate: boolean;
     public itemUpdateModal: NgbModalRef;
     public collectionUpdateModal: NgbModalRef;
+    public isUpdatingDisplayMode: boolean;
 
     @ViewChild("updateItemModal") updateItemModal: ElementRef;
     @ViewChild("updateColletionModal") updateColletionModal: ElementRef;
@@ -58,6 +59,17 @@ export class TcItemComponent implements OnInit{
             this.collectionUpdateModal.close();
         else
             this.itemUpdateModal.close();
+    }
+
+    public updateItemDisplayMode(displayMode){
+        if(this.isUpdatingDisplayMode)
+            return;
+        this.isUpdatingDisplayMode = true;
+        this.item.displayMode.id = displayMode;
+        this.itemService.putItem(this.item).subscribe(itemResponse => {
+            this.item.updatedAt = itemResponse.updatedAt;
+            this.isUpdatingDisplayMode = false;
+        })
     }
 
     public deleteItem(){

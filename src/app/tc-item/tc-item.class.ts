@@ -18,7 +18,7 @@ export class TcItem {
     public title: string;
     public host: string;
     public isCollapsed: boolean;
-    public displayMode: string;
+    public displayMode: any;
 
     constructor(
         _id?: string,

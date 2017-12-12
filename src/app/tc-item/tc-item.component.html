@@ -1,7 +1,6 @@
 <div class="collection-item" *ngIf="item.type.id != itemTypes.TEXT.id">
 
-  <!-- if small -->
-  <!-- <div class="collection-item--body is-small">
+  <div class="collection-item--body is-small" *ngIf="item.displayMode.id == 'SMALL'">
 
     <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
 
@@ -15,14 +14,16 @@
 
     </a>
 
-  </div> -->
+  </div>
 
   <!-- if medium or large -->
-  <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]="item"></tc-item-url>
-  <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]="item"></tc-item-image>
-  <tc-item-youtube *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]="item"></tc-item-youtube>
-  <tc-item-tweet *ngIf="item.type.id == itemTypes.TWEET.id" [item]="item"></tc-item-tweet>
-  <!-- <tc-collection-card *ngIf="item.type == itemTypes.COLLECTION" [collection]="item._content"></tc-collection-card> -->
+  <div *ngIf="item.displayMode.id != 'SMALL'">
+    <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]="item"></tc-item-url>
+    <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]="item"></tc-item-image>
+    <tc-item-youtube *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]="item"></tc-item-youtube>
+    <tc-item-tweet *ngIf="item.type.id == itemTypes.TWEET.id" [item]="item"></tc-item-tweet>
+    <!-- <tc-collection-card *ngIf="item.type == itemTypes.COLLECTION" [collection]="item._content"></tc-collection-card> -->
+  </div>
 
   <ul class="collection-item--actions">
     <li class="collection-item--action">
@@ -37,13 +38,14 @@
   </ul>
 
   <markdown class="collection-item--footer-caption" [data]="item.description" *ngIf="item.description && item.type.id != itemTypes.TEXT.id"></markdown>
-
 </div>
-
-
+<div class="collection-item">
+  <a (click)="updateItemDisplayMode('SMALL')">small</a>
+  <a (click)="updateItemDisplayMode('MEDIUM')">medium</a>
+  <a *ngIf="item.type.id == itemTypes.URL.id" (click)="updateItemDisplayMode('LARGE')">large</a>
+</div>
 <!-- Type: Description -->
 <div class="collection-item is-caption" [class.is-linked]="item.type.id != itemTypes.TEXT.id" *ngIf="item.type.id == itemTypes.TEXT.id">
-
   <markdown class="collection-item--caption" [data]="item.description"></markdown>
 
   <ul class="collection-item--actions" *ngIf="item.type.id == itemTypes.TEXT.id">

@@ -52,6 +52,7 @@ export class TcItemCreateComponent implements OnInit {
         this.mode = 'CREATE';
         this.item = new TcItem();
         this.item._collection = this.collection._id;
+        this.item.displayMode = {id: "MEDIUM"};
         this.urlEntry = '';
         this.validUrl = false;
         this.addDescription = true;
