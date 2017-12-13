@@ -14,7 +14,7 @@
           <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('60x60')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
           <span class="avatar-char">{{collection._author?.name?.charAt(0)}}</span>
         </div>
-        <ul class="card-collection--stats" *ngIf="collection.visibility.id != 'PRIVATE'">
+        <ul class="card-collection--stats" *ngIf="collection.visibility != 'PRIVATE'">
           <!-- <li class="card-collection--stat">
             <span class="card-collection--stat-icon">mode_comment</span>
             <span>0</span>
@@ -41,12 +41,12 @@
           <span>{{t._.collection?.featured_title}}</span>
         </li>
 
-        <li class="card-collection--tag has-visibility" *ngIf="collection.visibility.id == 'UNINDEXED'">
+        <li class="card-collection--tag has-visibility" *ngIf="collection.visibility == 'UNINDEXED'">
           <span class="card-collection--tag-icon">visibility_off</span>
           <span>{{collection.visibility.desc}}</span>
         </li>
 
-        <li class="card-collection--tag has-visibility" *ngIf="collection.visibility.id == 'PRIVATE'">
+        <li class="card-collection--tag has-visibility" *ngIf="collection.visibility == 'PRIVATE'">
           <span class="card-collection--tag-icon">lock</span>
           <span>{{collection.visibility.desc}}</span>
         </li>

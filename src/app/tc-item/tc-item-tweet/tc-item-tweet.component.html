@@ -1,4 +1,4 @@
-<div class="collection-item--body is-small" *ngIf="item.displayMode.id == 'SMALL'">
+<div class="collection-item--body is-small" *ngIf="item.displayMode == 'SMALL'">
 
   <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
 
@@ -14,7 +14,7 @@
 
 </div>
 
-<div class="collection-item--body" [class.is-medium]="item.displayMode.id == 'MEDIUM'" [class.is-large]="item.displayMode.id == 'LARGE'" *ngIf="item.displayMode.id != 'SMALL'">
+<div class="collection-item--body" [class.is-medium]="item.displayMode == 'MEDIUM'" [class.is-large]="item.displayMode == 'LARGE'" *ngIf="item.displayMode != 'SMALL'">
 
   <div class="collection-item--details">
     <div class="collection-item--cover is-tweet">

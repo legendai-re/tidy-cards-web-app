@@ -180,8 +180,14 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     }
 
     public onStarCliked(){
-        if(!this.authService.isLoggedIn || this.isUpdatingStar)
+        if(!this.authService.isLoggedIn){
+            this.router.navigate(['/signin', {next: '/c/'+this.collection._id}]);
             return;
+        }
+
+        if(this.isUpdatingStar)
+            return;
+
         if(!this.collection._star){
             this.addStarredCollection();
         }else{

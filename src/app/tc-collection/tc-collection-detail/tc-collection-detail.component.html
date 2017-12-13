@@ -45,19 +45,19 @@
             <li class="collection-container--stats-item muted" *ngIf="collection.itemsCount > 1 || collection.itemsCount == 0">
               {{collection.itemsCount}} {{t._.collection?.item_plur}}
             </li>
-            <li class="collection-container--stats-item" *ngIf="collection.visibility.id != 'PRIVATE'">
+            <li class="collection-container--stats-item" *ngIf="collection.visibility != 'PRIVATE'">
               <a href="javascript:void(0)" class="collection-container--stats-button" (click)="onStarCliked()">
                 <span class="collection-container--stats-icon" [class.is-highlighted]="collection._star">star</span>
                 <span>{{collection.starsCount}}</span>
               </a>
             </li>
-            <li class="collection-container--stats-item visibility" *ngIf="collection.visibility.id == 'UNINDEXED'">
+            <li class="collection-container--stats-item visibility" *ngIf="collection.visibility == 'UNINDEXED'">
               <span class="collection-container--stats-icon">visibility_off</span>
-              <span class="muted">{{ t._.collection?.visibility[collection.visibility.id].title}}</span>
+              <span class="muted">{{ t._.collection?.visibility[collection.visibility].title}}</span>
             </li>
-            <li class="collection-container--stats-item visibility" *ngIf="collection.visibility.id == 'PRIVATE'">
+            <li class="collection-container--stats-item visibility" *ngIf="collection.visibility == 'PRIVATE'">
               <span class="collection-container--stats-icon">lock</span>
-              <span class="muted">{{ t._.collection?.visibility[collection.visibility.id].title}}</span>
+              <span class="muted">{{ t._.collection?.visibility[collection.visibility].title}}</span>
             </li>
 
           </ul>

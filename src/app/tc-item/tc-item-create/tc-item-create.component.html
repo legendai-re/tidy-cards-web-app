@@ -21,20 +21,20 @@
           </div>
 
           <div class="collection-item">
-            <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]=item ></tc-item-url>
-            <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]=item ></tc-item-image>
-            <tc-item-tweet *ngIf="item.type.id == itemTypes.TWEET.id" [item]=item ></tc-item-tweet>
-            <tc-item-youtube *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]=item ></tc-item-youtube>
+            <tc-item-url *ngIf="item.type == itemTypes.URL.id" [item]=item ></tc-item-url>
+            <tc-item-image *ngIf="item.type == itemTypes.IMAGE.id" [item]=item ></tc-item-image>
+            <tc-item-tweet *ngIf="item.type == itemTypes.TWEET.id" [item]=item ></tc-item-tweet>
+            <tc-item-youtube *ngIf="item.type == itemTypes.YOUTUBE.id" [item]=item ></tc-item-youtube>
 
-            <div class="collection-item--size-control" *ngIf="item.type.id == itemTypes.URL.id">
-              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode.id = 'MEDIUM'" *ngIf="item.displayMode.id == 'SMALL'">Small</a>
-              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode.id = 'LARGE'" *ngIf="item.displayMode.id == 'MEDIUM'">Medium</a>
-              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode.id = 'SMALL'" *ngIf="item.displayMode.id == 'LARGE'">Large</a>
+            <div class="collection-item--size-control" *ngIf="item.type == itemTypes.URL.id">
+              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode = 'MEDIUM'" *ngIf="item.displayMode == 'SMALL'">Small</a>
+              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode = 'LARGE'" *ngIf="item.displayMode == 'MEDIUM'">Medium</a>
+              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode = 'SMALL'" *ngIf="item.displayMode == 'LARGE'">Large</a>
             </div>
 
-            <div class="collection-item--size-control" *ngIf="item.type.id == itemTypes.YOUTUBE.id || item.type.id == itemTypes.IMAGE.id || item.type.id == itemTypes.TWEET.id">
-              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode.id = 'LARGE'" *ngIf="item.displayMode.id == 'SMALL'">Small</a>
-              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode.id = 'SMALL'" *ngIf="item.displayMode.id == 'LARGE'">Large</a>
+            <div class="collection-item--size-control" *ngIf="item.type == itemTypes.YOUTUBE.id || item.type == itemTypes.IMAGE.id || item.type == itemTypes.TWEET.id">
+              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode = 'LARGE'" *ngIf="item.displayMode == 'SMALL'">Small</a>
+              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode = 'SMALL'" *ngIf="item.displayMode == 'LARGE'">Large</a>
             </div>
           </div>
 

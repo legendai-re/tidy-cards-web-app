@@ -65,7 +65,7 @@ export class TcItemComponent implements OnInit{
         if(this.isUpdatingDisplayMode)
             return;
         this.isUpdatingDisplayMode = true;
-        this.item.displayMode.id = displayMode;
+        this.item.displayMode = displayMode;
         this.itemService.putItem(this.item).subscribe(itemResponse => {
             this.item.updatedAt = itemResponse.updatedAt;
             this.isUpdatingDisplayMode = false;

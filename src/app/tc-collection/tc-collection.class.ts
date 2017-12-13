@@ -55,7 +55,7 @@ export class TcCollection {
         this.color = color;
         this._author = _author;
         this._thumbnail = _thumbnail;
-        this.visibility = typeof visibility === 'string' ? TcCollection.VISIBILITY[visibility] : visibility;
+        this.visibility = visibility;
         this.itemsCount = itemsCount;
         this.bio = bio;
         this._star = _star;

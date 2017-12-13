@@ -18,7 +18,7 @@ export class TcItem {
     public title: string;
     public host: string;
     public isCollapsed: boolean;
-    public displayMode: any;
+    public displayMode: string;
 
     constructor(
         _id?: string,
@@ -36,14 +36,14 @@ export class TcItem {
         this.createdAt = typeof createdAt === 'string' ? new Date(createdAt) : createdAt;
         this.updatedAt = typeof updatedAt === 'string' ? new Date(updatedAt) : updatedAt;
         this.description = description;
-        this.type = typeof type === 'string' ? TcItem.ITEM_TYPES[type] : type;
+        this.type = type;
         this._content = _content;
         this._collection = _collection;
         this.position = position;
         this.title = title;
         this.host = host;
         this.isCollapsed = false;
-        this.displayMode = typeof displayMode === 'string' ? TcItem.DISPLAY_MODES[displayMode] : displayMode;
+        this.displayMode = displayMode;
     }
 
     public static get ITEM_TYPES() {
@@ -102,8 +102,8 @@ export class TcItem {
     }
 
     public static getContent(obj): any{
-        var type = typeof obj.type === 'string' ? TcItem.ITEM_TYPES[obj.type] : obj.type;
-        switch (type.id) {
+        var type = obj.type;
+        switch (type) {
             case TcItem.ITEM_TYPES.URL.id:
                 return TcItemUrl.createFormJson(obj._content);
             case TcItem.ITEM_TYPES.YOUTUBE.id:

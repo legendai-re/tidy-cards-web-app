@@ -52,7 +52,7 @@ export class TcItemCreateComponent implements OnInit {
         this.mode = 'CREATE';
         this.item = new TcItem();
         this.item._collection = this.collection._id;
-        this.item.displayMode = {id: "MEDIUM"};
+        this.item.displayMode = "MEDIUM";
         this.urlEntry = '';
         this.validUrl = false;
         this.addDescription = true;
@@ -101,6 +101,7 @@ export class TcItemCreateComponent implements OnInit {
 
        this.loadingContent = true;
        this.itemService.postItemContent(this.urlEntry).subscribe((result) => {
+           console.log(result)
            if(result){
                this.item.type = result.type;
                this.item._content = result._content;
@@ -116,7 +117,7 @@ export class TcItemCreateComponent implements OnInit {
     }
 
     private getItemTitle(){
-        switch(this.item.type.id){
+        switch(this.item.type){
             case TcItem.ITEM_TYPES.URL.id:
                 return this.item._content.title;
             case TcItem.ITEM_TYPES.IMAGE.id:
@@ -148,7 +149,7 @@ export class TcItemCreateComponent implements OnInit {
     }
 
     private isValidToSave(){
-        if(!this.item._content)this.item.type = TcItem.ITEM_TYPES.TEXT;
+        if(!this.item._content)this.item.type = TcItem.ITEM_TYPES.TEXT.id;
         if(this.item.description && this.urlEntry && this.item.description.trim() == this.urlEntry.trim())
            this.item.description = null;
         return !this.loadingContent && (this.item._content || !this.item._content && this.item.description);
