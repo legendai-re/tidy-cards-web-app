@@ -15,14 +15,33 @@
         </div>
 
         <div class="collection-item-new--embeded-container" *ngIf="!loadingContent && item._content && validUrl">
-          <a class="collection-item-new--embeded-reset" href="javascript:void(0)" (click)="resetItemContent()">close</a>
+          <div class="collection-item-new--embeded-container-header">
+            <div class="collection-item-new--embeded-container-title">Item preview</div>
+            <a class="collection-item-new--embeded-reset" href="javascript:void(0)" (click)="resetItemContent()">close</a>
+          </div>
 
-          <tc-item-url class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.URL.id" [item]=item ></tc-item-url>
-          <tc-item-image class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.IMAGE.id" [item]=item ></tc-item-image>
-          <tc-item-tweet class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.TWEET.id" [item]=item ></tc-item-tweet>
-          <tc-item-youtube class="collection-item-new--embeded-wrapper" *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]=item ></tc-item-youtube>
+          <div class="collection-item">
+            <tc-item-url *ngIf="item.type.id == itemTypes.URL.id" [item]=item ></tc-item-url>
+            <tc-item-image *ngIf="item.type.id == itemTypes.IMAGE.id" [item]=item ></tc-item-image>
+            <tc-item-tweet *ngIf="item.type.id == itemTypes.TWEET.id" [item]=item ></tc-item-tweet>
+            <tc-item-youtube *ngIf="item.type.id == itemTypes.YOUTUBE.id" [item]=item ></tc-item-youtube>
+
+            <div class="collection-item--size-control" *ngIf="item.type.id == itemTypes.URL.id">
+              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode.id = 'MEDIUM'" *ngIf="item.displayMode.id == 'SMALL'">Small</a>
+              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode.id = 'LARGE'" *ngIf="item.displayMode.id == 'MEDIUM'">Medium</a>
+              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode.id = 'SMALL'" *ngIf="item.displayMode.id == 'LARGE'">Large</a>
+            </div>
+
+            <div class="collection-item--size-control" *ngIf="item.type.id == itemTypes.YOUTUBE.id || item.type.id == itemTypes.IMAGE.id || item.type.id == itemTypes.TWEET.id">
+              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode.id = 'LARGE'" *ngIf="item.displayMode.id == 'SMALL'">Small</a>
+              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode.id = 'SMALL'" *ngIf="item.displayMode.id == 'LARGE'">Large</a>
+            </div>
+          </div>
+
+          <p class="collection-item-new--embeded-container-description mt-3">
+            <strong>Pro tip:</strong> You can change the display format of this item by clicking on the bottom icon that appear when you hover it.
+          </p>
         </div>
-
 
         <textarea
           class="collection-item-new--input-title"
@@ -43,13 +62,6 @@
           [(ngModel)]="item.description"
           (ngModelChange)="parseDescriptionForUrl()"
           ></textarea>
-
-          <div *ngIf="!loadingContent && item._content">
-            <a (click)="item.displayMode.id = 'SMALL'">small</a>
-            <a (click)="item.displayMode.id = 'MEDIUM'">medium</a>
-            <a (click)="item.displayMode.id = 'LARGE'">large</a>
-          </div>
-
       </div>
     </div>
 
@@ -75,31 +87,6 @@
       </div>
 
     </div>
-    
+
   </form>
 </div>
-
-<!-- <div class="item-new extended">
-    <form (ngSubmit)="onItemSubmit()">
-
-        <button *ngIf="!actionIntent" (click)="onUrlFocus(); addDescription = true" class="btn-icon" type="button">
-            <i class="material-icons icon">comment</i>
-        </button>
-
-
-        <div [class.collapse]="!actionIntent" class="item-create d-flex">
-
-            <input
-                *ngIf="mode == 'CREATE'"
-                [disabled]="(!item.description && !item._content) || (urlEntry && !validUrl) || (loadingContent)"
-                class="btn btn-create ml-auto" type="submit" value="Add"/>
-
-            <input
-                *ngIf="mode == 'UPDATE'"
-                [disabled]="(!item.description && !item._content) || (urlEntry && !validUrl) || (loadingContent)"
-                class="btn btn-create ml-auto" type="submit" value="Update"/>
-
-            <a href="javascript:void(0)" *ngIf="mode == 'UPDATE'" (click)="cancelUpdate()" class="btn btn-create float-xs-right">Cancel</a>
-        </div>
-    </form>
-</div> -->

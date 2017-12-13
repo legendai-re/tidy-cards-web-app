@@ -21,13 +21,17 @@
     </li>
   </ul>
 
-</div>
+  <div class="collection-item--size-control" *ngIf="item.type.id == itemTypes.URL.id">
+    <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="updateItemDisplayMode('MEDIUM')" *ngIf="item.displayMode.id == 'SMALL'">Small</a>
+    <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="updateItemDisplayMode('LARGE')" *ngIf="item.displayMode.id == 'MEDIUM'">Medium</a>
+    <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="updateItemDisplayMode('SMALL')" *ngIf="item.displayMode.id == 'LARGE'">Large</a>
+  </div>
 
-<div class="collection-item">
-  <a (click)="updateItemDisplayMode('SMALL')">small</a>
-  <a (click)="updateItemDisplayMode('MEDIUM')">medium</a>
-  <a (click)="updateItemDisplayMode('LARGE')">large</a>
-  <!--<a *ngIf="item.type.id == itemTypes.URL.id || item.type.id == itemTypes.YOUTUBE.id" (click)="updateItemDisplayMode('LARGE')">large</a>-->
+  <div class="collection-item--size-control" *ngIf="item.type.id == itemTypes.YOUTUBE.id || item.type.id == itemTypes.IMAGE.id || item.type.id == itemTypes.TWEET.id">
+    <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="updateItemDisplayMode('LARGE')" *ngIf="item.displayMode.id == 'SMALL'">Small</a>
+    <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="updateItemDisplayMode('SMALL')" *ngIf="item.displayMode.id == 'LARGE'">Large</a>
+  </div>
+
 </div>
 
 <!-- <span class="date" [attr.title]="item.createdAt | date:'EEEE, LLLL dd, y h:mm a'">{{item.createdAt | date}}</span> -->

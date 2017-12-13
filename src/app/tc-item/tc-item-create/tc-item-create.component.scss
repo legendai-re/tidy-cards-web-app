@@ -41,10 +41,40 @@
   justify-content: center;
   align-content: stretch;
   background-color: $gray-100;
-  // border-radius: $border-radius-base;
-  min-height: 11rem;
+  border-radius: $border-radius-base;
   padding: 1rem;
   margin: 0 -1rem 1.5rem;
+}
+
+.collection-item-new--embeded-container-header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  margin: 0 0 .5rem;
+}
+
+.collection-item-new--embeded-container-title {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: $gray-800;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.collection-item-new--embeded-container-description {
+  font-size: .875rem;
+  line-height: 1rem;
+  color: $gray-700;
+
+  &:last-child {
+    margin: 0;
+  }
 }
 
 .collection-item-new--embeded-centered-content {
@@ -52,13 +82,11 @@
 }
 
 .collection-item-new--embeded-reset {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  top: .5rem;
-  right: .5rem;
   width: 1rem;
   height: 1rem;
   padding: .125rem;
@@ -68,8 +96,10 @@
   font-size: .75rem;
   line-height: .75rem;
   color: $gray-500;
+  text-transform: initial;
   border-radius: 50%;
   z-index: 1;
+  margin-left: auto;
 
   &:hover {
     background: $gray-300;
@@ -149,5 +179,58 @@
 
   a, span {
     color: inherit;
+  }
+}
+
+.collection-item {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  max-width: calc(700px - 4rem);
+  background-color: $white;
+  border: 1px solid rgba($black, .1);
+  border-radius: $border-radius-base;
+}
+
+.collection-item--size-control {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+}
+
+.collection-item--size-control-button {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  width: auto;
+  height: 1.5rem;
+  background-color: $white;
+  border-radius: $border-radius-base;
+  border: 1px solid rgba($black, .1);
+  overflow: hidden;
+  transition: opacity .3s ease;
+  z-index: 1;
+  margin: -.25rem 0 0;
+  color: $gray-600;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: .75rem;
+  text-align: center;
+  line-height: 1.5rem;
+  padding: 0 .5rem;
+
+  &:hover {
+    background-color: $gray-100;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: $gray-500;
+    color: $white;
   }
 }
