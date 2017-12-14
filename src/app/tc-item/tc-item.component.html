@@ -21,15 +21,8 @@
     </li>
   </ul>
 
-  <div class="collection-item--size-control" *ngIf="item.type == itemTypes.URL.id">
-    <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="updateItemDisplayMode('MEDIUM')" *ngIf="item.displayMode == 'SMALL'">Small</a>
-    <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="updateItemDisplayMode('LARGE')" *ngIf="item.displayMode == 'MEDIUM'">Medium</a>
-    <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="updateItemDisplayMode('SMALL')" *ngIf="item.displayMode == 'LARGE'">Large</a>
-  </div>
-
-  <div class="collection-item--size-control" *ngIf="item.type == itemTypes.YOUTUBE.id || item.type == itemTypes.IMAGE.id || item.type == itemTypes.TWEET.id">
-    <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="updateItemDisplayMode('LARGE')" *ngIf="item.displayMode == 'SMALL'">Small</a>
-    <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="updateItemDisplayMode('SMALL')" *ngIf="item.displayMode == 'LARGE'">Large</a>
+  <div class="collection-item--size-control" *ngIf="availableDisplayModes.length > 0">
+    <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="updateItemDisplayMode()">{{ t._.item?.display_modes[item.displayMode] }}</a>
   </div>
 
 </div>

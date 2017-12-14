@@ -1,26 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TcItemUrl } from './tc-item-url.class';
-import { TcItem } from '../tc-item.class';
-import { TcApiUrl } from '../../tc-shared/tc-api-url';
+import {Component, Input, OnInit} from '@angular/core';
+import {TcItemUrl} from './tc-item-url.class';
+import {TcItem} from '../tc-item.class';
+import {TcApiUrl} from '../../tc-shared/tc-api-url';
 
 @Component({
-    selector: 'tc-item-url',
-    templateUrl: 'tc-item-url.component.html',
-    styleUrls: ['../tc-item.component.scss', 'tc-item-url.component.scss']
+  selector: 'tc-item-url',
+  templateUrl: 'tc-item-url.component.html',
+  styleUrls: ['../tc-item.component.scss', 'tc-item-url.component.scss']
 })
 
-export class TcItemUrlComponent implements OnInit{
+export class TcItemUrlComponent implements OnInit {
 
-	@Input() item: TcItem;
+  @Input() item: TcItem;
 
-    public itemUrl: TcItemUrl;
-    public getImageProxyUrl = TcApiUrl.getImageProxyUrl;
+  public itemUrl: TcItemUrl;
+  public getImageProxyUrl = TcApiUrl.getImageProxyUrl;
 
-    constructor() {
-    }
+  constructor() {
+  }
 
-    ngOnInit() {
-        this.itemUrl = this.item._content;
-    }
+  ngOnInit() {
+    this.itemUrl = this.item._content;
+  }
 
 }

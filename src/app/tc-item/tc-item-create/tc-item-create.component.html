@@ -1,4 +1,4 @@
-<div class="collection-item-new--container">
+<div class="collection-item-new--container" *ngIf="item">
   <form (ngSubmit)="onItemSubmit()">
 
     <div class="collection-item-new--content">
@@ -39,7 +39,7 @@
           </div>
 
           <p class="collection-item-new--embeded-container-description mt-3">
-            <strong>Pro tip:</strong> You can change the display format of this item by clicking on the bottom icon that appear when you hover it.
+            <strong>{{ t._.item?.display_tip_title }}</strong> {{ t._.item?.display_tip_desc }}
           </p>
         </div>
 
