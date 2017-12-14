@@ -1,8 +1,8 @@
 <div class="auth-content">
   <form class="form-signin" (ngSubmit)="onSignupSubmit()">
     <div class="form-group">
-      <label for="inputEmail" class="sr-only">{{t._.auth?.username_placeholder}}</label>
-      <input [(ngModel)]="signupData.username" name="username" (keyup)="onUsernameKeyUp()" (keydown)="onUsernameKeyDown()" (blur)="checkUsername()" type="text" id="inputEmail" class="form-control" placeholder="{{t._.auth?.username_placeholder}}" required="" autofocus="">
+      <label for="inputUsername" class="sr-only">{{t._.auth?.username_placeholder}}</label>
+      <input [(ngModel)]="signupData.username" name="username" (keyup)="onUsernameKeyUp()" (keydown)="onUsernameKeyDown()" (blur)="checkUsername()" type="text" id="inputUsername" class="form-control" placeholder="{{t._.auth?.username_placeholder}}" required="" autofocus="">
       <div *ngIf="signupData.username">
         <small class="text-muted" *ngIf="usernameState == 'VALIDATING'">{{t._.auth?.status?.valisation_progress}}</small>
         <small class="text-success" *ngIf="usernameState == 'FREE'">{{t._.auth?.status?.username_avalaible}}</small>
@@ -26,8 +26,8 @@
       <small class="text-danger" *ngIf="signupData.password && signupData.password.length < 3">{{t._.auth?.status?.password_too_short}}</small>
     </div>
     <div class="form-group">
-      <label for="inputPassword" class="sr-only">{{t._.auth?.password_repeat_placeholder}}</label>
-      <input [(ngModel)]="signupData.passwordRepeat" name="passwordRepeat" type="password" id="inputPassword" class="form-control" placeholder="{{t._.auth?.password_repeat_placeholder}}" required="">
+      <label for="inputPasswordReset" class="sr-only">{{t._.auth?.password_repeat_placeholder}}</label>
+      <input [(ngModel)]="signupData.passwordRepeat" name="passwordRepeat" type="password" id="inputPasswordReset" class="form-control" placeholder="{{t._.auth?.password_repeat_placeholder}}" required="">
       <small class="text-danger" *ngIf="signupData.password && signupData.passwordRepeat && signupData.password != signupData.passwordRepeat">{{t._.auth?.status?.password_not_match}}</small>
     </div>
     <button [disabled]='!isFormValid() || signupInProgress' class="btn btn-primary btn-block" type="submit">{{t._.auth?.signup_button}}</button>

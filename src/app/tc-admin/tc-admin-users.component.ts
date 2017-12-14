@@ -1,9 +1,9 @@
-import { Component, OnInit }               from '@angular/core';
-import { Router }       from '@angular/router';
-import { URLSearchParams  }                from '@angular/http';
-import { TcDataLimit }                     from '../tc-shared/tc-data-limit';
-import { TcUserService }                   from '../tc-user/tc-user.service';
-import { TcUser }                          from '../tc-user/tc-user.class';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { URLSearchParams  } from '@angular/http';
+import { TcDataLimit } from '../tc-shared/tc-data-limit';
+import { TcUserService } from '../tc-user/tc-user.service';
+import { TcUser } from '../tc-user/tc-user.class';
 
 @Component({
     templateUrl: './tc-admin-users.component.html'
@@ -21,6 +21,10 @@ export class TcAdminUsersComponent implements OnInit {
     constructor( private router: Router, private userService: TcUserService) {
     }
 
+    collapse(user) {
+      user.isCollapsed = !user.isCollapsed;
+    }
+
     ngOnInit() {
         this.pageNb = 0;
         this.loadingUsers = false;
@@ -29,36 +33,32 @@ export class TcAdminUsersComponent implements OnInit {
         this.loadUsers();
     }
 
-    public loadNextPage(){
-        if(this.haveMoreUsers){
+    loadNextPage() {
+        if (this.haveMoreUsers) {
             this.pageNb++;
             this.loadUsers();
-        }else{
+        }else {
             console.log('no more users');
         }
     }
 
-    public collapse(user){
-        user.isCollapsed = !user.isCollapsed;
-    }
-
-    private deactivateAccount(){
-        let params = new URLSearchParams();
+    deactivateAccount() {
+        const params = new URLSearchParams();
         this.userService.putDeactivate(this.userIdDeactivate).subscribe(result => {
-            console.log(result)
+            console.log(result);
         }, () => {});
     }
 
-    private activateAccount(){
-        let params = new URLSearchParams();
+    activateAccount() {
+        const params = new URLSearchParams();
         this.userService.putActivate(this.userIdActivate).subscribe(result => {
-            console.log(result)
+            console.log(result);
         }, () => {});
     }
 
-    private loadUsers(){
+    loadUsers() {
         this.loadingUsers = true;
-        let params = new URLSearchParams();
+        const params = new URLSearchParams();
         params.set('limit', TcDataLimit.COLLECTION.toString());
         params.set('skip', (TcDataLimit.COLLECTION * this.pageNb).toString());
         params.set('populate', '_avatar');
@@ -70,12 +70,12 @@ export class TcAdminUsersComponent implements OnInit {
         }, () => {});
     }
 
-    private onUsersReceived(users){
-        for(let i in users){
+    onUsersReceived(users) {
+        for (const i in users) {
             users[i].isCollapsed = false;
             this.users.push(users[i]);
         }
-        this.haveMoreUsers = (users.length==TcDataLimit.COLLECTION);
+        this.haveMoreUsers = (users.length === TcDataLimit.COLLECTION);
         this.loadingUsers = false;
     }
 }

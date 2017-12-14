@@ -1,8 +1,8 @@
-import { TcItemUrl }     from './tc-item-url/tc-item-url.class';
+import { TcItemUrl } from './tc-item-url/tc-item-url.class';
 import { TcItemYoutube } from './tc-item-youtube/tc-item-youtube.class';
-import { TcItemImage }   from './tc-item-image/tc-item-image.class';
-import { TcItemTweet }   from './tc-item-tweet/tc-item-tweet.class';
-import { TcCollection }  from '../tc-collection/tc-collection.class';
+import { TcItemImage } from './tc-item-image/tc-item-image.class';
+import { TcItemTweet } from './tc-item-tweet/tc-item-tweet.class';
+import { TcCollection } from '../tc-collection/tc-collection.class';
 
 export class TcItem {
 
@@ -48,44 +48,44 @@ export class TcItem {
 
     public static get ITEM_TYPES() {
         return {
-            "URL": {
-                "id": "URL"
+            'URL': {
+                'id': 'URL'
             },
-            "IMAGE":  {
-                "id": "IMAGE"
+            'IMAGE':  {
+                'id': 'IMAGE'
             },
-            "YOUTUBE":  {
-                "id": "YOUTUBE"
+            'YOUTUBE':  {
+                'id': 'YOUTUBE'
             },
-            "TWEET":  {
-                "id": "TWEET"
+            'TWEET':  {
+                'id': 'TWEET'
             },
-            "TEXT":  {
-                "id": "TEXT"
+            'TEXT':  {
+                'id': 'TEXT'
             },
-            "COLLECTION":  {
-                "id": "COLLECTION"
+            'COLLECTION':  {
+                'id': 'COLLECTION'
             }
-        }; 
+        };
     }
 
     public static get DISPLAY_MODES() {
         return {
-            "SMALL": {
-                "id": "SMALL"
+            'SMALL': {
+                'id': 'SMALL'
             },
-            "MEDIUM": {
-                "id": "MEDIUM"
+            'MEDIUM': {
+                'id': 'MEDIUM'
             },
-            "LARGE": {
-                "id": "LARGE"
+            'LARGE': {
+                'id': 'LARGE'
             }
-        }; 
+        };
     }
 
     public static createFormJson(obj) {
-        if(!obj)
-            return null;
+        if (!obj)
+          return null;
         return new TcItem(
             obj._id,
             obj.createdAt,
@@ -101,8 +101,8 @@ export class TcItem {
             );
     }
 
-    public static getContent(obj): any{
-        var type = obj.type;
+    public static getContent(obj): any {
+        const type = obj.type;
         switch (type) {
             case TcItem.ITEM_TYPES.URL.id:
                 return TcItemUrl.createFormJson(obj._content);

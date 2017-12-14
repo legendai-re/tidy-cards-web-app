@@ -1,4 +1,4 @@
-import { GrantedAdmin }       from '../tc-auth/tc-auth.guard';
+import { GrantedAdmin } from '../tc-auth/tc-auth.guard';
 import { TcAdminHomeComponent } from './tc-admin-home.component';
 import { TcAdminFeaturedComponent } from './tc-admin-featured.component';
 import { TcAdminUsersComponent } from './tc-admin-users.component';

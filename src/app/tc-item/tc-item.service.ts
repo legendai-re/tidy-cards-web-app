@@ -78,18 +78,18 @@ export class TcItemService {
         let body = res.json();
         if(body.error)
             return null;
-        let itemType = body.itemType;
+        let itemType = body.data.itemType;
         if(!itemType)
             return null;
         switch (itemType) {
             case TcItem.ITEM_TYPES.URL.id:
-                return {_content: TcItemUrl.createFormJson(body.data), type: TcItem.ITEM_TYPES.URL.id};
+                return {_content: TcItemUrl.createFormJson(body.data.itemContent), type: TcItem.ITEM_TYPES.URL.id};
             case TcItem.ITEM_TYPES.TWEET.id:
-                return {_content: TcItemTweet.createFormJson(body.data), type: TcItem.ITEM_TYPES.TWEET.id};
+                return {_content: TcItemTweet.createFormJson(body.data.itemContent), type: TcItem.ITEM_TYPES.TWEET.id};
             case TcItem.ITEM_TYPES.IMAGE.id:
-                return {_content: TcItemImage.createFormJson(body.data), type: TcItem.ITEM_TYPES.IMAGE.id};
+                return {_content: TcItemImage.createFormJson(body.data.itemContent), type: TcItem.ITEM_TYPES.IMAGE.id};
             case TcItem.ITEM_TYPES.YOUTUBE.id:
-                return {_content: TcItemYoutube.createFormJson(body.data), type: TcItem.ITEM_TYPES.YOUTUBE.id};
+                return {_content: TcItemYoutube.createFormJson(body.data.itemContent), type: TcItem.ITEM_TYPES.YOUTUBE.id};
             default:
                 return null
         }

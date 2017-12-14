@@ -1,6 +1,6 @@
-import { Injectable }             from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot }    from '@angular/router';
-import { TcAuthService }        from './tc-auth.service';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { TcAuthService } from './tc-auth.service';
 
 @Injectable()
 export class GrantedAnonymous implements CanActivate {
@@ -30,7 +30,7 @@ export class GrantedAdmin implements CanActivate {
 
     canActivate(next:  ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if ( this.authService.isLoggedIn && this.authService.currentUser.isGranted('ROLE_ADMIN') ) { return true; }
-        if( !this.authService.isLoggedIn )
+        if ( !this.authService.isLoggedIn )
             this.router.navigate(['/signin', {next: encodeURIComponent(state.url)}]);
         else
             this.router.navigate(['/']);

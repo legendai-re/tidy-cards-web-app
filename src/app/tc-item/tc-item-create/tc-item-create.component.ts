@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Observable }             from 'rxjs/Observable';
-import { TcLanguageService }      from '../../tc-language/tc-language.service';
-import { TcCollection }           from '../../tc-collection/tc-collection.class';
-import { TcItem }                 from '../tc-item.class';
-import { TcItemService }          from '../tc-item.service'
+import { TcLanguageService } from '../../tc-language/tc-language.service';
+import { TcCollection } from '../../tc-collection/tc-collection.class';
+import { TcItem } from '../tc-item.class';
+import { TcItemService } from '../tc-item.service';
 
 @Component({
     selector: 'tc-item-create',
@@ -92,7 +91,7 @@ export class TcItemCreateComponent implements OnInit {
             this.typingTimer = setTimeout(()=>{resolve(true);}, this.doneTypingInterval);
         }).then((e)=>{
             this.createContentFromUrl();
-        })
+        });
     }
 
     private createContentFromUrl(){
