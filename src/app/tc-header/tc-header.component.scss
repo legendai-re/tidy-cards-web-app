@@ -305,6 +305,10 @@
   line-height: 32px;
   font-size: 1rem;
   margin: -.25rem -.25rem -.25rem 1rem;
+
+  @include media-breakpoint-down(md) {
+    line-height: 26px;
+  }
 }
 
 

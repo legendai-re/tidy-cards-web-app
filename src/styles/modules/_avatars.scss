@@ -7,7 +7,7 @@
     overflow: hidden;
     border-radius: 50%;
     text-align: center;
-    color: $white-op-3-4;
+    color: rgba($white, .75);
     font-weight: 500;
     text-transform: uppercase;
 
@@ -17,6 +17,10 @@
         position: absolute;
         left: 0;
         top: 0;
+    }
+
+    a {
+      color: inherit;
     }
 }
 
