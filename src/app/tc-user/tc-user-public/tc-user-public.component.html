@@ -33,10 +33,14 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" *ngIf="userCollections.length == 0 && userStarredCollections.length == 0">
+    {{t._.profile_public?.empty}}
+  </div>
+
+  <div class="section" *ngIf="userCollections.length > 0">
     <h2 class="section-title">
       {{t._.collection?.last_public_title}}
-      <a class="section-title-more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']">
+      <a class="section-title-more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length > 16">
           {{t._.action?.see_all}}
       </a>
     </h2>
@@ -45,10 +49,10 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" *ngIf="userStarredCollections.length > 0">
     <h2 class="section-title">
       {{t._.collection?.favorite_title}}
-      <a class="section-title-more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']">
+      <a class="section-title-more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length > 16">
           {{t._.action?.see_all}}
       </a>
     </h2>

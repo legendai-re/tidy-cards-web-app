@@ -57,7 +57,7 @@ export class TcUserPublicComponent implements OnInit, OnDestroy  {
         params.set('populate', '_author+_thumbnail');
         params.set('sort_field', 'createdAt');
         params.set('sort_dir', '-1');
-        params.set('limit', '8');
+        params.set('limit', '16');
         params.set('_author', this.user._id);
         this.collectionService.getCollections(params).subscribe(collections => {
             this.userCollections = collections;
@@ -69,7 +69,7 @@ export class TcUserPublicComponent implements OnInit, OnDestroy  {
         params.set('populate', '_author+_thumbnail');
         params.set('sort_field', 'createdAt');
         params.set('sort_dir', '-1');
-        params.set('limit', '8');
+        params.set('limit', '16');
         params.set('_starredBy', this.user._id);
         this.collectionService.getCollections(params).subscribe(collections => {
             this.userStarredCollections = collections;
