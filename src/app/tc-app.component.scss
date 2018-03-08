@@ -3,7 +3,9 @@
     background-color: red;
 }
 
-@import '../styles/app.scss';
+// @import '../styles/app.scss';
+// @import "../styles/settings/bootstrap-variables";
+// @import "~bootstrap/scss/bootstrap";
 
 .application-ui {
   position: relative;
@@ -76,7 +78,7 @@
   flex-direction: column;
   margin-top: auto;
 
-  @include media-breakpoint-down(md) {
-    margin-bottom: 2.5rem;
-  }
+  // @include media-breakpoint-down(md) {
+  //   margin-bottom: 2.5rem;
+  // }
 }
