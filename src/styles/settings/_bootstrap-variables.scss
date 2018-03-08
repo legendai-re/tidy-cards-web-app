@@ -15,14 +15,14 @@ $grid-breakpoints: (
   md: 618px,
   lg: 887px,
   xl: 1200px
-) !default;
+);
 
 $container-max-widths: (
   sm: 500px,
   md: 570px,
   lg: 855px,
   xl: 1140px
-) !default;
+);
 
 // Border radius
 
@@ -54,4 +54,4 @@ $modal-sm:                          300px;
 $custom-file-text: (
   en: "Browse",
   fr: "Explorer"
-) !default;
+);
