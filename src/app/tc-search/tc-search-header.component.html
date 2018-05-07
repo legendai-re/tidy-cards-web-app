@@ -2,12 +2,10 @@
   <div class="container">
 
     <div class="search-results--summary search-results--ideas">
-      <h2 class="search-title">
-        {{t._.header?.search_no_idea_row_1}}
-      </h2>
-      <h3 class="section-title dark-bg">
-        {{t._.header?.search_no_idea_row_2}} <a [routerLink]="['/discover']">{{t._.header?.search_no_idea_row_3}}</a>...
-      </h3>
+      <h2 class="search-title">{{t._.header?.search_no_idea_row_1}}</h2>
+      <p class="search-desc dark-bg">
+        {{t._.header?.search_no_idea_row_2}} <a [routerLink]="['/discover']">{{t._.header?.search_no_idea_row_3}}</a>…
+      </p>
     </div>
 
   </div>

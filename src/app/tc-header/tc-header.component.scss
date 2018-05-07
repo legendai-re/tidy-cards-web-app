@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   background-color: $brand-primary;
-  min-height: 16rem;
+  min-height: 12rem;
   transition: min-height .4s ease;
 
   &.is-searching {
@@ -128,11 +128,11 @@
     &:before {
       position: relative;
       display: flex;
-      content: "\E900";
+      content: "🍪";
       width: 2.5rem;
-      height: 1.875rem;
+      height: 2.5rem;
       font-family: $font-icons;
-      font-size: 1.9rem;
+      font-size: 2.5rem;
       line-height: 1;
       color: $white;
       speak: none;
@@ -272,7 +272,8 @@
 
 .header-navbar--nav-search {
   width: 100%;
-  max-width: 24rem;
+  // max-width: 24rem;
+  padding: 0 2rem 0 0;
 }
 
 .header-navbar--nav-item {

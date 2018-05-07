@@ -30,7 +30,7 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0",
     "@types/node": "^6.0.101",
     "angular2-markdown": "^2.2.3",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.1",
     "codelyzer": "^4.2.1",
     "core-js": "^2.5.3",
     "jquery": "^3.3.1",

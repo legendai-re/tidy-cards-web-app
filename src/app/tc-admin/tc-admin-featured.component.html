@@ -1,18 +1,40 @@
-<section class="section">
-    <div class="container">
-        <h2 class="section-title">Featured</h2>
-        <div class="row">
-            <div *ngIf="!collection">
-                <input type="text" [(ngModel)]="searchCollectionId" />
-                <input type="submit" value="Search" (click)="searchColletion()" />
+<div class="application-content is-list-collection">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8 mx-auto">
+        <section class="section">
+          <div class="section-header dark-bg">
+            <h2 class="section-header--title">Featured collections</h2>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="input-group input-group-lg" role="group" *ngIf="!collection">
+                <input class="form-control form-control-lg" type="text" [(ngModel)]="searchCollectionId" placeholder="Search with a collection id…"/>
+                <div class="input-group-append">
+                  <input class="btn btn-primary btn-lg" type="submit" value="Search" (click)="searchColletion()" />
+                </div>
+              </div>
+              <div class="d-flex" *ngIf="collection">
+                <div style= "width:100%;max-width:255px;">
+                  <input class="btn btn-outline-primary mb-2" type="submit" value="Search an other" (click)="searchAnother()" />
+                  <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
+                </div>
+                <div class="p-5">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkFeatured" [(ngModel)]="collection.isFeatured">
+                    <label class="custom-control-label" for="checkFeatured">Appears on featured collections</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkDiscover" [(ngModel)]="collection.isOnDiscover">
+                    <label class="custom-control-label" for="checkDiscover">Appears on Discover page</label>
+                  </div>
+                  <input class="btn btn-primary mt-3" type="submit" value="Update" (click)="updateCollection()" />
+                </div>
+              </div>
             </div>
-            <div *ngIf="collection"  class="col-xs-12 col-md-6 col-lg-4 col-xl-3">
-                <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
-                <input type="checkbox" [(ngModel)]="collection.isFeatured" />isFeatured
-                <input type="checkbox" [(ngModel)]="collection.isOnDiscover" />isOnDiscover
-                <input type="submit" value="Update" (click)="updateCollection()" />
-                <input type="submit" value="Search an other" (click)="searchAnother()" />
-            </div>
-        </div>
+          </div>
+        </section>
+      </div>
     </div>
-</section>
+  </div>
+</div>

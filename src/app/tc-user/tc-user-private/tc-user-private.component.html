@@ -42,12 +42,9 @@
       </div>
 
       <div class="account-settings section row-md">
-        <h2 class="section-title withDescription col-md-12">{{t._.profile_private?.account_title}}</h2>
-        <p class="section-description col-md-12">{{t._.profile_private?.account_subtitle}}</p>
-
+        <h2 class="section-title mb-1 col-md-12">{{t._.profile_private?.account_title}}</h2>
         <div class="card">
           <div class="card-body">
-
             <div class="list-item">
               <div class="list-item-infos">
                 <h3 class="list-item-title">{{t._.profile_private?.username_row_title}}</h3>
@@ -146,12 +143,9 @@
       </div>
 
       <div class="connections-settings section row-md">
-        <h2 class="section-title withDescription col-md-12">{{t._.profile_private?.connections_title}}</h2>
-        <p class="section-description col-md-12">{{t._.profile_private?.connections_subtitle}}</p>
-
+        <h2 class="section-title mb-1 col-md-12">{{t._.profile_private?.connections_title}}</h2>
         <div class="card">
           <div class="card-body">
-
             <div class="list-item">
               <div class="list-item-infos">
                 <h3 class="list-item-title">{{t._.profile_private?.facebook_row_title}}</h3>
@@ -188,17 +182,14 @@
                 <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary" (click)="unlinkAccount('GOOGLE')">{{t._.profile_private?.google_unlink_button}}</a>
               </div>
             </div>
-
           </div>
         </div>
       </div>
 
       <div class="security-settings section row-md">
-        <h2 class="section-title withDescription col-md-12">{{t._.profile_private?.security_title}}</h2>
-        <p class="section-description col-md-12">{{t._.profile_private?.security_subtitle}}</p>
+        <h2 class="section-title mb-1 col-md-12">{{t._.profile_private?.security_title}}</h2>
         <div class="card">
           <div class="card-body">
-
             <div class="list-item">
               <div class="list-item-infos" *ngIf="authService.currentUser.local.active">
                 <h3 class="list-item-title">{{t._.profile_private?.security_change_pwd}}</h3>
@@ -233,12 +224,9 @@
                 <input (click)="setPassword()" [disabled]="!isUpdatingPassword && !isSetPasswordFormValid()" class="btn btn-sm btn-primary" type="submit" value="{{t._.action?.save}}"/>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
 </div>
