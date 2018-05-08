@@ -65,14 +65,17 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  private openModal(content, sizeParam = null) {
+  private openModal(content, sizeParam = null, centeredParam = true) {
     this.currentModal = this.modalService.open(content, {
-      size: sizeParam
+      size: sizeParam,
+      centered: centeredParam
     });
   }
 
   private openDeleteCollectionModal(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modalService.open(content, {
+      centered: true
+    }).result.then((result) => {
       if (result === 'confirm')
         this.deleteCollection();
     }, (reason) => {
