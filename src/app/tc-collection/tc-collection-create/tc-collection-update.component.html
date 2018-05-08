@@ -1,4 +1,132 @@
-<article class="card card-collection create-collection not-hoverable"
+<div class="collection-form--container">
+  <form (ngSubmit)="onCollectionSubmit()" ngNativeValidate>
+
+    <div class="collection-form--content">
+      <div class="collection-form--content-wrapper">
+        <h2 class="collection-form--content-title">Update your collection<!--{{t._.item?.new_title}}--></h2>
+
+        <textarea
+          class="collection-form--input-title"
+          type="input"
+          placeholder="{{t._.collection_create?.title_placeholder}}"
+          autofocus="autofocus"
+          name="title"
+          rows="1"
+          [(ngModel)]="collection.title"
+          required
+        ></textarea>
+
+        <textarea
+          class="collection-form--input-caption"
+          placeholder="{{t._.collection_create?.caption_placeholder}}"
+          name="bio"
+          id=""
+          rows="11"
+          [(ngModel)]="collection.bio"
+          [ngModelOptions]="{standalone: true}"
+        ></textarea>
+
+        <div class="collection-form--details">
+
+          <ul class="collection-form--colors">
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('CFD8DC')" [class.selected]="collection.color=='CFD8DC'" class="collection-form--color collection-color-grey">Grey</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('A4ABFF')" [class.selected]="collection.color=='A4ABFF'" class="collection-form--color collection-color-purple">Purple</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('78D6FF')" [class.selected]="collection.color=='78D6FF'" class="collection-form--color collection-color-blue">Blue</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('A4FFEB')" [class.selected]="collection.color=='A4FFEB'" class="collection-form--color collection-color-cyan">Cyan</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('CBFF8A')" [class.selected]="collection.color=='CBFF8A'" class="collection-form--color collection-color-green">Green</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('FFFF7C')" [class.selected]="collection.color=='FFFF7C'" class="collection-form--color collection-color-yellow">Yellow</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('FFD373')" [class.selected]="collection.color=='FFD373'" class="collection-form--color collection-color-orange">Orange</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="clickColor('FF887A')" [class.selected]="collection.color=='FF887A'" class="collection-form--color collection-color-red">Red</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" class="collection-form--image">
+                <input (change)="onThumbnailFileChange($event)" [uploader]="uploader" class="collection-form--image-input" [attr.id]="'avatar_file_'+collection._id" name="file" ng2FileSelect type="file">
+                <span class="collection-form--image-uploader" *ngIf="!collection._thumbnail">cloud_download</span>
+                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="!collection._thumbnail">Upload an image</label>
+
+                <span class="collection-form--image-preview" *ngIf="collection._thumbnail">
+                  <img [src]="collection._thumbnail?.getPath('300x250')" />
+                </span>
+                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="collection._thumbnail">Replace image</label>
+              </a>
+            </li>
+          </ul>
+
+          <div class="collection-form--visibility ml-auto">
+            <button class="collection-form--visibility-dropdown dropdown-toggle" [class.is-hidden]="!actionIntent" *ngIf="t._.collection?.visibility" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="icon">remove_red_eye</span>
+              <span>{{t._.collection?.visibility?.title}}: {{t._.collection?.visibility[collection.visibility]?.title}}</span>
+            </button>
+            <div class="dropdown-menu">
+              <h6 class="dropdown-header">{{t._.collection_create?.visibility_dropdow_title}}</h6>
+              <a href="javascript:void(0)" (click)="collection.visibility=visibilityList.PRIVATE.id" class="dropdown-item">
+                <span>{{t._.collection?.visibility?.PRIVATE?.title}}</span>
+                <small>{{t._.collection?.visibility?.PRIVATE?.subtitle}}</small>
+              </a>
+              <a href="javascript:void(0)" (click)="collection.visibility=visibilityList.PUBLIC.id" class="dropdown-item">
+                <span>{{t._.collection?.visibility?.PUBLIC?.title}}</span>
+                <small>{{t._.collection?.visibility?.PUBLIC?.subtitle}}</small>
+              </a>
+              <a href="javascript:void(0)" (click)="collection.visibility=visibilityList.UNINDEXED.id" class="dropdown-item">
+                <span>{{t._.collection?.visibility?.UNINDEXED?.title}}</span>
+                <small>{{t._.collection?.visibility?.UNINDEXED?.subtitle}}</small>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="collection-form--footer">
+
+      <div class="collection-form--footer-actions ml-auto">
+        <!-- <a href="javascript:void(0)" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.cancel}}</a> -->
+        <!-- DEBUG: le bouton cancel -->
+        <input
+          *ngIf="mode == 'CREATE'"
+          [disabled]="(!collection.title && !collection.bio)"
+          class="btn btn-primary" type="submit" value="{{t._.action?.create}}"/>
+        <input
+          *ngIf="mode == 'CREATE_SUB_COLLECTION'"
+          [disabled]="(!collection.title && !collection.bio)"
+          class="btn btn-primary" type="submit" value="Create sub collection"/>
+        <input
+          *ngIf="mode == 'UPDATE'"
+          [disabled]="(!collection.title && !collection.bio)"
+          class="btn btn-primary" type="submit" value="{{t._.action?.update}}"/>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <article class="card card-collection create-collection not-hoverable"
         [class.has-thumbnail]="collection._thumbnail != empty"
         [style.background-color]="'#'+collection.color">
   <form (ngSubmit)="onCollectionSubmit()" ngNativeValidate>
@@ -145,4 +273,4 @@
       </div>
     </div>
   </form>
-</article>
+</article> -->
