@@ -2,7 +2,10 @@
   <div class="container">
 
     <div class="section">
-      <h2 class="section-title dark-bg">{{t._.collection?.featured_title}}</h2>
+      <div class="section-header dark-bg">
+        <h2 class="section-header--title">{{t._.collection?.featured_title}}</h2>
+      </div>
+
       <div class="row">
 
         <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>
@@ -12,7 +15,7 @@
           <p class="loading-more" *ngIf="loadingCollections">{{t._.action?.loadind}}</p>
           <p class="no-more" *ngIf="!haveMoreCollections && pageNb > 0">{{t._.collection?.list_end}}</p>
         </div>
-        
+
       </div>
     </div>
 

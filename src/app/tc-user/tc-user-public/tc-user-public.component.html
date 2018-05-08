@@ -10,21 +10,17 @@
           <h2 class="profile-name">{{user?.name}}</h2>
           <h3 class="profile-username">@{{user?.username}}</h3>
         </div>
-        <div class="profile-infos-stats" >
-          <div class="profile-stats-item" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')" (click)="impersonate()">
-            Impersonate
-          </div>
-        </div>
-        <!--<div class="profile-infos-stats">
-          <div class="profile-stats-item">
+        <div class="profile-infos-stats">
+          <div class="btn btn-sm btn-secondary" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')" (click)="impersonate()">Login as…</div>
+          <!-- <div class="profile-stats-item">
             <span class="profile-stat-value">0</span>
             <span class="profile-stat-label">Collections</span>
           </div>
           <div class="profile-stats-item">
             <span class="profile-stat-value">0</span>
             <span class="profile-stat-label">Favorites</span>
-          </div>
-        </div>-->
+          </div> -->
+        </div>
       </div>
       <div class="profile-header-bottom">
         <p *ngIf="user?.bio" class="profile-infos-bio">{{user?.bio}}</p>
@@ -38,24 +34,20 @@
   </div>
 
   <div class="section" *ngIf="userCollections.length > 0">
-    <h2 class="section-title">
-      {{t._.collection?.last_public_title}}
-      <a class="section-title-more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length > 16">
-          {{t._.action?.see_all}}
-      </a>
-    </h2>
+    <div class="section-header">
+      <h2 class="section-header--title">{{t._.collection?.last_public_title}}</h2>
+      <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length > 16">{{t._.action?.see_all}}</a>
+    </div>
     <div class="row">
       <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userCollections"></tc-collection-card>
     </div>
   </div>
 
   <div class="section" *ngIf="userStarredCollections.length > 0">
-    <h2 class="section-title">
-      {{t._.collection?.favorite_title}}
-      <a class="section-title-more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length > 16">
-          {{t._.action?.see_all}}
-      </a>
-    </h2>
+    <div class="section-header">
+      <h2 class="section-header--title">{{t._.collection?.favorite_title}}</h2>
+      <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length > 16">{{t._.action?.see_all}}</a>
+    </div>
 
     <div class="row">
       <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userStarredCollections"></tc-collection-card>
