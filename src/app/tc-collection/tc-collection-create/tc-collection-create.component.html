@@ -11,13 +11,13 @@
           (focus)="onCollectionFocus()"
           [(ngModel)]="collection.title"
           name="title"
-          type="text" placeholder="{{t._.collection_create?.title_placeholder}}" required/>
+          type="text" placeholder="{{t._.collection.card_form?.title_placeholder}}" required/>
         <textarea class="input-card-collection--caption card-collection--caption"
           (focus)="onCollectionFocus()"
           [(ngModel)]="collection.bio"
           [ngModelOptions]="{standalone: true}"
           name="bio"
-          name="" id="" placeholder="{{t._.collection_create?.caption_placeholder}}">
+          name="" id="" placeholder="{{t._.collection.modal?.caption_placeholder}}">
         </textarea>
 
         <div class="card-collection--details" *ngIf="mode != 'CREATE_SUB_COLLECTION'">
@@ -26,7 +26,7 @@
             <span>{{t._.collection?.visibility?.title}}: {{t._.collection?.visibility[collection.visibility]?.title}}</span>
           </button>
           <div class="dropdown-menu">
-            <h6 class="dropdown-header">{{t._.collection_create?.visibility_dropdow_title}}</h6>
+            <h6 class="dropdown-header">{{t._.collection.modal?.visibility_dropdown_title}}</h6>
             <a href="javascript:void(0)" (click)="collection.visibility=visibilityList.PRIVATE.id" class="dropdown-item">
               <span>{{t._.collection?.visibility?.PRIVATE?.title}}</span>
               <small>{{t._.collection?.visibility?.PRIVATE?.subtitle}}</small>

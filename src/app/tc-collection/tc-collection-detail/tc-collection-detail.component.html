@@ -63,7 +63,7 @@
           </ul>
 
           <div class="collection-container--stats-actions" *ngIf="isAuthor">
-            <button type="button" class="collection-container--stats-action btn btn-primary btn-sm" (click)="openModal(newItemModal, 'lg')">
+            <button type="button" class="collection-container--stats-action btn btn-primary btn-sm ml-2" (click)="openModal(newItemModal, 'lg')">
               {{t._.collection?.new_item_button}}
             </button>
 
@@ -131,14 +131,14 @@
 
 <ng-template class="default-modal" #collectionDeleteModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h5 class="modal-title">{{t._.collection?.delete_title}}</h5>
+    <h5 class="modal-title">{{t._.collection.modal?.delete_title}}</h5>
   </div>
   <div class="modal-body">
-    {{t._.collection?.delete_caption}}
+    {{t._.collection.modal?.delete_caption}}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.cancel}}</button>
-    <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.collection?.delete_button_yes}}</button>
+    <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.collection.action?.delete}}</button>
   </div>
 </ng-template>
 
