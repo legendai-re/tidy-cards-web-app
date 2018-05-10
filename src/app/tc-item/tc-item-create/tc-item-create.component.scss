@@ -59,7 +59,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: row;
-  font-size: 1rem;
+  font-size: .875rem;
   font-weight: 500;
   line-height: 1.25rem;
   color: $gray-800;
@@ -194,43 +194,55 @@
   border-radius: $border-radius-base;
 }
 
-.collection-item--size-control {
+.collection-item--display-modes {
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 0;
+  margin: .5rem 0;
 }
 
-.collection-item--size-control-button {
+.collection-item--display-modes-label {
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: $gray-800;
+  margin: 0 .5rem 0 0;
+}
+
+.collection-item--display-mode {
   position: relative;
   display: flex;
   flex: 0 0 auto;
-  width: auto;
+  width: 1.5rem;
   height: 1.5rem;
-  background-color: $white;
-  border-radius: $border-radius-base;
   border: 1px solid rgba($black, .1);
-  overflow: hidden;
-  transition: opacity .3s ease;
-  z-index: 1;
-  margin: -.25rem 0 0;
-  color: $gray-600;
-  text-transform: uppercase;
-  font-weight: 500;
+  border-radius: 50%;
   font-size: .75rem;
-  text-align: center;
-  line-height: 1.5rem;
-  padding: 0 .5rem;
+  font-weight: 500;
+  line-height: 1rem;
+  justify-content: center;
+  align-items: center;
+  color: $gray-600;
+  padding: 0 0 0 1px;
+  transition: .3s ease;
 
   &:hover {
-    background-color: $gray-100;
     text-decoration: none;
+    border-color: rgba($black,.25);
+    color: $gray-800;
   }
 
-  &:active {
-    background-color: $gray-500;
+  &:not(:last-child) {
+    margin: 0 .25rem 0 0;
+  }
+
+  &.is-active {
+    background-color: rgba($black,.25);
     color: $white;
+    border-color: transparent;
+
+    &:hover {
+      background-color: rgba($black,.5);
+    }
   }
 }
