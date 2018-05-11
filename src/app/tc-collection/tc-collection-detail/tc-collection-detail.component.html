@@ -3,7 +3,10 @@
 
     <div class="page-headings is-hidden" id="collectionDetailHeader">
 
-      <span class="page-headings--page-pre-title" *ngIf="collection.isFeatured">{{t._.collection?.featured_title}}</span>
+      <a href="javascript:void(0)" [routerLink]="['/c/featured']" class="page-headings--page-pre-title is-featured" *ngIf="collection.isFeatured">
+        <span class="icon">stars</span>
+        <span>{{t._.collection?.featured_title}}</span>
+      </a>
       <h2 class="page-headings--page-title">{{collection.title}}</h2>
       <p class="page-headings--page-description" *ngIf="collection.bio">{{collection.bio}}</p>
 
@@ -47,7 +50,8 @@
             </li>
             <li class="collection-container--stats-item" *ngIf="collection.visibility != 'PRIVATE'">
               <a href="javascript:void(0)" class="collection-container--stats-button" (click)="onStarCliked()">
-                <span class="collection-container--stats-icon" [class.is-highlighted]="collection._star">star</span>
+                <span class="collection-container--stats-icon is-highlighted" *ngIf="collection._star">favorite</span>
+                <span class="collection-container--stats-icon" *ngIf="!collection._star">favorite_border</span>
                 <span>{{collection.starsCount}}</span>
               </a>
             </li>
