@@ -5,6 +5,10 @@
 @import '../../styles/settings/_variables.scss';
 @import '../../styles/settings/_mixins.scss';
 
+.is-error {
+  margin-top: -5rem;
+}
+
 .profile-wrapper {
     padding-top: 20px;
 }

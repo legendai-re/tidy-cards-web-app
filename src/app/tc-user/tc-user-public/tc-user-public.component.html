@@ -1,62 +1,80 @@
-<div class="container" *ngIf="!isLoadingUser && user && user._id">
-  <div class="profile-header">
-    <div *ngIf="user" class="profile-avatar avatar avatar--140">
-      <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('140x140')"  onError="this.style.display='none';" alt="{{user?.name}} avatar">
-      {{user?.name.charAt(0)}}
-    </div>
-    <div class="profile-header-infos">
-      <div class="profile-header-top">
-        <div class="profile-infos-name">
-          <h2 class="profile-name">{{user?.name}}</h2>
-          <h3 class="profile-username">@{{user?.username}}</h3>
+<div class="application-content is-profile" *ngIf="!isLoadingUser && user && user._id">
+  <div class="container">
+    <div class="profile-header">
+      <div *ngIf="user" class="profile-avatar avatar avatar--140">
+        <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('140x140')"  onError="this.style.display='none';" alt="{{user?.name}} avatar">
+        {{user?.name.charAt(0)}}
+      </div>
+      <div class="profile-header-infos">
+        <div class="profile-header-top">
+          <div class="profile-infos-name">
+            <h2 class="profile-name">{{user?.name}}</h2>
+            <h3 class="profile-username">@{{user?.username}}</h3>
+          </div>
+          <div class="profile-infos-stats">
+            <div class="btn btn-sm btn-secondary" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')" (click)="impersonate()">Login as…</div>
+            <div class="profile-stats-item">
+              <span class="profile-stat-value">{{ userCollections.length }}</span>
+              <span class="profile-stat-label">{{ t._.object?.collection_plur}}</span>
+            </div>
+            <div class="profile-stats-item">
+              <span class="profile-stat-value">{{ userStarredCollections.length }}</span>
+              <span class="profile-stat-label">{{ t._.object?.favorite_plur}}</span>
+            </div>
+          </div>
         </div>
-        <div class="profile-infos-stats">
-          <div class="btn btn-sm btn-secondary" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')" (click)="impersonate()">Login as…</div>
-          <div class="profile-stats-item">
-            <span class="profile-stat-value">{{ userCollections.length }}</span>
-            <span class="profile-stat-label">{{ t._.object?.collection_plur}}</span>
-          </div>
-          <div class="profile-stats-item">
-            <span class="profile-stat-value">{{ userStarredCollections.length }}</span>
-            <span class="profile-stat-label">{{ t._.object?.favorite_plur}}</span>
-          </div>
+        <div class="profile-header-bottom">
+          <p *ngIf="user?.bio" class="profile-infos-bio">{{user?.bio}}</p>
+          <p *ngIf="!user?.bio" class="profile-infos-bio">{{t._.profile_public?.no_bio}}</p>
         </div>
       </div>
-      <div class="profile-header-bottom">
-        <p *ngIf="user?.bio" class="profile-infos-bio">{{user?.bio}}</p>
-        <p *ngIf="!user?.bio" class="profile-infos-bio">{{t._.profile_public?.no_bio}}</p>
+    </div>
+
+    <div class="section" *ngIf="userCollections.length == 0 && userStarredCollections.length == 0">
+      {{t._.profile_public?.empty}}
+    </div>
+
+    <div class="section" *ngIf="userCollections.length > 0">
+      <div class="section-header">
+        <h2 class="section-header--title">{{t._.collection?.last_public_title}}</h2>
+        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length > 16">{{t._.action?.see_all}}</a>
+      </div>
+      <div class="row">
+        <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userCollections"></tc-collection-card>
       </div>
     </div>
-  </div>
 
-  <div class="section" *ngIf="userCollections.length == 0 && userStarredCollections.length == 0">
-    {{t._.profile_public?.empty}}
-  </div>
+    <div class="section" *ngIf="userStarredCollections.length > 0">
+      <div class="section-header">
+        <h2 class="section-header--title">{{t._.collection?.favorite_title}}</h2>
+        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length > 16">{{t._.action?.see_all}}</a>
+      </div>
 
-  <div class="section" *ngIf="userCollections.length > 0">
-    <div class="section-header">
-      <h2 class="section-header--title">{{t._.collection?.last_public_title}}</h2>
-      <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length > 16">{{t._.action?.see_all}}</a>
-    </div>
-    <div class="row">
-      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userCollections"></tc-collection-card>
-    </div>
-  </div>
-
-  <div class="section" *ngIf="userStarredCollections.length > 0">
-    <div class="section-header">
-      <h2 class="section-header--title">{{t._.collection?.favorite_title}}</h2>
-      <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length > 16">{{t._.action?.see_all}}</a>
-    </div>
-
-    <div class="row">
-      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userStarredCollections"></tc-collection-card>
+      <div class="row">
+        <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userStarredCollections"></tc-collection-card>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container" *ngIf="!isLoadingUser && (!user || !user._id)">
-    <section class="section">
-      <h2 class="section-title dark-bg">Sorry cannot find user with username: "{{searchParams}}"</h2>
-    </section>
+<div class="application-content is-error" *ngIf="!isLoadingUser && (!user || !user._id)">
+  <div class="container">
+
+  	<div class="page-container">
+  		<div class="page-content row" id="pageContent">
+  			<div class="col-12 col-md-8 mx-auto">
+
+  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+          <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+          <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found_user }} “{{ searchParams }}”</p>
+  				<div class="text-center pb-5">
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">{{ t._.page?.error?.button?.back_dashboard }}</a>
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">{{ t._.page?.error?.button?.back_discover }}</a>
+  				</div>
+          <!-- TODO: ajouter un lien pour aller s'inscire (un peu joli et tout) -->
+  			</div>
+  		</div>
+  	</div>
+
+	</div>
 </div>
