@@ -3,12 +3,12 @@
 
     <div class="collection-form--content">
       <div class="collection-form--content-wrapper">
-        <h2 class="collection-form--content-title">{{t._.collection.modal.edit?.title}}</h2>
+        <h2 class="collection-form--content-title">{{t._.collection?.modal.edit?.title}}</h2>
 
         <textarea
           class="collection-form--input-title"
           type="input"
-          placeholder="{{t._.collection.modal?.title_placeholder}}"
+          placeholder="{{t._.collection?.modal?.title_placeholder}}"
           autofocus="autofocus"
           name="title"
           rows="1"
@@ -18,7 +18,7 @@
 
         <textarea
           class="collection-form--input-caption"
-          placeholder="{{t._.collection.modal?.caption_placeholder}}"
+          placeholder="{{t._.collection?.modal?.caption_placeholder}}"
           name="bio"
           id=""
           rows="11"
@@ -57,19 +57,19 @@
               <a href="javascript:void(0)" class="collection-form--image">
                 <input (change)="onThumbnailFileChange($event)" [uploader]="uploader" class="collection-form--image-input" [attr.id]="'avatar_file_'+collection._id" name="file" ng2FileSelect type="file">
                 <span class="collection-form--image-uploader" *ngIf="!collection._thumbnail">cloud_download</span>
-                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="!collection._thumbnail">{{t._.collection.action?.upload_img}}</label>
+                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="!collection._thumbnail">{{t._.collection?.action?.upload_img}}</label>
 
                 <span class="collection-form--image-preview" *ngIf="collection._thumbnail">
                   <img [src]="collection._thumbnail?.getPath('96x96')" />
                 </span>
-                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="collection._thumbnail">{{t._.collection.action?.replace_img}}</label>
+                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="collection._thumbnail">{{t._.collection?.action?.replace_img}}</label>
               </a>
             </li>
           </ul>
 
           <div class="collection-form--visibility ml-auto">
             <button class="collection-form--visibility-dropdown dropdown-toggle" [class.is-hidden]="!actionIntent" *ngIf="t._.collection?.visibility" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="icon">{{ t._.icon.visibility?.filled }}</span>
+              <span class="icon">{{ t._.icon?.visibility?.filled }}</span>
               <span>{{t._.collection?.visibility?.title}}: {{t._.collection?.visibility[collection.visibility]?.title}}</span>
             </button>
             <div class="dropdown-menu">

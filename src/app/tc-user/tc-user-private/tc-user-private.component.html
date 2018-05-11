@@ -13,15 +13,15 @@
               <img [src]="tmpUser._avatar?.getPath('original')" />
             </div>
             <div *ngIf="updateGeneralInfoIntent" class="profile-avatar-uploader">
-              <span class="profile-avatar-uploader-icon material-icons">{{ t._.icon.upload?.filled }}</span>
+              <span class="profile-avatar-uploader-icon material-icons">{{ t._.icon?.upload?.filled }}</span>
               <input (change)="onAvatarFileChange($event)" type="file" ng2FileSelect [uploader]="uploader" />
             </div>
             <div *ngIf="isUploadingAvatar" class="profile-avatar-uploader">
               <!-- TODO: rotate -->
-              <span class="profile-avatar-uploader-icon material-icons">{{ t._.icon.waiting?.filled }}</span>
+              <span class="profile-avatar-uploader-icon material-icons">{{ t._.icon?.waiting?.filled }}</span>
             </div>
             <!-- TODO: done state -->
-            <!--<span class="profile-avatar-uploader-icon" *ngIf="!isUploadingAvatar && tmpUser._avatar">{{ t._.icon.done?.filled }}</span>-->
+            <!--<span class="profile-avatar-uploader-icon" *ngIf="!isUploadingAvatar && tmpUser._avatar">{{ t._.icon?.done?.filled }}</span>-->
           </div>
           <div class="profile-header-infos">
             <div class="profile-header-top">
