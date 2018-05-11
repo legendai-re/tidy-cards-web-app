@@ -4,7 +4,7 @@
     <div class="page-headings is-hidden" id="collectionDetailHeader">
 
       <a href="javascript:void(0)" [routerLink]="['/c/featured']" class="page-headings--page-pre-title is-featured" *ngIf="collection.isFeatured">
-        <span class="icon">stars</span>
+        <span class="icon">{{ t._.icon.featured?.filled }}</span>
         <span>{{t._.collection?.featured_title}}</span>
       </a>
       <h2 class="page-headings--page-title">{{collection.title}}</h2>
@@ -50,17 +50,17 @@
             </li>
             <li class="collection-container--stats-item" *ngIf="collection.visibility != 'PRIVATE'">
               <a href="javascript:void(0)" class="collection-container--stats-button" (click)="onStarCliked()">
-                <span class="collection-container--stats-icon is-highlighted" *ngIf="collection._star">favorite</span>
-                <span class="collection-container--stats-icon" *ngIf="!collection._star">favorite_border</span>
+                <span class="collection-container--stats-icon is-highlighted" *ngIf="collection._star">{{ t._.icon.favorite?.filled }}</span>
+                <span class="collection-container--stats-icon" *ngIf="!collection._star">{{ t._.icon.favorite?.border }}</span>
                 <span>{{collection.starsCount}}</span>
               </a>
             </li>
             <li class="collection-container--stats-item visibility mr-2" *ngIf="collection.visibility == 'UNINDEXED'">
-              <span class="collection-container--stats-icon">visibility_off</span>
+              <span class="collection-container--stats-icon">{{ t._.icon.unindexed_collection?.filled }}</span>
               <span class="muted">{{ t._.collection?.visibility[collection.visibility].title}}</span>
             </li>
             <li class="collection-container--stats-item visibility mr-2" *ngIf="collection.visibility == 'PRIVATE'">
-              <span class="collection-container--stats-icon">lock</span>
+              <span class="collection-container--stats-icon">{{ t._.icon.private_collection?.filled }}</span>
               <span class="muted">{{ t._.collection?.visibility[collection.visibility].title}}</span>
             </li>
 
@@ -73,7 +73,7 @@
 
             <div class="collection-container--stats-action dropdown">
               <a class="btn btn-secondary btn-icon btn-icon-narrow btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="icon">more_vert</span>
+                <span class="icon">{{ t._.icon.more?.filled }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                 <a href="javascript:void(0)" class="dropdown-item" (click)="openModal(updateCollectionModal, 'lg')">{{t._.action?.edit}}</a>
@@ -159,6 +159,7 @@
 </ng-template>
 
 <!--<tc-collection-create *ngIf="isAuthor" [parentCollection]="collection" (newCollection)="onSubCollectionCreated($event)"></tc-collection-create>-->
+<!-- TODO:  -->
 
 <div class="page" *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
   <div class="container">
