@@ -286,6 +286,7 @@
   display: flex;
   flex-direction: row;
   font-weight: 500;
+  white-space: nowrap;
 
   span {
     white-space: nowrap;
@@ -299,8 +300,9 @@
 }
 
 .header-navbar--nav-link-text {
-  padding: .5rem .125rem .5rem .25rem;
+  padding: .5rem .25rem;
   color: rgba($white, .75);
+  white-space: nowrap;
 }
 
 .header-navbar--avatar {

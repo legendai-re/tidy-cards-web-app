@@ -10,6 +10,9 @@
    @import "~bootstrap/scss/variables";
    @import "~bootstrap/scss/mixins";
 
+.is-error {
+  margin-top: -5rem;
+}
 
 .collection-container {
   position: relative;

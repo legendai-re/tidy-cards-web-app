@@ -133,6 +133,54 @@
   </div>
 </div>
 
+<!--<tc-collection-create *ngIf="isAuthor" [parentCollection]="collection" (newCollection)="onSubCollectionCreated($event)"></tc-collection-create>-->
+<!-- TODO: @Olivier Peut-être déplacer ces 2 pages dans tc-page et rediriger dessus ? -->
+
+<div class="application-content is-error" *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
+  <div class="container">
+
+  	<div class="page-container">
+  		<div class="page-content row" id="pageContent">
+  			<div class="col-12 col-md-8 mx-auto">
+
+  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+          <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+          <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found }} “{{ searchParams }}”</p>
+  				<div class="text-center pb-5">
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">{{ t._.page?.error?.button?.back_dashboard }}</a>
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">{{ t._.page?.error?.button?.back_discover }}</a>
+  				</div>
+          <!-- TODO: ajouter un lien pour aller s'inscire (un peu joli et tout) -->
+  			</div>
+  		</div>
+  	</div>
+
+	</div>
+</div>
+
+<div class="application-content" *ngIf="!isLoadingCollection && cantFoundButwasStarred">
+  <div class="container is-error">
+
+  	<div class="page-container">
+  		<div class="page-content row" id="pageContent">
+  			<div class="col-12 col-md-8 mx-auto">
+
+  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+          <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+          <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found_fav }}</p>
+  				<div class="text-center pb-5">
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']">{{ t._.page?.error?.button?.back_dashboard }}</a>
+            <span class="mx-2">{{ t._.word?.or }}</span>
+            <input class="btn btn-outline-danger" (click)="removeStarredCollection(true)" value="{{ t._.page?.error?.button?.remove_fav }}" type="submit"/>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+
+	</div>
+</div>
+
+<!-- Modals -->
 <ng-template class="default-modal" #collectionDeleteModal let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h5 class="modal-title">{{t._.collection.modal.delete?.title}}</h5>
@@ -157,31 +205,3 @@
     (updateCanceled)="onUpdateCollectionCanceled()">
   </tc-collection-update>
 </ng-template>
-
-<!--<tc-collection-create *ngIf="isAuthor" [parentCollection]="collection" (newCollection)="onSubCollectionCreated($event)"></tc-collection-create>-->
-<!-- TODO:  -->
-
-<div class="page" *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
-  <div class="container">
-
-    <div class="page-headings">
-
-      <h2 class="page-headings--page-title">Sorry cannot find collection with id: "{{searchParams}}"</h2>
-
-    </div>
-
-  </div>
-</div>
-
-<div class="page" *ngIf="!isLoadingCollection && cantFoundButwasStarred">
-  <div class="container">
-
-    <div class="page-headings">
-
-      <h2 class="">Sorry this collection do not exist anymore or is now private. You can delete it from you starred collection if you want.</h2>
-      <input href="javascript:void(0)" (click)="removeStarredCollection(true)" value="Remove from my starred collection" class="btn btn-sm btn-outline-primary" type="submit"/>
-
-    </div>
-
-  </div>
-</div>
