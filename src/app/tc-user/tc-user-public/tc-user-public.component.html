@@ -12,14 +12,14 @@
         </div>
         <div class="profile-infos-stats">
           <div class="btn btn-sm btn-secondary" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')" (click)="impersonate()">Login as…</div>
-          <!-- <div class="profile-stats-item">
-            <span class="profile-stat-value">0</span>
-            <span class="profile-stat-label">Collections</span>
+          <div class="profile-stats-item">
+            <span class="profile-stat-value">{{ userCollections.length }}</span>
+            <span class="profile-stat-label">{{ t._.object?.collection_plur}}</span>
           </div>
           <div class="profile-stats-item">
-            <span class="profile-stat-value">0</span>
-            <span class="profile-stat-label">Favorites</span>
-          </div> -->
+            <span class="profile-stat-value">{{ userStarredCollections.length }}</span>
+            <span class="profile-stat-label">{{ t._.object?.favorite_plur}}</span>
+          </div>
         </div>
       </div>
       <div class="profile-header-bottom">
