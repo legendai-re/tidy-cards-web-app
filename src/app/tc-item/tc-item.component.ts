@@ -35,17 +35,21 @@ export class TcItemComponent implements OnInit {
     this.availableDisplayModes = TcItem.ITEM_TYPES[this.item.type].available_display_modes;
   }
 
-  public openUpdateModal(sizeParam = null) {
+  public openUpdateModal(sizeParam = null, centeredParam = true) {
     if (this.item.type === this.itemTypes.COLLECTION.id)
       this.collectionUpdateModal = this.modalService.open(this.updateItemModal);
     else
       this.itemUpdateModal = this.modalService.open(this.updateItemModal, {
-        size: sizeParam
+        size: sizeParam,
+        centered: centeredParam
       });
   }
 
-  public openDeleteItemModal(content) {
-    this.modalService.open(content).result.then((result) => {
+  public openDeleteItemModal(content, sizeParam = null, centeredParam = true) {
+    this.modalService.open(content, {
+      size: sizeParam,
+      centered: centeredParam
+    }).result.then((result) => {
       if (result === 'confirm')
         this.deleteItem();
     }, () => {
@@ -62,7 +66,7 @@ export class TcItemComponent implements OnInit {
   public updateItemDisplayMode(displayMode) {
     if (this.isUpdatingDisplayMode)
       return;
-      
+
     if (!this.isAuthor)
       return;
 

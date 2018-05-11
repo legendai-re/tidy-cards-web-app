@@ -71,7 +71,8 @@
       </ul>
 
       <div class="collection-new-item--footer-actions ml-auto">
-        <a href="javascript:void(0)" *ngIf="mode == 'UPDATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.cancel}}</a>
+        <a href="javascript:void(0)" *ngIf="mode == 'CREATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.cancel}}</a>
+        <a href="javascript:void(0)" *ngIf="mode == 'UPDATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.discard}}</a>
         <input
             *ngIf="mode == 'CREATE'"
             [disabled]="(!item.description && !item._content) || (urlEntry && !validUrl) || (loadingContent)"
@@ -79,7 +80,7 @@
         <input
             *ngIf="mode == 'UPDATE'"
             [disabled]="(!item.description && !item._content) || (urlEntry && !validUrl) || (loadingContent)"
-            class="btn btn-primary" type="submit" value="{{t._.action?.update}}"/>
+            class="btn btn-primary" type="submit" value="{{t._.action?.save}}"/>
       </div>
 
     </div>
