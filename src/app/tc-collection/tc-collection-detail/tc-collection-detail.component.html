@@ -32,7 +32,7 @@
           </div>
 
           <p class="collection-container--publication-infos">
-            <span class="d-none d-md-inline">{{t._.collection?.by_title}}</span> <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a> <span class="muted d-none d-md-inline">{{t._.word?.date_on}} <span [attr.title]="collection.createdAt | date:'EEEE, LLLL dd, y h:mm a'">{{collection.createdAt | date }}</span><span class="small d-none d-md-inline" title="{{collection.modifiedAt | date }}" *ngIf="collection.modifiedAt">(edited)</span></span>
+            <span class="d-none d-lg-inline">{{t._.collection?.by_title}}</span> <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a> <span class="muted d-none d-sm-inline">{{t._.word?.date_on}} <span [attr.title]="collection.createdAt | date:'EEEE, LLLL dd, y h:mm a'">{{collection.createdAt | date }}</span><span class="small d-none d-md-inline" title="{{collection.modifiedAt | date }}" *ngIf="collection.modifiedAt">(edited)</span></span>
           </p>
 
         </div>

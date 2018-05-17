@@ -3,19 +3,21 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  // justify-content: center;
   justify-content: flex-end;
-  min-height: 28rem;
+  min-height: 24rem;
   transition: opacity .6s ease;
   transition-delay: .4s;
-  padding: 5.5rem 8rem;
+  padding: 6.5rem 1rem 4rem;
 
-  @include media-breakpoint-down(md) {
-    padding: 5.5rem 0
+  @include media-breakpoint-up(sm) {}
+
+  @include media-breakpoint-up(lg) {
+    padding: 6.5rem 4rem 4rem;
   }
 
-  @include media-breakpoint-down(sm) {
-    padding: 0rem 0 4rem;
-    justify-content: center;
+  @include media-breakpoint-up(xl) {
+    padding: 6.5rem 12rem 4rem;
   }
 
   &.is-hidden {

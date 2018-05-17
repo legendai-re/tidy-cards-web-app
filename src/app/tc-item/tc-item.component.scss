@@ -60,6 +60,7 @@
 .collection-item--details {
   position: relative;
   display: flex;
+  width: 100%;
   flex: 1 1 auto;
   flex-direction: row;
   color: $gray-900;
@@ -180,8 +181,12 @@
 }
 
 .collection-item--cover-link {
-  padding: .75rem .5rem .75rem .75rem;
+  padding: .75rem;
   cursor: pointer;
+
+  @include media-breakpoint-up(md) {
+    padding: .75rem .5rem .75rem .75rem;
+  }
 }
 
 .is-large .collection-item--cover-link {
@@ -206,7 +211,11 @@
   margin: 0;
 
   &.is-youtube {
-    height: 315px;
+    max-height: 315px;
+
+    @include media-breakpoint-up(md) {
+      height: 315px;
+    }
   }
 
   &.is-tweet {
