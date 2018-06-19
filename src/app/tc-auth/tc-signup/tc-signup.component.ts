@@ -102,7 +102,7 @@ export class TcSignupComponent implements OnInit {
         return  this.usernameState == 'FREE' &&
                 this.emailState == 'FREE' &&
                 this.signupData.password &&
-                this.signupData.password.length > 2 &&
+                this.signupData.password.length > 3 &&
                 this.signupData.password === this.signupData.passwordRepeat;
     }
 

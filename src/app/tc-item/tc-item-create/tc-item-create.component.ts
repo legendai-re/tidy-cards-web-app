@@ -1,5 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {TcLanguageService} from '../../tc-language/tc-language.service';
+import {TcAuthService} from '../../tc-auth/tc-auth.service';
 import {TcCollection} from '../../tc-collection/tc-collection.class';
 import {TcItem} from '../tc-item.class';
 import {TcItemService} from '../tc-item.service';
@@ -27,7 +28,7 @@ export class TcItemCreateComponent implements OnInit {
   typingTimer;
   doneTypingInterval: number;
 
-  constructor(public t: TcLanguageService, private itemService: TcItemService) {
+  constructor(public t: TcLanguageService, private authService: TcAuthService, private itemService: TcItemService) {
     this.doneTypingInterval = 300;
     this.itemTypes = TcItem.ITEM_TYPES;
   }
@@ -54,6 +55,7 @@ export class TcItemCreateComponent implements OnInit {
     this.item.displayMode = 'MEDIUM';
     this.urlEntry = '';
     this.validUrl = false;
+    this.item._author = this.authService.currentUser;
     this.addDescription = true;
   }
 

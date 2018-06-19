@@ -13,6 +13,8 @@ import {TcHeaderService} from '../../tc-header/tc-header.service';
 import {TcItem} from '../../tc-item/tc-item.class';
 import {TcStar} from '../../tc-star/tc-star.class';
 import {TcDataLimit} from '../../tc-shared/tc-data-limit';
+import {TcUser} from '../../tc-user/tc-user.class';
+import {TcUserService} from '../../tc-user/tc-user.service';
 
 declare let $: any;
 
@@ -31,6 +33,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public loadingItems: boolean;
   public itemLoaded: boolean;
   public isAuthor: boolean;
+  public haveEditRights: boolean;
   public isUpdatingStar: boolean;
   public isUpdatingPosition: boolean;
   public subCollectionTemplate: TcCollection;
@@ -39,8 +42,13 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public displayModeList: any;
   private sub: any;
 
+  //collaborators related
+  public manageCollabModal: NgbModalRef;
+  public searchCollabInput: string;
+  public newCollab: TcUser;
+
   constructor(public t: TcLanguageService,
-              private authService: TcAuthService,
+              public authService: TcAuthService,
               private headerService: TcHeaderService,
               private route: ActivatedRoute,
               private router: Router,
@@ -48,7 +56,8 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
               private collectionService: TcCollectionService,
               private itemService: TcItemService,
               private starService: TcStarService,
-              private titleService: Title) {
+              private titleService: Title,
+              private  userService: TcUserService) {
     this.displayModeList = TcCollection.DISPLAY_MODE;
   }
 
@@ -57,6 +66,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     this.loadingItems = false;
     this.haveMoreItems = true;
     this.isAuthor = false;
+    this.haveEditRights = false;
     this.subCollectionTemplate = new TcCollection();
     this.itemLoaded = false;
     this.cantFoundButwasStarred = false;
@@ -67,6 +77,12 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
 
   private openModal(content, sizeParam = null) {
     this.currentModal = this.modalService.open(content, {
+      size: sizeParam
+    });
+  }
+
+  private openManageCollabModal(content, sizeParam = null) {
+    this.manageCollabModal = this.modalService.open(content, {
       size: sizeParam
     });
   }
@@ -88,8 +104,12 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.collection = collection;
       this.titleService.setTitle(this.collection.title + ' | TidyCards');
       this.collection._items = [];
-      if (this.authService.isLoggedIn && collection._author._id === this.authService.currentUser._id)
-        this.isAuthor = true;
+      if (this.authService.isLoggedIn) {
+        if (collection._author._id === this.authService.currentUser._id)
+          this.isAuthor = true;
+        if (collection.haveEditRights(this.authService.currentUser))
+          this.haveEditRights = true;
+      }
       this.isLoadingCollection = false;
       setTimeout(() => {
         $('#collectionDetailHeader').removeClass('is-hidden');
@@ -259,6 +279,22 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
         }
       }
     }
+  }
+
+  public searchUser() {
+    if(!this.searchCollabInput)
+      return;
+    const params = new URLSearchParams();
+    params.set('populate', '_avatar');
+    this.userService.getUser(this.searchCollabInput.trim(), params).subscribe((user) => {
+      this.newCollab = user;
+    });
+  }
+
+  public addCollaborator() {
+    this.collectionService.putCollaborator(this.collection._id, this.newCollab._id).subscribe((Collection) => {
+      console.log('done');
+    });
   }
 
   ngOnDestroy() {

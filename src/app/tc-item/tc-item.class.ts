@@ -3,6 +3,7 @@ import {TcItemYoutube} from './tc-item-youtube/tc-item-youtube.class';
 import {TcItemImage} from './tc-item-image/tc-item-image.class';
 import {TcItemTweet} from './tc-item-tweet/tc-item-tweet.class';
 import {TcCollection} from '../tc-collection/tc-collection.class';
+import {TcUser} from '../tc-user/tc-user.class';
 
 export class TcItem {
 
@@ -18,6 +19,7 @@ export class TcItem {
   public title: string;
   public host: string;
   public displayMode: string;
+  public _author: TcUser;
 
   constructor(_id?: string,
               createdAt?: Date | string,
@@ -29,7 +31,8 @@ export class TcItem {
               position?: number,
               title?: string,
               host?: string,
-              displayMode?: string) {
+              displayMode?: string,
+              _author?: TcUser) {
     this._id = _id;
     this.createdAt = typeof createdAt === 'string' ? new Date(createdAt) : createdAt;
     this.updatedAt = typeof updatedAt === 'string' ? new Date(updatedAt) : updatedAt;
@@ -41,6 +44,7 @@ export class TcItem {
     this.title = title;
     this.host = host;
     this.displayMode = displayMode;
+    this._author = _author;
   }
 
   public static get ITEM_TYPES() {
@@ -92,7 +96,8 @@ export class TcItem {
       obj.position,
       obj.title,
       obj.host,
-      obj.displayMode
+      obj.displayMode,
+      TcUser.createFormJson(obj._author)
     );
   }
 
