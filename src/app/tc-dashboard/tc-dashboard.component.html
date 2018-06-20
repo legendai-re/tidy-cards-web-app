@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="section" *ngIf="myFavoriteCollections.length > 0">
+    <div class="section" *ngIf="myFavoriteCollections && myFavoriteCollections.length > 0">
       <div class="section-header">
         <h2 class="section-header--title">{{t._.collection?.my_favorite_title}}</h2>
         <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c', 'starred']" *ngIf="myFavoriteCollections.length > 8">{{t._.action?.see_all}}</a>

@@ -83,6 +83,13 @@ export class TcCollection {
     return false;
   }
 
+  public isCollaborator(user: TcUser){
+    for(let i = 0; i < this._collaborators.length; i++)
+      if(this._collaborators[i]._id === user._id)
+        return true;
+    return false;
+  }
+
   public static get VISIBILITY() {
     return {
       "PRIVATE":{

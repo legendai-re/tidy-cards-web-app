@@ -78,7 +78,8 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                 <a *ngIf="isAuthor" href="javascript:void(0)" class="dropdown-item" (click)="openManageCollabModal(manageCollaboratorsModal)">Manage collaborators</a>
                 <a href="javascript:void(0)" class="dropdown-item" (click)="openModal(updateCollectionModal, 'lg')">{{t._.action?.edit}}</a>
-                <a href="javascript:void(0)" class="dropdown-item" (click)="openDeleteCollectionModal(collectionDeleteModal)">{{t._.action?.delete}}</a>
+                <a *ngIf="isAuthor" href="javascript:void(0)" class="dropdown-item" (click)="openDeleteCollectionModal(collectionDeleteModal)">{{t._.action?.delete}}</a>
+                <a *ngIf="isCollaborator" href="javascript:void(0)" class="dropdown-item" (click)="openLeaveCollectionModal(collectionLeaveModal)">Leave this collection</a>
               </div>
             </div>
           </div>
@@ -195,6 +196,19 @@
   </div>
 </ng-template>
 
+<ng-template class="default-modal" #collectionLeaveModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title">Leave the collection</h5>
+  </div>
+  <div class="modal-body">
+    Do you really want to leave this collection ? You will no longer be able to update it. If the collection if private you will not even be able to access to it.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.cancel}}</button>
+    <button type="button" class="btn btn-danger" (click)="c('confirm')">Leave</button>
+  </div>
+</ng-template>
+
 <ng-template #newItemModal let-c="close" let-d="dismiss">
   <tc-item-create class="" *ngIf="haveEditRights" [collection]="collection" (newItem)="onNewItem($event)"></tc-item-create>
 </ng-template>
@@ -231,29 +245,3 @@
 </ng-template>
 
 <!--<tc-collection-create *ngIf="isAuthor" [parentCollection]="collection" (newCollection)="onSubCollectionCreated($event)"></tc-collection-create>-->
-
-<div class="page" *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
-  <div class="container">
-
-    <div class="page-headings">
-
-      <h2 class="page-headings--page-title">Sorry cannot find collection with id: "{{searchParams}}"</h2>
-
-    </div>
-
-  </div>
-</div>
-
-<div class="page" *ngIf="!isLoadingCollection && cantFoundButwasStarred">
-  <div class="container">
-
-    <div class="page-headings">
-
-      <h2 class="">Sorry this collection do not exist anymore or is now private. You can delete it from you starred collection if you want.</h2>
-      <input href="javascript:void(0)" (click)="removeStarredCollection(true)" value="Remove from my starred collection" class="btn btn-sm btn-outline-primary" type="submit"/>
-
-    </div>
-
-  </div>
-</div>
-

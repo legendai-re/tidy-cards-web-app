@@ -56,6 +56,14 @@ export class TcCollectionService {
       .catch(this.handleError);
   }
 
+  public deleteCollaborator (collectionId: string, collaboratorId: string): Observable<TcCollection> {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.delete(TcApiUrl.COLLECTIONS + '/' + collectionId + '/collaborators/' + collaboratorId, {}, options)
+      .map(this.handleCollection)
+      .catch(this.handleError);
+  }
+
   public deleteCollection (_id: string): Observable<any> {
     return this.http.delete(TcApiUrl.COLLECTIONS + '/' + _id);
   }

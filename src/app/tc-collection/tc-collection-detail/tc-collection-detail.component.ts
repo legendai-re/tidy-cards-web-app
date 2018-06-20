@@ -33,6 +33,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public loadingItems: boolean;
   public itemLoaded: boolean;
   public isAuthor: boolean;
+  public isCollaborator: boolean;
   public haveEditRights: boolean;
   public isUpdatingStar: boolean;
   public isUpdatingPosition: boolean;
@@ -66,6 +67,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     this.loadingItems = false;
     this.haveMoreItems = true;
     this.isAuthor = false;
+    this.isCollaborator = false;
     this.haveEditRights = false;
     this.subCollectionTemplate = new TcCollection();
     this.itemLoaded = false;
@@ -99,6 +101,18 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  private openLeaveCollectionModal(content, sizeParam = null, centeredParam = true) {
+    this.modalService.open(content, {
+      size: sizeParam,
+      centered: centeredParam
+    }).result.then((result) => {
+      if (result === 'confirm')
+        this.deleteCollaborator();
+    }, (reason) => {
+    });
+  }
+
+
   private initCollection(params) {
     this.searchParams = params['collection_id'];
     const getParams = new URLSearchParams();
@@ -113,7 +127,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
           this.isAuthor = true;
         if (collection.haveEditRights(this.authService.currentUser))
           this.haveEditRights = true;
-        console.log(this.haveEditRights)
+        this.isCollaborator = collection.isCollaborator(this.authService.currentUser);
       }
       this.isLoadingCollection = false;
       setTimeout(() => {
@@ -299,6 +313,12 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public addCollaborator() {
     this.collectionService.putCollaborator(this.collection._id, this.newCollab._id).subscribe((Collection) => {
       console.log('done');
+    });
+  }
+
+  public deleteCollaborator() {
+    this.collectionService.deleteCollaborator(this.collection._id, this.authService.currentUser._id).subscribe((Collection) => {
+      this.router.navigate(['/dashboard']);
     });
   }
 
