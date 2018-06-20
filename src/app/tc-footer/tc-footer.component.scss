@@ -30,17 +30,33 @@
 
   @include media-breakpoint-down(md) {
     margin-top: 2rem;
+    margin-bottom: 3.5rem;
   }
 
   &.is-hidden {
     display: none;
   }
 
+  .footer-container {
+    flex-direction: row;
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+    }
+  }
+
+  .footer-brand {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+  }
+
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     text-indent: 0;
-    font-size: 30px;
+    font-size: 2.5rem;
     line-height: 48px;
   }
 
@@ -67,6 +83,10 @@
   margin: 0 0 0 auto;
   list-style: none;
   justify-content: flex-end;
+
+  @include media-breakpoint-down(sm) {
+    margin: 0 auto;
+  }
 }
 
 .footer-nav--item {

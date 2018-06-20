@@ -1,16 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,700);
-// @import url(https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,500,700);
-// @import url(https://fonts.googleapis.com/css?family=Rubik:400,400i,500,700);
-// @import url(https://fonts.googleapis.com/css?family=Cabin:400,400i,500,600,700);
+@import url("https://use.typekit.net/upi1eea.css");
+@import url(https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,500,700);
 @import url(https://fonts.googleapis.com/css?family=Material+Icons);
 
 @font-face {
   font-family: 'TidyCards Icons';
-  src:  url('../assets/fonts/invow-font.eot?is1qp8');
-  src:  url('../assets/fonts/invow-font.eot?is1qp8#iefix') format('embedded-opentype'),
-    url('../assets/fonts/invow-font.ttf?is1qp8') format('truetype'),
-    url('../assets/fonts/invow-font.woff?is1qp8') format('woff'),
-    url('../assets/fonts/invow-font.svg?is1qp8#invow-font') format('svg');
+  src:  url('../assets/fonts/tc-font.eot?9kcu72');
+  src:  url('../assets/fonts/tc-font.eot?9kcu72#iefix') format('embedded-opentype'),
+        url('../assets/fonts/tc-font.ttf?9kcu72') format('truetype'),
+        url('../assets/fonts/tc-font.woff?9kcu72') format('woff'),
+        url('../assets/fonts/tc-font.svg?9kcu72#tc-font') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -31,6 +29,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-invow:before {
-  content: "\e900";
+.icon-tidycards:before {
+  content: "🍪";
 }

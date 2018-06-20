@@ -7,16 +7,16 @@
         <h2 class="collection-item-new--content-title" *ngIf="mode == 'UPDATE'">{{t._.item?.update_title}}</h2>
 
         <div class="collection-item-new--embeded-container" *ngIf="urlEntry && loadingContent">
-          <div class="collection-item-new--embeded-centered-content">Fetching preview…</div>
+          <div class="collection-item-new--embeded-centered-content">{{ t._.item?.fetching_preview }}</div>
         </div>
 
         <div class="collection-item-new--embeded-container" *ngIf="urlEntry && !loadingContent && !validUrl">
-          <div class="collection-item-new--embeded-centered-content">Invalid URL</div>
+          <div class="collection-item-new--embeded-centered-content">{{ t._.item?.invalid_url }}</div>
         </div>
 
         <div class="collection-item-new--embeded-container" *ngIf="!loadingContent && item._content && validUrl">
           <div class="collection-item-new--embeded-container-header">
-            <div class="collection-item-new--embeded-container-title">Item preview</div>
+            <div class="collection-item-new--embeded-container-title">{{ t._.item?.preview_title }}</div>
             <a class="collection-item-new--embeded-reset" href="javascript:void(0)" (click)="resetItemContent()">close</a>
           </div>
 
@@ -25,20 +25,16 @@
             <tc-item-image *ngIf="item.type == itemTypes.IMAGE.id" [item]=item ></tc-item-image>
             <tc-item-tweet *ngIf="item.type == itemTypes.TWEET.id" [item]=item ></tc-item-tweet>
             <tc-item-youtube *ngIf="item.type == itemTypes.YOUTUBE.id" [item]=item ></tc-item-youtube>
-
-            <div class="collection-item--size-control" *ngIf="item.type == itemTypes.URL.id">
-              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode = 'MEDIUM'" *ngIf="item.displayMode == 'SMALL'">Small</a>
-              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode = 'LARGE'" *ngIf="item.displayMode == 'MEDIUM'">Medium</a>
-              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode = 'SMALL'" *ngIf="item.displayMode == 'LARGE'">Large</a>
-            </div>
-
-            <div class="collection-item--size-control" *ngIf="item.type == itemTypes.YOUTUBE.id || item.type == itemTypes.IMAGE.id || item.type == itemTypes.TWEET.id">
-              <a class="collection-item--size-control-button" href="javascript:void(0)" (click)="item.displayMode = 'LARGE'" *ngIf="item.displayMode == 'SMALL'">Small</a>
-              <a class="collection-item--size-control-button reset" href="javascript:void(0)" (click)="item.displayMode = 'SMALL'" *ngIf="item.displayMode == 'LARGE'">Large</a>
-            </div>
           </div>
 
-          <p class="collection-item-new--embeded-container-description mt-3">
+          <div class="collection-item--display-modes" *ngIf="availableDisplayModes.length > 0">
+            <span class="collection-item--display-modes-label">{{ t._.item?.display_mode_title }}</span>
+            <a href="javascript:void(0)" class="collection-item--display-mode" [class.is-active]="item.displayMode == 'SMALL'" (click)="item.displayMode='SMALL'" *ngIf="availableDisplayModes.includes('SMALL')">S</a>
+            <a href="javascript:void(0)" class="collection-item--display-mode" [class.is-active]="item.displayMode == 'MEDIUM'" (click)="item.displayMode='MEDIUM'" *ngIf="availableDisplayModes.includes('MEDIUM')">M</a>
+            <a href="javascript:void(0)" class="collection-item--display-mode" [class.is-active]="item.displayMode == 'LARGE'" (click)="item.displayMode='LARGE'" *ngIf="availableDisplayModes.includes('LARGE')">L</a>
+          </div>
+
+          <p class="collection-item-new--embeded-container-description border-top pt-2">
             <strong>{{ t._.item?.display_tip_title }}</strong> {{ t._.item?.display_tip_desc }}
           </p>
         </div>
@@ -69,13 +65,14 @@
 
       <ul class="collection-new-item--footer-infos">
         <li class="collection-new-item--footer-info">
-          <span class="icon">info</span>
+          <span class="icon">{{ t._.icon?.info?.filled }}</span>
           <span><a href="http://commonmark.org/help/" target="_blank" rel="nofollow">{{t._.item?.markdown_supported}}</a></span>
         </li>
       </ul>
 
       <div class="collection-new-item--footer-actions ml-auto">
-        <a href="javascript:void(0)" *ngIf="mode == 'UPDATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.cancel}}</a>
+        <a href="javascript:void(0)" *ngIf="mode == 'CREATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.cancel}}</a>
+        <a href="javascript:void(0)" *ngIf="mode == 'UPDATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.discard}}</a>
         <input
             *ngIf="mode == 'CREATE'"
             [disabled]="(!item.description && !item._content) || (urlEntry && !validUrl) || (loadingContent)"
@@ -83,7 +80,7 @@
         <input
             *ngIf="mode == 'UPDATE'"
             [disabled]="(!item.description && !item._content) || (urlEntry && !validUrl) || (loadingContent)"
-            class="btn btn-primary" type="submit" value="{{t._.action?.update}}"/>
+            class="btn btn-primary" type="submit" value="{{t._.action?.save}}"/>
       </div>
 
     </div>

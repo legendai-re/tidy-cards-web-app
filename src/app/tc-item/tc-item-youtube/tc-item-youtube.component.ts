@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer   } from '@angular/platform-browser';
+import { TcLanguageService } from '../../tc-language/tc-language.service';
 import { TcItemYoutube } from './tc-item-youtube.class';
 import { TcItem } from '../tc-item.class';
 
@@ -17,7 +18,8 @@ export class TcItemYoutubeComponent implements OnInit {
 
     public displayVideo: boolean;
 
-    constructor(private sanitizer: DomSanitizer  ) {
+    constructor(public t: TcLanguageService,
+                private sanitizer: DomSanitizer) {
     }
 
     ngOnInit() {

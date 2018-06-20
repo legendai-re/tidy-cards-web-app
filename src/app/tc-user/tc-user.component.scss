@@ -5,6 +5,10 @@
 @import '../../styles/settings/_variables.scss';
 @import '../../styles/settings/_mixins.scss';
 
+.is-error {
+  margin-top: -5rem;
+}
+
 .profile-wrapper {
     padding-top: 20px;
 }
@@ -38,10 +42,6 @@
     overflow: hidden;
     color: $white;
 
-    * {
-        cursor: pointer;
-    }
-
     &:before {
         content: "";
         position: absolute;
@@ -50,27 +50,28 @@
         right: 0;
         bottom: 0;
         z-index: 0;
-        background-image: radial-gradient(ellipse farthest-side at 50% 50% , rgba(0,0,0,.9) 0%, rgba(0,0,0,0) 100%);
-        transform: scale(1.25);
-        transition: all .6s ease;
+        background-color: rgba(0,0,0,.5);
+        transition: background-color .3s ease;
         transition-delay: .2s;
     }
 
     &:hover {
         &:before {
-            transform: scale(2.5);
+            background-color: rgba(0,0,0,.75);
             transition-delay: 0s;
         }
     }
 
     input {
         position: absolute;
+        width: 100%;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 1;
         opacity: 0;
+        cursor: pointer;
     }
 }
 
@@ -162,9 +163,9 @@
 }
 
 .profile-stat-value {
-    font-size: 1.625rem;
-    font-weight: bold;
-    line-height: 2.25rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 2rem;
 }
 
 .profile-stat-label {

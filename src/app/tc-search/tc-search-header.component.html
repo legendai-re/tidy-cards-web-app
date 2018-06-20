@@ -2,12 +2,10 @@
   <div class="container">
 
     <div class="search-results--summary search-results--ideas">
-      <h2 class="search-title">
-        {{t._.header?.search_no_idea_row_1}}
-      </h2>
-      <h3 class="section-title dark-bg">
-        {{t._.header?.search_no_idea_row_2}} <a [routerLink]="['/discover']">{{t._.header?.search_no_idea_row_3}}</a>...
-      </h3>
+      <h2 class="search-title">{{t._.header?.search_no_idea_row_1}}</h2>
+      <p class="search-desc dark-bg">
+        {{t._.header?.search_no_idea_row_2}} <a [routerLink]="['/discover']">{{t._.header?.search_no_idea_row_3}}</a>…
+      </p>
     </div>
 
   </div>
@@ -17,7 +15,9 @@
   <div class="container">
 
     <div class="search-results--summary search-results--loading">
-      <h2 class="section-title dark-bg">{{t._.action?.loading}}</h2>
+      <div class="section-header dark-bg">
+        <h2 class="section-header--title">{{t._.action?.loading}}</h2>
+      </div>
     </div>
 
   </div>
@@ -37,7 +37,9 @@
     </div>
 
     <div class="search-results--section search-results--users" *ngIf="users.length > 0">
-      <h2 class="section-title dark-bg">{{t._.object?.user_plur}}</h2>
+      <div class="section-header dark-bg">
+        <h2 class="section-header--title">{{t._.object?.user_plur}}</h2>
+      </div>
 
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let user of users">
@@ -59,7 +61,9 @@
     </div>
 
     <div class="search-results--section search-results--collections" *ngIf="collections.length > 0">
-      <h2 class="section-title dark-bg">{{t._.object?.collection_plur}}</h2>
+      <div class="section-header dark-bg">
+        <h2 class="section-header--title">{{t._.object?.collection_plur}}</h2>
+      </div>
 
       <div class="row">
         <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>

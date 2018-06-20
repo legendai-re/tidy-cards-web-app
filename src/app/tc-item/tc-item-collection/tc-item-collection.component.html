@@ -26,14 +26,16 @@
                     </div>
                     <ul *ngIf="collection.visibility.id != 'PRIVATE'" class="stats-list">
                         <li class="stat-item-list">
-                            <i class="material-icons stat-icon">mode_comment</i> 0
+                          <span class="material-icons stat-icon">{{ t._.icon?.comment?.filled }}</span> 0
                         </li>
-                        <li class="stat-item-list" [class.starred]="collection._star"  (click)="onStarCliked()" >
-                            <i class="material-icons stat-icon">star</i> {{collection.starsCount}}
+                        <li class="stat-item-list" (click)="onStarCliked()" >
+                          <span class="material-icons stat-icon" *ngIf="collection._star">{{ t._.icon?.favorite?.filled }}</span>
+                          <span class="material-icons stat-icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
+                          <span>{{collection.starsCount}}</span>
                         </li>
                     </ul>
                     <div *ngIf="collection.visibility.id == 'PRIVATE'" class="card-collection-visibility" title="Visibility: {{collection.visibility.desc}}">
-                        <i class="material-icons stat-icon">visibility_off</i>
+                        <i class="material-icons stat-icon">{{ t._.icon?.private_collection?.filled }}</i>
                     </div>
                 </div>
                 <div class="card-collection-nb">

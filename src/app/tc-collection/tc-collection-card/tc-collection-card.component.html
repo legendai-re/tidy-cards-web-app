@@ -16,11 +16,12 @@
         </div>
         <ul class="card-collection--stats" *ngIf="collection.visibility != 'PRIVATE'">
           <!-- <li class="card-collection--stat">
-            <span class="card-collection--stat-icon">mode_comment</span>
+            <span class="card-collection--stat-icon">{{ t._.icon?.comment?.filled }}</span>
             <span>0</span>
           </li> -->
           <li class="card-collection--stat">
-            <span class="card-collection--stat-icon" [class.is-highlighted]="collection._star">star</span>
+            <span class="card-collection--stat-icon is-highlighted" *ngIf="collection._star">{{ t._.icon?.favorite?.filled }}</span>
+            <span class="card-collection--stat-icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
             <span>{{collection.starsCount}}</span>
           </li>
         </ul>
@@ -37,17 +38,17 @@
 
       <ul class="card-collection--tags">
         <li class="card-collection--tag is-featured" *ngIf="collection.isFeatured">
-          <span class="card-collection--tag-icon">bookmark</span>
+          <span class="icon">{{ t._.icon?.featured?.filled }}</span>
           <span>{{t._.collection?.featured_title}}</span>
         </li>
 
         <li class="card-collection--tag has-visibility" *ngIf="collection.visibility == 'UNINDEXED'">
-          <span class="card-collection--tag-icon">visibility_off</span>
+          <span class="icon">{{ t._.icon?.unindexed_collection?.filled }}</span>
           <span>{{collection.visibility.desc}}</span>
         </li>
 
         <li class="card-collection--tag has-visibility" *ngIf="collection.visibility == 'PRIVATE'">
-          <span class="card-collection--tag-icon">lock</span>
+          <span class="icon">{{ t._.icon?.private_collection?.filled }}</span>
           <span>{{collection.visibility.desc}}</span>
         </li>
       </ul>

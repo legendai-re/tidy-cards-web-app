@@ -75,9 +75,10 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  private openModal(content, sizeParam = null) {
+  private openModal(content, sizeParam = null, centeredParam = true) {
     this.currentModal = this.modalService.open(content, {
-      size: sizeParam
+      size: sizeParam,
+      centered: centeredParam
     });
   }
 
@@ -87,8 +88,11 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  private openDeleteCollectionModal(content) {
-    this.modalService.open(content).result.then((result) => {
+  private openDeleteCollectionModal(content, sizeParam = null, centeredParam = true) {
+    this.modalService.open(content, {
+      size: sizeParam,
+      centered: centeredParam
+    }).result.then((result) => {
       if (result === 'confirm')
         this.deleteCollection();
     }, (reason) => {
@@ -109,6 +113,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
           this.isAuthor = true;
         if (collection.haveEditRights(this.authService.currentUser))
           this.haveEditRights = true;
+        console.log(this.haveEditRights)
       }
       this.isLoadingCollection = false;
       setTimeout(() => {

@@ -4,10 +4,10 @@ import { TcLanguageService } from '../../tc-language/tc-language.service';
 import { TcHeaderService }   from '../../tc-header/tc-header.service';
 
 @Component({
-    templateUrl: './tc-terms.component.html',
-    styleUrls: ['../tc-page.component.scss','./tc-terms.component.scss']
+    templateUrl: './tc-privacy.component.html',
+    styleUrls: ['../tc-page.component.scss','./tc-privacy.component.scss']
 })
-export class TcTermsComponent{
+export class TcPrivacyComponent{
 
   constructor(
       public t: TcLanguageService,
@@ -15,13 +15,13 @@ export class TcTermsComponent{
       public titleService: Title) {
 
       this.t.getLangInitializedEmitter().subscribe((value) => {
-          this.titleService.setTitle(this.t._.page.terms.title + ' | TidyCards');
+          this.titleService.setTitle(this.t._.page.privacy.title + ' | TidyCards');
       })
   }
 
   ngOnInit() {
       if(this.t.langInitialized)
-          this.titleService.setTitle(this.t._.page.terms.title + ' | TidyCards');
+          this.titleService.setTitle(this.t._.page.privacy.title + ' | TidyCards');
     this.emitUpdateHeaderEvent();
     setTimeout( () => {
           $("#pageHeadings").removeClass('is-hidden');

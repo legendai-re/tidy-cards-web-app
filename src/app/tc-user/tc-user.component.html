@@ -1,6 +1,2 @@
-<div class="application-content is-profile">
-
-  <tc-public-profile *ngIf="displayPublic"></tc-public-profile>
-  <tc-private-profile *ngIf="!displayPublic"></tc-private-profile>
-  
-</div>
+<tc-public-profile *ngIf="displayPublic"></tc-public-profile>
+<tc-private-profile *ngIf="!displayPublic"></tc-private-profile>

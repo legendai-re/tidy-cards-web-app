@@ -3,7 +3,10 @@
 
     <div class="page-headings is-hidden" id="collectionDetailHeader">
 
-      <span class="page-headings--page-pre-title" *ngIf="collection.isFeatured">{{t._.collection?.featured_title}}</span>
+      <a href="javascript:void(0)" [routerLink]="['/c/featured']" class="page-headings--page-pre-title is-featured" *ngIf="collection.isFeatured">
+        <span class="icon">{{ t._.icon?.featured?.filled }}</span>
+        <span>{{ t._.collection?.featured_title }}</span>
+      </a>
       <h2 class="page-headings--page-title">{{collection.title}}</h2>
       <p class="page-headings--page-description" *ngIf="collection.bio">{{collection.bio}}</p>
 
@@ -29,7 +32,7 @@
           </div>
 
           <p class="collection-container--publication-infos">
-            <span class="d-none d-md-inline">{{t._.collection?.by_title}}</span> <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a> <span class="muted d-none d-md-inline">{{t._.word?.date_on}} <span [attr.title]="collection.createdAt | date:'EEEE, LLLL dd, y h:mm a'">{{collection.createdAt | date }}</span><span class="small d-none d-md-inline" title="{{collection.modifiedAt | date }}" *ngIf="collection.modifiedAt">(edited)</span></span>
+            <span class="d-none d-lg-inline">{{t._.collection?.by_title}}</span> <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a> <span class="muted d-none d-sm-inline">{{t._.word?.date_on}} <span [attr.title]="collection.createdAt | date:'EEEE, LLLL dd, y h:mm a'">{{collection.createdAt | date }}</span><span class="small d-none d-md-inline" title="{{collection.modifiedAt | date }}" *ngIf="collection.modifiedAt">(edited)</span></span>
           </p>
 
         </div>
@@ -47,16 +50,17 @@
             </li>
             <li class="collection-container--stats-item" *ngIf="collection.visibility != 'PRIVATE'">
               <a href="javascript:void(0)" class="collection-container--stats-button" (click)="onStarCliked()">
-                <span class="collection-container--stats-icon" [class.is-highlighted]="collection._star">star</span>
+                <span class="collection-container--stats-icon is-highlighted" *ngIf="collection._star">{{ t._.icon?.favorite?.filled }}</span>
+                <span class="collection-container--stats-icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
                 <span>{{collection.starsCount}}</span>
               </a>
             </li>
-            <li class="collection-container--stats-item visibility" *ngIf="collection.visibility == 'UNINDEXED'">
-              <span class="collection-container--stats-icon">visibility_off</span>
+            <li class="collection-container--stats-item visibility mr-2" *ngIf="collection.visibility == 'UNINDEXED'">
+              <span class="collection-container--stats-icon">{{ t._.icon?.unindexed_collection?.filled }}</span>
               <span class="muted">{{ t._.collection?.visibility[collection.visibility].title}}</span>
             </li>
-            <li class="collection-container--stats-item visibility" *ngIf="collection.visibility == 'PRIVATE'">
-              <span class="collection-container--stats-icon">lock</span>
+            <li class="collection-container--stats-item visibility mr-2" *ngIf="collection.visibility == 'PRIVATE'">
+              <span class="collection-container--stats-icon">{{ t._.icon?.private_collection?.filled }}</span>
               <span class="muted">{{ t._.collection?.visibility[collection.visibility].title}}</span>
             </li>
 
@@ -69,12 +73,12 @@
 
             <div class="collection-container--stats-action dropdown">
               <a class="btn btn-secondary btn-icon btn-icon-narrow btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="icon">more_vert</span>
+                <span class="icon">{{ t._.icon?.more?.filled }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                <a href="javascript:void(0)" class="dropdown-item" (click)="openModal(updateCollectionModal)">{{t._.action?.edit}}</a>
                 <a *ngIf="isAuthor" href="javascript:void(0)" class="dropdown-item" (click)="openManageCollabModal(manageCollaboratorsModal)">Manage collaborators</a>
-                <a *ngIf="isAuthor" href="javascript:void(0)" class="dropdown-item" (click)="openDeleteCollectionModal(collectionDeleteModal)">{{t._.action?.delete}}</a>
+                <a href="javascript:void(0)" class="dropdown-item" (click)="openModal(updateCollectionModal, 'lg')">{{t._.action?.edit}}</a>
+                <a href="javascript:void(0)" class="dropdown-item" (click)="openDeleteCollectionModal(collectionDeleteModal)">{{t._.action?.delete}}</a>
               </div>
             </div>
           </div>
@@ -130,16 +134,64 @@
   </div>
 </div>
 
+<!--<tc-collection-create *ngIf="isAuthor" [parentCollection]="collection" (newCollection)="onSubCollectionCreated($event)"></tc-collection-create>-->
+<!-- TODO: @Olivier Peut-être déplacer ces 2 pages dans tc-page et rediriger dessus ? -->
+
+<div class="application-content is-error" *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
+  <div class="container">
+
+  	<div class="page-container">
+  		<div class="page-content row" id="pageContent">
+  			<div class="col-12 col-md-8 mx-auto">
+
+  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+          <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+          <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found }} “{{ searchParams }}”</p>
+  				<div class="text-center pb-5">
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">{{ t._.page?.error?.button?.back_dashboard }}</a>
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">{{ t._.page?.error?.button?.back_discover }}</a>
+  				</div>
+          <!-- TODO: ajouter un lien pour aller s'inscire (un peu joli et tout) -->
+  			</div>
+  		</div>
+  	</div>
+
+	</div>
+</div>
+
+<div class="application-content" *ngIf="!isLoadingCollection && cantFoundButwasStarred">
+  <div class="container is-error">
+
+  	<div class="page-container">
+  		<div class="page-content row" id="pageContent">
+  			<div class="col-12 col-md-8 mx-auto">
+
+  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+          <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+          <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found_fav }}</p>
+  				<div class="text-center pb-5">
+            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']">{{ t._.page?.error?.button?.back_dashboard }}</a>
+            <span class="mx-2">{{ t._.word?.or }}</span>
+            <input class="btn btn-outline-danger" (click)="removeStarredCollection(true)" value="{{ t._.page?.error?.button?.remove_fav }}" type="submit"/>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+
+	</div>
+</div>
+
+<!-- Modals -->
 <ng-template class="default-modal" #collectionDeleteModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h5 class="modal-title">{{t._.collection?.delete_title}}</h5>
+    <h5 class="modal-title">{{t._.collection.modal.delete?.title}}</h5>
   </div>
   <div class="modal-body">
-    {{t._.collection?.delete_caption}}
+    {{t._.collection.modal.delete?.caption}}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.cancel}}</button>
-    <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.collection?.delete_button_yes}}</button>
+    <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.collection.modal.delete?.button}}</button>
   </div>
 </ng-template>
 
@@ -204,3 +256,4 @@
 
   </div>
 </div>
+

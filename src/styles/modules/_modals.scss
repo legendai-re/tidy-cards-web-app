@@ -1,18 +1,14 @@
-.modal {
-  background-color: rgba(255,255,255,.1);
-  background: radial-gradient(circle at center, rgba($white, 1) 25%, rgba($white, .95) 50%, rgba($white, .75) 100%);
+.modal-backdrop {
+  transition: backdrop-filter .3s ease, -webkit-backdrop-filter .3s ease;
+
+  &.show {
+    backdrop-filter: blur(.25rem);
+    -webkit-backdrop-filter: blur(.25rem);
+  }
 }
 
-.modal-dialog {
-  // position: relative;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // width: 0;
-  // height: 100vh;
-  // margin: 0 auto;
-  // pointer-events: none;
-  // padding: 0 1rem;
+.modal {
+  background: radial-gradient(circle at center, rgba($white, 1) 25%, rgba($white, .95) 50%, rgba($white, .75) 100%);
 }
 
 .modal-content {

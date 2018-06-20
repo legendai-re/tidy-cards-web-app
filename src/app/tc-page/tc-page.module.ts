@@ -10,6 +10,7 @@ import { TcAboutComponent }   from './tc-about/tc-about.component';
 import { TcContactComponent } from './tc-contact/tc-contact.component';
 import { TcTeamComponent }    from './tc-team/tc-team.component';
 import { TcTermsComponent }   from './tc-terms/tc-terms.component';
+import { TcPrivacyComponent }   from './tc-privacy/tc-privacy.component';
 
 
 @NgModule({
@@ -18,13 +19,15 @@ import { TcTermsComponent }   from './tc-terms/tc-terms.component';
     TcAboutComponent,
     TcContactComponent,
     TcTeamComponent,
-    TcTermsComponent
+    TcTermsComponent,
+    TcPrivacyComponent
   ],
   exports: [
     TcAboutComponent,
     TcContactComponent,
     TcTeamComponent,
-    TcTermsComponent
+    TcTermsComponent,
+    TcPrivacyComponent
   ],
   providers: []
 })

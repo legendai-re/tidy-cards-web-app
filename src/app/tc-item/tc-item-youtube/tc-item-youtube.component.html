@@ -23,7 +23,7 @@
         <img class="collection-item--cover-image" [class.is-blur]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo = true"/>
 
         <div class="collection-item--cover-play" *ngIf="!displayVideo">
-          <span class="collection-item--cover-play-icon">play_circle_filled</span>
+          <span class="collection-item--cover-play-icon">{{ t._.icon?.play?.filled }}</span>
           <span class="collection-item--cover-play-text">Play</span>
         </div>
 

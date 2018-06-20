@@ -13,6 +13,8 @@ import {TcItemService} from '../tc-item.service';
 
 export class TcItemCreateComponent implements OnInit {
 
+  public availableDisplayModes: string[];
+
   @Input() item: TcItem;
   @Input() collection: TcCollection;
   @Output() newItem = new EventEmitter();
@@ -35,6 +37,7 @@ export class TcItemCreateComponent implements OnInit {
 
   ngOnInit() {
     this.init();
+    this.availableDisplayModes = TcItem.ITEM_TYPES["URL"].available_display_modes;
   }
 
   private init() {
@@ -106,6 +109,7 @@ export class TcItemCreateComponent implements OnInit {
     this.itemService.postItemContent(this.urlEntry).subscribe((result) => {
       if (result) {
         this.item.type = result.type;
+        this.availableDisplayModes = TcItem.ITEM_TYPES[this.item.type].available_display_modes;
         this.item.displayMode = TcItem.ITEM_TYPES[this.item.type].default_display_mode;
         this.item._content = result._content;
         if (!this.item.title)

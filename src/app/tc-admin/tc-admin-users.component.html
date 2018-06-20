@@ -2,39 +2,98 @@
   <div class="container">
 
     <div class="section">
-      <h2 class="section-title dark-bg">Users management</h2>
-      <input type="text" name="userId" placeholder="userId" [(ngModel)]="userIdDeactivate" />
-      <input type="submit" name="deactivate"  value="Deactivate" (click)="deactivateAccount()" />
+      <div class="section-header dark-bg">
+        <h2 class="section-header--title">Users</h2>
+      </div>
+      <div class="card">
+        <div class="card-body">
 
-      <input type="text" name="userId" placeholder="userId" [(ngModel)]="userIdActivate" />
-      <input type="submit" name="deactivate" value="Activate" (click)="activateAccount()" />
-      <div class="row">
+          <div class="row mb-3">
+            <div class="input-group input-group-sm col-4" role="group">
+              <input class="form-control form-control-sm" type="text" [(ngModel)]="userIdDeactivate" placeholder="Search with an user id…"/>
+              <div class="input-group-append">
+                <input class="btn btn-primary btn-sm" type="submit" name="deactivate" value="Deactivate" (click)="deactivateAccount()" />
+              </div>
+            </div>
 
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let user of users">
-          <article class="card card-user">
-              <a class="card-user-content" [routerLink]="['/', user.username]" title="{{user.name}}">
-                <div class="card-avatar avatar avatar--40">
-                  <img *ngIf="user._avatar" [src]="user._avatar?.getPath('40x40')" alt="{{user.name}} avatar">
-                  {{user.name.charAt(0)}}
-                </div>
-                <h3 class="card-profile-name">{{user.name}}</h3>
-                <h4 class="card-profile-username">@{{user.username}}</h4>
-              </a>
-          </article>
-          <h4 class="card-profile-username" (click)="collapse(user)">show info</h4>
-          <div [class.collapse]="!user.isCollapsed" >
-            <pre>
-              {{user | json}}
-            </pre>
+            <div class="input-group input-group-sm col-4 ml-auto" role="group">
+              <input class="form-control form-control-sm" type="text" [(ngModel)]="userIdActivate" placeholder="Search with an user id…"/>
+              <div class="input-group-append">
+                <input class="btn btn-primary btn-sm" type="submit" name="deactivate" value="Activate" (click)="activateAccount()" />
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="col-12">
-          <a href="javascript:void(0)" class="load-more" *ngIf="haveMoreUsers && !loadingUsers"(click)="loadNextPage()">Load more...</a>
-          <p class="loading-more" *ngIf="loadingUsers">Loading...</p>
-          <p class="no-more" *ngIf="!haveMoreUsers">You’ve reached the end of the list</p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email address</th>
+                <th scope="col">Language</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>
+                  <div class="d-flex">
+                    <div class="avatar avatar--32" style="margin: -.375rem .5rem -.375rem 0;">
+                      <img *ngIf="user._avatar" [src]="user._avatar?.getPath('40x40')" alt="{{user.name}} avatar">
+                      {{user.name.charAt(0)}}
+                    </div>
+                    <a [routerLink]="['/', user.username]">{{user.name}} <small class="text-muted">(@{{user.username}})</small></a>
+                  </div>
+                </td>
+                <td>
+                  <span *ngIf="user.emailConfirmed">{{user.email}}</span>
+                  <span *ngIf="!user.emailConfirmed"></span>
+                </td>
+                <td>{{user.language}}</td>
+                <td>
+                  <span class="badge badge-success" *ngIf="user.emailConfirmed">Email</span>
+                  <span class="badge badge-danger" *ngIf="!user.emailConfirmed">Email</span>
+
+                  <span class="badge badge-success" *ngIf="user.local.active == true">Active</span>
+                  <span class="badge badge-danger" *ngIf="!user.local.active == true">Active</span>
+
+                  <a href="https://facebook.com/{{user.facebook.id}}" target="_blank" rel="nofollow" *ngIf="(user.facebook !== undefined) && ((user.facebook.id !== undefined) && (user.facebook.id !== null))">
+                    <span class="badge badge-success">Facebook</span>
+                  </a>
+                  <span class="badge badge-secondary" *ngIf="(user.facebook === undefined) || ((user.facebook !== undefined) && ((user.facebook.id !== undefined) && (user.facebook.id === null)))">Facebook</span>
+
+                  <a href="https://twitter.com/intent/user?user_id={{user.twitter.id}}" target="_blank" rel="nofollow" *ngIf="(user.twitter !== undefined) && ((user.twitter.id !== undefined) && (user.twitter.id !== null))">
+                    <span class="badge badge-success">Twitter</span>
+                  </a>
+                  <span class="badge badge-secondary" *ngIf="(user.twitter === undefined) || ((user.twitter !== undefined) && ((user.twitter.id !== undefined) && (user.twitter.id === null)))">Twitter</span>
+
+                  <a href="https://plus.google.com/{{user.google.id}}" target="_blank" rel="nofollow" *ngIf="(user.google !== undefined) && ((user.google.id !== undefined) && (user.google.id !== null))">
+                    <span class="badge badge-success">Google</span>
+                  </a>
+                  <span class="badge badge-secondary" *ngIf="(user.google === undefined) || ((user.google !== undefined) && ((user.google.id !== undefined) && (user.google.id === null)))">Google</span>
+
+                  <small class="text-primary ml-1" (click)="collapse(user)" *ngIf="!user.isCollapsed">Show more</small>
+                  <small class="text-primary ml-1" (click)="collapse(user)" *ngIf="user.isCollapsed">Show less</small>
+                  <div [class.collapse]="!user.isCollapsed" >
+                    <pre>
+                      {{user | json}}
+                    </pre>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+
+            <div class="col-12">
+              <a href="javascript:void(0)" class="load-more mb-0" *ngIf="haveMoreUsers && !loadingUsers"(click)="loadNextPage()">Load more...</a>
+              <p class="loading-more mb-0" *ngIf="loadingUsers">Loading...</p>
+              <p class="no-more mb-0" *ngIf="!haveMoreUsers">You’ve reached the end of the list</p>
+            </div>
+
+          </div>
+
         </div>
-        
       </div>
     </div>
 

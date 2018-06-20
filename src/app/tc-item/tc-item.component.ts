@@ -35,17 +35,21 @@ export class TcItemComponent implements OnInit {
     this.availableDisplayModes = TcItem.ITEM_TYPES[this.item.type].available_display_modes;
   }
 
-  public openUpdateModal(sizeParam = null) {
+  public openUpdateModal(sizeParam = null, centeredParam = true) {
     if (this.item.type === this.itemTypes.COLLECTION.id)
       this.collectionUpdateModal = this.modalService.open(this.updateItemModal);
     else
       this.itemUpdateModal = this.modalService.open(this.updateItemModal, {
-        size: sizeParam
+        size: sizeParam,
+        centered: centeredParam
       });
   }
 
-  public openDeleteItemModal(content) {
-    this.modalService.open(content).result.then((result) => {
+  public openDeleteItemModal(content, sizeParam = null, centeredParam = true) {
+    this.modalService.open(content, {
+      size: sizeParam,
+      centered: centeredParam
+    }).result.then((result) => {
       if (result === 'confirm')
         this.deleteItem();
     }, () => {
@@ -59,30 +63,45 @@ export class TcItemComponent implements OnInit {
       this.itemUpdateModal.close();
   }
 
-  public updateItemDisplayMode() {
+  public updateItemDisplayMode(displayMode) {
     if (this.isUpdatingDisplayMode)
       return;
-
-    const indexOfCurrentDisplay = this.availableDisplayModes.indexOf(this.item.displayMode);
-    let newDisplayMode = '';
-
-    if (indexOfCurrentDisplay >= this.availableDisplayModes.length - 1)
-      newDisplayMode = this.availableDisplayModes[0];
-    else {
-      newDisplayMode = this.availableDisplayModes[indexOfCurrentDisplay + 1];
-    }
-
-    this.item.displayMode = newDisplayMode;
 
     if (!this.isAuthor)
       return;
 
     this.isUpdatingDisplayMode = true;
+    this.item.displayMode = displayMode;
     this.itemService.putItem(this.item).subscribe(itemResponse => {
       this.item.updatedAt = itemResponse.updatedAt;
       this.isUpdatingDisplayMode = false;
     });
   }
+
+  // public updateItemDisplayMode() {
+  //   if (this.isUpdatingDisplayMode)
+  //     return;
+  //
+  //   const indexOfCurrentDisplay = this.availableDisplayModes.indexOf(this.item.displayMode);
+  //   let newDisplayMode = '';
+  //
+  //   if (indexOfCurrentDisplay >= this.availableDisplayModes.length - 1)
+  //     newDisplayMode = this.availableDisplayModes[0];
+  //   else {
+  //     newDisplayMode = this.availableDisplayModes[indexOfCurrentDisplay + 1];
+  //   }
+  //
+  //   this.item.displayMode = newDisplayMode;
+  //
+  //   if (!this.isAuthor)
+  //     return;
+  //
+  //   this.isUpdatingDisplayMode = true;
+  //   this.itemService.putItem(this.item).subscribe(itemResponse => {
+  //     this.item.updatedAt = itemResponse.updatedAt;
+  //     this.isUpdatingDisplayMode = false;
+  //   });
+  // }
 
   public deleteItem() {
     this.itemService.deleteItem(this.item._id).subscribe(() => {
