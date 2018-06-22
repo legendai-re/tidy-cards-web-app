@@ -223,25 +223,29 @@
 
 <ng-template #manageCollaboratorsModal let-c="close" let-d="dismiss">
   <h2>Manage collaborators</h2>
-  <div *ngFor="let user of collection._collaborators">
-    {{user.name}}
-  </div>
-  <input [(ngModel)]='searchCollabInput' type="text" id="inputSearchCollab" class="form-control" placeholder="Type a name or an email..." />
-  <input (click)="searchUser()" type="submit" value="search" class="btn btn-primary btn-block"/>
-  <div class="auth-content" *ngIf="newCollab">
-    <div class="auth-content-card">
-      <div *ngIf="newCollab" class="profile-avatar avatar avatar--40">
-        <img *ngIf="newCollab?._avatar" [src]="newCollab?._avatar?.getPath('140x140')"  alt="{{newCollab?.name}} avatar">
-        {{newCollab?.name.charAt(0)}}
-      </div>
 
+  <a *ngIf="!searchCollabIntent" (click)="setSearchCollabIntent(true)">Add collab</a>
+  <div *ngIf="searchCollabIntent">
+    <input [(ngModel)]='searchCollabInput' type="text" id="inputSearchCollab" class="form-control" placeholder="Type a name or an email..." />
+    <input (click)="searchCollab()" type="submit" value="search" class="btn btn-primary btn-block"/>
+    <a  (click)="setSearchCollabIntent(false)">cancel</a>
+  </div>
+
+  <div class="auth-content" *ngFor="let user of searchCollabsResult">
+    <div class="auth-content-card">
+      <div *ngIf="user" class="profile-avatar avatar avatar--40">
+        <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('140x140')"  alt="{{user?.name}} avatar">
+        {{user?.name.charAt(0)}}
+      </div>
       <div class="d-flex flex-column ml-2">
-        <h6 class="d-flex mb-0">{{newCollab.name}}</h6>
-        <span class="text-muted">@{{newCollab.username}}</span>
+        <h6 class="d-flex mb-0">{{user.name}}</h6>
+        <span class="text-muted">@{{user.username}}</span>
+        <span (click)="addCollaborator(user)" class="text-success" *ngIf="!collection.isCollaborator(user)">Add</span>
+        <a (click)="deleteCollaborator(user)" class="text-danger" *ngIf="collection.isCollaborator(user)">Remove</a>
       </div>
     </div>
-    <input (click)="addCollaborator()" value="Add collaborator" type="submit" class="btn btn-primary btn-block" />
   </div>
+
 </ng-template>
 
 <!--<tc-collection-create *ngIf="isAuthor" [parentCollection]="collection" (newCollection)="onSubCollectionCreated($event)"></tc-collection-create>-->

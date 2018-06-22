@@ -44,9 +44,11 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   private sub: any;
 
   //collaborators related
+  public searchCollabIntent: boolean;
   public manageCollabModal: NgbModalRef;
   public searchCollabInput: string;
   public newCollab: TcUser;
+  public searchCollabsResult: TcUser[];
 
   constructor(public t: TcLanguageService,
               public authService: TcAuthService,
@@ -72,6 +74,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     this.subCollectionTemplate = new TcCollection();
     this.itemLoaded = false;
     this.cantFoundButwasStarred = false;
+    this.searchCollabIntent = false;
     this.sub = this.route.params.subscribe(params => {
       this.initCollection(params);
     });
@@ -107,7 +110,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       centered: centeredParam
     }).result.then((result) => {
       if (result === 'confirm')
-        this.deleteCollaborator();
+        this.deleteCollaborator(this.authService.currentUser);
     }, (reason) => {
     });
   }
@@ -122,6 +125,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.collection = collection;
       this.titleService.setTitle(this.collection.title + ' | TidyCards');
       this.collection._items = [];
+      this.searchCollabsResult = this.collection._collaborators;
       if (this.authService.isLoggedIn) {
         if (collection._author._id === this.authService.currentUser._id)
           this.isAuthor = true;
@@ -300,25 +304,59 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  public searchUser() {
+  public searchCollab() {
     if(!this.searchCollabInput)
       return;
-    const params = new URLSearchParams();
-    params.set('populate', '_avatar');
-    this.userService.getUser(this.searchCollabInput.trim(), params).subscribe((user) => {
-      this.newCollab = user;
-    });
+    if(this.searchCollabInput.indexOf('@') >= 0){
+      const params = new URLSearchParams();
+      params.set('populate', '_avatar');
+      this.userService.getUser(this.searchCollabInput.trim(), params).subscribe((user) => {
+        this.searchCollabsResult = [];
+        this.searchCollabsResult.push(user);
+      }, () => {
+        this.searchCollabsResult = [];
+      });
+    }else{
+      let params = new URLSearchParams();
+      params.set('limit', '10');
+      params.set('populate', '_avatar');
+      params.set('sort_field', 'createdAt');
+      params.set('sort_dir', '-1');
+      params.set('search', encodeURIComponent(this.searchCollabInput.trim()));
+      this.userService.getUsers(params).subscribe(users => {
+        this.searchCollabsResult = users;
+      }, () => {
+        this.searchCollabsResult = [];
+      });
+    }
   }
 
-  public addCollaborator() {
-    this.collectionService.putCollaborator(this.collection._id, this.newCollab._id).subscribe((Collection) => {
+  public setSearchCollabIntent(val: boolean){
+    if(val){
+      this.searchCollabIntent = true;
+      this.searchCollabsResult = [];
+    }else{
+      this.searchCollabIntent = false;
+      this.searchCollabsResult = this.collection._collaborators;
+      console.log(this.searchCollabsResult)
+    }
+  }
+
+  public addCollaborator(user: TcUser) {
+    this.collectionService.putCollaborator(this.collection._id, user._id).subscribe((Collection) => {
+      this.collection._collaborators.push(user);
       console.log('done');
     });
   }
 
-  public deleteCollaborator() {
-    this.collectionService.deleteCollaborator(this.collection._id, this.authService.currentUser._id).subscribe((Collection) => {
-      this.router.navigate(['/dashboard']);
+  public deleteCollaborator(user: TcUser) {
+    this.collectionService.deleteCollaborator(this.collection._id, user._id).subscribe((Collection) => {
+      if(!this.isAuthor && this.collection.visibility == 'PRIVATE'){
+        this.router.navigate(['/dashboard']);
+      } else {
+        var index = this.collection._collaborators.indexOf(user);
+        this.collection._collaborators.splice(index, 1);
+      }
     });
   }
 
