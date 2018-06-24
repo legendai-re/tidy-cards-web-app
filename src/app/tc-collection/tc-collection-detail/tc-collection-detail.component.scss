@@ -73,6 +73,20 @@
   overflow: hidden;
 }
 
+.collection-container--publication-thumbnails {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .thumbnail + .thumbnail {
+    margin-right: -1rem;
+  }
+}
+
 .collection-container--publication-infos {
   line-height: 2rem;
   color: $gray-900;
@@ -80,7 +94,7 @@
   white-space: nowrap;
 
   a {
-    font-weight: 600;
+    font-weight: 500;
   }
 }
 

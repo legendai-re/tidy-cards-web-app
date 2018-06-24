@@ -30,7 +30,7 @@
                      (click)="searchIntent()"
                      (keyup)="onQueryKeyUp()"
                      (keydown)="onQueryKeyDown()">
-              <a href="javascript:void(0)" class="header-search-bar--cancel" [class.hidden]="headerState != 'search' "(click)="cancelSearch()">{{t._.action?.cancel}}</a>
+              <a href="javascript:void(0)" class="header-search-bar--cancel" [class.hidden]="headerState != 'search'" (click)="cancelSearch()">{{t._.action?.cancel}}</a>
             </form>
           </li>
 
