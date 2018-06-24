@@ -299,7 +299,7 @@
             </div>
           </li>
 
-          <div *ngFor="let user of searchCollabsResult">
+          <ng-template *ngFor="let user of searchCollabsResult">
             <li class="collaborators--list-item" *ngIf="!searchCollabIsloading">
               <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{user.name}}" [routerLink]="['/', user.username]">
                 <img *ngIf="user._avatar" [src]="user._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{user.name}} avatar">
@@ -321,12 +321,12 @@
                 </div>
               </div>
             </li>
-          </div>
+          </ng-template>
 
           <li class="collaborators--list-item" *ngIf="!searchCollabIsloading && searchCollabsEmailResult">
-            <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{collection._author.name}}" [routerLink]="['/', collection._author.username]">
+            <div class="collaborators--list-item-thumbnail avatar avatar--40" title="{{searchCollabsEmailResult.email}}">
               <span class="avatar-char">{{searchCollabsEmailResult?.name.charAt(0)}}</span>
-            </a>
+            </div>
             <div class="collaborators--list-item-infos">
               <p class="collaborators--list-item-infos-name">{{searchCollabsEmailResult.email}}</p>
             </div>
@@ -334,7 +334,12 @@
               <a href="javascript:void(0)" (click)="addCollaborator(searchCollabsEmailResult)" class="collaborators--list-item-actions-link">{{t._.action?.invite}}</a>
             </div>
             <div class="collaborators--list-item-actions" *ngIf="collection.isCollaborator(searchCollabsEmailResult)">
-              <a href="javascript:void(0)" (click)="deleteCollaborator(searchCollabsEmailResult)" class="collaborators--list-item-actions-link">{{t._.action?.remove}}</a>
+              <button class="collaborators--list-item-role dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{t._.collection?.collaborators?.manage?.collaborator}}
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a href="javascript:void(0)" (click)="deleteCollaborator(searchCollabsEmailResult)" class="dropdown-item">{{t._.collection?.collaborators?.actions?.remove}}</a>
+              </div>
             </div>
           </li>
 
@@ -357,7 +362,7 @@
     <div class="collaborators--footer">
 
       <div class="collaborators--footer-actions ml-auto">
-        <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.cancel}}</button>
+        <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.close}}</button>
       </div>
 
     </div>
