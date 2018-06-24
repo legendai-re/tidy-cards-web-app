@@ -85,6 +85,20 @@
   padding: 0;
 }
 
+.card-collection--thumbnails {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .thumbnail + .thumbnail {
+    margin-right: -1rem;
+  }
+}
+
 .card-collection--stats {
   position: relative;
   display: flex;

@@ -10,9 +10,18 @@
       <p class="card-collection--caption">{{collection.bio | truncate:[160] }}</p>
 
       <div class="card-collection--details">
-        <div class="card-avatar avatar avatar--32">
-          <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('60x60')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
-          <span class="avatar-char">{{collection._author?.name?.charAt(0)}}</span>
+        <div class="card-collection--thumbnails">
+
+          <div class="card-collection--thumbnail thumbnail avatar avatar--32" *ngFor="let user of (collection._collaborators.slice().reverse() | slice:collection._collaborators.length - 2)">
+            <img *ngIf="user._avatar" [src]="user?._avatar.getPath('60x60')" onError="this.style.display='none';" alt="{{user.name}} avatar">
+            <span class="avatar-char">{{user.name?.charAt(0)}}</span>
+          </div>
+
+          <div class="card-collection--thumbnail thumbnail avatar avatar--32">
+            <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('60x60')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+            <span class="avatar-char">{{collection._author?.name?.charAt(0)}}</span>
+          </div>
+
         </div>
         <ul class="card-collection--stats" *ngIf="collection.visibility != 'PRIVATE'">
           <!-- <li class="card-collection--stat">

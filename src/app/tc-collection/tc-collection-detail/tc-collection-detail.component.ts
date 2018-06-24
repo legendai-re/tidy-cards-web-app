@@ -20,7 +20,7 @@ declare let $: any;
 
 @Component({
   templateUrl: './tc-collection-detail.component.html',
-  styleUrls: ['tc-collection-detail.component.scss', '../../tc-item/tc-item.component.scss']
+  styleUrls: ['tc-collection-detail.component.scss', 'tc-collection-collaborators.component.scss', '../../tc-item/tc-item.component.scss']
 })
 
 export class TcCollectionDetailComponent implements OnInit, OnDestroy {
@@ -60,7 +60,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
               private itemService: TcItemService,
               private starService: TcStarService,
               private titleService: Title,
-              private  userService: TcUserService) {
+              private userService: TcUserService) {
     this.displayModeList = TcCollection.DISPLAY_MODE;
   }
 
@@ -87,9 +87,10 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  private openManageCollabModal(content, sizeParam = null) {
+  private openManageCollabModal(content, sizeParam = null, centeredParam = true) {
     this.manageCollabModal = this.modalService.open(content, {
-      size: sizeParam
+      size: sizeParam,
+      centered: centeredParam
     });
   }
 
