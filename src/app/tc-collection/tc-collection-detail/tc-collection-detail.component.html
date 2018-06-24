@@ -172,11 +172,12 @@
 
       <div class="collection-container--footer" *ngIf="itemLoaded && collection._items.length > 0">
 
-        <a href="javascript:void(0)" class="btn btn-secondary btn-block" *ngIf="itemLoaded && haveMoreItems && !loadingItems" (click)="loadNextPage()">{{t._.action?.load_more}}</a>
+        <a href="javascript:void(0)" class="collection--load-more btn btn-secondary btn-block" *ngIf="itemLoaded && haveMoreItems && !loadingItems" (click)="loadNextPage()">{{t._.action?.load_more}}</a>
         <p class="loading-more" *ngIf="loadingItems">{{t._.action?.loading}}</p>
         <p class="no-more" *ngIf="!haveMoreItems && pageNb > 0">{{t._.collection?.item_list_end}}</p>
 
       </div>
+
 
     </div>
 
@@ -241,20 +242,20 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.cancel}}</button>
-    <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.collection.modal.delete?.button}}</button>
+    <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.collection?.modal?.delete?.button}}</button>
   </div>
 </ng-template>
 
 <ng-template class="default-modal" #collectionLeaveModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h5 class="modal-title">Leave the collection</h5>
+    <h5 class="modal-title">{{t._.collection?.collaborators?.leave?.title}}</h5>
   </div>
   <div class="modal-body">
-    Do you really want to leave this collection? You will no longer be able to update it. If the collection if private you will not even be able to access to it.
+    {{t._.collection?.collaborators?.leave?.content}}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.cancel}}</button>
-    <button type="button" class="btn btn-danger" (click)="c('confirm')">Leave</button>
+    <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.action?.leave}}</button>
   </div>
 </ng-template>
 
