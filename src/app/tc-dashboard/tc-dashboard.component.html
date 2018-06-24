@@ -4,7 +4,7 @@
     <div class="section">
       <div class="section-header dark-bg">
         <h2 class="section-header--title">{{t._.collection?.my_title}}</h2>
-        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c']" *ngIf="myCollections.length > 15">{{t._.action?.see_all}}</a>
+        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c']" *ngIf="myCollections.length >= 15">{{t._.action?.see_all}}</a>
       </div>
 
       <div class="row" tc-sortable [ignoreItem]="1" [list]=myCollections [ghostClass]="'card-ghost col-12 col-md-6 col-lg-4 col-xl-3'" (itemMoved)="onCollectionMoved($event)">
@@ -20,7 +20,7 @@
     <div class="section" *ngIf="myFavoriteCollections && myFavoriteCollections.length > 0">
       <div class="section-header">
         <h2 class="section-header--title">{{t._.collection?.my_favorite_title}}</h2>
-        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c', 'starred']" *ngIf="myFavoriteCollections.length > 8">{{t._.action?.see_all}}</a>
+        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c', 'starred']" *ngIf="myFavoriteCollections.length >= 8">{{t._.action?.see_all}}</a>
       </div>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let collection of myFavoriteCollections">
