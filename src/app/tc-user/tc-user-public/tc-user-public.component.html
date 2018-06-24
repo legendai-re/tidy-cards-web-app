@@ -14,11 +14,11 @@
           <div class="profile-infos-stats">
             <div class="btn btn-sm btn-secondary" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')" (click)="impersonate()">Login as…</div>
             <div class="profile-stats-item">
-              <span class="profile-stat-value">{{ userCollections.length }}</span>
+              <span class="profile-stat-value">{{ userCollections?.length }}</span>
               <span class="profile-stat-label">{{ t._.object?.collection_plur}}</span>
             </div>
             <div class="profile-stats-item">
-              <span class="profile-stat-value">{{ userStarredCollections.length }}</span>
+              <span class="profile-stat-value">{{ userStarredCollections?.length }}</span>
               <span class="profile-stat-label">{{ t._.object?.favorite_plur}}</span>
             </div>
           </div>
@@ -30,11 +30,11 @@
       </div>
     </div>
 
-    <div class="section" *ngIf="userCollections.length == 0 && userStarredCollections.length == 0">
+    <div class="section" *ngIf="userCollections?.length == 0 && userStarredCollections?.length == 0">
       {{t._.profile_public?.empty}}
     </div>
 
-    <div class="section" *ngIf="userCollections.length > 0">
+    <div class="section" *ngIf="userCollections?.length > 0">
       <div class="section-header">
         <h2 class="section-header--title">{{t._.collection?.last_public_title}}</h2>
         <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length >= 16">{{t._.action?.see_all}}</a>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="section" *ngIf="userStarredCollections.length > 0">
+    <div class="section" *ngIf="userStarredCollections?.length > 0">
       <div class="section-header">
         <h2 class="section-header--title">{{t._.collection?.favorite_title}}</h2>
         <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length >= 16">{{t._.action?.see_all}}</a>

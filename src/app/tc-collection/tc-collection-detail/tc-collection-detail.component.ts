@@ -49,6 +49,10 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public searchCollabInput: string;
   public newCollab: TcUser;
   public searchCollabsResult: TcUser[];
+  public searchCollabsEmailResult: TcUser;
+  public typingSearchCollabTimer;
+  public doneTypingSearchCollabInterval: number;
+  public searchCollabIsloading: boolean;
 
   constructor(public t: TcLanguageService,
               public authService: TcAuthService,
@@ -62,6 +66,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
               private titleService: Title,
               private userService: TcUserService) {
     this.displayModeList = TcCollection.DISPLAY_MODE;
+    this.doneTypingSearchCollabInterval = 1000;
   }
 
   ngOnInit() {
@@ -75,6 +80,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     this.itemLoaded = false;
     this.cantFoundButwasStarred = false;
     this.searchCollabIntent = false;
+    this.searchCollabIsloading = false;
     this.sub = this.route.params.subscribe(params => {
       this.initCollection(params);
     });
@@ -305,17 +311,40 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+  public onSearchCollabKeyUp(){
+      this.searchCollabIsloading = true;
+      clearTimeout(this.typingSearchCollabTimer);
+      new Promise((resolve, reject) => {
+          this.typingSearchCollabTimer = setTimeout(()=>{resolve(true);}, this.doneTypingSearchCollabInterval);
+      }).then((e)=>{
+          this.searchCollab();
+      })
+  }
+
+  public onSearchCollabKeyDown(){
+      clearTimeout(this.typingSearchCollabTimer);
+  }
+
   public searchCollab() {
-    if(!this.searchCollabInput)
+    if(!this.searchCollabInput){
+      this.searchCollabIsloading = false;
       return;
+    }
+    this.searchCollabIsloading = true;
     if(this.searchCollabInput.indexOf('@') >= 0){
       const params = new URLSearchParams();
       params.set('populate', '_avatar');
       this.userService.getUser(this.searchCollabInput.trim(), params).subscribe((user) => {
         this.searchCollabsResult = [];
-        this.searchCollabsResult.push(user);
+        if(user._id != this.collection._author._id)
+          this.searchCollabsEmailResult = user;
+        else
+          this.searchCollabsEmailResult = null;
+        this.searchCollabIsloading = false;
       }, () => {
         this.searchCollabsResult = [];
+        this.searchCollabsEmailResult = null;
+        this.searchCollabIsloading = false;
       });
     }else{
       let params = new URLSearchParams();
@@ -325,28 +354,38 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       params.set('sort_dir', '-1');
       params.set('search', encodeURIComponent(this.searchCollabInput.trim()));
       this.userService.getUsers(params).subscribe(users => {
+        // remove author from the result
+        for(var i=0; i<users.length; i++){
+          if(users[i]._id == this.collection._author._id){
+           users.splice(i, 1)
+          }
+        }
         this.searchCollabsResult = users;
+        this.searchCollabsEmailResult = null;
+        this.searchCollabIsloading = false;
       }, () => {
         this.searchCollabsResult = [];
+        this.searchCollabsEmailResult = null;
+        this.searchCollabIsloading = false;
       });
     }
   }
 
   public setSearchCollabIntent(val: boolean){
+    this.searchCollabsEmailResult = null;
     if(val){
       this.searchCollabIntent = true;
       this.searchCollabsResult = [];
     }else{
       this.searchCollabIntent = false;
       this.searchCollabsResult = this.collection._collaborators;
-      console.log(this.searchCollabsResult)
     }
   }
 
   public addCollaborator(user: TcUser) {
     this.collectionService.putCollaborator(this.collection._id, user._id).subscribe((Collection) => {
       this.collection._collaborators.push(user);
-      console.log('done');
+      this.collection.collaboratorsCount++;
     });
   }
 
@@ -357,6 +396,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       } else {
         var index = this.collection._collaborators.indexOf(user);
         this.collection._collaborators.splice(index, 1);
+        this.collection.collaboratorsCount--;
       }
     });
   }

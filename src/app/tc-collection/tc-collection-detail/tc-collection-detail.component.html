@@ -55,7 +55,7 @@
               <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a><ng-container *ngFor="let user of collection._collaborators | slice:0:1; let isLast=last">{{isLast ? ', ' : ', '}}
                 <a href="javascript:void(0)" title="{{user.name}}" [routerLink]="['/', user.username]">{{user.name}}</a>
                 {{t._.word?.and}}
-                <a href="javascript:void(0)" (click)="openManageCollabModal(manageCollaboratorsModal)">{{collection._collaborators.length - 1}} more people</a>
+                <a href="javascript:void(0)" (click)="openManageCollabModal(manageCollaboratorsModal)">{{collection.collaboratorsCount - 1}} more people</a>
               </ng-container>
             </ng-container>
 
@@ -275,22 +275,19 @@
 
     <div class="collaborators--content">
       <div class="collaborators--content-wrapper">
-        <h2 class="collaborators--content-title">{{t.format(t._.collection.collaborators.manage.title, [collection._collaborators.length + 1])}}</h2>
+        <h2 class="collaborators--content-title">{{t.format(t._.collection.collaborators.manage.title, [collection.collaboratorsCount + 1])}}</h2>
 
         <div class="collaborators--search" *ngIf="haveEditRights">
-          <input [(ngModel)]='searchCollabInput' (click)="setSearchCollabIntent(true)" type="text" id="inputSearchCollab" class="form-control" placeholder="{{t._.collection?.collaborators?.actions?.search}}"/>
+          <input [(ngModel)]='searchCollabInput' (click)="setSearchCollabIntent(true)" (keyup)="onSearchCollabKeyUp()" (keydown)="onSearchCollabKeyDown()" type="text" id="inputSearchCollab" class="form-control" placeholder="{{t._.collection?.collaborators?.actions?.search}}"/>
           <a class="collaborators--search-close" [class.hidden]="searchCollabIntent == false" (click)="setSearchCollabIntent(false)">{{t._.action?.cancel}}</a>
           <!-- Quand t'appuie sur "Cancel" faudrait effacer le contenu de la recherche -->
           <!-- Faire en sorte que le clique sur l'input pour switch de vue fonctionne une seul fois. Pourquoi : si tu a fais une recherche et que tu recliques sur l'input ça vide la liste des résultats -->
         </div>
 
-        <!-- A supprimer -->
-        <input (click)="searchCollab()" type="submit" value="search" class="btn btn-primary btn-block" *ngIf="searchCollabIntent"/>
-
         <ul class="collaborators--list">
           <li class="collaborators--list-item" *ngIf="!searchCollabIntent">
             <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{collection._author.name}}" [routerLink]="['/', collection._author.username]">
-              <img [src]="collection._author._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{collection._author.name}} avatar">
+              <img [src]="collection?._author?._avatar?.getPath('140x140')" onError="this.style.display='none';" alt="{{collection._author.name}} avatar">
               <span class="avatar-char">{{collection?._author?.name.charAt(0)}}</span>
             </a>
             <div class="collaborators--list-item-infos">
@@ -302,47 +299,54 @@
             </div>
           </li>
 
-          <li class="collaborators--list-item" *ngFor="let user of searchCollabsResult">
-            <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{user.name}}" [routerLink]="['/', user.username]">
-              <img *ngIf="user._avatar" [src]="user._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{user.name}} avatar">
-              <span class="avatar-char">{{user?.name.charAt(0)}}</span>
-            </a>
-            <div class="collaborators--list-item-infos">
-              <p class="collaborators--list-item-infos-name">{{user.name}}</p>
-              <p class="collaborators--list-item-infos-username">@{{user.username}}</p>
-            </div>
-            <div class="collaborators--list-item-actions" *ngIf="!collection.isCollaborator(user)">
-              <a href="javascript:void(0)" (click)="addCollaborator(user)" class="collaborators--list-item-actions-link">{{t._.action?.add}}</a>
-            </div>
-            <div class="collaborators--list-item-actions" *ngIf="collection.isCollaborator(user)">
-              <button class="collaborators--list-item-role dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{t._.collection?.collaborators?.manage?.collaborator}}
-              </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <a href="javascript:void(0)" (click)="deleteCollaborator(user)" class="dropdown-item">{{t._.collection?.collaborators?.actions?.remove}}</a>
+          <div *ngFor="let user of searchCollabsResult">
+            <li class="collaborators--list-item" *ngIf="!searchCollabIsloading">
+              <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{user.name}}" [routerLink]="['/', user.username]">
+                <img *ngIf="user._avatar" [src]="user._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{user.name}} avatar">
+                <span class="avatar-char">{{user?.name.charAt(0)}}</span>
+              </a>
+              <div class="collaborators--list-item-infos">
+                <p class="collaborators--list-item-infos-name">{{user.name}}</p>
+                <p class="collaborators--list-item-infos-username">@{{user.username}}</p>
               </div>
-            </div>
-          </li>
+              <div class="collaborators--list-item-actions" *ngIf="!collection.isCollaborator(user)">
+                <a href="javascript:void(0)" (click)="addCollaborator(user)" class="collaborators--list-item-actions-link">{{t._.action?.add}}</a>
+              </div>
+              <div class="collaborators--list-item-actions" *ngIf="collection.isCollaborator(user)">
+                <button class="collaborators--list-item-role dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{t._.collection?.collaborators?.manage?.collaborator}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                  <a href="javascript:void(0)" (click)="deleteCollaborator(user)" class="dropdown-item">{{t._.collection?.collaborators?.actions?.remove}}</a>
+                </div>
+              </div>
+            </li>
+          </div>
 
-          <!-- si la personne met un email qui n'existe pas sur Tidy (fusionner avec en haut) -->
-          <!-- le cacher si c'est pas un mail correct -->
-          <li class="collaborators--list-item" *ngIf="searchCollabsResult.length == 0">
+          <li class="collaborators--list-item" *ngIf="!searchCollabIsloading && searchCollabsEmailResult">
             <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{collection._author.name}}" [routerLink]="['/', collection._author.username]">
-              <span class="avatar-char">{{collection?._author?.name.charAt(0)}}</span>
-              <!-- première lettre du mail ? -->
+              <span class="avatar-char">{{searchCollabsEmailResult?.name.charAt(0)}}</span>
             </a>
             <div class="collaborators--list-item-infos">
-              <p class="collaborators--list-item-infos-name">{{collection._author.email}}</p>
+              <p class="collaborators--list-item-infos-name">{{searchCollabsEmailResult.email}}</p>
             </div>
-            <div class="collaborators--list-item-actions">
-              <a href="javascript:void(0)" class="collaborators--list-item-actions-link">{{t._.action?.invite}}</a>
+            <div class="collaborators--list-item-actions" *ngIf="!collection.isCollaborator(searchCollabsEmailResult)">
+              <a href="javascript:void(0)" (click)="addCollaborator(searchCollabsEmailResult)" class="collaborators--list-item-actions-link">{{t._.action?.invite}}</a>
+            </div>
+            <div class="collaborators--list-item-actions" *ngIf="collection.isCollaborator(searchCollabsEmailResult)">
+              <a href="javascript:void(0)" (click)="deleteCollaborator(searchCollabsEmailResult)" class="collaborators--list-item-actions-link">{{t._.action?.remove}}</a>
             </div>
           </li>
 
-          <!-- Ajouter dans le if "si c'est pas un mail et afficher le li du dessus" -->
-          <li class="collaborators--list-item" *ngIf="searchCollabsResult.length == 0">
+          <li class="collaborators--list-item" *ngIf="!searchCollabIsloading && searchCollabsResult.length == 0 && !searchCollabsEmailResult">
             <p class="collaborators--list-empty">
               There is no result…
+            </p>
+          </li>
+
+          <li class="collaborators--list-item" *ngIf="searchCollabIsloading">
+            <p class="collaborators--list-empty">
+              Loading...
             </p>
           </li>
         </ul>

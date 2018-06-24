@@ -25,6 +25,7 @@ export class TcCollection {
   public displayMode: string;
   public _parents: TcCollection[];
   public _collaborators: TcUser[];
+  public collaboratorsCount: number;
 
   public updatePosition: boolean;
   public _items: TcItem[];
@@ -49,7 +50,8 @@ export class TcCollection {
     depth?: number,
     _parents?: TcCollection[],
     displayMode?: string,
-    _collaborators?: TcUser[]) {
+    _collaborators?: TcUser[],
+    collaboratorsCount?: number) {
     this._id = _id;
     this.createdAt = typeof createdAt === 'string' ? new Date(createdAt) : createdAt;
     this.updatedAt = typeof updatedAt === 'string' ? new Date(updatedAt) : updatedAt;
@@ -70,6 +72,7 @@ export class TcCollection {
     this._parents = _parents;
     this.displayMode = displayMode;
     this._collaborators = _collaborators;
+    this.collaboratorsCount = collaboratorsCount;
   }
 
   public haveEditRights(user: TcUser) {
@@ -141,7 +144,8 @@ export class TcCollection {
       obj.depth,
       TcCollection.createParentsFromJson(obj),
       obj.displayMode,
-      TcCollection.createCollaboratorsFromJson(obj)
+      TcCollection.createCollaboratorsFromJson(obj),
+      obj.collaboratorsCount
     );
   }
 
