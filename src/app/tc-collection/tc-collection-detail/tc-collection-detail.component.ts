@@ -94,9 +94,14 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   }
 
   private openManageCollabModal(content, sizeParam = null, centeredParam = true) {
-    this.manageCollabModal = this.modalService.open(content, {
+    var saveThis = this;
+    this.modalService.open(content, {
       size: sizeParam,
       centered: centeredParam
+    }).result.then((result) => {
+      saveThis.setSearchCollabIntent(false);
+    }, (reason) => {
+      saveThis.setSearchCollabIntent(false);
     });
   }
 
@@ -377,6 +382,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.searchCollabIntent = true;
       this.searchCollabsResult = [];
     }else{
+      this.searchCollabInput = "";
       this.searchCollabIntent = false;
       this.searchCollabsResult = this.collection._collaborators;
     }

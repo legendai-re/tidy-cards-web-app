@@ -299,7 +299,7 @@
             </div>
           </li>
 
-          <ng-template *ngFor="let user of searchCollabsResult">
+          <ng-container *ngFor="let user of searchCollabsResult">
             <li class="collaborators--list-item" *ngIf="!searchCollabIsloading">
               <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{user.name}}" [routerLink]="['/', user.username]">
                 <img *ngIf="user._avatar" [src]="user._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{user.name}} avatar">
@@ -321,7 +321,7 @@
                 </div>
               </div>
             </li>
-          </ng-template>
+          </ng-container>
 
           <li class="collaborators--list-item" *ngIf="!searchCollabIsloading && searchCollabsEmailResult">
             <div class="collaborators--list-item-thumbnail avatar avatar--40" title="{{searchCollabsEmailResult.email}}">
@@ -343,13 +343,13 @@
             </div>
           </li>
 
-          <li class="collaborators--list-item" *ngIf="!searchCollabIsloading && searchCollabsResult.length == 0 && !searchCollabsEmailResult">
+          <li class="collaborators--list-item" *ngIf="searchCollabIntent && !searchCollabIsloading && searchCollabsResult.length == 0 && !searchCollabsEmailResult">
             <p class="collaborators--list-empty">
               There is no result…
             </p>
           </li>
 
-          <li class="collaborators--list-item" *ngIf="searchCollabIsloading">
+          <li class="collaborators--list-item" *ngIf="searchCollabIntent && searchCollabIsloading">
             <p class="collaborators--list-empty">
               Loading...
             </p>
