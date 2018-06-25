@@ -1,3 +1,11 @@
+@import '../styles/settings/_variables.scss';
+@import '../styles/settings/_mixins.scss';
+
+@import '../styles/settings/_bootstrap-variables.scss';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
 :host {
     display: block;
     background-color: red;
@@ -41,6 +49,18 @@
   flex: 1 0 auto;
   z-index: 100;
   overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    padding-bottom: 3.5rem;
+  }
+
+  &.has-cookies-flash {
+    padding-bottom: 8.25rem;
+
+    @include media-breakpoint-down(md) {
+      padding-bottom: 3.5rem;
+    }
+  }
 }
 
 .application-header {
@@ -77,8 +97,25 @@
   display: flex;
   flex-direction: column;
   margin-top: auto;
+}
 
-  // @include media-breakpoint-down(md) {
-  //   margin-bottom: 2.5rem;
-  // }
+.application-flash {
+  position: fixed;
+  display: flex;
+  background-color: $white;
+  width: 100vw;
+  height: auto;
+  padding: 2rem 0;
+  bottom: 0;
+  box-shadow: 0 .125rem 1.5rem rgba($black,.25);
+  color: $gray-700;
+
+  @include media-breakpoint-down(md) {
+    width: auto;
+    left: .5rem;
+    right: .5rem;
+    padding: 2rem .5rem;
+    border-radius: .125rem;
+    margin-bottom: 4rem;
+  }
 }

@@ -1,19 +1,23 @@
 <main class="application-ui" [class.is-hidden]="!authService.authInitialized || !t.langInitialized">
 
-  <div class="application-flash"></div>
-
-  <div class="application-container">
+  <div class="application-container" [class.has-cookies-flash]="authService.showCookieConsent">
 
     <tc-header class="application-header"></tc-header>
 
     <router-outlet></router-outlet>
 
-    <div *ngIf="authService.showCookieConsent" style="z-index: 99999; width: 100%; height: 100px; bottom: 0; position: fixed; background-color: grey">
-      <input type="submit" value="Accept" class="btn btn-sm" (click)="authService.acceptCookieConcent()" />
-    </div>
-
     <tc-footer class="application-footer" *ngIf="!headerService.noHeader && !headerService.noFooter"></tc-footer>
 
+  </div>
+
+  <div class="application-flash" *ngIf="authService.showCookieConsent">
+    <div class="container">
+      <p>
+        {{t._.flash?.cookies_consent?.content}}
+        <a href="https://cookiesandyou.com/" target="_blank" rel="nofollow">{{t._.flash?.cookies_consent?.learn_more}}</a>
+      </p>
+      <input type="submit" value="{{t._.action?.accept}}" class="btn btn-sm btn-primary" (click)="authService.acceptCookieConcent()" />
+    </div>
   </div>
 
 </main>
