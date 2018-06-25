@@ -1,5 +1,5 @@
 <article class="card card-collection create-collection not-hoverable"
-        [class.has-thumbnail]="collection._thumbnail != empty"
+        [class.has-thumbnail]="collection._thumbnail != null"
         [style.background-color]="'#'+collection.color">
   <form (ngSubmit)="onCollectionSubmit()" ngNativeValidate>
 

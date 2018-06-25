@@ -30,10 +30,10 @@ export class TcSearchHeaderComponent implements OnInit, OnDestroy {
     private searchSub: any;
 
     constructor(
-        private t: TcLanguageService,
-        private searchService: TcSearchService,
-        private userService: TcUserService,
-        private collectionService: TcCollectionService,
+        public t: TcLanguageService,
+        public searchService: TcSearchService,
+        public userService: TcUserService,
+        public collectionService: TcCollectionService,
         public route: ActivatedRoute,
         public headerService: TcHeaderService,
         public router: Router) {

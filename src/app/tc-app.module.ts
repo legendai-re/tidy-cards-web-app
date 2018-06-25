@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { TcAppComponent }               from './tc-app.component';
 import { routing, appRoutingProviders } from './tc-app.routing';
 
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+
 //Modules
 import { TcAuthModule }           from './tc-auth/tc-auth.module';
 import { TcCollectionModule }     from './tc-collection/tc-collection.module';
@@ -55,6 +57,7 @@ import { TcBase64 }            from './tc-shared/tc-base64.service';
         HttpModule,
         NgbModule.forRoot(),
         TcAuthModule,
+        FileUploadModule,
         TcCollectionModule,
         TcCollectionCardModule,
         TcCollectionCreateModule,

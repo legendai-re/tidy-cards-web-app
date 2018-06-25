@@ -29,10 +29,10 @@ export class TcCollectionCreateComponent implements OnInit {
     @Output() updateCanceled = new EventEmitter();
 
     constructor(public t: TcLanguageService,
-                private collectionService: TcCollectionService,
-                private imgUploadService: TcImgUploadService, 
-                private router: Router,
-                private authService: TcAuthService) {
+            public collectionService: TcCollectionService,
+            public imgUploadService: TcImgUploadService, 
+            public router: Router,
+            public authService: TcAuthService) {
         this.uploader = imgUploadService.uploader;
         this.visibilityList = TcCollection.VISIBILITY;
     }

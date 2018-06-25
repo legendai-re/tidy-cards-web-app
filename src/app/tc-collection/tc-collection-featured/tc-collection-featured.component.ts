@@ -19,10 +19,10 @@ export class TcCollectionFeaturedComponent implements OnInit {
     public collections: TcCollection[];
 
     constructor(
-        private router: Router,
-        private collectionService: TcCollectionService,
-        private titleService: Title,
-        private t: TcLanguageService) {
+        public router: Router,
+        public collectionService: TcCollectionService,
+        public titleService: Title,
+        public t: TcLanguageService) {
 
         this.t.getLangInitializedEmitter().subscribe((value) => {
             this.titleService.setTitle(this.t._.collection.featured_title + ' | TidyCards');
