@@ -34,6 +34,7 @@ import { TcResetCompleteComponent } from './tc-reset/tc-reset-complete/tc-reset-
 import { TcResetInitiateComponent } from './tc-reset/tc-reset-initiate/tc-reset-initiate.component';
 
 //Services
+import { CookieService }       from 'ngx-cookie-service';
 import { TcUserService }       from './tc-user/tc-user.service';
 import { TcImgUploadService }  from './tc-image/tc-image-upload.service';
 import { TcAuthService }       from './tc-auth/tc-auth.service';
@@ -80,6 +81,7 @@ import { TcBase64 }            from './tc-shared/tc-base64.service';
     providers: [
         Title,
         appRoutingProviders,
+        CookieService,
         TcCollectionService,
         TcStarService,
         TcItemService,

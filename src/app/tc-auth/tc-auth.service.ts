@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { CookieService } from 'ngx-cookie-service';
 import { TcUser } from '../tc-user/tc-user.class';
 import { TcApiUrl } from '../tc-shared/tc-api-url';
 import { TcLanguageService } from '../tc-language/tc-language.service';
@@ -21,8 +22,9 @@ export class TcAuthService {
   authInitialized: boolean;
   isLoggedIn: boolean;
   currentUser: TcUser;
+  showCookieConsent: boolean;
 
-  constructor (private languageService: TcLanguageService, private http: Http, private router: Router) {
+  constructor (private languageService: TcLanguageService, private http: Http, private router: Router, private cookieService :CookieService) {
     this.authInitializedEmitter = new EventEmitter();
     this.authInitialized = false;
     this.isLoggedIn = false;
@@ -120,7 +122,21 @@ export class TcAuthService {
     });
   }
 
+  public initCookieConsent(){
+    var cookieConsent = this.cookieService.get('tidycards-cookieconsent');
+    var isSet = !!cookieConsent;
+    this.showCookieConsent = !isSet
+  }
+
+  public acceptCookieConcent(){
+    var now = new Date();
+    now.setFullYear(now.getFullYear() + 2)
+    this.cookieService.set('tidycards-cookieconsent', 'true', now)
+    this.showCookieConsent = false;
+  }
+
   public initCurrentUser(): Promise<Boolean> {
+    this.initCookieConsent()
     return new Promise<Boolean>((resolve, reject) => {
       this.getCurrentUser().subscribe(user => {
         if (user._id) {
