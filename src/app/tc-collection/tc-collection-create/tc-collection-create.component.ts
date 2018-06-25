@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, OnDestroy, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute }       from '@angular/router';
 import { URLSearchParams  }             from '@angular/http';
+import { TcAuthService }                from '../../tc-auth/tc-auth.service';
 import { TcLanguageService }            from '../../tc-language/tc-language.service';
 import { TcCollectionService }          from '../tc-collection.service';
 import { TcCollection }                 from '../tc-collection.class';
@@ -27,7 +28,11 @@ export class TcCollectionCreateComponent implements OnInit {
     @Output() newCollection = new EventEmitter();
     @Output() updateCanceled = new EventEmitter();
 
-    constructor(public t: TcLanguageService, private collectionService: TcCollectionService, private imgUploadService: TcImgUploadService, private router: Router) {
+    constructor(public t: TcLanguageService,
+                private collectionService: TcCollectionService,
+                private imgUploadService: TcImgUploadService, 
+                private router: Router,
+                private authService: TcAuthService) {
         this.uploader = imgUploadService.uploader;
         this.visibilityList = TcCollection.VISIBILITY;
     }

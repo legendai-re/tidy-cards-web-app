@@ -67,7 +67,7 @@
             </li>
           </ul>
 
-          <div class="collection-form--visibility ml-auto">
+          <div class="collection-form--visibility ml-auto" *ngIf="!collection.isCollaborator(authService.currentUser)">
             <button class="collection-form--visibility-dropdown dropdown-toggle" [class.is-hidden]="!actionIntent" *ngIf="t._.collection?.visibility" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="icon">{{ t._.icon?.visibility?.filled }}</span>
               <span>{{t._.collection?.visibility?.title}}: {{t._.collection?.visibility[collection.visibility]?.title}}</span>
