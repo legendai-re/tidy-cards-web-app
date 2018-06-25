@@ -2,6 +2,7 @@ import { NgModule }           from '@angular/core';
 import { CommonModule }       from '@angular/common';
 import { FormsModule }        from '@angular/forms';
 import { RouterModule }       from '@angular/router';
+import { FileUploadModule }   from 'ng2-file-upload/ng2-file-upload';
 import { TcSharedModule }     from '../tc-shared/tc-shared.module';
 import { TcCollectionModule } from '../tc-collection/tc-collection.module';
 import { TcCollectionCardModule } from '../tc-collection/tc-collection-card/tc-collection-card.module';
@@ -12,7 +13,7 @@ import { TcUserPrivateComponent }  from './tc-user-private/tc-user-private.compo
 import { TcUserPublicComponent }   from './tc-user-public/tc-user-public.component';
 
 @NgModule({
-  imports: [ RouterModule, CommonModule, FormsModule, TcSharedModule, TcCollectionModule, TcCollectionCardModule ],
+  imports: [ RouterModule, CommonModule, FormsModule, FileUploadModule, TcSharedModule, TcCollectionModule, TcCollectionCardModule ],
   declarations: [
     TcUserComponent,
     TcConfirmEmailComponent,

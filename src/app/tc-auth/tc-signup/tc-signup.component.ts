@@ -16,8 +16,8 @@ export class TcSignupComponent implements OnInit {
     public passWordValid: boolean;
     public usernameState: string;
     public validatingUsername: boolean;
-    private typingUsernameTimer;
-    private doneTypingUsernameInterval: number;
+    public typingUsernameTimer;
+    public doneTypingUsernameInterval: number;
 
     public emailState: string;
     public validatingEmail: boolean;
@@ -88,7 +88,7 @@ export class TcSignupComponent implements OnInit {
         clearTimeout(this.typingEmailTimer);
     }
 
-    private checkEmail(){
+    public checkEmail(){
         if(!TcUser.isValidEmail(this.signupData.email)){
             this.emailState = 'INVALID';
             return;

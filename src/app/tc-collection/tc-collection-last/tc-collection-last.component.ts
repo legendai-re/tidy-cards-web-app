@@ -19,10 +19,10 @@ export class TcCollectionLastComponent implements OnInit {
     public collections: TcCollection[];
 
     constructor(
-        private t: TcLanguageService,
-        private router: Router,
-        private collectionService: TcCollectionService,
-        private titleService: Title) {
+        public t: TcLanguageService,
+        public router: Router,
+        public collectionService: TcCollectionService,
+        public titleService: Title) {
 
         this.t.getLangInitializedEmitter().subscribe((value) => {
             this.titleService.setTitle(this.t._.collection.last_title + ' | TidyCards');

@@ -11,12 +11,12 @@ import { TcUser }                       from './tc-user.class';
 
 export class TcUserComponent implements OnInit, OnDestroy  {
 
-    private userId: string;
-    private sub: any;
-    private authSub: any
-    private displayPublic: boolean;
+    public userId: string;
+    public sub: any;
+    public authSub: any
+    public displayPublic: boolean;
 
-    constructor(private route: ActivatedRoute, public authService: TcAuthService, public router: Router) {
+    constructor(public route: ActivatedRoute, public authService: TcAuthService, public router: Router) {
         this.displayPublic = true;
         this.authSub = this.authService.getAuthInitializedEmitter()
         .subscribe((value) => {
