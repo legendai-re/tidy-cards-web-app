@@ -11,6 +11,10 @@
   background: radial-gradient(circle at center, rgba($white, 1) 25%, rgba($white, .95) 50%, rgba($white, .75) 100%);
 }
 
+.modal-header {
+  border: none;
+}
+
 .modal-content {
   flex: 1 0 auto;
   border: none;
@@ -20,4 +24,8 @@
   .card {
     margin: 0;
   }
+}
+
+.modal-footer {
+  border: none;
 }

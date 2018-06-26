@@ -46,7 +46,7 @@
             </ng-container>
 
             <ng-container *ngIf="collection._collaborators.length > 0 && collection._collaborators.length <= 2">
-              <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a><ng-container *ngFor="let user of collection._collaborators; let isLast=last">{{isLast ? ' and ' : ', '}}
+              <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a><ng-container *ngFor="let user of collection._collaborators; let isLast=last">{{isLast ? ' '+ t._.word?.and +' ' : ', '}}
                 <a href="javascript:void(0)" title="{{user.name}}" [routerLink]="['/', user.username]">{{user.name}}</a>
               </ng-container>
             </ng-container>
