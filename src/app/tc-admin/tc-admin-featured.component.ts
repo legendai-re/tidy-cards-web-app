@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, URLSearchParams  } from '@angular/http';
+import {Title} from '@angular/platform-browser';
 import { TcCollectionService } from '../tc-collection/tc-collection.service';
 import { TcCollection } from '../tc-collection/tc-collection.class';
+import {TcLanguageService} from '../tc-language/tc-language.service';
 
 @Component({
     templateUrl: './tc-admin-featured.component.html'
@@ -13,10 +15,18 @@ export class TcAdminFeaturedComponent implements OnInit {
     public collection: TcCollection;
     public featuredCollections: TcCollection[];
 
-    constructor (private collectionService: TcCollectionService, private http: Http) {
+    constructor (public t: TcLanguageService,
+                 private titleService: Title,
+                 private collectionService: TcCollectionService,
+                 private http: Http) {
+        this.t.getLangInitializedEmitter().subscribe((value) => {
+            this.titleService.setTitle('Featured Collections | Admin | TidyCards');
+        });
     }
 
     ngOnInit() {
+        if (this.t.langInitialized)
+            this.titleService.setTitle('Featured Collections | Admin | TidyCards');
         this.loadFeaturedCollections();
     }
 

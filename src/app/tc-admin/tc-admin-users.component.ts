@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { URLSearchParams  } from '@angular/http';
+import {Title} from '@angular/platform-browser';
 import { TcDataLimit } from '../tc-shared/tc-data-limit';
 import { TcUserService } from '../tc-user/tc-user.service';
 import { TcUser } from '../tc-user/tc-user.class';
+import {TcLanguageService} from '../tc-language/tc-language.service';
 
 @Component({
     templateUrl: './tc-admin-users.component.html'
@@ -18,7 +20,13 @@ export class TcAdminUsersComponent implements OnInit {
     public userIdDeactivate: string;
     public userIdActivate: string;
 
-    constructor( private router: Router, private userService: TcUserService) {
+    constructor(public t: TcLanguageService,
+                private router: Router,
+                private titleService: Title,
+                private userService: TcUserService) {
+        this.t.getLangInitializedEmitter().subscribe((value) => {
+            this.titleService.setTitle(this.t._.header.dashboard_title + ' | TidyCards');
+        });
     }
 
     collapse(user) {
@@ -26,6 +34,8 @@ export class TcAdminUsersComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.t.langInitialized)
+            this.titleService.setTitle('Users | Admin | TidyCards');
         this.pageNb = 0;
         this.loadingUsers = false;
         this.haveMoreUsers = true;

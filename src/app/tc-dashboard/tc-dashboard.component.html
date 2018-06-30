@@ -10,9 +10,9 @@
       <div class="row" tc-sortable [ignoreItem]="1" [list]=myCollections [ghostClass]="'card-ghost col-12 col-md-6 col-lg-4 col-xl-3'" (itemMoved)="onCollectionMoved($event)">
 
         <tc-collection-create (newCollection)="onbCollectionCreated($event)" class="ui-state-default ui-state-disabled not-sortable-item col-12 col-md-6 col-lg-4 col-xl-3"></tc-collection-create>
-        <div *ngFor="let collection of myCollections" [class.cancel-sort]="isUpdatingPosition" class="ui-state-default col-12 col-md-6 col-lg-4 col-xl-3">
-          <tc-collection-card [collection]="collection" [sortable]=true></tc-collection-card>
-        </div>
+        <ng-container *ngFor="let collection of myCollections" [class.cancel-sort]="isUpdatingPosition">
+          <tc-collection-card class="ui-state-default col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]=true></tc-collection-card>
+        </ng-container>
 
       </div>
     </div>
@@ -23,9 +23,9 @@
         <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c', 'starred']" *ngIf="myFavoriteCollections.length >= 8">{{t._.action?.see_all}}</a>
       </div>
       <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let collection of myFavoriteCollections">
-          <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
-        </div>
+        <ng-container *ngFor="let collection of myFavoriteCollections">
+          <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false"></tc-collection-card>
+        </ng-container>
       </div>
     </div>
 
