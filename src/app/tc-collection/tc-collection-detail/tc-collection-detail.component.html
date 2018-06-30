@@ -260,7 +260,7 @@
 </ng-template>
 
 <ng-template #newItemModal let-c="close" let-d="dismiss">
-  <tc-item-create class="" *ngIf="haveEditRights" [collection]="collection" (newItem)="onNewItem($event)"></tc-item-create>
+  <tc-item-create class="" *ngIf="haveEditRights" [collection]="collection" cancelUpdate (updateCanceled)="onCreateItemCanceled()" (newItem)="onNewItem($event)"></tc-item-create>
 </ng-template>
 
 <ng-template #updateCollectionModal let-c="close" let-d="dismiss">

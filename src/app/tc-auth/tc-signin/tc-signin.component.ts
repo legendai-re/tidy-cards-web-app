@@ -3,6 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TcAuthService } from '../tc-auth.service';
 import { TcLanguageService } from '../../tc-language/tc-language.service';
 
+
+declare var window: any;
+
 @Component({
     selector: 'tc-signin',
     templateUrl: './tc-signin.component.html',
@@ -35,6 +38,10 @@ export class TcSigninComponent implements OnInit, OnDestroy{
         this.authService.login(this.username, this.password).then(result => {
             this.loginFailed = !result.success;
             if (result.success) {
+                window.analytics.identify(this.authService.currentUser._id, {
+                    name: this.authService.currentUser.username,
+                    email: this.authService.currentUser.email
+                  });
                 const url = this.nextUrl !== 'undefined' ? this.nextUrl : '/';
                 this.router.navigate([url]);
             }else {

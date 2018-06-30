@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
+  segmentApiKey: "wPwBknGBY0pFyig51nJhvJkVlAsQLoUz",
   _stripeKey: "pk_test_TrxUe4Bevn99QzMfZjnG9WRy"
 };

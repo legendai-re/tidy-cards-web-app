@@ -237,7 +237,11 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public onUpdateCollectionCanceled() {
     this.currentModal.close();
   }
-
+  
+  public onCreateItemCanceled() {
+    this.currentModal.close();
+  }
+  
   public onCollectionUpdated(event) {
     if (event.value) {
       this.collection.title = event.value.title;
