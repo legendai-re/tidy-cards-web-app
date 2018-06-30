@@ -8,6 +8,8 @@ import { TcImgUploadService }   from '../../tc-image/tc-image-upload.service';
 import { TcUser }               from '../tc-user.class';
 import { TcUserService }        from '../tc-user.service';
 
+declare var window: any;
+
 @Component({
     selector: 'tc-private-profile',
     styleUrls: ['../tc-user.component.scss'],
@@ -157,6 +159,7 @@ export class TcUserPrivateComponent implements OnInit {
                 this.updateEmailIntent = false;
                 this.emailState  = 'UPDATED';
                 this.isUpdatingEmail = false;
+                window.analytics.track('Updated email');
             });
         });
     }
@@ -193,6 +196,7 @@ export class TcUserPrivateComponent implements OnInit {
                 this.authService.currentUser.username = userResponse.username;
                 this.updateUsernameIntent = false;
                 this.isUpdatingUsername = false;
+                window.analytics.track('Updated username');
             });
         });
     }
@@ -241,8 +245,10 @@ export class TcUserPrivateComponent implements OnInit {
             this.tmpUser._avatar = null;
             this.updateGeneralInfoIntent = false;
             this.isUpdadingGeneralInfo = false;
+            // TODO seperated message for name, bio and thumbnail
+            window.analytics.track('Updated infos');
         }, (err) => {
-            console.log('sry something went wrong while updating your general info');
+            console.log('Sorry something went wrong while updating your general info');
             this.isUpdadingGeneralInfo = false;
             this.cancelUpdateGeneralInfo();
         });

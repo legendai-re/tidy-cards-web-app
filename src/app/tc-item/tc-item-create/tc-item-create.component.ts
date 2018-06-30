@@ -5,6 +5,8 @@ import {TcCollection} from '../../tc-collection/tc-collection.class';
 import {TcItem} from '../tc-item.class';
 import {TcItemService} from '../tc-item.service';
 
+declare var window: any;
+
 @Component({
   selector: 'tc-item-create',
   styleUrls: ['tc-item-create.component.scss'],
@@ -174,6 +176,14 @@ export class TcItemCreateComponent implements OnInit {
         value: this.item
       });
       this.initCreateMode();
+      window.analytics.track('Added an item', {
+        item_id: this.item._id,
+        item_title: this.item.title,
+        item_host: this.item._content,
+        // TODO remplacer la ligne d'au dessus par les infos d'en dessous
+        // item_host: this.item._content.host,
+        // item_url: this.item._content.url
+      });
     });
   }
 
@@ -182,6 +192,12 @@ export class TcItemCreateComponent implements OnInit {
       this.item.updatedAt = itemResponse.updatedAt;
       this.newItem.emit({
         value: this.item
+      });
+      window.analytics.track('Updated an item', {
+        item_id: this.item._id,
+        item_title: this.item.title,
+        item_host: this.item._content.host,
+        item_url: this.item._content.url
       });
     });
   }

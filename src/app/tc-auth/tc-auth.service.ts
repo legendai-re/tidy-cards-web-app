@@ -15,6 +15,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 
+declare var window: any;
+
 @Injectable()
 export class TcAuthService {
 
@@ -133,6 +135,7 @@ export class TcAuthService {
     now.setFullYear(now.getFullYear() + 2)
     this.cookieService.set('tidycards-cookieconsent', 'true', now)
     this.showCookieConsent = false;
+    window.analytics.track('Accepted cookies');
   }
 
   public initCurrentUser(): Promise<Boolean> {

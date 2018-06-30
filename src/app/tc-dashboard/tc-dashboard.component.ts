@@ -7,6 +7,8 @@ import {TcCollectionService} from '../tc-collection/tc-collection.service';
 import {TcCollection} from '../tc-collection/tc-collection.class';
 import {TcLanguageService} from '../tc-language/tc-language.service';
 
+declare var window: any;
+
 @Component({
   templateUrl: './tc-dashboard.component.html',
   styleUrls: ['./tc-dashboard.component.scss']
@@ -31,8 +33,10 @@ export class TcDashboardComponent implements OnInit {
 
 
   ngOnInit() {
-    if (this.t.langInitialized)
+    if (this.t.langInitialized) {
       this.titleService.setTitle(this.t._.header.dashboard_title + ' | TidyCards');
+      window.analytics.page('Viewed ' + this.t._.header.dashboard_title);
+    }
     this.initMyCollections();
     this.initMyFavoriteCollections();
   }

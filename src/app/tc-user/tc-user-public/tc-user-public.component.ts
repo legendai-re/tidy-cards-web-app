@@ -9,6 +9,8 @@ import { TcLanguageService }            from '../../tc-language/tc-language.serv
 import { TcUserService }                from '../tc-user.service';
 import { TcUser }                       from '../tc-user.class';
 
+declare var window: any;
+
 @Component({
     selector: 'tc-public-profile',
     styleUrls: ['../tc-user.component.scss'],
@@ -44,6 +46,10 @@ export class TcUserPublicComponent implements OnInit, OnDestroy  {
                 this.user = user;
                 this.isLoadingUser = false;
                 this.titleService.setTitle(this.user.name + ' | TidyCards');
+                // TODO : seulement si c'est pas son profil
+                window.analytics.track('Viewed a profile', {
+                    user: this.user.name
+                });
                 this.initUserCollections();
                 this.initUserStarredCollections();
             }, () => {

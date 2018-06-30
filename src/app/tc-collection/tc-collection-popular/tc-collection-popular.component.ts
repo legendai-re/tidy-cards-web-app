@@ -7,6 +7,8 @@ import { TcCollectionService }   from '../tc-collection.service';
 import { TcCollection }   from '../tc-collection.class';
 import { TcDataLimit }    from '../../tc-shared/tc-data-limit';
 
+declare var window: any;
+
 @Component({
     templateUrl: './tc-collection-popular.component.html'
 })
@@ -32,6 +34,7 @@ export class TcCollectionPopularComponent implements OnInit {
     ngOnInit() {
         if(this.t.langInitialized)
             this.titleService.setTitle(this.t._.collection.popular_title + ' | TidyCards');
+            window.analytics.page('Viewed ' + this.t._.collection.popular_title);
         this.pageNb = 0;
         this.loadingCollections = false;
         this.haveMoreCollections = true;

@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { URLSearchParams  }     from '@angular/http';
 import { TcHeaderService }      from '../tc-header/tc-header.service';
 
+declare var window: any;
+
 @Component({
     templateUrl: './tc-search.component.html'
 })

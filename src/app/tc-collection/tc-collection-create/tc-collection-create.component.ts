@@ -8,6 +8,8 @@ import { TcCollection }                 from '../tc-collection.class';
 import { TcImage }                      from '../../tc-image/tc-image.class';
 import { TcImgUploadService }           from '../../tc-image/tc-image-upload.service';
 
+declare var window: any;
+
 @Component({
     selector: 'tc-collection-create',
     templateUrl: './tc-collection-create.component.html',
@@ -116,6 +118,12 @@ export class TcCollectionCreateComponent implements OnInit {
             this.newCollection.emit({
                 value: this.collection
             });
+            window.analytics.track('Created a collection', {
+                collection_title: this.collection.title,
+                collection_bio: this.collection.bio,
+                collection_thumbnail: this.collection._thumbnail,
+                visibility: this.collection.visibility
+            });
         });
     }
 
@@ -124,6 +132,12 @@ export class TcCollectionCreateComponent implements OnInit {
             this.collection.updatedAt = collectionResponse.updatedAt;
             this.newCollection.emit({
                 value: this.collection
+            });
+            window.analytics.track('Updated a collection', {
+                collection_title: this.collection.title,
+                collection_bio: this.collection.bio,
+                collection_thumbnail: this.collection._thumbnail,
+                visibility: this.collection.visibility
             });
         });
     }

@@ -6,6 +6,8 @@ import { TcHeaderService }   from '../tc-header/tc-header.service';
 import { TcUser }            from '../tc-user/tc-user.class';
 import { TcUserService }     from '../tc-user/tc-user.service';
 
+declare var window: any;
+
 @Component({
 	selector: 'tc-footer',
     templateUrl: './tc-footer.component.html',
@@ -42,7 +44,11 @@ export class TcFooterComponent implements OnInit {
 	                tmpThis.t.loadLanguage(userResponse).then((res) => {
 	                    tmpThis.isUpdatingLanguage = false;
 	                });
-	            });
+				});
+				window.analytics.track('Changed language', {
+					lang: tmpThis.t.unsafeCurrentLanguage
+					// TODO maybe add old lang?
+                });
 	        },100);
 	    }else{
 	    	setTimeout(function(){

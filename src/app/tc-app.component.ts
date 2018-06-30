@@ -5,6 +5,8 @@ import { TcLanguageService } from './tc-language/tc-language.service';
 import { TcHeaderService } from './tc-header/tc-header.service';
 import { environment } from '../environments/environment';
 
+declare var window: any;
+
 @Component({
   selector: 'tc-app',
   templateUrl: './tc-app.component.html',
@@ -36,6 +38,14 @@ export class TcAppComponent {
         }
 
         authService.initCurrentUser().then(success => {
+          // Identify users when logged in
+          if (this.authService.isLoggedIn) {
+            window.analytics.identify(this.authService.currentUser._id, {
+              name: this.authService.currentUser.name,
+              email: this.authService.currentUser.email
+            });
+          }
+
           router.initialNavigation();
           url = url.replace('#_=_', '');
           if (url !== '/' && url !== '/discover')

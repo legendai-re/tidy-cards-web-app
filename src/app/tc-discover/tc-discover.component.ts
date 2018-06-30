@@ -8,6 +8,8 @@ import { TcCollection }           from '../tc-collection/tc-collection.class';
 import { TcDataLimit }            from '../tc-shared/tc-data-limit';
 import { TcLanguageService }      from '../tc-language/tc-language.service';
 
+declare var window: any;
+
 @Component({
     templateUrl: './tc-discover.component.html',
     styleUrls: ['./tc-discover.component.scss']
@@ -25,11 +27,14 @@ export class TcDiscoverComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.t.langInitialized)
+        if(this.t.langInitialized) {
             this.titleService.setTitle(this.t._.header.discover_title + ' | TidyCards');
+            window.analytics.page('Viewed ' + this.t._.header.discover_title);
+        }
         this.loadFeaturedCollections();
         this.loadPopularCollections();
         this.loadLastCollections();
+
     }
 
     private loadFeaturedCollections(){

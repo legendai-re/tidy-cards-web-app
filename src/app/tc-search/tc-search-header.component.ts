@@ -10,6 +10,8 @@ import { TcUserService }        from '../tc-user/tc-user.service';
 import { TcDataLimit }          from '../tc-shared/tc-data-limit';
 import { TcSearchService }      from './tc-search.service';
 
+declare var window: any;
+
 @Component({
     selector: 'tc-search-header',
     templateUrl: './tc-search-header.component.html',
@@ -61,6 +63,9 @@ export class TcSearchHeaderComponent implements OnInit, OnDestroy {
             return;
         this.searchCollections();
         this.searchUsers();
+        window.analytics.track('Searched', {
+            query: this.searchQuery
+        });
     }
 
     public searchCollections(){

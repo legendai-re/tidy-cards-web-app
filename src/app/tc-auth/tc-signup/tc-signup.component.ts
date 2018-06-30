@@ -5,6 +5,8 @@ import { TcUser }        from '../../tc-user/tc-user.class';
 import { TcUserService } from '../../tc-user/tc-user.service';
 import { TcLanguageService } from '../../tc-language/tc-language.service';
 
+declare var window: any;
+
 @Component({
     selector: 'tc-signup',
     templateUrl: './tc-signup.component.html',
@@ -111,15 +113,19 @@ export class TcSignupComponent implements OnInit {
             return;
         this.signupInProgress = true;
         let user = new TcUser(
-            undefined,
-            undefined,
-            undefined,
-            this.signupData.username,
-            this.signupData.username,
-            this.signupData.email,
-            this.signupData.password
+                undefined,
+                undefined,
+                undefined,
+                this.signupData.username,
+                this.signupData.username,
+                this.signupData.email,
+                this.signupData.password
             );
         this.authService.signup(user).then(success => {
+            window.analytics.identify(this.authService.currentUser._id, {
+                name: this.authService.currentUser.username,
+                email: this.authService.currentUser.email
+            });
             this.router.navigate(['/']);
             this.signupInProgress = false;
         }, (err) => {
