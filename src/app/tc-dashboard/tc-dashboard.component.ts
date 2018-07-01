@@ -35,7 +35,7 @@ export class TcDashboardComponent implements OnInit {
   ngOnInit() {
     if (this.t.langInitialized) {
       this.titleService.setTitle(this.t._.header.dashboard_title + ' | TidyCards');
-      window.analytics.page('Viewed ' + this.t._.header.dashboard_title);
+      window.analytics.page('Viewed Dashboard');
     }
     this.initMyCollections();
     this.initMyFavoriteCollections();

@@ -34,7 +34,7 @@ export class TcCollectionLastComponent implements OnInit {
     ngOnInit() {
         if(this.t.langInitialized)
             this.titleService.setTitle(this.t._.collection.last_title + ' | TidyCards');
-            window.analytics.page('Viewed ' + this.t._.collection.last_title);
+            window.analytics.page('Viewed Last collections');
         this.pageNb = 0;
         this.loadingCollections = false;
         this.haveMoreCollections = true;
