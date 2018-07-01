@@ -47,9 +47,11 @@ export class TcUserPublicComponent implements OnInit, OnDestroy  {
                 this.isLoadingUser = false;
                 this.titleService.setTitle(this.user.name + ' | TidyCards');
                 // TODO : seulement si c'est pas son profil
-                window.analytics.track('Viewed a profile', {
-                    user: this.user.name
-                });
+                if(this.authService.currentUser._id != this.user._id) {
+                    window.analytics.track('Viewed a profile', {
+                        user: this.user.name
+                    });
+                }
                 this.initUserCollections();
                 this.initUserStarredCollections();
             }, () => {

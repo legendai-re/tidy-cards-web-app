@@ -174,7 +174,7 @@ export class TcAuthService {
 
   public logout(): void {
     this.getLogout().subscribe(success => {
-      window.analytics.track('Logout');
+      window.analytics.track('Logged out');
       this.isLoggedIn = false;
       this.currentUser = null;
       this.languageService.loadLanguage(null);

@@ -138,7 +138,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.collection = collection;
       this.titleService.setTitle(this.collection.title + ' | TidyCards');
       window.analytics.track('Viewed a collection', {
-        collection: this.collection.title
+        collection_id: this.collection._id
       });
       this.collection._items = [];
       this.searchCollabsResult = this.collection._collaborators;
@@ -220,8 +220,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     this.collectionService.deleteCollection(this.collection._id).subscribe((e) => {
       this.router.navigate(['/dashboard']);
       window.analytics.track('Deleted a collection', {
-        collection_id: this.collection._id,
-        collection_title: this.collection.title,
+        collection_id: this.collection._id
       });
     });
   }
@@ -269,8 +268,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.collection.starsCount++;
       this.isUpdatingStar = false;
       window.analytics.track('Starred a collection', {
-        collection_id: this.collection._id,
-        collection_title: this.collection.title
+        collection_id: this.collection._id
       });
     });
   }
@@ -281,8 +279,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.collection.starsCount--;
       this.isUpdatingStar = false;
       window.analytics.track('Unstarred a collection', {
-        collection_id: this.collection._id,
-        collection_title: this.collection.title
+        collection_id: this.collection._id
       });
       if (redirectAfter)
         this.router.navigate(['/dashboard']);
@@ -333,9 +330,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
           this.collection.itemsCount--;
           window.analytics.track('Deleted an item', {
             item_id: this.collection._items[i]._id,
-            item_title: this.collection._items[i].title,
-            item_host: this.collection._items[i]._content.host,
-            item_url: this.collection._items[i]._content.url
+            collection_id: this.collection._id
           });
         }
       }
@@ -419,7 +414,8 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.collection._collaborators.push(user);
       this.collection.collaboratorsCount++;
       window.analytics.track('Added a collaborator', {
-        collaborator: user._id
+        collaborator_id: user._id,
+        collection_id: this.collection._id
       });
     });
   }
@@ -433,7 +429,8 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
         this.collection._collaborators.splice(index, 1);
         this.collection.collaboratorsCount--;
         window.analytics.track('Removed a collaborator', {
-          collaborator: user._id
+          collaborator_id: user._id,
+          collection_id: this.collection._id
         });
       }
     });

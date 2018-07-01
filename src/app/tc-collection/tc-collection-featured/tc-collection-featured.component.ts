@@ -34,7 +34,7 @@ export class TcCollectionFeaturedComponent implements OnInit {
     ngOnInit() {
         if(this.t.langInitialized)
             this.titleService.setTitle(this.t._.collection.featured_title + ' | TidyCards');
-            window.analytics.page('Viewed Featured collections');
+        window.analytics.page('Viewed Featured collections');
         this.pageNb = 0;
         this.loadingCollections = false;
         this.haveMoreCollections = true;

@@ -178,11 +178,7 @@ export class TcItemCreateComponent implements OnInit {
       this.initCreateMode();
       window.analytics.track('Added an item', {
         item_id: this.item._id,
-        item_title: this.item.title,
-        item_host: this.item._content,
-        // TODO remplacer la ligne d'au dessus par les infos d'en dessous
-        // item_host: this.item._content.host,
-        // item_url: this.item._content.url
+        collection_id: this.item._collection
       });
     });
   }
@@ -195,9 +191,7 @@ export class TcItemCreateComponent implements OnInit {
       });
       window.analytics.track('Updated an item', {
         item_id: this.item._id,
-        item_title: this.item.title,
-        item_host: this.item._content.host,
-        item_url: this.item._content.url
+        collection_id: this.item._collection
       });
     });
   }

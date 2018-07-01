@@ -42,7 +42,7 @@ export class TcSigninComponent implements OnInit, OnDestroy{
                     name: this.authService.currentUser.username,
                     email: this.authService.currentUser.email
                 });
-                window.analytics.track('Sign In', {
+                window.analytics.track('Signed in', {
                     id: this.authService.currentUser._id,
                     email: this.authService.currentUser.email
                 });

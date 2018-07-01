@@ -27,10 +27,9 @@ export class TcDiscoverComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.t.langInitialized) {
+        if(this.t.langInitialized)
             this.titleService.setTitle(this.t._.header.discover_title + ' | TidyCards');
-            window.analytics.page('Viewed Discover');
-        }
+        window.analytics.page('Viewed Discover');
         this.loadFeaturedCollections();
         this.loadPopularCollections();
         this.loadLastCollections();

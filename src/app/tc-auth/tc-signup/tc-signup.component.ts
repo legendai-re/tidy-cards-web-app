@@ -127,7 +127,7 @@ export class TcSignupComponent implements OnInit {
                 name: this.authService.currentUser.username,
                 email: this.authService.currentUser.email
             });
-            window.analytics.track('Sign Up', {
+            window.analytics.track('Signed up', {
                 id: this.authService.currentUser._id,
                 email: this.authService.currentUser.email
             });

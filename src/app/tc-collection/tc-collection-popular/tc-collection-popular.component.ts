@@ -34,7 +34,7 @@ export class TcCollectionPopularComponent implements OnInit {
     ngOnInit() {
         if(this.t.langInitialized)
             this.titleService.setTitle(this.t._.collection.popular_title + ' | TidyCards');
-            window.analytics.page('Viewed Popular collections');
+        window.analytics.page('Viewed Popular collections');
         this.pageNb = 0;
         this.loadingCollections = false;
         this.haveMoreCollections = true;
