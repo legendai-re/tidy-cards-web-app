@@ -122,8 +122,13 @@ export class TcSignupComponent implements OnInit {
                 this.signupData.password
             );
         this.authService.signup(user).then(success => {
+            window.analytics.alias(this.authService.getAnonymousUuid(), this.authService.currentUser._id)
             window.analytics.identify(this.authService.currentUser._id, {
                 name: this.authService.currentUser.username,
+                email: this.authService.currentUser.email
+            });
+            window.analytics.track('Sign Up', {
+                id: this.authService.currentUser._id,
                 email: this.authService.currentUser.email
             });
             this.router.navigate(['/']);

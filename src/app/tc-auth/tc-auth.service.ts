@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { TcUser } from '../tc-user/tc-user.class';
 import { TcApiUrl } from '../tc-shared/tc-api-url';
 import { TcLanguageService } from '../tc-language/tc-language.service';
+import { UUID } from 'angular2-uuid';
 
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -138,6 +139,19 @@ export class TcAuthService {
     window.analytics.track('Accepted cookies');
   }
 
+  public getAnonymousUuid(){
+    var cookieUuid = this.cookieService.get('tidycards-segment-uuid');
+    if(!!cookieUuid){
+      return cookieUuid;
+    }else{
+      cookieUuid = UUID.UUID()
+      var now = new Date();
+      now.setFullYear(now.getFullYear() + 2)
+      this.cookieService.set('tidycards-segment-uuid', cookieUuid, now)
+      return cookieUuid
+    }
+  }
+
   public initCurrentUser(): Promise<Boolean> {
     this.initCookieConsent()
     return new Promise<Boolean>((resolve, reject) => {
@@ -160,6 +174,7 @@ export class TcAuthService {
 
   public logout(): void {
     this.getLogout().subscribe(success => {
+      window.analytics.track('Logout');
       this.isLoggedIn = false;
       this.currentUser = null;
       this.languageService.loadLanguage(null);

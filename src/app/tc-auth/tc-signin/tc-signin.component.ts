@@ -37,6 +37,11 @@ export class TcSigninComponent implements OnInit, OnDestroy{
         this.authService.login(this.username, this.password).then(result => {
             this.loginFailed = !result.success;
             if (result.success) {
+                window.analytics.alias(this.authService.getAnonymousUuid(), this.authService.currentUser._id)
+                window.analytics.identify(this.authService.currentUser._id, {
+                    name: this.authService.currentUser.username,
+                    email: this.authService.currentUser.email
+                });
                 window.analytics.track('Sign In', {
                     id: this.authService.currentUser._id,
                     email: this.authService.currentUser.email
