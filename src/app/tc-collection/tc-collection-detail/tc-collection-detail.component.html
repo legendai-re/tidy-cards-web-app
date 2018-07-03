@@ -168,16 +168,71 @@
 
       <div class="collection-container--list" tc-sortable [list]=collection._items [ghostClass]="'collection-item-ghost'" (itemMoved)="onItemMoved($event)" *ngIf="itemLoaded && collection._items.length > 0">
         <tc-item class="ui-state-default collection-item--container" [item]=item [isAuthor]="haveEditRights" (deletedItem)="onDeletedItem($event)" *ngFor="let item of collection._items"></tc-item>
+
+        <ng-container *ngIf="itemLoaded && collection._items.length > 0">
+          <a href="javascript:void(0)" class="collection--load-more btn btn-secondary btn-block" *ngIf="itemLoaded && haveMoreItems && !loadingItems" (click)="loadNextPage()">{{t._.action?.load_more}}</a>
+          <p class="loading-more" *ngIf="loadingItems">{{t._.action?.loading}}</p>
+          <!-- <p class="no-more" *ngIf="!haveMoreItems && pageNb > 0">{{t._.collection?.item_list_end}}</p> -->
+        </ng-container>
       </div>
 
-      <div class="collection-container--footer" *ngIf="itemLoaded && collection._items.length > 0">
+      <div class="collection-container--footer">
+        <div class="collection-container--footer-section">
+          <p class="collection-container--footer-section-title">Like what you read?</p>
+          <p>Save this curated list in your favorites or share it with the world!</p>
+          <div class="collection-container--footer-actions">
+            <div class="collection-container--footer-fav" *ngIf="collection.visibility != 'PRIVATE'">
+              <a href="javascript:void(0)" class="btn btn-collection-fav" (click)="onStarCliked()">
+                <ng-container *ngIf="collection._star">
+                  <span class="icon is-highlighted">{{ t._.icon?.favorite?.filled }}</span>
+                  <span>Added to favorites</span>
+                </ng-container>
+                <ng-container *ngIf="!collection._star">
+                  <span class="icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
+                  <span>Add to favorites</span>
+                </ng-container>
+              </a>
+              <span class="collection-container--footer-fav-count">{{collection.starsCount}} people added this list to their favorites</span>
+            </div>
+            <ul class="collection-container--footer-share">
+              <li>
+                <a href="https://twitter.com/intent/tweet?text=“{{collection.title}}” by @ajouterletwittersilestprésent https://tidy.cards/c/{{collection._id}} via @tidycardsapp" target="_blank" rel="nofollow">
+                  Tweet
+                </a>
+              </li>
+              <li>Facebook</li>
+            </ul>
+          </div>
+        </div>
+        <div class="collection-container--footer-section">
+          <div class="collection-container--footer-author">
 
-        <a href="javascript:void(0)" class="collection--load-more btn btn-secondary btn-block" *ngIf="itemLoaded && haveMoreItems && !loadingItems" (click)="loadNextPage()">{{t._.action?.load_more}}</a>
-        <p class="loading-more" *ngIf="loadingItems">{{t._.action?.loading}}</p>
-        <p class="no-more" *ngIf="!haveMoreItems && pageNb > 0">{{t._.collection?.item_list_end}}</p>
+              <a href="javascript:void(0)" class="collection-container--thumbnail avatar avatar--64" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">
+                <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                <span class="avatar-char">{{collection._author.name.charAt(0)}}</span>
+              </a>
+              <div class="collection-container--footer-author-infos">
 
+                <div class="collection-container--footer-author-title">
+                  <span class="d-none d-lg-inline">{{t._.collection?.by_title}}</span>
+                  <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a>
+                </div>
+                <p *ngIf="collection._author?.bio">{{collection._author?.bio}}</p>
+                <p class="collection-container--footer-collaborators" *ngIf="collection._collaborators.length > 0">
+                  In collaboration with
+                  <ng-container *ngFor="let user of collection._collaborators; let isFirst=first; let isLast=last">
+                    <ng-container *ngIf="!isFirst && collection._collaborators.length > 1">
+                      {{isLast ? ' '+ t._.word?.and +' ' : ', '}}
+                    </ng-container>
+                    <!-- TODO : enpecher les espaces avant les virgules !!!!! -->
+                    <a href="javascript:void(0)" title="{{user.name}}" [routerLink]="['/', user.username]">{{user.name}}</a>
+                  </ng-container>
+                </p>
+            </div>
+
+          </div>
+        </div>
       </div>
-
 
     </div>
 

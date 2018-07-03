@@ -14,7 +14,7 @@
         </a>
         <div class="card-collection-details">
             <a href="javascript:void(0)" [routerLink]="['/', collection._author?.username]" title="{{collection._author?.name}}">
-                <div class="card-avatar avatar avatar--60">
+                <div class="card-avatar avatar avatar--64">
                     <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('60x60')" alt="{{collection._author?.name}} avatar">
                     {{collection._author?.name?.charAt(0)}}
                 </div>
