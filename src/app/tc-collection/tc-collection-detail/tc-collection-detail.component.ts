@@ -50,7 +50,8 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public searchCollabInput: string;
   public newCollab: TcUser;
   public searchCollabsResult: TcUser[];
-  public searchCollabsEmailResult: TcUser;
+  public inviteCollabEmail: string;
+  public invitationDone: boolean;
   public typingSearchCollabTimer;
   public doneTypingSearchCollabInterval: number;
   public searchCollabIsloading: boolean;
@@ -356,20 +357,21 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       this.searchCollabIsloading = false;
       return;
     }
+    this.invitationDone = false;
+    this.inviteCollabEmail = null;
     this.searchCollabIsloading = true;
     if(this.searchCollabInput.indexOf('@') >= 0){
       const params = new URLSearchParams();
       params.set('populate', '_avatar');
       this.userService.getUser(this.searchCollabInput.trim(), params).subscribe((user) => {
         this.searchCollabsResult = [];
-        if(user._id != this.collection._author._id)
-          this.searchCollabsEmailResult = user;
-        else
-          this.searchCollabsEmailResult = null;
+        if(user._id != this.collection._author._id) {
+          this.searchCollabsResult.push(user)
+        }
         this.searchCollabIsloading = false;
       }, () => {
+        this.inviteCollabEmail = this.searchCollabInput.trim();
         this.searchCollabsResult = [];
-        this.searchCollabsEmailResult = null;
         this.searchCollabIsloading = false;
       });
     }else{
@@ -387,18 +389,16 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
           }
         }
         this.searchCollabsResult = users;
-        this.searchCollabsEmailResult = null;
         this.searchCollabIsloading = false;
       }, () => {
         this.searchCollabsResult = [];
-        this.searchCollabsEmailResult = null;
         this.searchCollabIsloading = false;
       });
     }
   }
 
   public setSearchCollabIntent(val: boolean){
-    this.searchCollabsEmailResult = null;
+    this.inviteCollabEmail = null;
     if(val){
       this.searchCollabIntent = true;
       this.searchCollabsResult = [];
@@ -417,6 +417,12 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
         collaborator_id: user._id,
         collection_id: this.collection._id
       });
+    });
+  }
+
+  public inviteCollaborator(user: TcUser) {
+    this.userService.putUserInvite(this.inviteCollabEmail).subscribe((res) => {
+      this.invitationDone = true;
     });
   }
 

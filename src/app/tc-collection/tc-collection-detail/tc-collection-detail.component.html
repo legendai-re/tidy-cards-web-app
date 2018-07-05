@@ -177,11 +177,11 @@
       </div>
 
       <div class="collection-container--footer">
-        <div class="collection-container--footer-section">
+        <div class="collection-container--footer-section" *ngIf="collection.visibility != 'PRIVATE'">
           <p class="collection-container--footer-section-title">Like what you read?</p>
           <p>Save this curated list in your favorites or share it with the world!</p>
           <div class="collection-container--footer-actions">
-            <div class="collection-container--footer-fav" *ngIf="collection.visibility != 'PRIVATE'">
+            <div class="collection-container--footer-fav">
               <a href="javascript:void(0)" class="btn btn-collection-fav" (click)="onStarCliked()">
                 <ng-container *ngIf="collection._star">
                   <span class="icon is-highlighted">{{ t._.icon?.favorite?.filled }}</span>
@@ -333,7 +333,7 @@
       <div class="collaborators--content-wrapper">
         <h2 class="collaborators--content-title">{{t.format(t._.collection.collaborators.manage.title, [collection.collaboratorsCount + 1])}}</h2>
 
-        <div class="collaborators--search" *ngIf="haveEditRights">
+        <div class="collaborators--search" *ngIf="isAuthor">
           <input [(ngModel)]='searchCollabInput' (click)="setSearchCollabIntent(true)" (keyup)="onSearchCollabKeyUp()" (keydown)="onSearchCollabKeyDown()" type="text" id="inputSearchCollab" class="form-control" placeholder="{{t._.collection?.collaborators?.actions?.search}}"/>
           <a class="collaborators--search-close" [class.hidden]="searchCollabIntent == false" (click)="setSearchCollabIntent(false)">{{t._.action?.cancel}}</a>
           <!-- Quand t'appuie sur "Cancel" faudrait effacer le contenu de la recherche -->
@@ -379,27 +379,20 @@
             </li>
           </ng-container>
 
-          <li class="collaborators--list-item" *ngIf="!searchCollabIsloading && searchCollabsEmailResult">
-            <div class="collaborators--list-item-thumbnail avatar avatar--40" title="{{searchCollabsEmailResult.email}}">
-              <span class="avatar-char">{{searchCollabsEmailResult?.name.charAt(0)}}</span>
+          <li class="collaborators--list-item" *ngIf="!searchCollabIsloading && inviteCollabEmail && searchCollabsResult.length == 0">
+            <div class="collaborators--list-item-thumbnail avatar avatar--40" title="{{inviteCollabEmail}}">
+              <span class="avatar-char">{{inviteCollabEmail?.charAt(0)}}</span>
             </div>
             <div class="collaborators--list-item-infos">
-              <p class="collaborators--list-item-infos-name">{{searchCollabsEmailResult.email}}</p>
+              <p class="collaborators--list-item-infos-name">{{inviteCollabEmail}}</p>
             </div>
-            <div class="collaborators--list-item-actions" *ngIf="!collection.isCollaborator(searchCollabsEmailResult)">
-              <a href="javascript:void(0)" (click)="addCollaborator(searchCollabsEmailResult)" class="collaborators--list-item-actions-link">{{t._.action?.invite}}</a>
-            </div>
-            <div class="collaborators--list-item-actions" *ngIf="collection.isCollaborator(searchCollabsEmailResult)">
-              <button class="collaborators--list-item-role dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{t._.collection?.collaborators?.manage?.collaborator}}
-              </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <a href="javascript:void(0)" (click)="deleteCollaborator(searchCollabsEmailResult)" class="dropdown-item">{{t._.collection?.collaborators?.actions?.remove}}</a>
-              </div>
+            <div class="collaborators--list-item-actions">
+              <a *ngIf="!invitationDone" href="javascript:void(0)" (click)="inviteCollaborator(inviteCollabEmail)" class="collaborators--list-item-actions-link">{{t._.action?.invite}}</a>
+              <span *ngIf="invitationDone" class="collaborators--list-item-actions-link">An email have been sent</span>
             </div>
           </li>
 
-          <li class="collaborators--list-item" *ngIf="searchCollabIntent && !searchCollabIsloading && searchCollabsResult.length == 0 && !searchCollabsEmailResult">
+          <li class="collaborators--list-item" *ngIf="searchCollabIntent && !searchCollabIsloading && searchCollabsResult.length == 0 && !inviteCollabEmail">
             <p class="collaborators--list-empty">
               There is no result…
             </p>

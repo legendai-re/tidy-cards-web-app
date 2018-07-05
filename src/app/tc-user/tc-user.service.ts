@@ -62,6 +62,14 @@ export class TcUserService {
             .catch(this.handleError);
     }
 
+    public putUserInvite(email: String): Observable<TcUser> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.put(TcApiUrl.USERS + '/invite/' +  email, {}, options)
+            .map((res) => {return res.json()})
+            .catch(this.handleError);
+    }
+
     public getValidUsername(username: string): Observable<boolean>{
         let params = new URLSearchParams();
         params.set('username', username);
