@@ -267,6 +267,40 @@
   list-style: none;
 }
 
+.collection-container--footer-share-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 2.375rem;
+  padding: 0 .25rem;
+  font: 0/0 a;
+  color: $gray-600;
+  text-decoration: none;
+
+  &:hover {
+    color: $gray-800;
+    text-decoration: none;
+  }
+
+  &:before {
+    content: "";
+    font-family: $font-icons;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &.is-twitter:before {
+    content: "🐥";
+  }
+
+  &.is-facebook:before {
+    content: "👁";
+  }
+}
+
 .btn-collection-fav {
   display: flex;
   flex-direction: row;
@@ -314,7 +348,7 @@
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5rem;
-  margin: 0;
+  margin: .25rem 0;
 
   & + p {
     margin: 0;
