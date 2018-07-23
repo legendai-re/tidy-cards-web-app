@@ -93,6 +93,10 @@ export class TcCollection {
     return false;
   }
 
+  public getEncodedUri(){
+    return encodeURI("https://tidy.cards/c/"+ this._id)
+  }
+
   public static get VISIBILITY() {
     return {
       "PRIVATE":{

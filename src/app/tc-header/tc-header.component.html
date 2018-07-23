@@ -22,14 +22,15 @@
             <form class="header-search-bar">
               <span id="header-search" class="header-search-bar--icon">search</span>
               <input class="header-search-bar--input"
-                     name="searchQuery"
-                     placeholder="{{t._?.header?.search_placeholder}}"
-                     aria-describedby="header-search"
-                     [(ngModel)]="searchQuery"
-                     (focus)="searchIntent()"
-                     (click)="searchIntent()"
-                     (keyup)="onQueryKeyUp()"
-                     (keydown)="onQueryKeyDown()">
+                    autocomplete="off"
+                    name="searchQuery"
+                    placeholder="{{t._?.header?.search_placeholder}}"
+                    aria-describedby="header-search"
+                    [(ngModel)]="searchQuery"
+                    (focus)="searchIntent()"
+                    (click)="searchIntent()"
+                    (keyup)="onQueryKeyUp()"
+                    (keydown)="onQueryKeyDown()">
               <a href="javascript:void(0)" class="header-search-bar--cancel" [class.hidden]="headerState != 'search'" (click)="cancelSearch()">{{t._.action?.cancel}}</a>
             </form>
           </li>

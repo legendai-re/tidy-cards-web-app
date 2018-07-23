@@ -1,7 +1,7 @@
 <section class="auth-section">
   <div class="auth-container">
     <a href="javascript:void(0)" [routerLink]="['/']">
-      <h1 class="icon-invow logo auth-logo">{{t._.app_name_capitals}}</h1>
+      <h1 class="icon-tidycards logo auth-logo">{{t._.app_name_capitals}}</h1>
     </a>
     <h2 class="auth-heading" *ngIf="confirmationInProgress">{{t._.confirm_email?.title}}</h2>
     <h2 class="auth-heading" *ngIf="!confirmationInProgress && emailConfirmed">{{t._.word?.congrats}} {{authService.currentUser.name}}!</h2>

@@ -176,7 +176,7 @@
         </ng-container>
       </div>
 
-      <div class="collection-container--footer">
+      <div class="collection-container--footer" *ngIf="itemLoaded && collection._items.length > 0">
         <div class="collection-container--footer-section" *ngIf="collection.visibility != 'PRIVATE'">
           <p class="collection-container--footer-section-title">Like what you read?</p>
           <p>Save this curated list in your favorites or share it with the world!</p>
@@ -196,11 +196,13 @@
             </div>
             <ul class="collection-container--footer-share">
               <li>
-                <a href="https://twitter.com/intent/tweet?text=“{{collection.title}}” by @ajouterletwittersilestprésent https://tidy.cards/c/{{collection._id}} via @tidycardsapp" target="_blank" rel="nofollow">
+                <a href="https://twitter.com/intent/tweet?text=“{{collection.title}}” by {{collection._author.name}} https://tidy.cards/c/{{collection._id}} via @tidycardsapp" target="_blank" rel="nofollow">
                   Tweet
                 </a>
               </li>
-              <li>Facebook</li>
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u={{collection.getEncodedUri()}}&display=popup&ref=plugin&src=share_button" target="_blank" rel="nofollow">Facebook</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -218,16 +220,16 @@
                   <a href="javascript:void(0)" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">{{collection._author?.name}}</a>
                 </div>
                 <p *ngIf="collection._author?.bio">{{collection._author?.bio}}</p>
-                <p class="collection-container--footer-collaborators" *ngIf="collection._collaborators.length > 0">
+                <span class="collection-container--footer-collaborators" *ngIf="collection._collaborators.length > 0">
                   In collaboration with
                   <ng-container *ngFor="let user of collection._collaborators; let isFirst=first; let isLast=last">
                     <ng-container *ngIf="!isFirst && collection._collaborators.length > 1">
-                      {{isLast ? ' '+ t._.word?.and +' ' : ', '}}
+                      <span>{{isLast ? ' '+ t._.word?.and +' ' : ', '}}</span>
                     </ng-container>
                     <!-- TODO : enpecher les espaces avant les virgules !!!!! -->
                     <a href="javascript:void(0)" title="{{user.name}}" [routerLink]="['/', user.username]">{{user.name}}</a>
                   </ng-container>
-                </p>
+                </span>
             </div>
 
           </div>
