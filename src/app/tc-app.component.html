@@ -1,14 +1,10 @@
-<main class="application-ui" [class.is-hidden]="!authService.authInitialized || !t.langInitialized">
+<main class="application-ui" [class.is-hidden]="!authService.authInitialized || !t.langInitialized" [class.has-cookies-flash]="authService.showCookieConsent">
 
-  <div class="application-container" [class.has-cookies-flash]="authService.showCookieConsent">
+  <tc-header class="application-header"></tc-header>
 
-    <tc-header class="application-header"></tc-header>
+  <router-outlet></router-outlet>
 
-    <router-outlet></router-outlet>
-
-    <tc-footer class="application-footer" *ngIf="!headerService.noHeader && !headerService.noFooter"></tc-footer>
-
-  </div>
+  <tc-footer class="application-footer" *ngIf="!headerService.noHeader && !headerService.noFooter"></tc-footer>
 
   <div class="application-flash" *ngIf="authService.showCookieConsent">
     <div class="container">

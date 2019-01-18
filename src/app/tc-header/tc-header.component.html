@@ -1,4 +1,111 @@
-<div class="header"
+<div class="header" [class.is-hidden]="noHeader" *ngIf="!headerService.noHeader">
+  <a class="header-brand" href="javascript:void(0)" [routerLink]="['/']">
+    <h1 class="header-brand--icon is-beta">{{t._?.app_name_capitals}}</h1>
+  </a>
+  <form class="header-search">
+    <span class="header-search--icon">search</span>
+    <input class="header-search--input" placeholder="{{t._?.header?.search_placeholder}}" autocomplete="off" name="searchQuery" aria-describedby="header-search" [(ngModel)]="searchQuery" (focus)="searchIntent()" (click)="searchIntent()" (keyup)="onQueryKeyUp()" (keydown)="onQueryKeyDown()">
+    <a href="javascript:void(0)" class="header-search--cancel" [class.is-hidden]="headerState != 'search'" (click)="cancelSearch()">
+      {{t._.action?.cancel}}
+    </a>
+  </form>
+  <nav class="header-nav nav d-none d-lg-flex">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">
+      {{t._?.header?.dashboard_title}}
+    </a>
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="authService.isLoggedIn">
+      {{t._?.header?.discover_title}}
+    </a>
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/c/last']" *ngIf="authService.isLoggedIn">
+      {{t._?.header?.latest_title}}
+    </a>
+  </nav>
+
+  <nav class="header-nav nav ml-auto">
+    <li class="header-nav--item nav-item bottom-navbar--signin d-none d-lg-flex" *ngIf="!authService.isLoggedIn && headerState == 'discover'" >
+      <div class="header-nav--item-content">
+        <span class="header-navbar--nav-link-text">
+          {{t._?.auth?.already_member_title}}
+        </span>
+        <a class="nav-link active" routerLinkActive="active" [routerLink]="['/signin']">
+          {{t._?.header?.signin_title}}
+        </a>
+      </div>
+    </li>
+    <li class="header-nav--item nav-item bottom-navbar--signup  d-none d-lg-flex" *ngIf="!authService.isLoggedIn && headerState != 'discover'" >
+      <div class="header-navbar--nav-item-content">
+        <span class="header-navbar--nav-link-text">
+          {{t._?.auth?.not_member_title}}
+        </span>
+        <a class="nav-link cta" routerLinkActive="active" [routerLink]="['/signin']">
+          {{t._?.auth?.signup_today_button}}
+        </a>
+      </div>
+    </li>
+
+    <a class="nav-link d-none d-lg-flex" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
+      <span>{{authService.currentUser.name}}</span>
+      <div class="nav-link--avatar avatar">
+        <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('40x40')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
+        <span class="avatar-char">{{authService.currentUser.name.charAt(0)}}</span>
+      </div>
+    </a>
+
+    <div class="dropdown d-none d-lg-flex" *ngIf="authService.isLoggedIn">
+      <a class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="icon">more_vert</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-item--infos">
+          <div class="dropdown-item--infos-title">
+            {{authService.currentUser.name}}
+          </div>
+          <div class="dropdown-item--infos-subtitle">
+            @{{authService.currentUser.username}}
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" [routerLink]="['/', authService.currentUser.username]">
+          {{t._?.header?.profile_menu}}
+        </a>
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/logout']">
+          {{t._?.header?.logout_menu}}
+        </a>
+        <div class="dropdown-divider" *ngIf="authService.currentUser?.isGranted('ROLE_ADMIN')"></div>
+        <a class="dropdown-item" *ngIf="authService.currentUser?.isGranted('ROLE_ADMIN')" [routerLink]="['/admin']">
+          {{t._?.header?.admin_menu}}
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<tc-search-header class="application-content" *ngIf="headerState == 'search'"></tc-search-header>
+
+<nav class="footer-navbar nav d-lg-none">
+  <a class="nav-link" (focus)="searchIntent()" (click)="searchIntent()">
+    <span>{{t._?.header?.search_title}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">
+    <span>{{t._?.header?.discover_title}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/about']" *ngIf="!authService.isLoggedIn">
+    <span>{{t._?.header?.about_title}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
+    <span>{{authService.currentUser.name}}</span>
+    <div class="header-navbar--avatar avatar">
+      <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('40x40')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
+      <span class="avatar-char">{{authService.currentUser.name.charAt(0)}}</span>
+    </div>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
+    <span>{{t._?.header?.signin_title}}</span>
+  </a>
+</nav>
+
+
+<!-- <div class="header"
     [class.is-searching]="headerState == 'search'"
     [class.is-hidden]="noHeader"
     [class.is-page]="headerState == 'collection' || headerState == 'page'"
@@ -10,10 +117,6 @@
       <a class="header-nav--brand navbar-brand" href="javascript:void(0)" [routerLink]="['/']">
         <h1 class="icon beta">{{t._?.app_name_capitals}}</h1>
       </a>
-
-      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavbar" aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
 
       <div class="bottom-nav">
         <ul class="header-navbar navbar-nav">
@@ -163,4 +266,4 @@
 
   <div class="header-cover" *ngIf="image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}"></div>
 
-</div>
+</div> -->

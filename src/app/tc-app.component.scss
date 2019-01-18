@@ -20,39 +20,17 @@
   display: flex;
   flex-direction: column;
   z-index: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   transition: opacity .6s ease;
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   font-feature-settings: 'liga';
-  
+
   &.is-hidden {
     opacity: 0;
     pointer-events: none;
-  }
-}
-
-.application-flash {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  z-index: 100;
-  width: 100vw;
-  height: auto;
-}
-
-.application-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-  z-index: 100;
-  overflow: hidden;
-
-  @include media-breakpoint-down(md) {
-    padding-bottom: 3.5rem;
   }
 
   &.has-cookies-flash {
@@ -65,32 +43,20 @@
 }
 
 .application-header {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  // height: 3rem;
+  z-index: 200;
 }
 
 .application-content {
   position: relative;
   display: flex;
   flex-direction: column;
-  z-index: 1;
-
-  &.is-list-collection {
-    margin-top: -5rem;
-  }
-
-  &.is-page {
-    margin-top: -28rem;
-  }
-
-  &.is-profile {
-    margin-top: -7.5rem;
-  }
-
-  &.is-public {
-    z-index: 200;
-  }
+  z-index: 100;
+  padding-top: 3rem;
 }
 
 .application-footer {
@@ -103,6 +69,7 @@
 .application-flash {
   position: fixed;
   display: flex;
+  flex-direction: column;
   background-color: $white;
   width: 100vw;
   height: auto;
@@ -110,6 +77,7 @@
   bottom: 0;
   box-shadow: 0 .125rem 1.5rem rgba($black,.25);
   color: $gray-700;
+  z-index: 300;
 
   @include media-breakpoint-down(md) {
     width: auto;
