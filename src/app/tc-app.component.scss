@@ -88,3 +88,79 @@
     margin-bottom: 4rem;
   }
 }
+
+// Navbar
+
+.nav-link {
+  position: relative;
+  display: flex;
+  background-color: transparent;
+  font-family: $font-brand;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 2rem;
+  color: $gray-600;
+  padding: .25rem .5rem;
+  margin: 0;
+  border-radius: $border-radius-base;
+
+  &:not(:last-child) {
+    margin: 0 .25rem 0 0;
+  }
+
+  &:hover, &:focus {
+    background-color: $gray-075;
+  }
+
+  &:active {
+    background-color: $gray-300;
+  }
+
+  &.active {
+    color: $brand-primary;
+
+    &:hover, &:focus {
+      background-color: rgba($brand-primary, .1);
+    }
+
+    &:active {
+      background-color: rgba($brand-primary, .25);
+    }
+  }
+
+  &.cta {
+    line-height: 1.875rem;
+    padding: 0 .75rem;
+    color: $brand-primary;
+    border: 1px solid $brand-primary;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+
+    &:hover, &:focus {
+      background-color: rgba($brand-primary, .1);
+    }
+
+    &:active {
+      background-color: rgba($brand-primary, .25);
+    }
+  }
+
+  .icon {
+    font-family: $font-mi;
+    font-weight: normal;
+    font-size: 1.5rem;
+    font-style: normal;
+    line-height: 2rem;
+    margin: 0 -.5rem;
+    text-decoration: none;
+  }
+}
+
+.nav-link--avatar {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 -.25rem 0 .5rem;
+}

@@ -33,3 +33,33 @@
 
   </div>
 </div>
+
+<nav class="footer-navbar nav d-lg-none">
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">
+    <span class="icon">home</span>
+    <span>{{t._?.header?.dashboard_title}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/discover']">
+    <span class="icon">explore</span>
+    <span>{{t._?.header?.discover_title}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/c/last']">
+    <span class="icon">new_releases</span>
+    <span>{{t._?.header?.latest_title}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/about']" *ngIf="!authService.isLoggedIn">
+    <span class="icon">info</span>
+    <span>{{t._?.header?.about_title}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
+    <div class="nav-link--avatar avatar">
+      <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('40x40')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
+      <span class="avatar-char">{{authService.currentUser.name.charAt(0)}}</span>
+    </div>
+    <span>{{authService.currentUser.name}}</span>
+  </a>
+  <a class="nav-link" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
+    <span class="icon">person</span>
+    <span>{{t._?.header?.signin_title}}</span>
+  </a>
+</nav>
