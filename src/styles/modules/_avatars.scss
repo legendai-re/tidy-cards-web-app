@@ -40,17 +40,24 @@
     }
 }
 
+.avatar--24 {
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: .75rem;
+}
+
 .avatar--32 {
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
     font-size: 1rem;
 }
 
 .avatar--40 {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
     font-size: 1.25rem;
 }
 

@@ -1,3 +1,30 @@
+.thumbnails {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .thumbnail {
+    z-index: 1;
+    
+    &:not(:first-child) {
+      margin-left: -.75rem;
+    }
+
+    &:first-child {
+      z-index: 2;
+    }
+
+    &:last-child {
+      z-index: 0;
+    }
+  }
+}
+
 .thumbnail {
   &:after {
     content: "";

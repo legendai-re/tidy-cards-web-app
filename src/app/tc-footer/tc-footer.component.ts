@@ -18,8 +18,13 @@ export class TcFooterComponent implements OnInit {
 
 	public isUpdatingLanguage: boolean;
 	public tmpUser: TcUser;
+	public currentDate: Date;
 
-    constructor(public headerService: TcHeaderService, public t: TcLanguageService, public authService: TcAuthService, public userService: TcUserService, public router: Router){
+    constructor(public headerService: TcHeaderService,
+								public t: TcLanguageService,
+								public authService: TcAuthService,
+								public userService: TcUserService,
+								public router: Router){
    		this.authService.getAuthInitializedEmitter().subscribe((value) => {
    			if(this.authService.isLoggedIn){
             	this.tmpUser = TcUser.createFormJson(this.authService.currentUser);
@@ -29,6 +34,7 @@ export class TcFooterComponent implements OnInit {
     }
 
     ngOnInit(){
+			this.currentDate = new Date();
     }
 
     public updateLanguage(){

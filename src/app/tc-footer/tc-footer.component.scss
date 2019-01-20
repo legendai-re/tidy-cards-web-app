@@ -10,109 +10,68 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-
-.footer-container {
-  position: relative;
-  display: flex;
-  flex: 1 0 auto;
-  flex-direction: column;
-  margin-top: auto;
-}
-
-.footer {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  background: $gray-100;
-  padding: 2rem 0 2rem;
-  color: $black-light;
-  margin-top: 4rem;
-
-  @include media-breakpoint-down(md) {
-    margin-top: 2rem;
-    margin-bottom: 0;
-  }
-
-  &.is-hidden {
-    display: none;
-  }
-
-  .footer-container {
-    flex-direction: row;
-
-    @include media-breakpoint-down(sm) {
-      flex-direction: column;
-    }
-  }
-
-  .footer-brand {
-    position: relative;
-    display: flex;
-    flex: 0 0 auto;
-    flex-direction: row;
-  }
-
-  .logo {
-    width: 2.5rem;
-    height: 2.5rem;
-    text-indent: 0;
-    font-size: 2.5rem;
-    line-height: 48px;
-  }
-
-  .footer-logo {
-    float: left;
-    display: inline-block;
-    margin: 0 10px 0 0;
-  }
-
-  .footer-copy {
-    float: left;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 40px;
-  }
+.footer-navbar-text {
+  font-size: .875rem;
+  line-height: 1.5rem;
+  font-weight: normal;
+  color: $gray-600;
+  margin: 0;
 }
 
 .footer-nav {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  height: 2.5rem;
-  padding: 0;
-  margin: 0 0 0 auto;
-  list-style: none;
-  justify-content: flex-end;
+  .nav-link, .nav-select {
+    background-color: transparent;
+    font-size: .875rem;
+    line-height: 1.5rem;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
 
-  @include media-breakpoint-down(sm) {
-    margin: 0 auto;
-  }
-}
+    &:not(:last-child) {
+      margin: 0 1rem 0 0;
+    }
 
-.footer-nav--item {
-  font-size: .875rem;
-  line-height: 1.25rem;
-
-  &:not(:first-child) {
-    margin-left: .5rem;
+    &:hover, &:active, &:focus {
+      background-color: transparent;
+      text-decoration: underline;
+    }
   }
 
-  a {
+  .nav-link {
+    .icon {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  .nav-select {
     position: relative;
     display: flex;
-    background-color: transparent;
-    padding: 0 .5rem;
-    line-height: 2.5rem;
+    flex-direction: row;
+    align-items: center;
     color: $gray-600;
-    border-radius: $border-radius-small;
-    transition: background-color .3s ease;
+    cursor: pointer;
 
     &:hover {
-      background-color: rgba($black, .1);
-      text-decoration: none;
+      select {
+        text-decoration: underline;
+      }
+    }
+
+    select {
+      background-color: transparent;
+      appearance: none;
+      border: none;
+      font-size: .875rem;
+      color: $gray-600;
     }
   }
 }
+
+// Footer navbar
 
 .footer-navbar {
   position: fixed;

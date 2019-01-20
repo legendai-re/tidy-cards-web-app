@@ -1,41 +1,37 @@
-<div class="application-content is-list-collection"> <!-- TODO: [class.is-public]="!authService.isLoggedIn" -->
-  <div class="container">
+<div class="page-container">
 
-    <div class="section">
-      <div class="section-header dark-bg">
-        <h2 class="section-header--title">{{t._.collection?.featured_title}}</h2>
-        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/c/featured']">{{t._.action?.see_all}}</a>
+  <!-- TODO: *ngIf="!authService.isLoggedIn" -> afficher hero signup -->
+
+  <div class="page-content container">
+
+    <section class="page-heading">
+      <h2 class="page-heading--title">{{t._.discover?.page_title}}</h2>
+      <p class="page-heading--caption">{{t._.discover?.page_caption}}</p>
+    </section>
+
+    <section class="page-section">
+      <div class="page-section--heading">
+        <h2 class="page-section--heading--title">{{t._.collection?.featured_title}}</h2>
+        <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/c/featured']">{{t._.action?.see_all}}</a>
       </div>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let collection of featuredCollections">
           <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <div class="section-header">
-        <h2 class="section-header--title">{{t._.collection?.popular_title}}</h2>
-        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/c/trending']">{{t._.action?.see_all}}</a>
+    <section class="page-section">
+      <div class="page-section--heading">
+        <h2 class="page-section--heading--title">{{t._.collection?.popular_title}}</h2>
+        <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/c/trending']">{{t._.action?.see_all}}</a>
       </div>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let collection of popularCollections">
           <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
         </div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <h2 class="section-header--title">{{t._.collection?.last_title}}</h2>
-        <a class="section-header--more" href="javascript:void(0)" [routerLink]="['/c/last']">{{t._.action?.see_all}}</a>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let collection of lastCollections">
-          <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
-        </div>
-      </div>
-    </div>
+    </section>
 
   </div>
 </div>

@@ -1,9 +1,17 @@
-<div class="application-content is-list-collection">
-  <div class="container">
+<div class="page-container">
 
-    <div class="section">
-      <div class="section-header dark-bg">
-        <h2 class="section-header--title">{{t._.collection?.last_title}}</h2>
+  <!-- TODO: *ngIf="!authService.isLoggedIn" -> afficher hero signup -->
+
+  <div class="page-content container">
+
+    <section class="page-heading">
+      <h2 class="page-heading--title">{{t._.latest?.page_title}}</h2>
+      <p class="page-heading--caption">{{t._.latest?.page_caption}}</p>
+    </section>
+
+    <section class="page-section">
+      <div class="page-section--heading">
+        <h2 class="page-section--heading--title">{{t._.collection?.last_title}}</h2>
       </div>
 
       <div class="row">
@@ -17,7 +25,7 @@
         </div>
 
       </div>
-    </div>
+    </section>
 
   </div>
 </div>

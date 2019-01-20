@@ -1,167 +1,167 @@
-// PAGE HEADINGS
-.page-headings {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  // justify-content: center;
-  justify-content: flex-end;
-  min-height: 24rem;
-  transition: opacity .6s ease;
-  transition-delay: .4s;
-  padding: 6.5rem 1rem 4rem;
-
-  @include media-breakpoint-up(sm) {}
-
-  @include media-breakpoint-up(lg) {
-    padding: 6.5rem 4rem 4rem;
-  }
-
-  @include media-breakpoint-up(xl) {
-    padding: 6.5rem 12rem 4rem;
-  }
-
-  &.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .6s ease;
-  }
-}
-
-.page-headings--page-pre-title {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  color: rgba($white, .75);
-  margin: 0;
-
-  &:hover {
-    text-decoration: none;
-    color: rgba($white,.95)
-  }
-
-  &.is-featured {}
-
-  .icon + span {
-    padding: 0;
-  }
-
-  .icon {
-    font-family: $font-mi;
-    font-size: 1.125rem;
-    line-height: 1.5rem;
-    width: 1.125rem;
-    height: 1.5rem;
-    margin: 0 .25rem 0 0;
-    color: inherit;
-  }
-
-  span {
-    font-family: $font-brand;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.5rem;
-    color: inherit;
-  }
-}
-
-
-.page-headings--page-title {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 3.25rem;
-  text-align: center;
-  color: $white;
-  margin: .5rem 0 0;
-
-  &:last-child {
-    margin: .5rem 0 2rem;
-  }
-
-  @include media-breakpoint-down(md) {
-    font-size: 2.5rem;
-    line-height: 2.75rem;
-  }
-
-  @include media-breakpoint-down(sm) {
-    font-size: 2rem;
-    line-height: 2.25rem;
-  }
-}
-
-.page-headings--page-description {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-size: 1.125rem;
-  font-weight: normal;
-  line-height: 1.5rem;
-  color: rgba($white, .9);
-  margin: .5rem 0 0;
-
-  &:not(:last-child) {
-    margin: .5rem 0 1rem;
-  }
-}
-
-.page-headings--page-tags {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  font-size: 1.125rem;
-  font-weight: normal;
-  line-height: 1.5rem;
-  color: rgba($white, .75);
-  padding: 0;
-  margin: 0;
-  list-style: none;
-
-  .tag {
-    margin: 0 .5rem;
-    a {
-      color: rgba($white, .75);
-    }
-  }
-}
-
-.page-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: $white;
-  width: 100%;
-  height: auto;
-  padding: 1rem;
-  margin: 0;
-  border-radius: $border-radius-base;
-  box-shadow: 0 .125rem .25rem $box-shadow-color;
-  transition: min-height .4s ease;
-
-  &.wide {
-    padding: 4rem 1rem;
-  }
-}
-
-.page-content {
-  transition: opacity .6s ease;
-
-  &.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transition-delay: .6s;
-  }
-}
-
-.page-headings + .page-container {
-  .page-content {
-    transition-delay: .6s;
-
-    &.is-hidden {
-      transition-delay: 0s;
-    }
-  }
-}
+// // PAGE HEADINGS
+// .page-headings {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   // justify-content: center;
+//   justify-content: flex-end;
+//   min-height: 24rem;
+//   transition: opacity .6s ease;
+//   transition-delay: .4s;
+//   padding: 6.5rem 1rem 4rem;
+//
+//   @include media-breakpoint-up(sm) {}
+//
+//   @include media-breakpoint-up(lg) {
+//     padding: 6.5rem 4rem 4rem;
+//   }
+//
+//   @include media-breakpoint-up(xl) {
+//     padding: 6.5rem 12rem 4rem;
+//   }
+//
+//   &.is-hidden {
+//     opacity: 0;
+//     pointer-events: none;
+//     transition: opacity .6s ease;
+//   }
+// }
+//
+// .page-headings--page-pre-title {
+//   position: relative;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   color: rgba($white, .75);
+//   margin: 0;
+//
+//   &:hover {
+//     text-decoration: none;
+//     color: rgba($white,.95)
+//   }
+//
+//   &.is-featured {}
+//
+//   .icon + span {
+//     padding: 0;
+//   }
+//
+//   .icon {
+//     font-family: $font-mi;
+//     font-size: 1.125rem;
+//     line-height: 1.5rem;
+//     width: 1.125rem;
+//     height: 1.5rem;
+//     margin: 0 .25rem 0 0;
+//     color: inherit;
+//   }
+//
+//   span {
+//     font-family: $font-brand;
+//     font-size: 1rem;
+//     font-weight: 600;
+//     line-height: 1.5rem;
+//     color: inherit;
+//   }
+// }
+//
+//
+// .page-headings--page-title {
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   font-size: 3rem;
+//   font-weight: 600;
+//   line-height: 3.25rem;
+//   text-align: center;
+//   color: $white;
+//   margin: .5rem 0 0;
+//
+//   &:last-child {
+//     margin: .5rem 0 2rem;
+//   }
+//
+//   @include media-breakpoint-down(md) {
+//     font-size: 2.5rem;
+//     line-height: 2.75rem;
+//   }
+//
+//   @include media-breakpoint-down(sm) {
+//     font-size: 2rem;
+//     line-height: 2.25rem;
+//   }
+// }
+//
+// .page-headings--page-description {
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   text-align: center;
+//   font-size: 1.125rem;
+//   font-weight: normal;
+//   line-height: 1.5rem;
+//   color: rgba($white, .9);
+//   margin: .5rem 0 0;
+//
+//   &:not(:last-child) {
+//     margin: .5rem 0 1rem;
+//   }
+// }
+//
+// .page-headings--page-tags {
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   font-size: 1.125rem;
+//   font-weight: normal;
+//   line-height: 1.5rem;
+//   color: rgba($white, .75);
+//   padding: 0;
+//   margin: 0;
+//   list-style: none;
+//
+//   .tag {
+//     margin: 0 .5rem;
+//     a {
+//       color: rgba($white, .75);
+//     }
+//   }
+// }
+//
+// .page-container {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   background-color: $white;
+//   width: 100%;
+//   height: auto;
+//   padding: 1rem;
+//   margin: 0;
+//   border-radius: $border-radius-base;
+//   box-shadow: 0 .125rem .25rem $box-shadow-color;
+//   transition: min-height .4s ease;
+//
+//   &.wide {
+//     padding: 4rem 1rem;
+//   }
+// }
+//
+// .page-content {
+//   transition: opacity .6s ease;
+//
+//   &.is-hidden {
+//     opacity: 0;
+//     pointer-events: none;
+//     transition-delay: .6s;
+//   }
+// }
+//
+// .page-headings + .page-container {
+//   .page-content {
+//     transition-delay: .6s;
+//
+//     &.is-hidden {
+//       transition-delay: 0s;
+//     }
+//   }
+// }

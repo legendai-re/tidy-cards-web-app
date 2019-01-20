@@ -1,64 +1,53 @@
-<div class="footer">
-  <div class="container footer-container">
-
-    <div class="footer-brand d-none d-md-flex">
-      <h1 class="icon-tidycards logo footer-logo">{{t._?.app_name_capitals}}</h1>
-      <span class="footer-copy">© 2018 {{t._?.app_name_capitals}}</span>
+<div class="container">
+  <nav class="navbar">
+    <div class="footer-navbar-text navbar-text">
+      <span>© {{currentDate.getFullYear()}}</span>
+      <span>{{t._?.app_name_capitals}}</span>
     </div>
 
-    <nav class="footer-nav">
-      <li class="footer-nav--item">
-          <select class="custom-select select-sm" (change)="updateLanguage()" [(ngModel)]="t.unsafeCurrentLanguage" name="language" [disabled]="isUpdatingLanguage">
-              <option value="en">English</option>
-              <option value="fr">Français</option>
-          </select>
-          <small *ngIf="isUpdatingLanguage">Update in progress…</small>
-      </li>
-      <li class="footer-nav--item">
-        <a [routerLink]="['/about']" >{{t._.page?.about?.title}}</a>
-      </li>
-      <!-- <li class="footer-nav--item">
-        <a [routerLink]="['/contact']" >{{t._.page?.contact?.title}}</a>
-      </li>
-      <li class="footer-nav--item">
-        <a [routerLink]="['/team']" >{{t._.page?.team?.title}}</a>
-      </li> -->
-      <li class="footer-nav--item">
-        <a [routerLink]="['/terms']">{{t._.page?.terms?.title_short}}</a>
-      </li>
-      <li class="footer-nav--item">
-        <a [routerLink]="['/privacy']">{{t._.page?.privacy?.title_short}}</a>
-      </li>
-    </nav>
+    <ul class="footer-nav nav ml-auto">
+      <div class="nav-select dropdown-toggle" *ngIf="!isUpdatingLanguage">
+        <select (change)="updateLanguage()" [(ngModel)]="t.unsafeCurrentLanguage" name="language" [disabled]="isUpdatingLanguage">
+            <option value="en">English (US)</option>
+            <option value="fr">Français (FR)</option>
+        </select>
+      </div>
+      <div class="nav-link" *ngIf="isUpdatingLanguage">
+        <span class="icon">{{t._.icon?.waiting?.filled}}</span>
+      </div>
+      <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/about']" >{{t._.page?.about?.title}}</a>
+      <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/terms']">{{t._.page?.terms?.title_short}}</a>
+      <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/privacy']">{{t._.page?.privacy?.title_short}}</a>
+    </ul>
 
-  </div>
+  </nav>
 </div>
 
 <nav class="footer-navbar nav d-lg-none">
-  <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">
     <span class="icon">home</span>
     <span>{{t._?.header?.dashboard_title}}</span>
   </a>
-  <a class="nav-link" routerLinkActive="active" [routerLink]="['/discover']">
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/discover']">
     <span class="icon">explore</span>
     <span>{{t._?.header?.discover_title}}</span>
   </a>
-  <a class="nav-link" routerLinkActive="active" [routerLink]="['/c/last']">
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/c/last']">
     <span class="icon">new_releases</span>
     <span>{{t._?.header?.latest_title}}</span>
   </a>
-  <a class="nav-link" routerLinkActive="active" [routerLink]="['/about']" *ngIf="!authService.isLoggedIn">
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/about']" *ngIf="!authService.isLoggedIn">
     <span class="icon">info</span>
     <span>{{t._?.header?.about_title}}</span>
   </a>
-  <a class="nav-link" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
     <div class="nav-link--avatar avatar">
       <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('40x40')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
       <span class="avatar-char">{{authService.currentUser.name.charAt(0)}}</span>
     </div>
     <span>{{authService.currentUser.name}}</span>
   </a>
-  <a class="nav-link" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
     <span class="icon">person</span>
     <span>{{t._?.header?.signin_title}}</span>
   </a>

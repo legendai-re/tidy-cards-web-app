@@ -47,16 +47,7 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  // height: 3rem;
   z-index: 200;
-}
-
-.application-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  z-index: 100;
-  padding-top: 3rem;
 }
 
 .application-footer {
@@ -64,6 +55,8 @@
   display: flex;
   flex-direction: column;
   margin-top: auto;
+  padding: 2rem 0;
+  z-index: 200;
 }
 
 .application-flash {
@@ -89,6 +82,115 @@
   }
 }
 
+
+// Page
+
+.page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  margin-top: 3rem;
+}
+
+.page-header {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  background-color: $collection-grey;
+  width: 100vw;
+  height: 16rem;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.page-content {
+  padding-top: 4rem;
+  padding-bottom: 1rem;
+}
+
+.page-heading {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 3rem;
+}
+
+.page-heading--title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+  margin: 0 0 .5rem;
+}
+
+.page-heading--caption {
+  font-size: 1.125rem;
+  font-weight: normal;
+  line-height: 1.5rem;
+  margin: 0;
+}
+
+.page-section {
+  margin: 0;
+
+  &:not(:last-child) {
+    margin: 0 0 3rem;
+  }
+}
+
+.page-section--heading {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 .5rem;
+}
+
+.page-section--heading--title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem;
+}
+
+.page-section--heading--more {
+  position: relative;
+  display: flex;
+  font-family: $font-brand;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 2rem;
+  color: $gray-600;
+  margin: 0 0 0 auto;
+  align-items: center;
+
+  &:hover {
+    text-decoration: none;
+    color: $gray-900;
+
+    &:after {
+      transform: translateX(.125rem);
+    }
+  }
+
+  &:after {
+    content: "chevron_right";
+    font-family: $font-mi;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1rem;
+    margin: .125rem 0 0;
+    transition: transform .3s ease;
+  }
+}
+
+
 // Navbar
 
 .nav-link {
@@ -110,10 +212,12 @@
 
   &:hover, &:focus {
     background-color: $gray-075;
+    color: $gray-600;
   }
 
   &:active {
     background-color: $gray-300;
+    color: $gray-600;
   }
 
   &.active {
