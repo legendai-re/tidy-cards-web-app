@@ -1,37 +1,34 @@
-<div class="page-container is-page">
-  <div class="container">
+<div class="page-container">
+  <div class="page-content container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
 
-    <div class="page-headings is-hidden" id="pageHeadings">
+        <section class="page-headings is-hidden" id="pageHeadings">
+          <h2 class="page-heading--title">{{t._.page?.privacy?.title}}</h2>
+        </section>
 
-      <h2 class="page-headings--page-title">{{t._.page?.privacy?.title}}</h2>
+        <section class="page-section is-hidden" id="pageContent">
+          <div class="alert alert-info mb-5" role="alert">
+            Please note that the content of this page is temporary.
+          </div>
 
-    </div>
+          <p>Your privacy is important to us. It is TidyCards' policy to respect your privacy regarding any information we may collect from you across our website, <a href="https://www.tidy.cards">www.tidy.cards</a>, and other sites we own and operate.</p>
+          <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
+          <p>We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use or modification.</p>
+          <p>We don’t share any personally identifying information publicly or with third-parties, except when required to by law.</p>
+          <p>Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.</p>
+          <p>You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services.</p>
+          <p>Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.</p>
+          <p class="mb-5">This policy is effective as of May 11, 2018.</p>
 
-	<div class="page-container">
-		<div class="page-content row is-hidden" id="pageContent">
-			<div class="col-12 col-md-8 mx-auto">
+  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+  				<markdown class="text-center" *ngIf="t._.page?.contact?.content" [data]="t._.page?.contact?.content"></markdown>
+  				<div class="text-center">
+  					<a href="mailto:hi@tidy.cards" class="btn btn-primary" *ngIf="t._.page?.contact?.contact_btn">{{t._.page?.contact?.contact_btn}}</a>
+  				</div>
+        </section>
 
-        <div class="alert alert-info mb-5" role="alert">
-          Please note that the content of this page is temporary.
-        </div>
-
-        <p>Your privacy is important to us. It is TidyCards' policy to respect your privacy regarding any information we may collect from you across our website, <a href="https://www.tidy.cards">www.tidy.cards</a>, and other sites we own and operate.</p>
-        <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
-        <p>We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use or modification.</p>
-        <p>We don’t share any personally identifying information publicly or with third-parties, except when required to by law.</p>
-        <p>Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.</p>
-        <p>You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services.</p>
-        <p>Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.</p>
-        <p class="mb-5">This policy is effective as of May 11, 2018.</p>
-
-				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
-				<markdown class="text-center" *ngIf="t._.page?.contact?.content" [data]="t._.page?.contact?.content"></markdown>
-				<div class="text-center">
-					<a href="mailto:hi@tidy.cards" class="btn btn-primary" *ngIf="t._.page?.contact?.contact_btn">{{t._.page?.contact?.contact_btn}}</a>
-				</div>
 			</div>
 		</div>
-	</div>
-
 	</div>
 </div>
