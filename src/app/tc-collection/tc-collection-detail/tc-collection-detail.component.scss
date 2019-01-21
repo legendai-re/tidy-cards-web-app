@@ -160,6 +160,10 @@
   display: flex;
   flex-direction: column;
   margin: 0 -.75rem;
+
+  @include media-breakpoint-down(md) {
+    margin: 0 -1rem;
+  }
 }
 
 .collection--load-more {

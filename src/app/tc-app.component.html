@@ -4,8 +4,6 @@
 
   <router-outlet></router-outlet>
 
-  <tc-footer class="application-footer" *ngIf="!headerService.noHeader && !headerService.noFooter"></tc-footer>
-
   <div class="application-flash" *ngIf="authService.showCookieConsent">
     <div class="container">
       <p>
@@ -15,5 +13,7 @@
       <input type="submit" value="{{t._.action?.accept}}" class="btn btn-sm btn-primary" (click)="authService.acceptCookieConcent()" />
     </div>
   </div>
+
+  <tc-footer class="application-footer" *ngIf="!headerService.noHeader && !headerService.noFooter"></tc-footer>
 
 </main>

@@ -172,8 +172,8 @@
                   <span class="icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
                   <span>{{ t._.collection?.footer?.share?.add }}</span>
                 </a>
-                <span class="collection-container--footer-fav-count" *ngIf="collection.starsCount==1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.one }}</span>
-                <span class="collection-container--footer-fav-count" *ngIf="collection.starsCount!=1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.more }}</span>
+                <span class="collection-container--footer-fav-count d-none d-lg-flex" *ngIf="collection.starsCount==1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.one }}</span>
+                <span class="collection-container--footer-fav-count d-none d-lg-flex" *ngIf="collection.starsCount!=1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.more }}</span>
               </div>
               <ul class="collection-container--footer-share">
                 <li>
@@ -186,7 +186,7 @@
             </div>
           </div>
 
-          <div class="collection-container--footer-section">
+          <div class="collection-container--footer-section pb-0">
             <div class="collection-container--footer-author">
 
                 <a href="javascript:void(0)" class="collection-container--thumbnail avatar avatar--64" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">

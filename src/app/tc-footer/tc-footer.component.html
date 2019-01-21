@@ -5,7 +5,7 @@
       <span>{{t._?.app_name_capitals}}</span>
     </div>
 
-    <ul class="footer-nav nav ml-auto">
+    <ul class="footer-nav nav ml-lg-auto">
       <div class="nav-select dropdown-toggle" *ngIf="!isUpdatingLanguage">
         <select (change)="updateLanguage()" [(ngModel)]="t.unsafeCurrentLanguage" name="language" [disabled]="isUpdatingLanguage">
             <option value="en">English (US)</option>
