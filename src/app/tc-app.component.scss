@@ -102,6 +102,10 @@
   width: 100vw;
   height: 16rem;
 
+  @include media-breakpoint-down(md) {
+    height: 8rem;
+  }
+
   img {
     position: absolute;
     top: 0;
@@ -115,6 +119,10 @@
 .page-content {
   padding-top: 4rem;
   padding-bottom: 1rem;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 2rem;
+  }
 }
 
 .page-heading {
@@ -122,6 +130,10 @@
   display: flex;
   flex-direction: column;
   margin: 0 0 3rem;
+
+  @include media-breakpoint-down(md) {
+    padding: 0 .75rem;
+  }
 }
 
 .page-heading--title {
@@ -129,6 +141,11 @@
   font-weight: 600;
   line-height: 3rem;
   margin: 0 0 .5rem;
+
+  @include media-breakpoint-down(md) {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
 }
 
 .page-heading--caption {
@@ -151,12 +168,21 @@
   display: flex;
   flex-direction: row;
   margin: 0 0 .5rem;
+
+  @include media-breakpoint-down(md) {
+    padding: 0 .75rem;
+  }
 }
 
 .page-section--heading--title {
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 2rem;
+
+  @include media-breakpoint-down(md) {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
 }
 
 .page-section--heading--more {

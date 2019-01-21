@@ -124,6 +124,34 @@
   }
 }
 
+.collection-new-item-fab {
+  position: fixed;
+  display: flex;
+  background-color: $brand-primary;
+  width: 3.5rem;
+  height: 3.5rem;
+  color: $white;
+  padding: .75rem;
+  bottom: 4rem;
+  border-radius: 50%;
+  box-shadow: 0 .25rem 1rem rgba($black,.5);
+  right: 1rem;
+  z-index: 300;
+
+  &:hover, &:active, &focus {
+    text-decoration: none;
+  }
+
+  .icon {
+    font-family: $font-mi;
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 2rem;
+    margin: 0;
+    color: $white;
+  }
+}
+
 
 // COLLECTION LIST
 

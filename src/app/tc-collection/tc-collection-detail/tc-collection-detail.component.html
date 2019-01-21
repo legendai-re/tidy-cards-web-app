@@ -1,5 +1,4 @@
-<!-- <div class="page-container" *ngIf="!isLoadingCollection && collection && collection._id"> -->
-<div class="page-container">
+<div class="page-container" *ngIf="!isLoadingCollection && collection && collection._id">
 
   <div class="page-header" *ngIf="collection._thumbnail">
     <img src="{{collection._thumbnail.getPath('1000x400')}}" alt="{{collection.title}}">
@@ -57,7 +56,7 @@
             </li>
           </ul>
 
-          <div class="page-heading--caption mb-4" *ngIf="collection.bio || collection.visibility != 'PUBLIC' || collection.isFeatured">
+          <div class="page-heading--caption" *ngIf="collection.bio || collection.visibility != 'PUBLIC' || collection.isFeatured">
             <a class="page-heading--visibility is-featured" href="javascript:void(0)" [routerLink]="['/c/featured']" *ngIf="collection.isFeatured">
               <span class="icon">{{ t._.icon?.featured?.filled }}</span>
               <span>{{ t._.collection?.featured_title }}</span>
@@ -72,19 +71,22 @@
             </span>
             <span *ngIf="collection.bio">{{collection.bio}}</span>
           </div>
-          <div class="page-heading--actions" *ngIf="collection.visibility != 'PRIVATE'">
-            <a class="btn is-like is-highlighted mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="collection._star">
-              <span class="icon">{{ t._.icon?.favorite?.filled }}</span>
-              <span>{{ t._.collection?.footer?.share?.added }}</span>
-            </a>
-            <a class="btn is-like mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="!collection._star">
-              <span class="icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
-              <span>{{ t._.collection?.footer?.share?.add }}</span>
-            </a>
-            <span class="muted" *ngIf="collection.starsCount==1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.one }}</span>
-            <span class="muted" *ngIf="collection.starsCount!=1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.more }}</span>
 
-            <div class="dropdown ml-auto" *ngIf="haveEditRights">
+          <div class="page-heading--actions mt-4">
+            <ng-container  *ngIf="collection.visibility != 'PRIVATE'">
+              <a class="btn is-like is-highlighted mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="collection._star">
+                <span class="icon">{{ t._.icon?.favorite?.filled }}</span>
+                <span>{{ t._.collection?.footer?.share?.added }}</span>
+              </a>
+              <a class="btn is-like mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="!collection._star">
+                <span class="icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
+                <span>{{ t._.collection?.footer?.share?.add }}</span>
+              </a>
+              <span class="muted d-none d-lg-flex" *ngIf="collection.starsCount==1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.one }}</span>
+              <span class="muted d-none d-lg-flex" *ngIf="collection.starsCount!=1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.more }}</span>
+            </ng-container>
+
+            <div class="dropdown" [class.ml-auto]="collection.visibility != 'PRIVATE'" *ngIf="haveEditRights">
               <a class="btn is-like" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="icon">{{ t._.icon?.settings?.filled }}</span>
                 <span>{{t._.collection?.options}}</span>
@@ -102,11 +104,17 @@
 
         <section class="page-section collection-container">
 
+          <a class="collection-new-item d-none d-lg-flex" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')" *ngIf="haveEditRights">
+            <span class="icon">{{ t._.icon?.add?.filled }}</span>
+            <span *ngIf="itemLoaded && collection._items.length > 0">{{t._.collection?.new_item_action}}</span>
+            <span *ngIf="itemLoaded && collection._items.length == 0">{{t._.collection?.new_item_first_action}}</span>
+          </a>
+
+          <a class="collection-new-item-fab d-lg-none" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')" *ngIf="haveEditRights">
+            <span class="icon">{{ t._.icon?.add?.filled }}</span>
+          </a>
+
           <div class="collection-container--list" tc-sortable [list]=collection._items [ghostClass]="'collection-item-ghost'" (itemMoved)="onItemMoved($event)" *ngIf="itemLoaded && collection._items.length > 0">
-            <a class="collection-new-item" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')" *ngIf="haveEditRights">
-              <span class="icon">{{ t._.icon?.add?.filled }}</span>
-              <span>{{t._.collection?.new_item_action}}</span>
-            </a>
 
             <tc-item class="ui-state-default collection-item--container" [item]=item [isAuthor]="haveEditRights" (deletedItem)="onDeletedItem($event)" *ngFor="let item of collection._items"></tc-item>
 
@@ -177,6 +185,7 @@
               </ul>
             </div>
           </div>
+
           <div class="collection-container--footer-section">
             <div class="collection-container--footer-author">
 
@@ -212,50 +221,44 @@
   </div>
 </div>
 
-<!--<tc-collection-create *ngIf="isAuthor" [parentCollection]="collection" (newCollection)="onSubCollectionCreated($event)"></tc-collection-create>-->
-<!-- TODO: @Olivier Peut-être déplacer ces 2 pages dans tc-page et rediriger dessus ? -->
-
 <div class="page-container is-error" *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
-  <div class="container">
+  <div class="page-content container" id="pageContent">
 
-  	<div class="page-container">
-  		<div class="page-content row" id="pageContent">
-  			<div class="col-12 col-md-8 mx-auto">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
 
-  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
-          <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
-          <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found }} “{{ searchParams }}”</p>
-  				<div class="text-center pb-5">
-            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">{{ t._.page?.error?.button?.back_dashboard }}</a>
-            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">{{ t._.page?.error?.button?.back_discover }}</a>
-  				</div>
+				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+        <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+        <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found }} “{{ searchParams }}”</p>
+				<div class="text-center pb-5">
+          <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">{{ t._.page?.error?.button?.back_dashboard }}</a>
+          <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">{{ t._.page?.error?.button?.back_discover }}</a>
+				</div>
 
-          <!-- TODO: ajouter un lien pour aller s'inscire (un peu joli et tout) -->
-  			</div>
-  		</div>
-  	</div>
+        <!-- TODO: ajouter un lien pour aller s'inscire (un peu joli et tout) -->
+			</div>
+		</div>
 
 	</div>
 </div>
 
-<div class="page-container" *ngIf="!isLoadingCollection && cantFoundButwasStarred">
-  <div class="container is-error">
+<div class="page-container is-error" *ngIf="!isLoadingCollection && cantFoundButwasStarred">
+  <div class="page-content container">
 
-  	<div class="page-container">
-  		<div class="page-content row" id="pageContent">
-  			<div class="col-12 col-md-8 mx-auto">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
 
-  				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
-          <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
-          <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found_fav }}</p>
-  				<div class="text-center pb-5">
-            <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']">{{ t._.page?.error?.button?.back_dashboard }}</a>
-            <span class="mx-2">{{ t._.word?.or }}</span>
-            <input class="btn btn-outline-danger" (click)="removeStarredCollection(true)" value="{{ t._.page?.error?.button?.remove_fav }}" type="submit"/>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
+				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+        <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+        <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found_fav }}</p>
+				<div class="text-center pb-5">
+          <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']">{{ t._.page?.error?.button?.back_dashboard }}</a>
+          <span class="mx-2">{{ t._.word?.or }}</span>
+          <input class="btn btn-outline-danger" (click)="removeStarredCollection(true)" value="{{ t._.page?.error?.button?.remove_fav }}" type="submit"/>
+				</div>
+
+			</div>
+		</div>
 
 	</div>
 </div>
