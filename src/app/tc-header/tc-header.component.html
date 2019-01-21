@@ -13,10 +13,10 @@
     <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">
       {{t._?.header?.dashboard_title}}
     </a>
-    <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="authService.isLoggedIn">
+    <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/discover']">
       {{t._?.header?.discover_title}}
     </a>
-    <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/c/last']" *ngIf="authService.isLoggedIn">
+    <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/c/last']">
       {{t._?.header?.latest_title}}
     </a>
   </nav>
