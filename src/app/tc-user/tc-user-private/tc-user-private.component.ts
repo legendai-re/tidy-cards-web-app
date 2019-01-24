@@ -74,13 +74,15 @@ export class TcUserPrivateComponent implements OnInit {
 
         this.usernameState = 'PENDING';
         this.emailState = 'PENDING';
+
+        this.updateGeneralInfoIntent = true;
     }
 
     public startUpdateGeneralInfo(){
         this.updateGeneralInfoIntent = true;
-        setTimeout( () => {
-            this._renderer.invokeElementMethod(this.nameInput.nativeElement, 'focus', []);
-        }, 100);
+        // setTimeout( () => {
+        //     this._renderer.invokeElementMethod(this.nameInput.nativeElement, 'focus', []);
+        // }, 100);
     }
 
     public cancelUpdateGeneralInfo(){
@@ -89,6 +91,7 @@ export class TcUserPrivateComponent implements OnInit {
         this.updateGeneralInfoIntent = false;
         this.tmpUser._avatar = null;
         this.tmpUser.name = JSON.parse(JSON.stringify(this.authService.currentUser.name));
+        this.tmpUser.username = JSON.parse(JSON.stringify(this.authService.currentUser.username));
         this.tmpUser.bio = this.authService.currentUser.bio ? JSON.parse(JSON.stringify(this.authService.currentUser.bio)) : '';
         this.isUploadingAvatar = false;
     }
@@ -228,13 +231,20 @@ export class TcUserPrivateComponent implements OnInit {
     public updateGeneralInfo() {
         if(this.isUploadingAvatar)
             return;
+        this.userService.getValidUsername(this.tmpUser.username).subscribe((isValid) => {
+            if(!isValid)
+                return;
+        });
         this.isUpdadingGeneralInfo = true;
+
         let user = new TcUser();
         user._id = this.tmpUser._id;
         user.name = this.tmpUser.name;
+        // user.username = this.tmpUser.username;
         user.bio = this.tmpUser.bio;
         if(this.tmpUser._avatar)
             user._avatar = this.tmpUser._avatar;
+
         this.userService.putUser(user).subscribe((userResponse) => {
             this.authService.currentUser.name = userResponse.name;
             this.authService.currentUser.bio = userResponse.bio;
@@ -243,9 +253,8 @@ export class TcUserPrivateComponent implements OnInit {
             this.tmpUser.name = userResponse.name;
             this.tmpUser.bio = userResponse.bio;
             this.tmpUser._avatar = null;
-            this.updateGeneralInfoIntent = false;
+            // this.updateGeneralInfoIntent = false;
             this.isUpdadingGeneralInfo = false;
-            // TODO seperated message for name, bio and thumbnail
             window.analytics.track('Updated infos');
         }, (err) => {
             console.log('Sorry something went wrong while updating your general info');

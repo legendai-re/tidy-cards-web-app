@@ -52,7 +52,7 @@
 .auth-logo {
     width: 60px;
     height: 60px;
-    color: $purple;
+    color: $brand-primary;
     margin: 0 auto;
     font-size: 45px;
     line-height: 70px;
@@ -84,10 +84,11 @@
 .auth-content-card {
   display: flex;
   align-items: center;
-  background-color: $gray-100;
+  background: $white;
+  border: 1px solid $border-color;
   font-size: 1rem;
   line-height: 1.25rem;
-  padding: .75rem 1rem;
+  padding: .75rem;
   border-radius: $border-radius-base;
   margin: 0 0 .5rem;
 }

@@ -5,235 +5,235 @@
 @import '../../styles/settings/_variables.scss';
 @import '../../styles/settings/_mixins.scss';
 
-.is-error {
-  margin-top: -5rem;
-}
-
-.profile-wrapper {
-    padding-top: 20px;
-}
-
-.profile-header {
-    display: flex;
-    flex-direction: row;
-    margin: 2rem 0;
-}
-
-.profile-avatar {
-    margin: 0 30px 0 0;
-}
-
-.profile-avatar-tmp {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 2px;
-}
-
-.profile-avatar-uploader {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 2px;
-    overflow: hidden;
-    color: $white;
-
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        background-color: rgba(0,0,0,.5);
-        transition: background-color .3s ease;
-        transition-delay: .2s;
-    }
-
-    &:hover {
-        &:before {
-            background-color: rgba(0,0,0,.75);
-            transition-delay: 0s;
-        }
-    }
-
-    input {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-        opacity: 0;
-        cursor: pointer;
-    }
-}
-
-.profile-avatar-uploader-icon {
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all .3s ease;
-    transition-delay: .1s;
-    z-index: 0;
-}
-
-.profile-header-infos {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-}
-
-.profile-header-top {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.profile-infos-name {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  color: $white;
-  padding: 1rem .5rem 1rem 0;
-}
-
-.profile-name, .profile-username {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
-.profile-name {
-    font-size: 2rem;
-
-    input {
-      position: relative;
-      display: flex;
-      flex: 0 1 auto;
-      background: transparent;
-      border: none;
-      width: 100%;
-    }
-}
-
-.profile-username {
-  position: relative;
-  display: flex;
-    font-size: 1rem;
-    font-weight: normal;
-}
-
-.profile-infos-edit {
-  position: relative;
-  display: flex;
-  align-self: flex-end;
-  padding: 1rem 0;
-}
-
-.profile-infos-stats {
-    color: $white;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    padding: 0 0 15px;
-
-}
-
-.profile-stats-item {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-
-.profile-stat-value, .profile-stat-label {
-    text-align: right;
-}
-
-.profile-stat-value {
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 2rem;
-}
-
-.profile-stat-label {
-    font-size: .875rem;
-    line-height: 1rem;
-}
-
-.profile-infos-bio {
-    color: $black-light;
-    padding: 15px 0 5px;
-    font-size: 1rem;
-    line-height: 1.125rem;
-    background: transparent;
-    border: none;
-    width: 100%;
-    resize: none;
-}
-
-.list-item {
-    display: flex;
-    align-items: center;
-
-    &:not(:last-child) {
-      margin: 0 0 1rem;
-    }
-}
-
-.list-item-title, .list-item-description {
-  position: relative;
-}
-
-.list-item-infos {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  margin: 0 2rem 0 0;
-}
-
-.list-item-title {
-    color: $black;
-    margin: 0 0 2px;
-    font-size: 1.125rem;
-    line-height: 1.625rem;
-}
-
-.list-item-description {
-    color: $black-light;
-    font-size: .875rem;
-    line-height: 1.125rem;
-    margin: 0;
-}
-
-.list-item-form {
-  border-color: $gray-200;
-  background-color: $white;
-}
-
-.list-item-description-darker {
-    color: $black;
-}
-
-input.list-item-description-darker {
-    width: 100%;
-    border: none;
-    background: transparent;
-}
-
-.list-item-status {
-  // line-height: 1rem;
-}
+// .is-error {
+//   margin-top: -5rem;
+// }
+//
+// .profile-wrapper {
+//     padding-top: 20px;
+// }
+//
+// .profile-header {
+//     display: flex;
+//     flex-direction: row;
+//     margin: 2rem 0;
+// }
+//
+// .profile-avatar {
+//     margin: 0 30px 0 0;
+// }
+//
+// .profile-avatar-tmp {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     border-radius: 2px;
+// }
+//
+// .profile-avatar-uploader {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     border-radius: 2px;
+//     overflow: hidden;
+//     color: $white;
+//
+//     &:before {
+//         content: "";
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         z-index: 0;
+//         background-color: rgba(0,0,0,.5);
+//         transition: background-color .3s ease;
+//         transition-delay: .2s;
+//     }
+//
+//     &:hover {
+//         &:before {
+//             background-color: rgba(0,0,0,.75);
+//             transition-delay: 0s;
+//         }
+//     }
+//
+//     input {
+//         position: absolute;
+//         width: 100%;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         z-index: 1;
+//         opacity: 0;
+//         cursor: pointer;
+//     }
+// }
+//
+// .profile-avatar-uploader-icon {
+//     font-size: 3rem;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     transition: all .3s ease;
+//     transition-delay: .1s;
+//     z-index: 0;
+// }
+//
+// .profile-header-infos {
+//   position: relative;
+//   display: flex;
+//   flex: 1 1 auto;
+//   flex-direction: column;
+// }
+//
+// .profile-header-top {
+//   position: relative;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: stretch;
+// }
+//
+// .profile-infos-name {
+//   position: relative;
+//   display: flex;
+//   flex: 1 1 auto;
+//   flex-direction: column;
+//   color: $white;
+//   padding: 1rem .5rem 1rem 0;
+// }
+//
+// .profile-name, .profile-username {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   margin: 0;
+// }
+//
+// .profile-name {
+//     font-size: 2rem;
+//
+//     input {
+//       position: relative;
+//       display: flex;
+//       flex: 0 1 auto;
+//       background: transparent;
+//       border: none;
+//       width: 100%;
+//     }
+// }
+//
+// .profile-username {
+//   position: relative;
+//   display: flex;
+//     font-size: 1rem;
+//     font-weight: normal;
+// }
+//
+// .profile-infos-edit {
+//   position: relative;
+//   display: flex;
+//   align-self: flex-end;
+//   padding: 1rem 0;
+// }
+//
+// .profile-infos-stats {
+//     color: $white;
+//     display: flex;
+//     flex-direction: row;
+//     align-items: flex-end;
+//     padding: 0 0 15px;
+//
+// }
+//
+// .profile-stats-item {
+//     display: flex;
+//     flex-direction: column;
+//     margin-left: 20px;
+// }
+//
+// .profile-stat-value, .profile-stat-label {
+//     text-align: right;
+// }
+//
+// .profile-stat-value {
+//     font-size: 1.5rem;
+//     font-weight: 500;
+//     line-height: 2rem;
+// }
+//
+// .profile-stat-label {
+//     font-size: .875rem;
+//     line-height: 1rem;
+// }
+//
+// .profile-infos-bio {
+//     color: $black-light;
+//     padding: 15px 0 5px;
+//     font-size: 1rem;
+//     line-height: 1.125rem;
+//     background: transparent;
+//     border: none;
+//     width: 100%;
+//     resize: none;
+// }
+//
+// .list-item {
+//     display: flex;
+//     align-items: center;
+//
+//     &:not(:last-child) {
+//       margin: 0 0 1rem;
+//     }
+// }
+//
+// .list-item-title, .list-item-description {
+//   position: relative;
+// }
+//
+// .list-item-infos {
+//   position: relative;
+//   display: flex;
+//   flex: 1 1 auto;
+//   flex-direction: column;
+//   margin: 0 2rem 0 0;
+// }
+//
+// .list-item-title {
+//     color: $black;
+//     margin: 0 0 2px;
+//     font-size: 1.125rem;
+//     line-height: 1.625rem;
+// }
+//
+// .list-item-description {
+//     color: $black-light;
+//     font-size: .875rem;
+//     line-height: 1.125rem;
+//     margin: 0;
+// }
+//
+// .list-item-form {
+//   border-color: $gray-200;
+//   background-color: $white;
+// }
+//
+// .list-item-description-darker {
+//     color: $black;
+// }
+//
+// input.list-item-description-darker {
+//     width: 100%;
+//     border: none;
+//     background: transparent;
+// }
+//
+// .list-item-status {
+//   // line-height: 1rem;
+// }

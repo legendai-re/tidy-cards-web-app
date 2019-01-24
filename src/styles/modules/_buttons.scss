@@ -152,34 +152,39 @@
     }
 }
 
-.btn--facebook, .btn--twitter, .btn--google {
+.is-facebook, .is-twitter, .is-google {
     color: $white!important;
+    border: 1px solid;
 
     &:hover {
         color: $white;
     }
 }
 
-.btn--facebook {
+.is-facebook {
     background: $color-facebook;
+    border-color: $color-facebook;
 
     &:hover {
         background: darken($color-facebook, 15%);
     }
 }
 
-.btn--twitter {
+.is-twitter {
     background: $color-twitter;
+    border-color: $color-twitter;
 
     &:hover {
         background: darken($color-twitter, 15%);
     }
 }
 
-.btn--google {
-    background: $color-google;
+.is-google {
+    background: $gray-050;
+    color: $gray-900!important;
+    border-color: rgba($black,.1);
 
     &:hover {
-        background: darken($color-google, 15%);
+        background: darken($gray-050, 15%);
     }
 }

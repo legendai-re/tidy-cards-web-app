@@ -24,18 +24,18 @@ $grays: (
   900:                      $gray-900
 );
 
-$blue:                      #007BFF;
-$indigo:                    #6610F2;
-$purple:                    #6B5DFF;
-$pink:                      #E83E8C;
-$red:                       #FF4747;
-$orange:                    #FF8247;
-$yellow:                    #F8D047;//#ffc107;
-$green:                     #4FE88D;
-$teal:                      #20C997;
-$cyan:                      #17A2B8;
+$blue:                      #007bff;
+$indigo:                    #6b5dff;//#6610f2;
+$purple:                    #6f42c1;
+$pink:                      #e83e8c;
+$red:                       #dc3545;
+$orange:                    #fd7e14;
+$yellow:                    #ffc107;
+$green:                     #28a745;
+$teal:                      #20c997;
+$cyan:                      #17a2b8;
 
-$brand-primary:             $purple;
+$brand-primary:             $indigo;
 
 $collection-grey:           #CFD8DC;
 $collection-red:            #FF887A;
@@ -46,7 +46,7 @@ $collection-blue:           #78D6FF;
 $collection-cyan:           #A4FFEB;
 $collection-green:          #CBFF8A;
 
-$tag-featured:              $purple;
+$tag-featured:              $indigo;
 
 $theme-colors: (
   primary:                  $brand-primary,

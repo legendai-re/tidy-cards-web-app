@@ -12,52 +12,6 @@
 
 // Page Heading
 
-.page-heading--metas {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: row;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.5rem;
-  font-size: 1rem;
-  font-weight: normal;
-  line-height: 1.5rem;
-}
-
-.page-heading--meta {
-  position: relative;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: row;
-
-  &.is-muted {
-    color: $gray-600;
-  }
-
-  &:not(:last-child) {
-    &:after {
-      content: "·";
-      color: $gray-600;
-      margin: 0 .25rem;
-    }
-  }
-}
-
-.page-heading--metas {
-  .thumbnail:not(:first-child) {
-    margin-left: -.625rem;
-  }
-}
-
-.page-heading--actions {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: row;
-  align-items: center;
-}
-
 .page-heading--visibility {
   position: relative;
   display: inline-block;

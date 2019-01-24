@@ -96,6 +96,38 @@
   }
 }
 
+.loading-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-family: $font-mi;
+  font-weight: normal;
+  font-size: inherit;
+  font-style: normal;
+  line-height: 1;
+  color: $gray-600;
+  white-space: nowrap;
+  margin: 0 .25rem;
+  text-decoration: none!important;
+  vertical-align: middle;
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  &:first-child {
+    margin: 0 .25rem 0 0;
+  }
+
+  &:last-child {
+    margin: 0 0 0 .25rem;
+  }
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
 
 // Page
 
@@ -181,6 +213,52 @@
   margin: 0;
 }
 
+.page-heading--metas {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5rem;
+}
+
+.page-heading--meta {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+
+  &.is-muted {
+    color: $gray-600;
+  }
+
+  &:not(:last-child) {
+    &:after {
+      content: "·";
+      color: $gray-600;
+      margin: 0 .25rem;
+    }
+  }
+}
+
+.page-heading--metas {
+  .thumbnail:not(:first-child) {
+    margin-left: -.625rem;
+  }
+}
+
+.page-heading--actions {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: center;
+}
+
 .page-section {
   margin: 0;
 
@@ -193,10 +271,19 @@
   }
 }
 
+.page-section {
+  h3 {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    margin: 0 0 .5rem;
+  }
+}
+
 .page-section--heading {
   position: relative;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 0 0 .5rem;
 }
 
@@ -204,11 +291,22 @@
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 2rem;
+  margin: 0;
 
   @include media-breakpoint-down(md) {
     font-size: 1.25rem;
     line-height: 1.5rem;
   }
+}
+
+.page-section--heading--subtitle {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: .5rem 0 0;
 }
 
 .page-section--heading--more {

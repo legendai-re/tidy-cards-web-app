@@ -1,8 +1,8 @@
 <div class="auth-content">
     <form class="form-signin" *ngIf="!authService.isLoggedIn" (ngSubmit)="onLoginSubmit()">
         <p class="auth-top-content">{{t._.auth?.signin_caption}}</p>
-        <a href="javascript:void(0)" class="btn btn--facebook btn-block" (click)="connectWith('facebook')">{{t._.auth?.signin_facebook_title}}</a>
-        <a href="javascript:void(0)" class="btn btn--twitter btn-block" (click)="connectWith('twitter')">{{t._.auth?.signin_twitter_title}}</a>
-        <a href="javascript:void(0)" class="btn btn-secondary btn-block" (click)="connectWith('google')">{{t._.auth?.signin_google_title}}</a>
+        <a href="javascript:void(0)" class="btn is-facebook btn-block" (click)="connectWith('facebook')">{{t._.auth?.signin_facebook_title}}</a>
+        <a href="javascript:void(0)" class="btn is-twitter btn-block" (click)="connectWith('twitter')">{{t._.auth?.signin_twitter_title}}</a>
+        <a href="javascript:void(0)" class="btn is-google btn-block" (click)="connectWith('google')">{{t._.auth?.signin_google_title}}</a>
     </form>
 </div>
