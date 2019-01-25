@@ -32,7 +32,7 @@
     <a class="nav-link d-none d-lg-flex" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
       <span>{{authService.currentUser.name}}</span>
       <div class="nav-link--avatar avatar">
-        <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('40x40')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
+        <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('140x140')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
         <span class="avatar-char">{{authService.currentUser.name.charAt(0)}}</span>
       </div>
     </a>

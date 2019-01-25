@@ -5,21 +5,143 @@
 @import '../../../styles/settings/_variables.scss';
 @import '../../../styles/settings/_mixins.scss';
 
-.card-collection {
-  height: 255px;
-  transition: background-color .3s ease, margin .3s ease, box-shadow .3s ease, transform .3s ease;
-
-  &:not(.not-hoverable) {
-    &:hover {
-      transform: translate3d(0, -.25rem, 0);
-      box-shadow: 0 .5rem 1rem rgba($black, .15);
-    }
-  }
+.collection-card {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  background-color: $white;
+  padding: 0;
+  border-radius: $border-radius-base;
+  color: $gray-900;
+  transition: background-color .3s ease;
 
   &:hover {
+    background-color: $gray-100;
+    text-decoration: none;
+    color: $gray-900;
+
+    .collection-card--cover img {
+      transform: scale(1.1, 1.1);
+    }
+
     .card-collection--drag-handle {
       opacity: 1;
     }
+  }
+}
+
+.collection-card--container {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: .5rem;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.collection-card--cover {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  height: 8rem;
+  margin: 0 0 .25rem;
+  border-radius: $border-radius-base;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba($black, .1);
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 3s ease;
+  }
+}
+
+.collection-card--infos {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: .5rem .25rem;
+}
+
+.collection-card--infos--title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  margin: 0 0 .25rem;
+}
+
+.collection-card--infos--metas {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  list-style: none;
+  font-size: .875rem;
+  line-height: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.collection-card--infos--tag {
+  position: relative;
+  display: flex;
+  color: $gray-600;
+  margin: 0;
+
+  &:not(:last-child) {
+    &:after {
+      content: "·";
+      color: inherit;
+      margin: 0 .25rem;
+      color: $gray-600;
+    }
+  }
+
+  &.has-visibility {
+    color: $gray-800;
+
+    .icon {
+      color: $gray-600;
+    }
+  }
+
+  &.is-featured {
+    color: $brand-primary;
+  }
+
+  .icon {
+    font-family: $font-mi;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1rem;
+    white-space: nowrap;
+    margin: 0 .25rem 0 0;
   }
 }
 
@@ -38,222 +160,4 @@
   cursor: move;
   opacity: 0;
   transition: .3s ease opacity;
-}
-
-.card-collection--container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 0;
-}
-
-.card-collection--content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 215px;
-  color: $gray-900;
-  padding: 1rem 1rem .75rem;
-
-  &.has-thumbnail {
-    color: $white;
-  }
-}
-
-.card-collection--title {
-  font-weight: normal;
-  font-size: 1.5rem;
-  line-height: 1.75rem;
-  margin: 0 0 .5rem;
-}
-
-.card-collection--caption {
-  font-size: .875rem;
-  line-height: 1rem;
-  margin: 0;
-}
-
-.card-collection--details {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  margin-top: auto;
-  padding: 0;
-}
-
-.card-collection--thumbnails {
-  position: relative;
-  display: flex;
-  flex-direction: row-reverse;
-
-  &:hover {
-    text-decoration: none;
-  }
-
-  .thumbnail + .thumbnail {
-    margin-right: -1rem;
-  }
-}
-
-.card-collection--stats {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  flex: 1 0 auto;
-  justify-content: flex-end;
-  align-items: flex-end;
-  font-size: .875rem;
-  line-height: 1rem;
-  color: $white;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.card-collection--stat {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-}
-
-.card-collection--stat-icon {
-  font-family: $font-mi;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 1rem;
-  line-height: 1rem;
-  width: 1rem;
-  height: 1rem;
-  word-wrap: normal;
-  margin: auto .25rem auto 0;
-
-  &.is-highlighted {}
-}
-
-.card-collection--background {
-  position: absolute;
-  display: flex;
-  background: $collection-default-color;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  z-index: -1;
-  border-radius: $border-radius-base $border-radius-base 0 0;
-
-  &:before {
-    position: absolute;
-    display: flex;
-    content: "";
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,.25) 100%);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-  }
-
-  &.is-thumbnail {
-    &:after {
-      position: absolute;
-      display: flex;
-      content: "";
-      background: rgba($black, .5);
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-}
-
-.card-collection--footer {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  padding: .5rem 1rem;
-  line-height: 1.5rem;
-  font-size: .875rem;
-  color: $gray-600;
-}
-
-.card-collection--tags {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.card-collection--tag {
-  position: relative;
-  display: flex;
-  flex: 1 0 auto;
-  flex-direction: row;
-  margin: 0;
-  color: $gray-600;
-
-  &:not(:last-child) {
-    margin: 0 .5rem 0 0;
-  }
-
-  &:hover {
-    color: $gray-700;
-  }
-
-  &.is-featured {
-    font-weight: 500;
-    color: $tag-featured;
-  }
-
-  &.has-visibility {}
-
-  .icon {
-    font-family: $font-mi;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 1.125rem;
-    line-height: 1.125rem;
-    width: 1.125rem;
-    height: 1.125rem;
-    word-wrap: normal;
-    margin: auto .25rem auto 0;
-  }
-
-  span {
-    font-family: $font-brand;
-    font-weight: 600;
-  }
-}
-
-.card-collection--f-stats {
-  position: relative;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding: 0;
-  margin: 0 0 0 auto;
-  list-style: none;
-  color: $gray-600;
-
-  &:hover {
-    color: $gray-700;
-  }
-}
-
-.starred .stat-icon {
-  color: $palette-yellow;
 }

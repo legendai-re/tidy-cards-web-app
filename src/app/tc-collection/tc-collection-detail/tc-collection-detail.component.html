@@ -59,15 +59,15 @@
           <div class="page-heading--caption" *ngIf="collection.bio || collection.visibility != 'PUBLIC' || collection.isFeatured">
             <a class="page-heading--visibility is-featured" href="javascript:void(0)" [routerLink]="['/c/featured']" *ngIf="collection.isFeatured">
               <span class="icon">{{ t._.icon?.featured?.filled }}</span>
-              <span>{{ t._.collection?.featured_title }}</span>
+              <span>{{t._.collection?.featured_title }}</span>
             </a>
             <span class="page-heading--visibility" *ngIf="collection.visibility == 'UNINDEXED'">
               <span class="icon">{{ t._.icon?.unindexed_collection?.filled }}</span>
-              <span>{{ t._.collection?.visibility[collection.visibility].title}}</span>
+              <span>{{t._.collection?.visibility[collection.visibility].title}}</span>
             </span>
             <span class="page-heading--visibility" *ngIf="collection.visibility == 'PRIVATE'">
               <span class="icon">{{ t._.icon?.private_collection?.filled }}</span>
-              <span>{{ t._.collection?.visibility[collection.visibility].title}}</span>
+              <span>{{t._.collection?.visibility[collection.visibility].title}}</span>
             </span>
             <span *ngIf="collection.bio">{{collection.bio}}</span>
           </div>

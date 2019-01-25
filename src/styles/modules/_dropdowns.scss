@@ -38,14 +38,16 @@
 }
 
 .dropdown-item--infos-title {
+  font-family: $font-brand;
   font-size: 1.125rem;
   font-weight: 600;
-  line-height: 1.5rem;
+  line-height: 1.25rem;
+  margin: 0 0 .125rem;
 }
 
 .dropdown-item--infos-subtitle {
-  font-size: 1rem;
+  font-size: .875rem;
   font-weight: normal;
-  line-height: 1.25rem;
+  line-height: 1rem;
   color: $gray-600;
 }

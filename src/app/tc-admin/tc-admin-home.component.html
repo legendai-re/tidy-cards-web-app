@@ -1,19 +1,14 @@
-<div class="page-container is-list-collection">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-8 mx-auto">
-        <section class="section">
-          <div class="section-header dark-bg">
-            <h2 class="section-header--title">Admin</h2>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <a class="btn btn-primary btn-lg" [routerLink]="['/admin/featured']">Featured collections</a>
-              <a class="btn btn-primary btn-lg" [routerLink]="['/admin/users']">Users</a>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+<div class="page-container">
+  <div class="page-content container">
+
+    <section class="page-heading">
+      <h2 class="page-heading--title">Admin</h2>
+    </section>
+
+    <section class="page-section">
+      <a class="btn btn-primary btn-lg" [routerLink]="['/admin/featured']">Featured collections</a>
+      <a class="btn btn-primary btn-lg" [routerLink]="['/admin/users']">Users</a>
+    </section>
+
   </div>
 </div>

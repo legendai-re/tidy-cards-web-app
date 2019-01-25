@@ -1,4 +1,58 @@
-<article *ngIf="collection" class="card card-collection">
+<article class="collection-card" *ngIf="collection">
+  <div class="card-collection--drag-handle" *ngIf="sortable">
+    <i class="material-icons move-item-button">drag_handle</i>
+  </div>
+
+  <a class="collection-card--container" [routerLink]="['/c', collection._id]">
+    <div class="collection-card--cover" [style.background-color]="'#'+collection.color">
+      <img [src]="collection._thumbnail?.getPath('300x250')" onError="this.style.display='none';" *ngIf="collection._thumbnail" />
+    </div>
+
+    <div class="collection-card--infos">
+      <h4 class="collection-card--infos--title">{{collection.title | truncate:[40] }}</h4>
+      <ul class="collection-card--infos--metas">
+        <li class="collection-card--infos--tag is-featured" *ngIf="collection.isFeatured && collection.visibility == 'PUBLIC'">
+          <span class="icon">{{ t._.icon?.featured?.filled }}</span>
+          <span>{{t._.collection?.featured_title}}</span>
+        </li>
+
+        <li class="collection-card--infos--tag has-visibility" *ngIf="collection.visibility == 'UNINDEXED'">
+          <span class="icon">{{ t._.icon?.unindexed_collection?.filled }}</span>
+          <span>{{t._.collection?.visibility[collection.visibility].title}}</span>
+        </li>
+
+        <li class="collection-card--infos--tag has-visibility" *ngIf="collection.visibility == 'PRIVATE'">
+          <span class="icon">{{ t._.icon?.private_collection?.filled }}</span>
+          <span>{{t._.collection?.visibility[collection.visibility].title}}</span>
+        </li>
+
+        <li class="collection-card--infos--tag" *ngIf="collection.itemsCount < 2">
+          {{collection.itemsCount}} {{t._.collection?.item_sing}}
+        </li>
+
+        <li class="collection-card--infos--tag" *ngIf="collection.itemsCount > 1">
+          {{collection.itemsCount}} {{t._.collection?.item_plur}}
+        </li>
+
+        <li class="collection-card--infos--tag" *ngIf="collection.starsCount < 2">
+          {{collection.starsCount}} {{t._.collection?.note_sing}}
+        </li>
+
+        <li class="collection-card--infos--tag" *ngIf="collection.starsCount > 1">
+          {{collection.starsCount}} {{t._.collection?.note_plur}}
+        </li>
+      </ul>
+    </div>
+  </a>
+</article>
+
+
+
+
+
+
+
+<!-- <article *ngIf="collection" class="card card-collection">
   <div *ngIf="sortable" class="card-collection--drag-handle">
     <i class="material-icons move-item-button">drag_handle</i>
   </div>
@@ -24,10 +78,6 @@
 
         </div>
         <ul class="card-collection--stats" *ngIf="collection.visibility != 'PRIVATE'">
-          <!-- <li class="card-collection--stat">
-            <span class="card-collection--stat-icon">{{ t._.icon?.comment?.filled }}</span>
-            <span>0</span>
-          </li> -->
           <li class="card-collection--stat">
             <span class="card-collection--stat-icon is-highlighted" *ngIf="collection._star">{{ t._.icon?.favorite?.filled }}</span>
             <span class="card-collection--stat-icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
@@ -77,4 +127,4 @@
     </div>
 
   </a>
-</article>
+</article> -->

@@ -135,7 +135,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  z-index: 100;
+  z-index: 50;
   margin-top: 3rem;
 
   &.is-100vh {
@@ -338,6 +338,11 @@
     margin: .125rem 0 0;
     transition: transform .3s ease;
   }
+}
+
+.page-collections-list {
+  margin-right: -1rem;
+  margin-left: -1rem;
 }
 
 

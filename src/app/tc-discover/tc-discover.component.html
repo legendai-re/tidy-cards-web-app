@@ -11,10 +11,10 @@
 
     <section class="page-section">
       <div class="page-section--heading">
-        <h2 class="page-section--heading--title">{{t._.collection?.featured_title}}</h2>
+        <h2 class="page-section--heading--title">{{t._.discover?.featured_title}}</h2>
         <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/c/featured']">{{t._.action?.see_all}}</a>
       </div>
-      <div class="row">
+      <div class="row page-collections-list">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let collection of featuredCollections">
           <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
         </div>
@@ -23,10 +23,10 @@
 
     <section class="page-section">
       <div class="page-section--heading">
-        <h2 class="page-section--heading--title">{{t._.collection?.popular_title}}</h2>
+        <h2 class="page-section--heading--title">{{t._.discover?.popular_title}}</h2>
         <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/c/trending']">{{t._.action?.see_all}}</a>
       </div>
-      <div class="row">
+      <div class="row page-collections-list">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let collection of popularCollections">
           <tc-collection-card [collection]="collection" [sortable]="false"></tc-collection-card>
         </div>

@@ -1,72 +1,23 @@
-.card {
-  background: $white;
-  width: 100%;
+.card-ghost {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
   height: auto;
-  border: none;
-  box-shadow: 0 .25rem .5rem $box-shadow-color;
-  color: $black;
-  border-radius: 3px;
-  margin-bottom: 20px;
+  position: relative;
 
-  a, a:hover, a:focus, a:active {
-    text-decoration: none;
+  &:before {
+    background: rgba(0,0,0,.05);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: .5rem;
+    right: 0;
+    bottom: 0;
+    border-radius: $border-radius-base;
   }
 }
 
-.card-avatar {
-    display: block;
-    float: left;
-    margin-right: 15px;
-}
-
-.card-user {
-
-}
-
-.card-user-content {
-    padding: 10px;
-    display: block;
-    position: relative;
-}
-
-.card-profile-name, .card-profile-username {
-    margin: 0;
-}
-
-.card-profile-name {
-    font-size: 1rem;
-    font-weight: bold;
-    line-height: 1.5rem;
-    color: $black;
-}
-
-.card-profile-username {
-    font-size: .875rem;
-    font-weight: normal;
-    line-height: 1rem;
-    color: $black-light;
-
-}
-
-.card-ghost {
-    height: 255px;
-    position: relative;
-
-    &:before {
-        background: rgba(0,0,0,.1);
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 15px;
-        right: 15px;
-        bottom: 0;
-        border-radius: 3px;
-    }
-}
-
 .card-moving {
-    transform: scale(1.03);
-    transform-origin: center center;
-    @include vendor-property(transition, "transform .2s ease-in-out");
-    -webkit-backface-visibility: hidden;
+  padding: 0;
+  margin: 0 8px 0 -.5rem;
 }
