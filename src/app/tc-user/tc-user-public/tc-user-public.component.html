@@ -4,9 +4,9 @@
     <section class="page-heading">
       <div class="row">
         <div class="col-12 col-lg-8">
-          <div class="d-flex">
+          <div class="d-flex flex-column flex-md-row">
 
-            <div *ngIf="user" class="avatar avatar--128 mr-4">
+            <div *ngIf="user" class="avatar avatar--128 mb-3 mb-md-0 mr-md-4">
               <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('140x140')"  onError="this.style.display='none';" alt="{{user?.name}} avatar">
               {{user?.name.charAt(0)}}
             </div>
@@ -14,7 +14,7 @@
             <div class="d-flex flex-column">
               <h2 class="page-heading--title">
                 {{user?.name}}
-                <div class="btn btn-outline-secondary" (click)="impersonate()" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')">Login as…</div>
+                <div class="btn btn-sm btn-outline-primary" (click)="impersonate()" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')">Login as…</div>
               </h2>
               <ul class="page-heading--metas">
                 <li class="page-heading--meta">@{{user?.username}}</li>
