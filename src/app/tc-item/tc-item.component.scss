@@ -349,14 +349,19 @@
   margin: 0;
   padding: .5rem;
   z-index: 100;
-  opacity: 0;
-  pointer-events: none;
   transition: opacity .3s ease;
+
+  @include media-breakpoint-up(lg) {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
-.collection-item:hover .collection-item--actions {
-  opacity: 1;
-  pointer-events: all;
+@include media-breakpoint-up(lg) {
+  .collection-item:hover .collection-item--actions {
+    opacity: 1;
+    pointer-events: all;
+  }
 }
 
 .collection-item--action {

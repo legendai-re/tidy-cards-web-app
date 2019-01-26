@@ -266,13 +266,16 @@
 <!-- Modals -->
 <ng-template class="default-modal" #collectionDeleteModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h5 class="modal-title">{{t._.collection.modal.delete?.title}}</h5>
+    <h5 class="modal-title">
+      <button type="button" class="modal-title--cancel d-md-none" (click)="c('cancel')">{{t._.icon?.close?.filled}}</button>
+      {{t._.collection.modal.delete?.title}}
+    </h5>
   </div>
   <div class="modal-body">
     {{t._.collection.modal.delete?.caption}}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.cancel}}</button>
+    <button type="button" class="btn btn-secondary d-none d-md-inline-flex" (click)="c('cancel')">{{t._.action?.cancel}}</button>
     <button type="button" class="btn btn-danger" (click)="c('confirm')">{{t._.collection?.modal?.delete?.button}}</button>
   </div>
 </ng-template>
@@ -291,7 +294,7 @@
 </ng-template>
 
 <ng-template #newItemModal let-c="close" let-d="dismiss">
-  <tc-item-create class="" *ngIf="haveEditRights" [collection]="collection" cancelUpdate (updateCanceled)="onCreateItemCanceled()" (newItem)="onNewItem($event)"></tc-item-create>
+  <tc-item-create class="modal-vh" *ngIf="haveEditRights" [collection]="collection" cancelUpdate (updateCanceled)="onCreateItemCanceled()" (newItem)="onNewItem($event)"></tc-item-create>
 </ng-template>
 
 <ng-template #updateCollectionModal let-c="close" let-d="dismiss">
@@ -307,13 +310,14 @@
 
     <div class="collaborators--content">
       <div class="collaborators--content-wrapper">
-        <h2 class="collaborators--content-title">{{t.format(t._.collection.collaborators.manage.title, [collection.collaboratorsCount + 1])}}</h2>
+        <h2 class="collaborators--content-title">
+          <button type="button" class="collaborators--content-title--cancel d-md-none" (click)="c('cancel')">{{t._.icon?.close?.filled}}</button>
+          {{t.format(t._.collection.collaborators.manage.title, [collection.collaboratorsCount + 1])}}
+        </h2>
 
         <div class="collaborators--search" *ngIf="isAuthor">
           <input [(ngModel)]='searchCollabInput' (click)="setSearchCollabIntent(true)" (keyup)="onSearchCollabKeyUp()" (keydown)="onSearchCollabKeyDown()" type="text" id="inputSearchCollab" class="form-control" placeholder="{{t._.collection?.collaborators?.actions?.search}}"/>
           <a class="collaborators--search-close" [class.hidden]="searchCollabIntent == false" (click)="setSearchCollabIntent(false)">{{t._.action?.cancel}}</a>
-          <!-- Quand t'appuie sur "Cancel" faudrait effacer le contenu de la recherche -->
-          <!-- Faire en sorte que le clique sur l'input pour switch de vue fonctionne une seul fois. Pourquoi : si tu a fais une recherche et que tu recliques sur l'input ça vide la liste des résultats -->
         </div>
 
         <ul class="collaborators--list">
@@ -384,9 +388,9 @@
       </div>
     </div>
 
-    <div class="collaborators--footer">
+    <div class="collaborators--footer d-none d-md-flex">
 
-      <div class="collaborators--footer-actions ml-auto">
+      <div class="collaborators--footer-actions">
         <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{t._.action?.close}}</button>
       </div>
 

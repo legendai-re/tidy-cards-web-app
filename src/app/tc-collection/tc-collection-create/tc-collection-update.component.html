@@ -3,7 +3,10 @@
 
     <div class="collection-form--content">
       <div class="collection-form--content-wrapper">
-        <h2 class="collection-form--content-title">{{t._.collection?.modal.edit?.title}}</h2>
+        <h2 class="collection-form--content-title">
+          <a href="javascript:void(0)" class="collection-form--content-title--cancel d-md-none" (click)="cancelCollectionUpdate()">{{t._.icon?.close?.filled}}</a>
+          {{t._.collection?.modal.edit?.title}}
+        </h2>
 
         <textarea
           class="collection-form--input-title"
@@ -67,7 +70,7 @@
             </li>
           </ul>
 
-          <div class="collection-form--visibility ml-auto" *ngIf="!collection.isCollaborator(authService.currentUser)">
+          <div class="collection-form--visibility dropup" *ngIf="!collection.isCollaborator(authService.currentUser)">
             <button class="collection-form--visibility-dropdown dropdown-toggle" [class.is-hidden]="!actionIntent" *ngIf="t._.collection?.visibility" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="icon">{{ t._.icon?.visibility?.filled }}</span>
               <span>{{t._.collection?.visibility?.title}}: {{t._.collection?.visibility[collection.visibility]?.title}}</span>
@@ -96,8 +99,8 @@
 
     <div class="collection-form--footer">
 
-      <div class="collection-form--footer-actions ml-auto">
-        <a href="javascript:void(0)" (click)="cancelCollectionUpdate()" class="btn btn-secondary">{{t._.action?.discard}}</a>
+      <div class="collection-form--footer-actions">
+        <a href="javascript:void(0)" class="btn btn-secondary d-none d-md-inline-flex" (click)="cancelCollectionUpdate()">{{t._.action?.discard}}</a>
         <input
           *ngIf="mode == 'CREATE'"
           class="btn btn-primary" type="submit" value="{{t._.action?.create}}"/>

@@ -3,8 +3,14 @@
 
     <div class="collection-item-new--content">
       <div class="collection-item-new--content-wrapper">
-        <h2 class="collection-item-new--content-title" *ngIf="mode == 'CREATE'">{{t._.item?.new_title}}</h2>
-        <h2 class="collection-item-new--content-title" *ngIf="mode == 'UPDATE'">{{t._.item?.update_title}}</h2>
+        <h2 class="collection-item-new--content-title" *ngIf="mode == 'CREATE'">
+          <a href="javascript:void(0)" class="collection-item-new--content-title--cancel" (click)="cancelUpdate()">{{t._.icon?.close?.filled}}</a>
+          {{t._.item?.new_title}}
+        </h2>
+        <h2 class="collection-item-new--content-title" *ngIf="mode == 'UPDATE'">
+          <a href="javascript:void(0)" class="collection-item-new--content-title--cancel" (click)="cancelUpdate()">{{t._.icon?.close?.filled}}</a>
+          {{t._.item?.update_title}}
+        </h2>
 
         <div class="collection-item-new--embeded-container" *ngIf="urlEntry && loadingContent">
           <div class="collection-item-new--embeded-centered-content">{{ t._.item?.fetching_preview }}</div>
@@ -53,7 +59,6 @@
           placeholder="{{t._.item?.new_placeholder_description}}"
           autofocus="autofocus"
           name="description"
-          rows="11"
           (keydown)="onUrlKeyDown($event)"
           [(ngModel)]="item.description"
           (ngModelChange)="parseDescriptionForUrl()"
@@ -70,9 +75,9 @@
         </li>
       </ul>
 
-      <div class="collection-new-item--footer-actions ml-auto">
-        <a href="javascript:void(0)" *ngIf="mode == 'CREATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.cancel}}</a>
-        <a href="javascript:void(0)" *ngIf="mode == 'UPDATE'" (click)="cancelUpdate()" class="btn btn-secondary">{{t._.action?.discard}}</a>
+      <div class="collection-new-item--footer-actions">
+        <a href="javascript:void(0)" class="btn btn-secondary d-none d-md-inline-flex" (click)="cancelUpdate()" *ngIf="mode == 'CREATE'">{{t._.action?.cancel}}</a>
+        <a href="javascript:void(0)" class="btn btn-secondary d-none d-md-inline-flex" (click)="cancelUpdate()" *ngIf="mode == 'UPDATE'">{{t._.action?.discard}}</a>
         <input
             *ngIf="mode == 'CREATE'"
             [disabled]="(!item.description && !item._content) || (urlEntry && !validUrl) || (loadingContent)"

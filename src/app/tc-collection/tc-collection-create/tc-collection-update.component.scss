@@ -5,15 +5,36 @@
 @import '../../../styles/settings/_variables.scss';
 @import '../../../styles/settings/_mixins.scss';
 
+@import '../../../styles/settings/_bootstrap-variables.scss';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
 .collection-form--container {
   position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
+
+  @include media-breakpoint-down(md) {
+    min-height: 100vh;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+  }
 }
 
 .collection-form--content {
+  display: flex;
+  flex: 1 1 auto;
   padding: 2rem 2rem 1.5rem;
+
+  @include media-breakpoint-down(md) {
+    padding: 0;
+  }
 }
 
 .collection-form--content-wrapper {
@@ -32,6 +53,22 @@
   line-height: 1.5rem;
   font-weight: 600;
   margin: 0 0 1rem;
+
+  @include media-breakpoint-down(md) {
+    font-size: 1.125rem;
+    padding: .75rem 1rem;
+    border-bottom: 1px solid rgba($black,.1);
+  }
+}
+
+.collection-form--content-title--cancel {
+  font-family: $font-mi;
+  font-size: 1.25rem;
+  font-weight: normal;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  margin: 0 .75rem 0 0;
+  color: $gray-600;
 }
 
 .collection-form--embeded-container {
@@ -110,12 +147,16 @@
 .collection-form--input-title {
   position: relative;
   display: flex;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   border: none;
   font-size: 1.25rem;
   line-height: 1.5rem;
   margin: 0 0 .5rem;
   resize: none;
+
+  @include media-breakpoint-down(md) {
+    padding: 1rem 1rem 0;
+  }
 }
 
 .collection-form--input-caption {
@@ -127,6 +168,10 @@
   line-height: 1.25rem;
   margin: 0;
   resize: none;
+
+  @include media-breakpoint-down(md) {
+    padding: 0 1rem 2rem;
+  }
 }
 
 .collection-form--details {
@@ -135,6 +180,12 @@
   flex-direction: row;
   margin: auto 0 0;
   padding: 0;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    padding: 1rem;
+  }
 }
 
 .collection-form--colors {
@@ -146,8 +197,21 @@
   padding: 0;
   list-style: none;
 
+  @include media-breakpoint-down(md) {
+    margin: 1rem -1rem 0 -1rem;
+    padding: .25rem 1rem;
+    max-width: 100vw;
+    overflow-y: scroll;
+  }
+
   li {
     margin: 0 .5rem 0 0;
+
+    @include media-breakpoint-down(md) {
+      &:last-child {
+        padding: 0 1rem 0 0;
+      }
+    }
   }
 }
 
@@ -165,6 +229,11 @@
   cursor: pointer;
   border: 2px solid transparent;
   transition: border-color .3s ease;
+
+  @include media-breakpoint-down(md) {
+    width: 40px;
+    height: 40px;
+  }
 
   &:hover,
   &.selected {
@@ -197,6 +266,10 @@
       direction: ltr;
       -webkit-font-feature-settings: 'liga';
       -webkit-font-smoothing: antialiased;
+
+      @include media-breakpoint-down(md) {
+        font-size: 32px;
+      }
     }
   }
 }
@@ -208,6 +281,10 @@
   background-color: $gray-200;
   border-radius: .75rem;
   transition: background-color .3s ease;
+
+  @include media-breakpoint-down(md) {
+    border-radius: 1.25rem;
+  }
 
   &:hover, &:focus {
     background-color: $gray-300;
@@ -231,6 +308,11 @@
   height: 1.5rem;
   border-radius: 50%;
   overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 .collection-form--image-uploader {
@@ -241,6 +323,11 @@
   color: rgba($black, .5);
   padding: .375rem;
   z-index: 0;
+
+  @include media-breakpoint-down(md) {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+  }
 }
 
 .collection-form--image-input {
@@ -286,6 +373,13 @@
   z-index: 1;
   border-radius: .75rem;
   cursor: pointer;
+
+  @include media-breakpoint-down(md) {
+    margin: 0 0 0 -2.5rem;
+    padding: 0 1rem 0 3rem;
+    font-size: 1rem;
+    line-height: 2.5rem;
+  }
 }
 
 .collection-color-grey {
@@ -356,6 +450,11 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  margin-left: auto;
+
+  @include media-breakpoint-down(md) {
+    margin: 0;
+  }
 }
 
 .collection-form--visibility-dropdown {
@@ -371,6 +470,10 @@
   transition: opacity .4s ease;
   transition-delay: .8s;
 
+  @include media-breakpoint-down(md) {
+    font-size: 1rem;
+  }
+
   &.is-hidden {
     opacity: 0;
     pointer-events: none;
@@ -384,10 +487,18 @@
     vertical-align: sub;
     line-height: 1;
     word-wrap: normal;
+
+    @include media-breakpoint-down(md) {
+      font-size: 1.25rem;
+    }
   }
 
   span {
     line-height: 1rem;
+
+    @include media-breakpoint-down(md) {
+      line-height: 1.25rem;
+    }
   }
 
   .icon + span {
@@ -399,9 +510,13 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   border-top: 1px solid $border-color;
   padding: .5rem;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
 }
 
 .collection-form--footer-infos {
@@ -411,6 +526,10 @@
   margin: 0;
   padding: .5rem;
   list-style: none;
+
+  @include media-breakpoint-down(md) {
+    margin: 0 0 1rem;
+  }
 }
 
 .collection-form--footer-info {
@@ -445,6 +564,24 @@
 
   a, span {
     color: inherit;
+  }
+}
+
+.collection-form--footer-actions {
+  margin: 0 0 0 auto;
+
+  @include media-breakpoint-down(md) {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    .btn {
+      margin: 0;
+
+      &:not(:last-child) {
+        margin: 0 0 .5rem;
+      }
+    }
   }
 }
 

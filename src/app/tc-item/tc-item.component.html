@@ -10,7 +10,7 @@
   <markdown class="collection-item--footer-caption" [data]="item.description" *ngIf="item.description && item.type != itemTypes.TEXT.id"></markdown>
 
   <ul class="collection-item--actions" *ngIf="isAuthor">
-    <li class="collection-item--action">
+    <li class="collection-item--action d-none d-md-flex">
       <div class="collection-item--display-modes" *ngIf="availableDisplayModes.length > 0">
         <a href="javascript:void(0)" class="collection-item--display-mode" [class.is-active]="item.displayMode == 'SMALL'" (click)="updateItemDisplayMode('SMALL')" *ngIf="availableDisplayModes.includes('SMALL')">S</a>
         <a href="javascript:void(0)" class="collection-item--display-mode" [class.is-active]="item.displayMode == 'MEDIUM'" (click)="updateItemDisplayMode('MEDIUM')" *ngIf="availableDisplayModes.includes('MEDIUM')">M</a>

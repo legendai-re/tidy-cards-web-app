@@ -7,12 +7,38 @@
   }
 }
 
+.modal-dialog {
+  @include media-breakpoint-down(md) {
+    margin: 0;
+  }
+}
+
+.modal-dialog-centered {
+  @include media-breakpoint-down(md) {
+    align-items: flex-start;
+  }
+}
+
 .modal {
-  background: radial-gradient(circle at center, rgba($white, 1) 25%, rgba($white, .95) 50%, rgba($white, .75) 100%);
+  background: radial-gradient(circle at center, rgba($white, .75) 25%, rgba($white, .5) 50%, rgba($white, .5) 100%);
 }
 
 .modal-header {
   border: none;
+}
+
+.modal-title {
+  display: flex;
+}
+
+.modal-title--cancel {
+  font-family: $font-mi;
+  font-size: 1.25rem;
+  font-weight: normal;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  margin: 0 .75rem 0 0;
+  color: $gray-600;
 }
 
 .modal-content {
@@ -24,8 +50,32 @@
   .card {
     margin: 0;
   }
+
+  @include media-breakpoint-down(md) {
+    min-height: 100vh;
+  }
+}
+
+.modal-vh {
+  @include media-breakpoint-down(md) {
+    min-height: 100vh;
+  }
 }
 
 .modal-footer {
   border: none;
+
+  @include media-breakpoint-down(md) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .btn {
+      margin: 0!important;
+
+      &:not(:last-child) {
+        margin: 0 0 .5rem;
+      }
+    }
+  }
 }
