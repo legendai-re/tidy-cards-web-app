@@ -1,22 +1,20 @@
-<div class="page-container">
-  <div class="page-content container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-8">
+<div class="page-content container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
 
-        <section class="page-heading is-hidden" id="pageHeadings">
-          <h2 class="page-heading--title">{{t._.page?.about?.title}}</h2>
-        </section>
+      <section class="page-heading is-hidden" id="pageHeadings">
+        <h2 class="page-heading--title">{{t._.page?.about?.title}}</h2>
+      </section>
 
-    		<section class="page-section is-hidden" id="pageContent">
-    			<markdown *ngIf="t._.page?.about?.content" [data]="t._.page?.about?.content"></markdown>
-    			<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
-    			<markdown class="text-center" *ngIf="t._.page?.contact?.content" [data]="t._.page?.contact?.content"></markdown>
-    			<div class="text-center">
-    				<a href="mailto:hi@tidy.cards" class="btn btn-primary" *ngIf="t._.page?.contact?.contact_btn">{{t._.page?.contact?.contact_btn}}</a>
-    			</div>
-    		</section>
+      <section class="page-section is-hidden" id="pageContent">
+        <markdown *ngIf="t._.page?.about?.content" [data]="t._.page?.about?.content"></markdown>
+        <img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+        <markdown class="text-center" *ngIf="t._.page?.contact?.content" [data]="t._.page?.contact?.content"></markdown>
+        <div class="text-center">
+          <a href="mailto:hi@tidy.cards" class="btn btn-primary" *ngIf="t._.page?.contact?.contact_btn">{{t._.page?.contact?.contact_btn}}</a>
+        </div>
+      </section>
 
-    	</div>
-  	</div>
-	</div>
+    </div>
+  </div>
 </div>

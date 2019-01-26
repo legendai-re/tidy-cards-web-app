@@ -26,7 +26,7 @@
       {{t._?.header?.signin_title}}
     </a>
     <a class="nav-link cta" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
-      {{t._?.auth?.signup_today_button}}
+      {{t._?.header?.signup_title}}
     </a>
 
     <a class="nav-link d-none d-lg-flex" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
@@ -72,22 +72,24 @@
 
 <tc-search-header class="application-content" *ngIf="headerState == 'search'"></tc-search-header>
 
-<!-- <div class="header-jumbotron" *ngIf="!authService.isLoggedIn && headerState == 'discover'">
+<div class="page-hero" *ngIf="!authService.isLoggedIn && headerState != 'collection' && !headerService.noHeader">
   <div class="container">
     <div class="row">
-
-      <div class="header-jumbotron-container col-12 col-md-10 mx-md-auto">
-        <h1 class="header-jumbotron--title">{{t._?.header?.jumbotron?.slogan}}</h1>
-        <div class="header-jumbotron--lead">
-          <p>{{t._?.header?.jumbotron?.description_line_1}}</p>
-          <p>{{t._?.header?.jumbotron?.description_line_2}}</p>
-        </div>
-        <div class="header-jumbotron--actions">
-          <a class="btn btn-yellow btn-alt" routerLinkActive="active" [routerLink]="['/signin']">{{t._?.auth?.signup_today_button}}</a>
-          <a class="btn btn-secondary btn-alt d-none d-md-flex" [routerLink]="['/about']">{{t._?.header?.jumbotron?.about_button}}</a>
+      <div class="col-12 col-lg-6">
+        <h2 class="page-hero--title">{{t._.hero?.hero_title}}</h2>
+        <p class="page-hero--caption">{{t._.hero?.hero_caption}}</p>
+        <div class="page-hero--actions">
+          <a class="btn page-hero--btn btn-primary" routerLinkActive="active" [routerLink]="['/signin']">
+            <span class="icon">{{t._?.icon?.whatshot?.filled}}</span>
+            <span>{{t._?.auth?.signup_today_button}}</span>
+          </a>
+          <a class="btn page-hero--btn btn-outline-primary" [routerLink]="['/about']" *ngIf="headerState != 'page'">{{t._?.hero?.hero_about}}</a>
+          <a class="btn page-hero--btn btn-outline-primary" [routerLink]="['/discover']" *ngIf="headerState == 'page'">{{t._?.hero?.hero_discover}}</a>
         </div>
       </div>
-
+      <div class="col-12 col-lg-6 d-none d-lg-flex">
+        <img style="display:block;width:100%;max-width:30rem;margin:-2rem 0 -7rem auto;" src="assets/img/hero-illustration.svg" />
+      </div>
     </div>
   </div>
-</div> -->
+</div>

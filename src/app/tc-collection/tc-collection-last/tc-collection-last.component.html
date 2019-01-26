@@ -1,31 +1,26 @@
-<div class="page-container">
+<div class="page-content container">
 
-  <!-- TODO: *ngIf="!authService.isLoggedIn" -> afficher hero signup -->
+  <section class="page-heading">
+    <h2 class="page-heading--title">{{t._.latest?.page_title}}</h2>
+    <p class="page-heading--caption">{{t._.latest?.page_caption}}</p>
+  </section>
 
-  <div class="page-content container">
+  <section class="page-section">
+    <div class="page-section--heading">
+      <h2 class="page-section--heading--title">{{t._.collection?.last_title}}</h2>
+    </div>
 
-    <section class="page-heading">
-      <h2 class="page-heading--title">{{t._.latest?.page_title}}</h2>
-      <p class="page-heading--caption">{{t._.latest?.page_caption}}</p>
-    </section>
+    <div class="row page-collections-list">
 
-    <section class="page-section">
-      <div class="page-section--heading">
-        <h2 class="page-section--heading--title">{{t._.collection?.last_title}}</h2>
+      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>
+
+      <div class="col-12">
+        <a href="javascript:void(0)" class="load-more" *ngIf="haveMoreCollections && !loadingCollections"(click)="loadNextPage()">{{t._.action?.load_more}}</a>
+        <p class="loading-more" *ngIf="loadingCollections">{{t._.action?.loadind}}</p>
+        <p class="no-more" *ngIf="!haveMoreCollections && pageNb > 0">{{t._.collection?.list_end}}</p>
       </div>
 
-      <div class="row page-collections-list">
+    </div>
+  </section>
 
-        <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>
-
-        <div class="col-12">
-          <a href="javascript:void(0)" class="load-more" *ngIf="haveMoreCollections && !loadingCollections"(click)="loadNextPage()">{{t._.action?.load_more}}</a>
-          <p class="loading-more" *ngIf="loadingCollections">{{t._.action?.loadind}}</p>
-          <p class="no-more" *ngIf="!haveMoreCollections && pageNb > 0">{{t._.collection?.list_end}}</p>
-        </div>
-
-      </div>
-    </section>
-
-  </div>
 </div>

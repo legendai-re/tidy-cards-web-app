@@ -9,6 +9,35 @@
   }
 }
 
+.btn {
+  display: inline-flex;
+  transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-family: $font-mi;
+    font-size: 1.25rem;
+    font-weight: normal;
+    line-height: 1.25rem;
+    margin: 0 .125rem 0 -.25rem;
+  }
+}
+
+.btn-outline-primary {
+  border-color: rgba($brand-primary,.25);
+
+  &:hover, &:focus {
+    background-color: rgba($brand-primary,.1);
+    color: $brand-primary;
+  }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: rgba($brand-primary,.25);
+    color: $brand-primary;
+  }
+}
+
 .btn-icon {
   padding: .375rem;
 

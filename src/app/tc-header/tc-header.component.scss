@@ -11,12 +11,15 @@
 @import "~bootstrap/scss/mixins";
 
 .header {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: row;
   background-color: $white;
   box-shadow: 0 2px 0 0 rgba($black,.1);
   padding: .25rem .75rem;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
 }
 
@@ -26,6 +29,10 @@
   padding: .25rem .5rem .25rem .25rem;
   border-radius: $border-radius-base;
   margin: 0 1.5rem 0 0;
+
+  @include media-breakpoint-down(md) {
+    margin: 0 .5rem 0 0;
+  }
 
   &:hover, &:active, &:focus {
     background-color: $gray-075;

@@ -1,4 +1,4 @@
-<div class="page-container" *ngIf="!isLoadingCollection && collection && collection._id">
+<ng-container *ngIf="!isLoadingCollection && collection && collection._id">
 
   <div class="page-header" *ngIf="collection._thumbnail">
     <img src="{{collection._thumbnail.getPath('1000x400')}}" alt="{{collection.title}}">
@@ -221,9 +221,9 @@
       </div>
     </div>
   </div>
-</div>
+</ng-container>
 
-<div class="page-container is-error" *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
+<ng-container *ngIf="!isLoadingCollection && (!collection || !collection._id) && !cantFoundButwasStarred">
   <div class="page-content container" id="pageContent">
 
     <div class="row justify-content-center">
@@ -242,9 +242,9 @@
 		</div>
 
 	</div>
-</div>
+</ng-container>
 
-<div class="page-container is-error" *ngIf="!isLoadingCollection && cantFoundButwasStarred">
+<ng-container *ngIf="!isLoadingCollection && cantFoundButwasStarred">
   <div class="page-content container">
 
     <div class="row justify-content-center">
@@ -263,7 +263,7 @@
 		</div>
 
 	</div>
-</div>
+</ng-container>
 
 <!-- Modals -->
 <ng-template class="default-modal" #collectionDeleteModal let-c="close" let-d="dismiss">

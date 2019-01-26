@@ -1,77 +1,73 @@
-<div class="page-container" *ngIf="!isLoadingUser && user && user._id">
-  <div class="page-content container">
+<div class="page-content container" *ngIf="!isLoadingUser && user && user._id">
 
-    <section class="page-heading">
-      <div class="row">
-        <div class="col-12 col-lg-8">
-          <div class="d-flex flex-column flex-md-row">
+  <section class="page-heading">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        <div class="d-flex flex-column flex-md-row">
 
-            <div *ngIf="user" class="avatar avatar--128 mb-3 mb-md-0 mr-md-4">
-              <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('140x140')"  onError="this.style.display='none';" alt="{{user?.name}} avatar">
-              {{user?.name.charAt(0)}}
-            </div>
-
-            <div class="d-flex flex-column">
-              <h2 class="page-heading--title">
-                {{user?.name}}
-                <div class="btn btn-sm btn-outline-primary" (click)="impersonate()" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')">Login as…</div>
-              </h2>
-              <ul class="page-heading--metas">
-                <li class="page-heading--meta">@{{user?.username}}</li>
-                <li class="page-heading--meta is-muted">{{ userStarredCollections?.length }} {{ t._.object?.collection_plur}}</li>
-                <li class="page-heading--meta is-muted">{{ userStarredCollections?.length }} {{ t._.object?.favorite_plur}}</li>
-              </ul>
-              <p class="page-heading--caption" *ngIf="user?.bio">{{user?.bio}}</p>
-              <p class="page-heading--caption" *ngIf="!user?.bio">{{t._.profile_public?.no_bio}}</p>
-            </div>
-
+          <div *ngIf="user" class="avatar avatar--128 mb-3 mb-md-0 mr-md-4">
+            <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('140x140')"  onError="this.style.display='none';" alt="{{user?.name}} avatar">
+            {{user?.name.charAt(0)}}
           </div>
+
+          <div class="d-flex flex-column">
+            <h2 class="page-heading--title">
+              {{user?.name}}
+              <div class="btn btn-sm btn-outline-primary" (click)="impersonate()" *ngIf="authService?.currentUser?.isGranted('ROLE_ADMIN')">Login as…</div>
+            </h2>
+            <ul class="page-heading--metas">
+              <li class="page-heading--meta">@{{user?.username}}</li>
+              <li class="page-heading--meta is-muted">{{ userStarredCollections?.length }} {{ t._.object?.collection_plur}}</li>
+              <li class="page-heading--meta is-muted">{{ userStarredCollections?.length }} {{ t._.object?.favorite_plur}}</li>
+            </ul>
+            <p class="page-heading--caption" *ngIf="user?.bio">{{user?.bio}}</p>
+            <p class="page-heading--caption" *ngIf="!user?.bio">{{t._.profile_public?.no_bio}}</p>
+          </div>
+
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="page-section" *ngIf="userCollections?.length == 0 && userStarredCollections?.length == 0">
-      {{t._.profile_public?.empty}}
-    </section>
+  <section class="page-section" *ngIf="userCollections?.length == 0 && userStarredCollections?.length == 0">
+    {{t._.profile_public?.empty}}
+  </section>
 
-    <section class="page-section" *ngIf="userCollections?.length > 0">
-      <div class="page-section--heading">
-        <h2 class="page-section--heading--title">{{t._.collection?.last_public_title}}</h2>
-        <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length >= 16">{{t._.action?.see_all}}</a>
-      </div>
-      <div class="row page-collections-list">
-        <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userCollections"></tc-collection-card>
-      </div>
-    </section>
+  <section class="page-section" *ngIf="userCollections?.length > 0">
+    <div class="page-section--heading">
+      <h2 class="page-section--heading--title">{{t._.collection?.last_public_title}}</h2>
+      <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length >= 16">{{t._.action?.see_all}}</a>
+    </div>
+    <div class="row page-collections-list">
+      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userCollections"></tc-collection-card>
+    </div>
+  </section>
 
-    <section class="page-section" *ngIf="userStarredCollections?.length > 0">
-      <div class="page-section-heading">
-        <h2 class="page-section--heading--title">{{t._.collection?.favorite_title}}</h2>
-        <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length >= 16">{{t._.action?.see_all}}</a>
-      </div>
-      <div class="row page-collections-list">
-        <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userStarredCollections"></tc-collection-card>
-      </div>
-    </section>
-  </div>
+  <section class="page-section" *ngIf="userStarredCollections?.length > 0">
+    <div class="page-section-heading">
+      <h2 class="page-section--heading--title">{{t._.collection?.favorite_title}}</h2>
+      <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length >= 16">{{t._.action?.see_all}}</a>
+    </div>
+    <div class="row page-collections-list">
+      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userStarredCollections"></tc-collection-card>
+    </div>
+  </section>
 </div>
 
-<div class="page-container" *ngIf="!isLoadingUser && (!user || !user._id)">
-  <div class="page-content container" id="pageContent">
+<div class="page-content container" id="pageContent" *ngIf="!isLoadingUser && (!user || !user._id)">
 
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-8">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
 
-				<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
-        <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
-        <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found_user }} “{{ searchParams }}”</p>
-				<div class="text-center pb-5">
-          <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">{{ t._.page?.error?.button?.back_dashboard }}</a>
-          <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">{{ t._.page?.error?.button?.back_discover }}</a>
-				</div>
-
+			<img style="display:block;width:100%;max-width:24rem;margin:2rem auto -3rem;" src="assets/img/illustration-empty--send-new.png" />
+      <h4 class="text-center">{{ t._.page?.error?.title }}</h4>
+      <p class="text-center"><strong>{{ t._.page?.error?.what_happened }}</strong> {{ t._.page?.error?.content_not_found_user }} “{{ searchParams }}”</p>
+			<div class="text-center pb-5">
+        <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">{{ t._.page?.error?.button?.back_dashboard }}</a>
+        <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['/discover']" *ngIf="!authService.isLoggedIn">{{ t._.page?.error?.button?.back_discover }}</a>
 			</div>
-		</div>
 
+		</div>
 	</div>
+
 </div>
