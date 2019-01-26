@@ -204,12 +204,36 @@
     height: 1.5rem;
   }
 
-  &.is-twitter:before {
-    content: "🐥";
+  &.is-twitter {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      &:before {
+        color: $gray-800;
+      }
+    }
+
+    &:before {
+      content: "🐥";
+      color: $gray-600;
+    }
   }
 
-  &.is-facebook:before {
-    content: "👁";
+  &.is-facebook {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      &:before {
+        color: $gray-800;
+      }
+    }
+
+    &:before {
+      content: "👁";
+      color: $gray-600;
+    }
   }
 }
 
