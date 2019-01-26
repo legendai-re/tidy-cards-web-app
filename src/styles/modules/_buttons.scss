@@ -10,8 +10,28 @@
 }
 
 .btn {
+  position: relative;
   display: inline-flex;
   transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+
+  &.is-shiny {
+    overflow: hidden;
+
+    &:before {
+      content: "";
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.03) 1%,rgba(255,255,255,0.6) 30%,rgba(255,255,255,0.85) 50%,rgba(255,255,255,0.85) 70%,rgba(255,255,255,0.85) 71%,rgba(255,255,255,0) 100%);
+      width: 25%;
+      height: 100%;
+      transform: skew(-10deg,0deg);
+      animation: move 3s;
+      animation-iteration-count: infinite;
+      animation-delay: 3s;
+    }
+  }
 
   .icon {
     width: 1.25rem;
@@ -22,6 +42,14 @@
     line-height: 1.25rem;
     margin: 0 .125rem 0 -.25rem;
   }
+}
+
+@keyframes move {
+	0%  { left: -50%; opacity: 0; }
+	5% {opacity: 0.0}
+	48% {opacity: 0.2}
+	80% {opacity: 0.0}
+	100% { left: 200%}
 }
 
 .btn-outline-primary {
