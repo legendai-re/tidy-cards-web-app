@@ -4,11 +4,11 @@
     <div class="collection-item-new--content">
       <div class="collection-item-new--content-wrapper">
         <h2 class="collection-item-new--content-title" *ngIf="mode == 'CREATE'">
-          <a href="javascript:void(0)" class="collection-item-new--content-title--cancel" (click)="cancelUpdate()">{{t._.icon?.close?.filled}}</a>
+          <a href="javascript:void(0)" class="collection-item-new--content-title--cancel d-md-none" (click)="cancelUpdate()">{{t._.icon?.close?.filled}}</a>
           {{t._.item?.new_title}}
         </h2>
         <h2 class="collection-item-new--content-title" *ngIf="mode == 'UPDATE'">
-          <a href="javascript:void(0)" class="collection-item-new--content-title--cancel" (click)="cancelUpdate()">{{t._.icon?.close?.filled}}</a>
+          <a href="javascript:void(0)" class="collection-item-new--content-title--cancel d-md-none" (click)="cancelUpdate()">{{t._.icon?.close?.filled}}</a>
           {{t._.item?.update_title}}
         </h2>
 

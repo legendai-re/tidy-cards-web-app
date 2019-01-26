@@ -4,6 +4,8 @@
     <img src="{{collection._thumbnail.getPath('1000x400')}}" alt="{{collection.title}}">
   </div>
 
+  <div class="page-header is-color" [style.background-color]="'#'+collection.color" *ngIf="collection.color && !collection._thumbnail"></div>
+
   <div class="page-content container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-8">

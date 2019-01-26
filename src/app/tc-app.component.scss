@@ -156,6 +156,21 @@
     height: 8rem;
   }
 
+  &.is-color {
+    height: 9.75rem;
+    margin: 0 0 -9.75rem;
+
+    &:after {
+      content: "";
+      position: absolute;
+      background: linear-gradient(to bottom, rgba($white,.5), $white);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
   img {
     position: absolute;
     top: 0;
