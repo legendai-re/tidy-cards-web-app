@@ -38,11 +38,11 @@ export class TcDiscoverComponent implements OnInit {
 
     private loadFeaturedCollections(){
         let params = new URLSearchParams();
-        params.set('limit', '8');
+        params.set('limit', '13');
         params.set('sort_field', 'featuredAt');
         params.set('sort_dir', '-1');
         params.set('isFeatured', 'true');
-        params.set('isOnDiscover', 'true');
+        params.set('isOnDiscover', 'any');
         this.collectionService.getCollections(params).subscribe(collections => {
             this.featuredCollections = collections;
         }, () => {});
@@ -50,7 +50,7 @@ export class TcDiscoverComponent implements OnInit {
 
     private loadPopularCollections(){
         let params = new URLSearchParams();
-        params.set('limit', '8');
+        params.set('limit', '16');
         params.set('sort_field', 'starsCount');
         params.set('sort_dir', '-1');
         this.collectionService.getCollections(params).subscribe(collections => {

@@ -24,8 +24,8 @@ export class TcSortableDirective {
         let oldIndex;
         $(this.element).sortable({
             placeholder: this.ghostClass,
-            helper: function(x, y){ y.addClass('card-moving'); return y },
-            handle: '.card-collection--drag-handle',
+            helper: function(x, y){ y.addClass('is-moving'); return y },
+            handle: '.collection-card--drag-handle',
             cancel: '.cancel-sort',
             tolerance: "pointer",
             items: "> :not(.not-sortable-item)",
@@ -39,7 +39,7 @@ export class TcSortableDirective {
                 $(this).removeAttr('data-previndex');
             },
             stop: (event, ui) => {
-                ui.item.removeClass('card-moving');
+                ui.item.removeClass('is-moving');
                 let tmpItem = this.list[oldIndex];
                 if(!tmpItem)
                     return;

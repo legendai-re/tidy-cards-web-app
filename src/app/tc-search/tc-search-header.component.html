@@ -37,9 +37,8 @@
         <h2 class="page-section--heading--title">{{t._.object?.user_plur}}</h2>
       </div>
 
-      <div class="row page-collections-list">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let user of users">
-
+      <div class="page-collections-list">
+        <div class="user-card--container" *ngFor="let user of users">
           <a class="user-card" [routerLink]="['/', user.username]" title="{{user.name}}">
             <div class="user-card--avatar avatar avatar--40">
               <img *ngIf="user._avatar" [src]="user._avatar?.getPath('140x140')" onError="this.style.display='none';" alt="{{user.name}} avatar">
@@ -52,7 +51,6 @@
               </ul>
             </div>
           </a>
-
         </div>
       </div>
 
@@ -62,9 +60,8 @@
       <div class="page-section--heading">
         <h2 class="page-section--heading--title">{{t._.object?.collection_plur}}</h2>
       </div>
-
-      <div class="row page-collections-list">
-        <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>
+      <div class="page-collections-list">
+        <tc-collection-card class="collection-card--container" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>
       </div>
     </section>
 

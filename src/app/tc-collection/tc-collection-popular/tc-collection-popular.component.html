@@ -10,17 +10,13 @@
       <h2 class="page-section--heading--title">{{t._.collection?.popular_title}}</h2>
     </div>
 
-    <div class="row page-collections-list">
-
-      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>
-
-      <div class="col-12">
-        <a href="javascript:void(0)" class="load-more" *ngIf="haveMoreCollections && !loadingCollections"(click)="loadNextPage()">{{t._.action?.load_more}}</a>
-        <p class="loading-more" *ngIf="loadingCollections">{{t._.action?.loadind}}</p>
-        <p class="no-more" *ngIf="!haveMoreCollections && pageNb > 0">{{t._.collection?.list_end}}</p>
-      </div>
-
+    <div class="page-collections-list">
+      <tc-collection-card class="collection-card--container" [collection]="collection" [sortable]="false" *ngFor="let collection of collections"></tc-collection-card>
     </div>
+
+    <a href="javascript:void(0)" class="load-more mt-3" *ngIf="haveMoreCollections && !loadingCollections"(click)="loadNextPage()">{{t._.action?.load_more}}</a>
+    <p class="loading-more mt-3" *ngIf="loadingCollections">{{t._.action?.loadind}}</p>
+    <p class="no-more mt-3" *ngIf="!haveMoreCollections && pageNb > 0">{{t._.collection?.list_end}}</p>
   </section>
 
 </div>

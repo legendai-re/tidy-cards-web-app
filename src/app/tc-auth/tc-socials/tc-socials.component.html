@@ -1,8 +1,17 @@
 <div class="auth-content">
     <form class="form-signin" *ngIf="!authService.isLoggedIn" (ngSubmit)="onLoginSubmit()">
         <p class="auth-top-content">{{t._.auth?.signin_caption}}</p>
-        <a href="javascript:void(0)" class="btn is-facebook btn-block" (click)="connectWith('facebook')">{{t._.auth?.signin_facebook_title}}</a>
-        <a href="javascript:void(0)" class="btn is-twitter btn-block" (click)="connectWith('twitter')">{{t._.auth?.signin_twitter_title}}</a>
-        <a href="javascript:void(0)" class="btn is-google btn-block" (click)="connectWith('google')">{{t._.auth?.signin_google_title}}</a>
+        <a href="javascript:void(0)" class="btn is-facebook btn-block" (click)="connectWith('facebook')">
+          <img class="img-icon" src="assets/img/auth-facebook.svg" alt="Facebook Logo" />
+          <span>{{t._.auth?.signin_facebook_title}}</span>
+        </a>
+        <a href="javascript:void(0)" class="btn is-twitter btn-block" (click)="connectWith('twitter')">
+          <img class="img-icon" src="assets/img/auth-twitter.svg" alt="Twitter Logo" />
+          <span>{{t._.auth?.signin_twitter_title}}</span>
+        </a>
+        <a href="javascript:void(0)" class="btn is-google btn-block" (click)="connectWith('google')">
+          <img class="img-icon" src="assets/img/auth-google.svg" alt="Google Logo" />
+          <span>{{t._.auth?.signin_google_title}}</span>
+        </a>
     </form>
 </div>

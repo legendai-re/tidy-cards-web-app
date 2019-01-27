@@ -1,9 +1,9 @@
 <article class="collection-card" *ngIf="collection">
-  <div class="card-collection--drag-handle" *ngIf="sortable">
-    <i class="material-icons move-item-button">drag_handle</i>
+  <div class="collection-card--drag-handle" *ngIf="sortable">
+    <span class="material-icons move-item-button">drag_handle</span>
   </div>
 
-  <a class="collection-card--container" [routerLink]="['/c', collection._id]">
+  <a class="collection-card--content" [routerLink]="['/c', collection._id]">
     <div class="collection-card--cover" [style.background-color]="'#'+collection.color">
       <img [src]="collection._thumbnail?.getPath('300x250')" onError="this.style.display='none';" *ngIf="collection._thumbnail" />
     </div>

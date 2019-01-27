@@ -12,7 +12,7 @@
   flex-direction: column;
   background-color: $white;
   padding: 0;
-  margin: 0 0 1rem;
+  margin: 0;
   border-radius: $border-radius-base;
   color: $gray-900;
   transition: background-color .3s ease;
@@ -26,13 +26,13 @@
       transform: scale(1.1, 1.1);
     }
 
-    .card-collection--drag-handle {
+    .collection-card--drag-handle {
       opacity: 1;
     }
   }
 }
 
-.collection-card--container {
+.collection-card--content {
   position: relative;
   display: flex;
   flex: 1 1 auto;
@@ -85,7 +85,7 @@
 .collection-card--infos {
   position: relative;
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   flex-direction: column;
   padding: .5rem .25rem;
 }
@@ -146,7 +146,7 @@
   }
 }
 
-.card-collection--drag-handle {
+.collection-card--drag-handle {
   position: absolute;
   display: flex;
   z-index: 2;
@@ -161,4 +161,8 @@
   cursor: move;
   opacity: 0;
   transition: .3s ease opacity;
+
+  .move-item-button {
+    pointer-events: none;
+  }
 }

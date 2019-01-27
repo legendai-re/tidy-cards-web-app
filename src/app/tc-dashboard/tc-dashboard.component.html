@@ -11,10 +11,8 @@
       <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c']" *ngIf="myCollections.length >= 15">{{t._.action?.see_all}}</a>
     </div>
 
-    <div class="row page-collections-list" tc-sortable [ignoreItem]="1" [list]=myCollections [ghostClass]="'card-ghost col-12 col-md-6 col-lg-4 col-xl-3'" (itemMoved)="onCollectionMoved($event)">
-      <ng-container *ngFor="let collection of myCollections" [class.cancel-sort]="isUpdatingPosition">
-        <tc-collection-card class="ui-state-default col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]=false></tc-collection-card>
-      </ng-container>
+    <div class="page-collections-list" tc-sortable [list]=myCollections [ghostClass]="'collection-card--container card-ghost'" [class.cancel-sort]="isUpdatingPosition" (itemMoved)="onCollectionMoved($event)">
+      <tc-collection-card class="collection-card--container ui-state-default" [collection]="collection" [sortable]=true *ngFor="let collection of myCollections"></tc-collection-card>
     </div>
   </section>
 
@@ -23,10 +21,8 @@
       <h2 class="page-section--heading--title">{{t._.collection?.my_favorite_title}}</h2>
       <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', authService.currentUser.username, 'c', 'starred']" *ngIf="myFavoriteCollections.length >= 8">{{t._.action?.see_all}}</a>
     </div>
-    <div class="row page-collections-list">
-      <ng-container *ngFor="let collection of myFavoriteCollections">
-        <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false"></tc-collection-card>
-      </ng-container>
+    <div class="page-collections-list">
+      <tc-collection-card class="collection-card--container" [collection]="collection" [sortable]="false" *ngFor="let collection of myFavoriteCollections"></tc-collection-card>
     </div>
   </section>
 

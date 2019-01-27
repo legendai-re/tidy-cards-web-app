@@ -38,8 +38,8 @@
       <h2 class="page-section--heading--title">{{t._.collection?.last_public_title}}</h2>
       <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c']" *ngIf="userCollections.length >= 16">{{t._.action?.see_all}}</a>
     </div>
-    <div class="row page-collections-list">
-      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userCollections"></tc-collection-card>
+    <div class="page-collections-list">
+      <tc-collection-card class="collection-card--container" [collection]="collection" [sortable]="false" *ngFor="let collection of userCollections"></tc-collection-card>
     </div>
   </section>
 
@@ -48,8 +48,8 @@
       <h2 class="page-section--heading--title">{{t._.collection?.favorite_title}}</h2>
       <a class="page-section--heading--more" href="javascript:void(0)" [routerLink]="['/', user.username, 'c', 'starred']" *ngIf="userStarredCollections.length >= 16">{{t._.action?.see_all}}</a>
     </div>
-    <div class="row page-collections-list">
-      <tc-collection-card class="col-12 col-md-6 col-lg-4 col-xl-3" [collection]="collection" [sortable]="false" *ngFor="let collection of userStarredCollections"></tc-collection-card>
+    <div class="page-collections-list">
+      <tc-collection-card class="collection-card--container" [collection]="collection" [sortable]="false" *ngFor="let collection of userStarredCollections"></tc-collection-card>
     </div>
   </section>
 </div>
