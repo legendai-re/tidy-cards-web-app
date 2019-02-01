@@ -240,27 +240,27 @@ export class TcUserPrivateComponent implements OnInit {
         let user = new TcUser();
         user._id = this.tmpUser._id;
         user.name = this.tmpUser.name;
-        // user.username = this.tmpUser.username;
+        user.username = this.tmpUser.username;
         user.bio = this.tmpUser.bio;
         if(this.tmpUser._avatar)
             user._avatar = this.tmpUser._avatar;
 
-        this.userService.putUser(user).subscribe((userResponse) => {
-            this.authService.currentUser.name = userResponse.name;
-            this.authService.currentUser.bio = userResponse.bio;
-            if(this.tmpUser._avatar)
-                this.authService.currentUser._avatar = this.tmpUser._avatar;
-            this.tmpUser.name = userResponse.name;
-            this.tmpUser.bio = userResponse.bio;
-            this.tmpUser._avatar = null;
-            // this.updateGeneralInfoIntent = false;
-            this.isUpdadingGeneralInfo = false;
-            window.analytics.track('Updated infos');
-        }, (err) => {
-            console.log('Sorry something went wrong while updating your general info');
-            this.isUpdadingGeneralInfo = false;
-            this.cancelUpdateGeneralInfo();
-        });
+            this.userService.putUser(user).subscribe((userResponse) => {
+                this.authService.currentUser.name = userResponse.name;
+                this.authService.currentUser.bio = userResponse.bio;
+                if(this.tmpUser._avatar)
+                    this.authService.currentUser._avatar = this.tmpUser._avatar;
+                this.tmpUser.name = userResponse.name;
+                this.tmpUser.bio = userResponse.bio;
+                this.tmpUser._avatar = null;
+                // this.updateGeneralInfoIntent = false;
+                this.isUpdadingGeneralInfo = false;
+                window.analytics.track('Updated infos');
+            }, (err) => {
+                console.log('Sorry something went wrong while updating your general info');
+                this.isUpdadingGeneralInfo = false;
+                this.cancelUpdateGeneralInfo();
+            });
     }
 
     public linkAccount(strategy: string){
