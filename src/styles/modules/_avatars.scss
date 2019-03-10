@@ -10,6 +10,7 @@
     color: rgba($white, .75);
     font-weight: 500;
     text-transform: uppercase;
+    box-shadow: 0 0 0 .125rem $white;
 
     &:after {
       content: "";

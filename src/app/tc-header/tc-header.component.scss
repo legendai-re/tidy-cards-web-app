@@ -147,14 +147,25 @@
   width: 100%;
   border: none;
   border-radius: $border-radius-base;
-  padding: .5rem .5rem .5rem 2.75rem;
+  border: 1px solid transparent;
+  padding: 7px .5rem 7px 2.75rem;
   font-size: 1rem;
   line-height: 1.5rem;
   z-index: 0;
+  transition: color .3s ease, background-color .3s ease, border-color .3s ease;
 
   @include media-breakpoint-down(md) {
     background-color: $white;
     padding: .75rem 1.25rem .75rem 3.5rem;
+  }
+
+  &:hover, &:focus, &:active, &.is-active {
+    background-color: $gray-200;
+  }
+
+  &.is-active {
+    background-color: $white;
+    border-color: $brand-primary;
   }
 }
 
@@ -175,12 +186,12 @@
   }
 
   &:hover, &:focus {
-    background-color: $gray-200;
+    background-color: $gray-075;
     text-decoration: none;
   }
 
   &:active {
-    background-color: $gray-400;
+    background-color: $gray-300;
   }
 
   &.is-hidden {

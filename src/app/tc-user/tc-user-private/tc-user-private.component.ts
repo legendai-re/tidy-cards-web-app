@@ -76,6 +76,7 @@ export class TcUserPrivateComponent implements OnInit {
         this.emailState = 'PENDING';
 
         this.updateGeneralInfoIntent = true;
+        this.updateEmailIntent = true;
     }
 
     public startUpdateGeneralInfo(){

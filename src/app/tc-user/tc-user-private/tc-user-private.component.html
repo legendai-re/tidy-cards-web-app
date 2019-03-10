@@ -28,9 +28,44 @@
 
     </div>
 
-    <div class="form-group">
-      <label for="accountName">{{t._.profile_private?.name_row_title}}</label>
-      <input #nameInput class="form-control" id="accountName" placeholder="{{t._.profile_private?.bio_placeholder}}" autofocus [disabled]="!updateGeneralInfoIntent" [(ngModel)]="tmpUser.name" name="name" type="text" />
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <label for="accountName">{{t._.profile_private?.name_row_title}}</label>
+          <input #nameInput class="form-control" id="accountName" placeholder="{{t._.profile_private?.bio_placeholder}}" autofocus [disabled]="!updateGeneralInfoIntent" [(ngModel)]="tmpUser.name" name="name" type="text" />
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <label for="accountHandle">
+            {{t._.profile_private?.username_row_title}} <span class="muted">{{t._.profile_private?.username_row_span}}</span>
+          </label>
+          <input #usernameInput class="form-control" id="accountHandle" aria-describedby="handleHelp" placeholder="{{t._.profile_private?.bio_placeholder}}" [disabled]="!updateGeneralInfoIntent" [(ngModel)]="tmpUser.username" name="username" (keyup)="onUsernameKeyUp()" (keydown)="onUsernameKeyDown()" type="input" />
+          <small id="handleHelp" class="form-text text-muted" *ngIf="!updateGeneralInfoIntent">
+            https://www.tidy.cards/{{authService.currentUser.username}}
+          </small>
+          <ng-container *ngIf="updateGeneralInfoIntent">
+            <!-- <small id="handleHelp" class="form-text text-muted" *ngIf="tmpUser.username === authService.currentUser.username">
+              That’s your current username!
+            </small> -->
+            <ng-container *ngIf="tmpUser.username != authService.currentUser.username">
+              <small id="handleHelp" class="form-text text-muted" *ngIf="usernameState == 'VALIDATING'">
+                Validation in progress…
+              </small>
+              <small id="handleHelp" class="form-text text-success" *ngIf="usernameState == 'FREE'">
+                This username is available
+              </small>
+              <small id="handleHelp" class="form-text text-danger" *ngIf="usernameState == 'INVALID'">
+                This username is not valid
+              </small>
+              <small id="handleHelp" class="form-text text-danger" *ngIf="usernameState == 'TAKEN'">
+                This username is not available
+              </small>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
@@ -38,51 +73,30 @@
       <textarea class="form-control" id="accountBio" rows="4" placeholder="{{t._.profile_private?.bio_placeholder}}" [disabled]="!updateGeneralInfoIntent" [(ngModel)]="tmpUser.bio" name="bio">{{tmpUser.bio}}</textarea>
     </div>
 
-    <div class="form-group">
-      <label for="accountHandle">
-        {{t._.profile_private?.username_row_title}} <span class="muted">{{t._.profile_private?.username_row_span}}</span>
-      </label>
-      <input #usernameInput class="form-control" id="accountHandle" aria-describedby="handleHelp" placeholder="{{t._.profile_private?.bio_placeholder}}" [disabled]="!updateGeneralInfoIntent" [(ngModel)]="tmpUser.username" name="username" (keyup)="onUsernameKeyUp()" (keydown)="onUsernameKeyDown()" type="input" />
-      <small id="handleHelp" class="form-text text-muted" *ngIf="!updateGeneralInfoIntent">
-        https://www.tidy.cards/{{authService.currentUser.username}}
-      </small>
-      <ng-container *ngIf="updateGeneralInfoIntent">
-        <small id="handleHelp" class="form-text text-muted" *ngIf="tmpUser.username === authService.currentUser.username">
-          That’s your current username!
-        </small>
-        <ng-container *ngIf="tmpUser.username != authService.currentUser.username">
-          <small id="handleHelp" class="form-text text-muted" *ngIf="usernameState == 'VALIDATING'">
-            Validation in progress…
-          </small>
-          <small id="handleHelp" class="form-text text-success" *ngIf="usernameState == 'FREE'">
-            This username is available
-          </small>
-          <small id="handleHelp" class="form-text text-danger" *ngIf="usernameState == 'INVALID'">
-            This username is not valid
-          </small>
-          <small id="handleHelp" class="form-text text-danger" *ngIf="usernameState == 'TAKEN'">
-            This username is not available
-          </small>
-        </ng-container>
-      </ng-container>
-    </div>
+    <input class="btn btn-primary" (click)="updateGeneralInfo()" [disabled]="isUpdadingGeneralInfo || isUploadingAvatar || !tmpUser.name" type="submit" value="{{t._.action?.update}}" />
 
+  </section>
+
+  <section class="page-section">
+    <div class="page-section--heading">
+      <h2 class="page-section--heading--title">{{t._.profile_private?.account_title}}</h2>
+    </div>
     <div class="row">
       <div class="col-12 col-lg-6">
         <div class="form-group">
           <label for="accountEmail">
             {{t._.profile_private?.email_row_title}} <span class="muted" *ngIf="!authService.currentUser.emailConfirmed"> ({{t._.profile_private?.email_confirmation_state_no}})</span>
           </label>
-          <!-- <input #emailInput type="email" class="form-control" id="accountEmail" aria-describedby="emailHelp" [disabled]="!updateGeneralInfoIntent || !authService.currentUser.emailConfirmed" [(ngModel)]="tmpUser.email" name="email" (keyup)="onEmailKeyUp()" (keydown)="onEmailKeyDown()" /> -->
-          <input #emailInput type="email" class="form-control" id="accountEmail" aria-describedby="emailHelp" [disabled]="!updateGeneralInfoIntent" [(ngModel)]="tmpUser.email" name="email" (keyup)="onEmailKeyUp()" (keydown)="onEmailKeyDown()" />
+          <input #emailInput type="email" class="form-control" id="accountEmail" aria-describedby="emailHelp" [disabled]="!updateGeneralInfoIntent || !authService.currentUser.emailConfirmed" [(ngModel)]="tmpUser.email" name="email" (keyup)="onEmailKeyUp()" (keydown)="onEmailKeyDown()" />
+          <!-- <input #emailInput type="email" class="form-control" id="accountEmail" aria-describedby="emailHelp" [disabled]="!updateEmailIntent" [(ngModel)]="tmpUser.email" name="email" (keyup)="onEmailKeyUp()" (keydown)="onEmailKeyDown()" /> -->
           <ng-container *ngIf="authService.currentUser.email && !authService.currentUser.emailConfirmed">
             <small id="emailHelp" class="form-text text-muted">
               {{t.format(t._.profile_private?.email_confirmation_info, [authService.currentUser.email])}}
               <a href="javascript:void(0)" (click)="updateEmail()">{{t._.profile_private?.email_confirmation_resend}}</a>
             </small>
           </ng-container>
-          <!-- <ng-container *ngIf="updateGeneralInfoIntent && authService.currentUser.emailConfirmed"> -->
-          <ng-container *ngIf="updateGeneralInfoIntent">
+          <ng-container *ngIf="updateEmailIntent && authService.currentUser.emailConfirmed">
+          <!-- <ng-container *ngIf="updateEmailIntent"> -->
             <small id="emailHelp" class="form-text text-muted" *ngIf="compareEmail()">
               That’s your current email!
             </small>
@@ -103,6 +117,7 @@
           </ng-container>
         </div>
       </div>
+
       <div class="col-12 col-lg-6">
         <div class="form-group">
           <label for="accountLanguage">
@@ -117,8 +132,7 @@
       </div>
     </div>
 
-    <input class="btn btn-block btn-primary" (click)="updateGeneralInfo()" [disabled]="isUpdadingGeneralInfo || isUploadingAvatar || !tmpUser.name" type="submit" value="{{t._.profile_private?.update_account_button}}" />
-
+    <input class="btn btn-primary" (click)="updateEmail()" [disabled]="isUpdatingEmail" type="submit" value="{{t._.action?.update}}" />
   </section>
 
   <section class="page-section">
@@ -126,37 +140,49 @@
       <h2 class="page-section--heading--title">{{t._.profile_private?.password_title}}</h2>
     </div>
 
-    <div class="form-group" *ngIf="authService.currentUser.local.active">
-      <label for="accountPasswordNew">{{t._.profile_private?.password_new}}</label>
-      <input class="form-control" id="accountPasswordNew" [(ngModel)]="newPassword" name="newPassword" type="password" value="" />
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="form-group" *ngIf="authService.currentUser.local.active">
+          <label for="accountPasswordNew">{{t._.profile_private?.password_new}}</label>
+          <input class="form-control" id="accountPasswordNew" [(ngModel)]="newPassword" name="newPassword" type="password" value="" />
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="accountPasswordConfirmation">{{t._.profile_private?.password_confirmation}}</label>
-      <input class="form-control" id="accountPasswordConfirmation" [(ngModel)]="newPasswordRepeat" name="newPasswordRepeat" type="password" value="" />
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <label for="accountPasswordConfirmation">{{t._.profile_private?.password_confirmation}}</label>
+          <input class="form-control" id="accountPasswordConfirmation" [(ngModel)]="newPasswordRepeat" name="newPasswordRepeat" type="password" value="" />
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="accountPasswordCurrent">{{t._.profile_private?.password_current}}</label>
-      <input class="form-control" id="accountPasswordCurrent" [(ngModel)]="password" name="password" type="password" value="" />
-      <small id="handleHelp" class="form-text" [class.text-muted]="isUpdatingPassword" [class.text-success]="!isUpdatingPassword && passwordUpdateState == 'SUCCESS'" [class.is-danger]="!isUpdatingPassword && passwordUpdateState == 'FAILED'">
-        <ng-container *ngIf="isUpdatingPassword">
-          Update in progress..
-        </ng-container>
-        <ng-container *ngIf="!isUpdatingPassword && passwordUpdateState == 'SUCCESS'">
-          Password updated
-        </ng-container>
-        <ng-container *ngIf="!isUpdatingPassword && passwordUpdateState == 'FAILED'">
-          The password entered do not match with the account password
-        </ng-container>
-        <a href="javascript:void(0)" [routerLink]="['/reset/initiate', {user_id: authService.currentUser._id}]">
-          {{t._.profile_private?.security_recover_pwd}}
-        </a>
-      </small>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <label for="accountPasswordCurrent">{{t._.profile_private?.password_current}}</label>
+          <input class="form-control" id="accountPasswordCurrent" [(ngModel)]="password" name="password" type="password" value="" />
+          <small id="handleHelp" class="form-text" [class.text-muted]="isUpdatingPassword" [class.text-success]="!isUpdatingPassword && passwordUpdateState == 'SUCCESS'" [class.is-danger]="!isUpdatingPassword && passwordUpdateState == 'FAILED'">
+            <ng-container *ngIf="isUpdatingPassword">
+              Update in progress..
+            </ng-container>
+            <ng-container *ngIf="!isUpdatingPassword && passwordUpdateState == 'SUCCESS'">
+              Password updated
+            </ng-container>
+            <ng-container *ngIf="!isUpdatingPassword && passwordUpdateState == 'FAILED'">
+              The password entered do not match with the account password
+            </ng-container>
+            <a href="javascript:void(0)" [routerLink]="['/reset/initiate', {user_id: authService.currentUser._id}]">
+              {{t._.profile_private?.security_recover_pwd}}
+            </a>
+          </small>
+        </div>
+      </div>
     </div>
 
-    <input class="btn btn-block btn-primary" (click)="updatePassword()" [disabled]="!isUpdatingPassword && !isUpdatePasswordFormValid()" type="submit" value="{{t._.action?.update}}" *ngIf="authService.currentUser.local.active"/>
-    <input class="btn btn-block btn-primary" (click)="setPassword()" [disabled]="!isUpdatingPassword && !isSetPasswordFormValid()" type="submit" value="{{t._.action?.save}}" *ngIf="!authService.currentUser.local.active"/>
+    <input class="btn btn-primary" (click)="updatePassword()" [disabled]="!isUpdatingPassword && !isUpdatePasswordFormValid()" type="submit" value="{{t._.action?.update}}" *ngIf="authService.currentUser.local.active"/>
+    <input class="btn btn-primary" (click)="setPassword()" [disabled]="!isUpdatingPassword && !isSetPasswordFormValid()" type="submit" value="{{t._.action?.save}}" *ngIf="!authService.currentUser.local.active"/>
 
   </section>
 

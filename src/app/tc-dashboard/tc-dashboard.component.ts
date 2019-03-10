@@ -20,12 +20,13 @@ export class TcDashboardComponent implements OnInit {
   public myFavoriteCollections: TcCollection[];
   public isUpdatingPosition: boolean;
 
-  constructor(public t: TcLanguageService,
-              public authService: TcAuthService,
-              private router: Router,
-              private titleService: Title,
-              private service: TcCollectionService) {
-
+  constructor(
+    public t: TcLanguageService,
+    public authService: TcAuthService,
+    private router: Router,
+    private titleService: Title,
+    private service: TcCollectionService
+  ) {
     this.t.getLangInitializedEmitter().subscribe((value) => {
       this.titleService.setTitle(this.t._.header.dashboard_title + ' | TidyCards');
     });
@@ -69,12 +70,6 @@ export class TcDashboardComponent implements OnInit {
       this.myFavoriteCollections = collections;
     }, () => {
     });
-  }
-
-  onbCollectionCreated(event) {
-    if (event.value) {
-      this.router.navigate(['/c', event.value._id]);
-    }
   }
 
   onCollectionMoved(event) {

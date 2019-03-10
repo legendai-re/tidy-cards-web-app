@@ -4,12 +4,12 @@
   </a>
   <form class="header-search">
     <span class="header-search--icon">search</span>
-    <input class="header-search--input" placeholder="{{t._?.header?.search_placeholder}}" autocomplete="off" name="searchQuery" aria-describedby="header-search" [(ngModel)]="searchQuery" (focus)="searchIntent()" (click)="searchIntent()" (keyup)="onQueryKeyUp()" (keydown)="onQueryKeyDown()">
+    <input class="header-search--input" [class.is-active]="headerState == 'search'" placeholder="{{t._?.header?.search_placeholder}}" autocomplete="off" name="searchQuery" aria-describedby="header-search" [(ngModel)]="searchQuery" (focus)="searchIntent()" (click)="searchIntent()" (keyup)="onQueryKeyUp()" (keydown)="onQueryKeyDown()">
     <a href="javascript:void(0)" class="header-search--cancel" [class.is-hidden]="headerState != 'search'" (click)="cancelSearch()">
       {{t._.action?.cancel}}
     </a>
   </form>
-  <nav class="header-nav nav d-none d-lg-flex">
+  <nav class="header-nav nav d-none d-lg-flex mr-auto">
     <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">
       {{t._?.header?.dashboard_title}}
     </a>
@@ -21,7 +21,11 @@
     </a>
   </nav>
 
-  <nav class="header-nav nav ml-auto">
+  <nav class="header-nav nav mr-3" *ngIf="authService.isLoggedIn">
+    <a class="nav-link cta" href="javascript:void(0)" (click)="openModal(createCollectionModal, 'lg')">{{t._.action?.create_collection}}</a>
+  </nav>
+
+  <nav class="header-nav nav">
     <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
       {{t._?.header?.signin_title}}
     </a>
@@ -69,6 +73,14 @@
     </div>
   </nav>
 </div>
+
+<ng-template #createCollectionModal let-c="close" let-d="dismiss">
+  <tc-collection-create
+    (newCollection)="onCollectionCreated($event)"
+    (updateCanceled)="onCreateCollectionCanceled()">
+  </tc-collection-create>
+</ng-template>
+
 
 <tc-search-header class="application-content" *ngIf="headerState == 'search'"></tc-search-header>
 

@@ -383,10 +383,13 @@
   font-weight: 600;
   line-height: 2rem;
   color: $gray-600;
-  margin: 0 0 0 auto;
+  padding: 0 .5rem 0 .75rem;
+  margin: 0 -.5rem 0 auto;
+  border-radius: $border-radius-base;
   align-items: center;
 
-  &:hover {
+  &:hover, &:focus, &:active {
+    background-color: $gray-100;
     text-decoration: none;
     color: $gray-900;
 

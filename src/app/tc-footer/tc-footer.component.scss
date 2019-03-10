@@ -55,18 +55,16 @@
     color: $gray-600;
     cursor: pointer;
 
-    &:hover {
-      select {
-        text-decoration: underline;
-      }
-    }
-
     select {
       background-color: transparent;
       appearance: none;
       border: none;
       font-size: .875rem;
       color: $gray-600;
+
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+      }
     }
   }
 }

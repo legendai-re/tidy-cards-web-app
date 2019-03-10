@@ -138,6 +138,10 @@
     border: 1px solid $border-color;
     padding: 7px;
 
+    &:hover {
+      border-color: rgba($black, .25);
+    }
+
     &.is-highlighted {
       span, .icon {
         color: $brand-primary;
