@@ -197,7 +197,6 @@ export class TcItemCreateComponent implements OnInit {
   }
 
   public cancelUpdate() {
-    console.log("cancel")
     this.updateCanceled.emit({});
   }
 }

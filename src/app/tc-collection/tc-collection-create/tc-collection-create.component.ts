@@ -32,7 +32,7 @@ export class TcCollectionCreateComponent implements OnInit {
 
     constructor(public t: TcLanguageService,
             public collectionService: TcCollectionService,
-            public imgUploadService: TcImgUploadService, 
+            public imgUploadService: TcImgUploadService,
             public router: Router,
             public authService: TcAuthService) {
         this.uploader = imgUploadService.uploader;
