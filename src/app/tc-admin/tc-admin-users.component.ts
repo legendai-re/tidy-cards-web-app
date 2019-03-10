@@ -25,7 +25,7 @@ export class TcAdminUsersComponent implements OnInit {
                 private titleService: Title,
                 private userService: TcUserService) {
         this.t.getLangInitializedEmitter().subscribe((value) => {
-            this.titleService.setTitle(this.t._.header.dashboard_title + ' | TidyCards');
+            this.titleService.setTitle('Users | Admin | TidyCards');
         });
     }
 
@@ -69,8 +69,8 @@ export class TcAdminUsersComponent implements OnInit {
     loadUsers() {
         this.loadingUsers = true;
         const params = new URLSearchParams();
-        params.set('limit', TcDataLimit.COLLECTION.toString());
-        params.set('skip', (TcDataLimit.COLLECTION * this.pageNb).toString());
+        params.set('limit', TcDataLimit.USER.toString());
+        params.set('skip', (TcDataLimit.USER * this.pageNb).toString());
         params.set('populate', '_avatar');
         params.set('sort_field', 'createdAt');
         params.set('sort_dir', '-1');
@@ -85,7 +85,7 @@ export class TcAdminUsersComponent implements OnInit {
             users[i].isCollapsed = false;
             this.users.push(users[i]);
         }
-        this.haveMoreUsers = (users.length === TcDataLimit.COLLECTION);
+        this.haveMoreUsers = (users.length === TcDataLimit.USER);
         this.loadingUsers = false;
     }
 }
