@@ -1,6 +1,12 @@
 {
   "short_name": "TidyCards",
   "name": "TidyCards",
+  "description": "TidyCards allows you to easily organize and make connections between your links! Whether articles, publications, videos, tweets or any kinds of content.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "homepage_url": "https://tidy.cards",
   "icons": [
     {
       "src": "/assets/img/icon-android-192.png",
@@ -12,10 +18,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": "/",
-  "background_color": "#FFFFFF",
-  "display": "standalone",
-  "scope": "/",
-  "theme_color": "#FFFFFF"
+  ]
 }
