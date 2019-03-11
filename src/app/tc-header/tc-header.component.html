@@ -21,7 +21,7 @@
     </a>
   </nav>
 
-  <nav class="header-nav nav mr-3" *ngIf="authService.isLoggedIn">
+  <nav class="header-nav nav ml-auto ml-lg-3 mr-3" *ngIf="authService.isLoggedIn">
     <a class="nav-link cta" href="javascript:void(0)" (click)="openModal(createCollectionModal, 'lg')">{{t._.action?.create_collection}}</a>
   </nav>
 
@@ -41,7 +41,7 @@
       </div>
     </a>
 
-    <a class="nav-link d-lg-none" href="javascript:void(0)" (focus)="searchIntent()" (click)="searchIntent()">
+    <a class="nav-link d-xl-none" href="javascript:void(0)" (focus)="searchIntent()" (click)="searchIntent()">
       <span class="icon mx-0">search</span>
     </a>
 

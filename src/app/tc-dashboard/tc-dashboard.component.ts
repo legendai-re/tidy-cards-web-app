@@ -46,7 +46,7 @@ export class TcDashboardComponent implements OnInit {
     const params = new URLSearchParams();
     params.set('populate', '_author+_thumbnail');
     params.set('custom_sort', 'true');
-    params.set('limit', '15');
+    params.set('limit', '20');
     params.set('_author', this.authService.currentUser._id);
     this.service.getCollections(params).subscribe(collections => {
       collections.sort(function (a, b) {

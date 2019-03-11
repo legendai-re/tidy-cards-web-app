@@ -97,7 +97,7 @@
   max-width: 24rem;
   margin: 0 1.5rem 0 0;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     position: absolute;
     display: none;
     background-color: $white;
@@ -110,7 +110,7 @@
   }
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(lg) {
   .is-searching {
     .header-search {
       display: flex;
@@ -136,7 +136,7 @@
   left: 0;
   z-index: 1;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     top: .25rem;
   }
 }
@@ -154,9 +154,10 @@
   z-index: 0;
   transition: color .3s ease, background-color .3s ease, border-color .3s ease;
 
-  @include media-breakpoint-down(md) {
+
+  @include media-breakpoint-down(lg) {
     background-color: $white;
-    padding: .75rem 1.25rem .75rem 3.5rem;
+    padding: 11px 1.25rem 11px 3.5rem;
   }
 
   &:hover, &:focus, &:active, &.is-active {
@@ -165,7 +166,10 @@
 
   &.is-active {
     background-color: $white;
-    border-color: $brand-primary;
+
+    @include media-breakpoint-up(xl) {
+      border-color: $brand-primary;
+    }
   }
 }
 
@@ -181,7 +185,7 @@
   z-index: 1;
   border-radius: 0 $border-radius-base $border-radius-base 0;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     top: .375rem;
   }
 

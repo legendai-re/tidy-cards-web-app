@@ -5,6 +5,11 @@
 @import '../../../styles/settings/_variables.scss';
 @import '../../../styles/settings/_mixins.scss';
 
+@import '../../../styles/settings/_bootstrap-variables.scss';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
 .collection-card {
   position: relative;
   display: flex;
@@ -33,12 +38,16 @@
   position: relative;
   display: flex;
   flex: 1 1 auto;
-  flex-direction: column;
+  flex-direction: row;
   background-color: $white;
   padding: .5rem;
   border-radius: $border-radius-base;
   color: inherit;
   transition: background-color .3s ease;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: column;
+  }
 
   &:hover, &:focus, &:active {
     background-color: $gray-100;
@@ -50,15 +59,22 @@
 .collection-card--cover {
   position: relative;
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   flex-direction: column;
-  width: 100%;
-  height: 8rem;
-  margin: 0 0 .25rem;
+  width: 6rem;
+  height: 3rem;
+  margin: 0 .25rem 0 0;
   border-radius: $border-radius-base;
   overflow: hidden;
 
-  &:before {
+  @include media-breakpoint-up(md) {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 8rem;
+    margin: 0 0 .25rem;
+  }
+
+  &:after {
     content: "";
     position: absolute;
     top: 0;
@@ -69,6 +85,7 @@
     width: 100%;
     height: 100%;
     border-radius: $border-radius-base;
+    pointer-events: none;
   }
 
   img {
@@ -89,7 +106,11 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  padding: .5rem .25rem;
+  padding: 0 .5rem;
+
+  @include media-breakpoint-up(md) {
+    padding: .5rem .25rem;
+  }
 }
 
 .collection-card--infos--title {
