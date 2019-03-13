@@ -103,11 +103,12 @@
 .collection-card--infos {
   position: relative;
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   flex-direction: column;
   padding: 0 .5rem;
 
   @include media-breakpoint-up(md) {
+    flex: 0 0 auto;
     padding: .5rem .25rem;
   }
 }
