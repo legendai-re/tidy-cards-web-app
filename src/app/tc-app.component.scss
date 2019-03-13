@@ -439,6 +439,10 @@
     @include media-breakpoint-up(lg) {
       grid-column: span 2;
       grid-row: span 2;
+
+      .collection-card--content, .collection-card--cover {
+        flex: 1 1 auto;
+      }
     }
   }
 
