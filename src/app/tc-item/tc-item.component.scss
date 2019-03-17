@@ -10,6 +10,11 @@
    @import "~bootstrap/scss/variables";
    @import "~bootstrap/scss/mixins";
 
+.collection-item--container {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
 .collection-item {
   position: relative;
   display: flex;
@@ -356,9 +361,10 @@
 .collection-item--text {
   position: relative;
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   flex-direction: column;
   padding: .5rem .25rem;
+  max-width: 100%;
 }
 
 .collection-item--content.is-small {

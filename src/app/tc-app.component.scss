@@ -587,20 +587,26 @@
   }
 
   code {
-    background-color: rgba($red,.1);
-    color: $red;
+    background-color: rgba($brand-primary,.1);
+    font-family: $font-mono;
+    color: $brand-primary;
     padding: 1px .125rem;
     border-radius: $border-radius-small;
   }
 
-  pre code {
+  pre {
     display: flex;
+    border-radius: $border-radius-base;
+  }
+
+  pre code {
+    display: inline-flex;
     flex: 0 0 auto;
     background-color: $gray-900;
     color: $white;
     border: 1px solid $border-color;
     padding: .25rem .5rem;
-    border-radius: $border-radius-base;
+    border-radius: 0;
   }
 
   * {
