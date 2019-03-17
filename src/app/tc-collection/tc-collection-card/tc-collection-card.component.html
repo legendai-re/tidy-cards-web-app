@@ -101,7 +101,7 @@
       </a>
       <div class="dropdown-divider"></div>
       <ul class="dropdown-text">
-        <li [attr.title]="collection.createdAt | date:'EEEE, LLLL dd, y h:mm a'">
+        <li [attr.title]="collection.createdAt | date:'EEEE, LLLL dd, y h:mm a'" *ngIf="collection._author">
           {{t.format(t._.collection?.created_by?.one, [collection._author?.name])}}
         </li>
         <li class="date" [attr.title]="collection.updatedAt | date:'EEEE, LLLL dd, y h:mm a'">

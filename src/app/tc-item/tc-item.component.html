@@ -57,8 +57,8 @@
       </a>
       <div class="dropdown-divider"></div>
       <ul class="dropdown-text">
-        <li [attr.title]="item.createdAt | date:'EEEE, LLLL dd, y h:mm a'">
-          {{t.format(t._.item?.created_by, [item._author.name])}}
+        <li [attr.title]="item.createdAt | date:'EEEE, LLLL dd, y h:mm a'" *ngIf="item._author">
+          {{t.format(t._.item?.created_by, [item._author?.name])}}
         </li>
         <li class="date" [attr.title]="item.updatedAt | date:'EEEE, LLLL dd, y h:mm a'">
           <ng-container *ngIf="(todayDate | date:'yyyy-MM-dd') > (item.updatedAt | date:'yyyy-MM-dd')">
