@@ -15,7 +15,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  background-color: translate;
+  background-color: transparent;
   padding: 0;
   margin: 0;
   color: $gray-900;
@@ -132,7 +132,7 @@
   margin: 0;
 }
 
-.collection-card--infos--tag {
+.collection-card--infos--meta {
   position: relative;
   display: flex;
   color: $gray-600;

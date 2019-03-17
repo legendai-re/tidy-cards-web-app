@@ -533,3 +533,79 @@
   height: 2rem;
   margin: 0 -.25rem 0 .5rem;
 }
+
+.collection-item--caption,
+.collection-item--text {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-primary;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  p {
+    margin: 0 0 .5rem;
+  }
+
+  ul, ol {
+    padding: 0 0 0 1.25rem;
+  }
+
+  blockquote {
+    font-family: $font-serif;
+    font-size: 1.125rem;
+    border-left: 2px solid $border-color;
+    padding: .5rem 1rem;
+  }
+
+  code {
+    background-color: rgba($red,.1);
+    color: $red;
+    padding: 1px .125rem;
+    border-radius: $border-radius-small;
+  }
+
+  pre code {
+    display: flex;
+    flex: 0 0 auto;
+    background-color: $gray-900;
+    color: $white;
+    border: 1px solid $border-color;
+    padding: .25rem .5rem;
+    border-radius: $border-radius-base;
+  }
+
+  * {
+    &:last-child {
+      margin-bottom: 0!important;
+    }
+  }
+}

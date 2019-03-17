@@ -18,9 +18,10 @@ export class TcItemYoutubeComponent implements OnInit {
 
     public displayVideo: boolean;
 
-    constructor(public t: TcLanguageService,
-                private sanitizer: DomSanitizer) {
-    }
+    constructor(
+      public t: TcLanguageService,
+      private sanitizer: DomSanitizer
+    ) {}
 
     ngOnInit() {
         this.itemYoutube = this.item._content;

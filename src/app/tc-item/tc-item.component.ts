@@ -19,6 +19,7 @@ export class TcItemComponent implements OnInit {
   public collectionUpdateModal: NgbModalRef;
   public isUpdatingDisplayMode: boolean;
   public availableDisplayModes: string[];
+  public todayDate: Date;
 
   @ViewChild('updateItemModal') updateItemModal: ElementRef;
   @ViewChild('updateColletionModal') updateColletionModal: ElementRef;
@@ -33,6 +34,7 @@ export class TcItemComponent implements OnInit {
   ngOnInit() {
     this.intentToUpdate = false;
     this.availableDisplayModes = TcItem.ITEM_TYPES[this.item.type].available_display_modes;
+    this.todayDate = new Date(), 'yyyy-MM-dd';
   }
 
   public openUpdateModal(sizeParam = null, centeredParam = true) {
@@ -125,5 +127,19 @@ export class TcItemComponent implements OnInit {
       this.intentToUpdate = false;
       this.collectionUpdateModal.close();
     }
+  }
+
+  public copyItemLink(){
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.item._content.url;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 }

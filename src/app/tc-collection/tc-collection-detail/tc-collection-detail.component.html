@@ -74,21 +74,30 @@
             <span *ngIf="collection.bio">{{collection.bio}}</span>
           </div>
 
-          <div class="page-heading--actions mt-4">
-            <ng-container  *ngIf="collection.visibility != 'PRIVATE'">
-              <a class="btn is-like is-highlighted mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="collection._star">
-                <span class="icon">{{ t._.icon?.favorite?.filled }}</span>
-                <span>{{ t._.collection?.footer?.share?.added }}</span>
-              </a>
-              <a class="btn is-like mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="!collection._star">
-                <span class="icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
-                <span>{{ t._.collection?.footer?.share?.add }}</span>
-              </a>
-              <span class="muted d-none d-lg-flex" *ngIf="collection.starsCount==1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.one }}</span>
-              <span class="muted d-none d-lg-flex" *ngIf="collection.starsCount!=1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.more }}</span>
-            </ng-container>
+          <div class="page-heading--actions mt-4" *ngIf="collection.visibility != 'PRIVATE'">
+            <a class="btn is-like is-highlighted mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="collection._star">
+              <span class="icon">{{ t._.icon?.favorite?.filled }}</span>
+              <span>{{ t._.collection?.footer?.share?.added }}</span>
+            </a>
+            <a class="btn is-like mr-2" href="javascript:void(0)" (click)="onStarCliked()" *ngIf="!collection._star">
+              <span class="icon" *ngIf="!collection._star">{{ t._.icon?.favorite?.border }}</span>
+              <span>{{ t._.collection?.footer?.share?.add }}</span>
+            </a>
+            <span class="muted d-none d-lg-flex" *ngIf="collection.starsCount==1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.one }}</span>
+            <span class="muted d-none d-lg-flex" *ngIf="collection.starsCount!=1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.more }}</span>
+          </div>
 
-            <div class="dropdown" [class.ml-auto]="collection.visibility != 'PRIVATE'" *ngIf="haveEditRights">
+          <div class="page-heading--actions" [class.mt-2]="collection.visibility != 'PRIVATE'" [class.mt-4]="collection.visibility == 'PRIVATE'" *ngIf="haveEditRights">
+            <a class="btn is-like is-primary mr-2 d-none d-lg-flex" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')">
+              <span class="icon">{{ t._.icon?.add?.filled }}</span>
+              <span *ngIf="itemLoaded && collection._items.length > 0">{{t._.collection?.new_item_button}}</span>
+              <span *ngIf="itemLoaded && collection._items.length == 0">{{t._.collection?.first_item_button}}</span>
+            </a>
+            <a class="collection-new-item-fab d-lg-none" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')">
+              <span class="icon">{{ t._.icon?.add?.filled }}</span>
+            </a>
+
+            <div class="dropdown ml-lg-auto" *ngIf="haveEditRights">
               <a class="btn is-like" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="icon">{{ t._.icon?.settings?.filled }}</span>
                 <span>{{t._.collection?.options}}</span>
@@ -105,16 +114,6 @@
         </section>
 
         <section class="page-section collection-container">
-
-          <a class="collection-new-item d-none d-lg-flex" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')" *ngIf="haveEditRights">
-            <span class="icon">{{ t._.icon?.add?.filled }}</span>
-            <span *ngIf="itemLoaded && collection._items.length > 0">{{t._.collection?.new_item_action}}</span>
-            <span *ngIf="itemLoaded && collection._items.length == 0">{{t._.collection?.new_item_first_action}}</span>
-          </a>
-
-          <a class="collection-new-item-fab d-lg-none" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')" *ngIf="haveEditRights">
-            <span class="icon">{{ t._.icon?.add?.filled }}</span>
-          </a>
 
           <div class="collection-container--list" tc-sortable [list]=collection._items [ghostClass]="'collection-item-ghost'" (itemMoved)="onItemMoved($event)" *ngIf="itemLoaded && collection._items.length > 0">
 

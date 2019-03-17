@@ -137,6 +137,7 @@
     flex-direction: row;
     border: 1px solid $border-color;
     padding: 7px;
+    color: $gray-900;
 
     &:hover {
       border-color: rgba($black, .25);
@@ -145,6 +146,16 @@
     &.is-highlighted {
       span, .icon {
         color: $brand-primary;
+      }
+    }
+
+    &.is-primary {
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+      color: $white;
+
+      .icon {
+        color: inherit;
       }
     }
 
@@ -160,7 +171,7 @@
     }
 
     span {
-      color: $gray-900;
+      color: inherit;
       font-size: 1rem;
       line-height: 1rem;
     }

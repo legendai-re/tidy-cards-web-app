@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { TcLanguageService } from '../../tc-language/tc-language.service';
 import {TcItemUrl} from './tc-item-url.class';
 import {TcItem} from '../tc-item.class';
 import {TcApiUrl} from '../../tc-shared/tc-api-url';
@@ -16,8 +17,9 @@ export class TcItemUrlComponent implements OnInit {
   public itemUrl: TcItemUrl;
   public getImageProxyUrl = TcApiUrl.getImageProxyUrl;
 
-  constructor() {
-  }
+  constructor(
+    public t: TcLanguageService
+  ) {}
 
   ngOnInit() {
     this.itemUrl = this.item._content;

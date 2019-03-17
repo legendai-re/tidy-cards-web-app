@@ -1,36 +1,75 @@
 .dropdown-menu {
-    border-radius: 3px;
-    border: none;
-    padding: .5rem;
-    box-shadow: 0 .25rem .75rem rgba($black,.25);
+  min-width: 14rem;
+  max-width: 100%;
+  border-radius: 3px;
+  border: none;
+  padding: .375rem 0;
+  box-shadow: 0 .25rem .75rem rgba($black,.25);
 }
 
 .dropdown-header {
-    margin-bottom: .125rem;
-    color: $black-light;
+  padding: .375rem 1rem;
+  font-size: .75rem;
+  font-weight: 500;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: $gray-600;
 }
 
 .dropdown-item {
-    padding: .25rem 1.5rem .25rem 1rem;
-    border-radius: $border-radius-base;
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  padding: .375rem 1rem;
+  font-size: .875rem;
+  line-height: 1rem;
 
-    &.text-danger {
-      &:hover, &:active, &:focus {
-        background-color: rgba($red,.1);
-      }
+  &.active {
+    .icon {
+      color: $white;
     }
+  }
+
+  &.is-set {
+    color: $brand-primary;
+
+    .icon {
+      color: inherit;
+    }
+  }
+
+  &.text-danger {
+    &:hover, &:active, &:focus {
+      background-color: rgba($red,.1);
+    }
+  }
+
+  .icon {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    font-family: $font-mi;
+    font-size: 1.25rem;
+    line-height: 1rem;
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    margin: 0 .75rem 0 0;
+    color: $gray-700;
+  }
 }
 
 .dropdown-divider {
-    background-color: $border-color;
-    margin-left: -.5rem;
-    margin-right: -.5rem;
+  background-color: $border-color;
+  margin: .375rem 0;
 }
 
 .dropdown-item small {
-    margin-top: -3px;
-    display: block;
-    color: $black-light;
+  margin-top: -3px;
+  display: block;
+  color: $black-light;
 }
 
 .dropdown-item--infos {
@@ -50,4 +89,24 @@
   font-weight: normal;
   line-height: 1rem;
   color: $gray-600;
+}
+
+.dropdown-text {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  list-style: none;
+  padding: .375rem 1rem;
+  margin: 0;
+
+  li {
+    font-size: .875rem;
+    line-height: 1rem;
+    color: $gray-600;
+
+    &:not(:last-child) {
+      margin: 0 0 .25rem;
+    }
+  }
 }

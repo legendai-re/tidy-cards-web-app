@@ -8,6 +8,10 @@ export class TcItemUrl {
   public host: string;
   public title: string;
   public description: string;
+  public label1: string;
+  public value1: string;
+  public label2: string;
+  public value2: string;
   public author: string;
   public type: string;
   public site_name: string;
@@ -21,6 +25,10 @@ export class TcItemUrl {
               host?: string,
               title?: string,
               description?: string,
+              label1?: string,
+              value1?: string,
+              label2?: string,
+              value2?: string,
               author?: string,
               type?: string,
               site_name?: string) {
@@ -32,6 +40,10 @@ export class TcItemUrl {
     this.host = host;
     this.title = title;
     this.description = description;
+    this.label1 = label1;
+    this.value1 = value1;
+    this.label2 = label2;
+    this.value2 = value2;
     this.author = author;
     this.type = type;
     this.site_name = site_name;
@@ -55,6 +67,10 @@ export class TcItemUrl {
       obj.host,
       obj.title,
       obj.description,
+      obj.label1,
+      obj.value1,
+      obj.label2,
+      obj.value2,
       obj.author,
       obj.type,
       obj.site_name

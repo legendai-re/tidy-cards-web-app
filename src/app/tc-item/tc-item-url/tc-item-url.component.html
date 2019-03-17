@@ -1,42 +1,34 @@
-<div class="collection-item--body is-small" *ngIf="item.displayMode == 'SMALL'">
+<a class="collection-item--content is-small" [href]="item._content.url" target="_blank" rel="nofollow" *ngIf="item.displayMode == 'SMALL'">
+  <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+  <h3 class="collection-item--infos-title">{{item.title}}</h3>
+</a>
 
-  <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
-
-    <div class="collection-item--favicon">
-      <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+<a class="collection-item--content" [class.is-medium]="item.displayMode == 'MEDIUM'" [class.is-large]="item.displayMode == 'LARGE'" [href]="item._content.url" target="_blank" rel="nofollow" *ngIf="item.displayMode != 'SMALL'">
+    <div class="collection-item--infos">
+      <h3 class="collection-item--infos-title">{{item.title}}</h3>
+      <ul class="collection-item--infos-metas">
+        <li class="collection-item--infos-meta is-description" *ngIf="item._content.description">{{item._content.description}}</li>
+        <li class="collection-item--infos-meta is-description" *ngIf="!item._content.description">{{t._.item?.no_description}}</li>
+      </ul>
+      <ul class="collection-item--infos-metas is-horizontal" *ngIf="item._content.value1">
+        <li class="collection-item--infos-meta" *ngIf="item._content.value1 || item._content.value2">
+          <span class="name">{{item._content.label1}}</span>
+          <span class="value">{{item._content.value1}}</span>
+        </li>
+        <li class="collection-item--infos-meta" *ngIf="item._content.value2">
+          <span class="name">{{item._content.label2}}</span>
+          <span class="value">{{item._content.value2}}</span>
+        </li>
+      </ul>
+      <div class="collection-item--infos-website">
+        <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+        <span class="collection-item--infos-host" *ngIf="!item._content.site_name">{{item._content.host}}</span>
+        <span class="collection-item--infos-host" *ngIf="item._content.site_name">{{item._content.site_name}}</span>
+        <span class="collection-item--infos-author" *ngIf="item._content.author && (item._content.author != item._content.site_name) && !item._content.author.includes('http')">{{item._content.author | truncate:[40] }}</span>
+      </div>
     </div>
 
-    <div class="collection-item--title">
-      {{item.title}}
+    <div class="collection-item--cover" onError="this.style.display='none';" *ngIf="itemUrl.image">
+      <img [src]="getImageProxyUrl(itemUrl.image)" onError="this.style.display='none';" />
     </div>
-
-  </a>
-
-</div>
-
-<div class="collection-item--body" [class.is-medium]="item.displayMode == 'MEDIUM'" [class.is-large]="item.displayMode == 'LARGE'" *ngIf="item.displayMode != 'SMALL'">
-
-  <div class="collection-item--details">
-
-    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--cover-link">
-      <div class="collection-item--cover">
-        <img [src]="getImageProxyUrl(itemUrl.image)" class="collection-item--cover-image" onError="this.style.display='none';"  *ngIf="itemUrl.image"/>
-        <span class="collection-item--cover-icon" *ngIf="!itemUrl.image">image</span>
-
-        <div class="collection-item--favicon">
-          <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
-        </div>
-      </div>
-    </a>
-
-    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
-      <div class="collection-item--link-pane">
-        <div class="collection-item--title">{{item.title}}</div>
-        <div class="collection-item--description">{{item._content.description}}</div>
-        <div class="collection-item--host">{{item._content.host}}</div>
-      </div>
-    </a>
-
-  </div>
-
-</div>
+</a>

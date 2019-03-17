@@ -1,48 +1,40 @@
-<div class="collection-item--body is-small" *ngIf="item.displayMode == 'SMALL'">
+<a class="collection-item--content is-small" [href]="item._content.url" target="_blank" rel="nofollow" *ngIf="item.displayMode == 'SMALL'">
+  <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+  <h3 class="collection-item--infos-title">{{item.title}}</h3>
+</a>
 
-  <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
+<div class="collection-item--content" [class.is-medium]="item.displayMode == 'MEDIUM'" [class.is-large]="item.displayMode == 'LARGE'" *ngIf="item.displayMode != 'SMALL'">
 
-    <div class="collection-item--favicon">
-      <img src="https://www.google.com/s2/favicons?domain=https://youtube.com" />
+  <a class="collection-item--infos" [href]="item._content.url" target="_blank" rel="nofollow">
+    <h3 class="collection-item--infos-title">{{item.title}}</h3>
+    <ul class="collection-item--infos-metas">
+      <li class="collection-item--infos-meta is-description" *ngIf="item._content.description">{{item._content.description}}</li>
+    </ul>
+    <ul class="collection-item--infos-metas is-horizontal" *ngIf="item._content.value1 || item._content.value2">
+      <li class="collection-item--infos-meta" *ngIf="item._content.value1">
+        <span class="name">{{item._content.label1}}</span>
+        <span class="value">{{item._content.value1}}</span>
+      </li>
+      <li class="collection-item--infos-meta" *ngIf="item._content.value2">
+        <span class="name">{{item._content.label2}}</span>
+        <span class="value">{{item._content.value2}}</span>
+      </li>
+    </ul>
+    <div class="collection-item--infos-website">
+      <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com" />
+      <span class="collection-item--infos-host">YouTube</span>
     </div>
-
-    <div class="collection-item--title">
-      {{item.title}}
-    </div>
-
   </a>
 
-</div>
+  <div class="collection-item--cover is-video" [class.is-extended]="displayVideo">
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo=true" />
 
-<div class="collection-item--body" [class.is-medium]="item.displayMode == 'MEDIUM'" [class.is-large]="item.displayMode == 'LARGE'" *ngIf="item.displayMode != 'SMALL'">
-
-  <div class="collection-item--details">
-
-    <div class="collection-item--cover-link">
-      <div class="collection-item--cover is-youtube">
-        <img class="collection-item--cover-image" [class.is-blur]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo = true"/>
-
-        <div class="collection-item--cover-play" *ngIf="!displayVideo">
-          <span class="collection-item--cover-play-icon">{{ t._.icon?.play?.filled }}</span>
-          <span class="collection-item--cover-play-text">Play</span>
-        </div>
-
-        <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
-
-        <div class="collection-item--favicon">
-          <img src="https://www.google.com/s2/favicons?domain=http://youtube.com" />
-        </div>
-      </div>
+    <div class="collection-item--cover-action" (click)="displayVideo=true" *ngIf="!displayVideo">
+      <span class="icon">{{ t._.icon?.play?.filled }}</span>
+      <span class="label">Play</span>
     </div>
 
-    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
-      <div class="collection-item--link-pane">
-        <div class="collection-item--title">{{item.title}}</div>
-        <div class="collection-item--description">{{item._content.snippet.description}}</div>
-        <div class="collection-item--host">youtube.com</div>
-      </div>
-    </a>
-
+    <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
   </div>
 
 </div>
