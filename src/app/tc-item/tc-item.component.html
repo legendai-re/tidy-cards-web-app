@@ -37,10 +37,10 @@
         <span class="icon">{{t._.icon?.copy?.filled}}</span>
         <span>{{t._.action?.copy_link}}</span>
       </a>
-      <a href="javascript:void(0)" class="dropdown-item" *ngIf="item.type != itemTypes.TEXT.id">
+      <!-- <a href="javascript:void(0)" class="dropdown-item" *ngIf="item.type != itemTypes.TEXT.id">
         <span class="icon">{{t._.icon?.update?.filled}}</span>
         <span>{{t._.action?.update_preview}}</span>
-      </a>
+      </a> -->
       <div class="dropdown-divider" *ngIf="availableDisplayModes.length > 0"></div>
       <div class="dropdown-header" *ngIf="availableDisplayModes.length > 0">{{t._.action?.switch?.title}}</div>
       <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="item.displayMode == 'SMALL'" (click)="updateItemDisplayMode('SMALL')" *ngIf="availableDisplayModes.includes('SMALL')">

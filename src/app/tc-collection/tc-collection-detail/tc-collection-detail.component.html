@@ -16,11 +16,11 @@
             <li class="page-heading--meta">
               <a href="javascript:void(0)" class="thumbnails mr-1" (click)="openManageCollabModal(manageCollaboratorsModal)">
                 <div class="thumbnail avatar avatar--24">
-                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('60x60')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('40x40')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
                   <span class="avatar-char">{{collection._author.name.charAt(0)}}</span>
                 </div>
                 <div class="thumbnail avatar avatar--24" title="{{user.name}}" *ngFor="let user of (collection._collaborators.slice() | slice:collection._collaborators.length - 2)">
-                  <img *ngIf="user._avatar" [src]="user._avatar.getPath('60x60')" onError="this.style.display='none';" alt="{{user.name}} avatar">
+                  <img *ngIf="user._avatar" [src]="user._avatar.getPath('40x40')" onError="this.style.display='none';" alt="{{user.name}} avatar">
                   <span class="avatar-char">{{user.name.charAt(0)}}</span>
                 </div>
               </a>
