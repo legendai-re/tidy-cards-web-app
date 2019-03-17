@@ -7,8 +7,8 @@ import {TcLanguageService} from '../../tc-language/tc-language.service';
 import {TcAuthService} from '../../tc-auth/tc-auth.service';
 import {TcStarService} from '../../tc-star/tc-star.service';
 import {TcCollectionService} from '../tc-collection.service';
-import {TcItemService} from '../../tc-item/tc-item.service';
 import {TcCollection} from '../tc-collection.class';
+import {TcItemService} from '../../tc-item/tc-item.service';
 import {TcHeaderService} from '../../tc-header/tc-header.service';
 import {TcItem} from '../../tc-item/tc-item.class';
 import {TcStar} from '../../tc-star/tc-star.class';
@@ -42,6 +42,9 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public currentModal: NgbModalRef;
   public cantFoundButwasStarred: boolean;
   public displayModeList: any;
+  public href: string;
+  public todayDate: Date;
+  public isUpdatingVisibility: boolean;
   private sub: any;
 
   //collaborators related
@@ -56,17 +59,20 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public doneTypingSearchCollabInterval: number;
   public searchCollabIsloading: boolean;
 
-  constructor(public t: TcLanguageService,
-              public authService: TcAuthService,
-              private headerService: TcHeaderService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private modalService: NgbModal,
-              private collectionService: TcCollectionService,
-              private itemService: TcItemService,
-              private starService: TcStarService,
-              private titleService: Title,
-              private userService: TcUserService) {
+  constructor(
+    public t: TcLanguageService,
+    public authService: TcAuthService,
+    private headerService: TcHeaderService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private modalService: NgbModal,
+    private collectionService: TcCollectionService,
+    private itemService: TcItemService,
+    private starService: TcStarService,
+    private titleService: Title,
+    private userService: TcUserService
+  ) {
+    this.href = this.router.url;
     this.displayModeList = TcCollection.DISPLAY_MODE;
     this.doneTypingSearchCollabInterval = 1000;
   }
@@ -81,11 +87,41 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
     this.subCollectionTemplate = new TcCollection();
     this.itemLoaded = false;
     this.cantFoundButwasStarred = false;
+    this.todayDate = new Date(), 'yyyy-MM-dd';
     this.searchCollabIntent = false;
     this.searchCollabIsloading = false;
     this.sub = this.route.params.subscribe(params => {
       this.initCollection(params);
     });
+  }
+
+  public updateVisibiliy(visibility) {
+    if (this.isUpdatingVisibility)
+      return;
+
+    if (!this.isAuthor)
+      return;
+
+    this.isUpdatingVisibility = true;
+    this.collection.visibility = visibility;
+    this.collectionService.putCollection(this.collection).subscribe(itemResponse => {
+      this.collection.updatedAt = itemResponse.updatedAt;
+      this.isUpdatingVisibility = false;
+    });
+  }
+
+  public copyItemLink(){
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = 'https://tidy.cards' + this.href;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 
   private openModal(content, sizeParam = null, centeredParam = true) {
@@ -245,11 +281,11 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
   public onUpdateCollectionCanceled() {
     this.currentModal.close();
   }
-  
+
   public onCreateItemCanceled() {
     this.currentModal.close();
   }
-  
+
   public onCollectionUpdated(event) {
     if (event.value) {
       this.collection.title = event.value.title;

@@ -30,13 +30,15 @@ export class TcCollectionCreateComponent implements OnInit {
     @Output() newCollection = new EventEmitter();
     @Output() updateCanceled = new EventEmitter();
 
-    constructor(public t: TcLanguageService,
-            public collectionService: TcCollectionService,
-            public imgUploadService: TcImgUploadService,
-            public router: Router,
-            public authService: TcAuthService) {
-        this.uploader = imgUploadService.uploader;
-        this.visibilityList = TcCollection.VISIBILITY;
+    constructor(
+      public t: TcLanguageService,
+      public collectionService: TcCollectionService,
+      public imgUploadService: TcImgUploadService,
+      public router: Router,
+      public authService: TcAuthService
+    ) {
+      this.uploader = imgUploadService.uploader;
+      this.visibilityList = TcCollection.VISIBILITY;
     }
 
     ngOnInit() {

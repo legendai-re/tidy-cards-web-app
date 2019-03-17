@@ -535,7 +535,11 @@
 }
 
 .collection-item--caption,
-.collection-item--text {
+.collection-item--content.is-text {
+  & > * {
+    max-width: 100%;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: $font-primary;
     font-weight: 500;
@@ -613,5 +617,27 @@
     &:last-child {
       margin-bottom: 0!important;
     }
+  }
+}
+
+.tooltip-content {
+  font-size: .75rem;
+  font-weight: 500;
+  line-height: 1rem;
+  color: rgba($white, .75);
+  margin: 0;
+  padding: 0;
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  &.no-whitespace {
+    white-space: nowrap;
+  }
+
+  span {
+    color: $white;
   }
 }

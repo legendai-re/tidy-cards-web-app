@@ -28,9 +28,9 @@
       transform: scale(1.1, 1.1);
     }
 
-    .collection-card--drag-handle {
-      opacity: 1;
-    }
+    // .collection-card--drag-handle {
+    //   opacity: 1;
+    // }
   }
 }
 
@@ -169,23 +169,23 @@
   }
 }
 
-.collection-card--drag-handle {
-  position: absolute;
-  display: flex;
-  z-index: 2;
-  background: $white;
-  width: 24px;
-  height: 24px;
-  border-radius: 3px;
-  top: -.5rem;
-  right: -.5rem;
-  color: $black-light;
-  box-shadow: 0 1px 4px $hover-dark-color;
-  cursor: move;
-  opacity: 0;
-  transition: .3s ease opacity;
-
-  .move-item-button {
-    pointer-events: none;
-  }
-}
+// .collection-card--drag-handle {
+//   position: absolute;
+//   display: flex;
+//   z-index: 2;
+//   background: $white;
+//   width: 24px;
+//   height: 24px;
+//   border-radius: 3px;
+//   top: -.5rem;
+//   right: -.5rem;
+//   color: $black-light;
+//   box-shadow: 0 1px 4px $hover-dark-color;
+//   cursor: move;
+//   opacity: 0;
+//   transition: .3s ease opacity;
+//
+//   .move-item-button {
+//     pointer-events: none;
+//   }
+// }

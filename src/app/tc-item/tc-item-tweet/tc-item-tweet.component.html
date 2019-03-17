@@ -1,35 +1,10 @@
-<div class="collection-item--body is-small" *ngIf="item.displayMode == 'SMALL'">
+<a class="collection-item--content is-small" [href]="item._content.url" target="_blank" rel="nofollow" *ngIf="item.displayMode == 'SMALL'">
+  <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain=twitter.com" />
+  <h3 class="collection-item--infos-title">Tweeted by {{itemTweet.author_name}}</h3>
+  <!-- <p class="collection-item--infos-subtitle">{{item._content.description}}</p> -->
+  <!-- <h3 class="collection-item--infos-title">{{item.title}}</h3> -->
+</a>
 
-  <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
-
-    <div class="collection-item--favicon">
-      <img src="https://www.google.com/s2/favicons?domain=http://twitter.com" />
-    </div>
-
-    <div class="collection-item--title">
-      {{item.title}}
-    </div>
-
-  </a>
-
-</div>
-
-<div class="collection-item--body" [class.is-medium]="item.displayMode == 'MEDIUM'" [class.is-large]="item.displayMode == 'LARGE'" *ngIf="item.displayMode != 'SMALL'">
-
-  <div class="collection-item--details">
-    <div class="collection-item--cover is-tweet">
-      <div class="collection-item--media-tweet" [innerHtml]="itemTweet.html"></div>
-    </div>
-
-    <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link is-tweet">
-      <div class="collection-item--link-pane is-horizontal">
-        <div class="collection-item--favicon">
-          <img src="https://www.google.com/s2/favicons?domain=http://twitter.com" />
-        </div>
-        <div class="collection-item--title">Tweeted by {{itemTweet.author_name}}</div>
-      </div>
-
-    </a>
-  </div>
-
+<div class="collection-item--content is-tweet" [class.is-large]="item.displayMode != 'SMALL'" *ngIf="item.displayMode != 'SMALL'">
+  <div class="tweet-container" [innerHtml]="itemTweet.html"></div>
 </div>

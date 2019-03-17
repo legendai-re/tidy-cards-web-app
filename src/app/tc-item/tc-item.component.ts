@@ -1,14 +1,14 @@
-import {Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {TcLanguageService} from '../tc-language/tc-language.service';
-import {TcItem} from './tc-item.class';
-import {TcItemService} from './tc-item.service';
+import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { NgbModal, NgbModalRef, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { TcLanguageService } from '../tc-language/tc-language.service';
+import { TcItem } from './tc-item.class';
+import { TcItemService } from './tc-item.service';
 import index from '@angular/cli/lib/cli';
 
 @Component({
   selector: 'tc-item',
   templateUrl: 'tc-item.component.html',
-  styleUrls: ['tc-item.component.scss']
+  styleUrls: ['tc-item.component.scss', 'tc-hover-actions.component.scss']
 })
 
 export class TcItemComponent implements OnInit {

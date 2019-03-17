@@ -1,19 +1,10 @@
-<div class="collection-item--body is-small" *ngIf="item.displayMode == 'SMALL'">
+<a class="collection-item--content is-small" [href]="item._content.url" target="_blank" rel="nofollow" *ngIf="item.displayMode == 'SMALL'">
+  <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+  <h3 class="collection-item--infos-title">{{item.title}}</h3>
+</a>
 
-  <a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--link">
-
-    <div class="collection-item--favicon">
-      <img src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
-    </div>
-
-    <div class="collection-item--title">
-      {{item.title}}
-    </div>
-
-  </a>
-
-</div>
-
-<a [href]="item._content.url" target="_blank" rel="nofollow" class="collection-item--cover-media-container" *ngIf="item.displayMode != 'SMALL'">
-  <img class="collection-item--cover-media" data-src="" alt="" [src]="getImageProxyUrl(itemImage.url)">
+<a class="collection-item--content is-image is-large" [href]="item._content.url" target="_blank" rel="nofollow" *ngIf="item.displayMode != 'SMALL'">
+  <div class="collection-item--cover is-image">
+    <img alt="{{item.title}}" data-src="getImageProxyUrl(itemImage.url)" [src]="getImageProxyUrl(itemImage.url)">
+  </div>
 </a>

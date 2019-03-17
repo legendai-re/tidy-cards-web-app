@@ -26,7 +26,7 @@
             <a class="collection-item-new--embeded-reset" href="javascript:void(0)" (click)="resetItemContent()">close</a>
           </div>
 
-          <div class="collection-item">
+          <div class="collection-item-new--embeded-preview">
             <tc-item-url *ngIf="item.type == itemTypes.URL.id" [item]=item ></tc-item-url>
             <tc-item-image *ngIf="item.type == itemTypes.IMAGE.id" [item]=item ></tc-item-image>
             <tc-item-tweet *ngIf="item.type == itemTypes.TWEET.id" [item]=item ></tc-item-tweet>
@@ -51,7 +51,8 @@
           placeholder="{{t._.item?.new_placeholder_title}}"
           name="title"
           rows="1"
-          [(ngModel)]="item.title"></textarea>
+          [(ngModel)]="item.title"
+          *ngIf="!loadingContent && item._content && validUrl"></textarea>
 
         <textarea
           class="collection-item-new--input-caption"

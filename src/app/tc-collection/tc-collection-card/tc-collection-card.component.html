@@ -1,7 +1,7 @@
 <article class="collection-card" *ngIf="collection">
-  <div class="collection-card--drag-handle" *ngIf="sortable">
+  <!-- <div class="collection-card--drag-handle" *ngIf="sortable">
     <span class="material-icons move-item-button">drag_handle</span>
-  </div>
+  </div> -->
 
   <a class="collection-card--content" [routerLink]="['/c', collection._id]">
     <div class="collection-card--cover" [style.background-color]="'#'+collection.color">
@@ -44,4 +44,80 @@
       </ul>
     </div>
   </a>
+
+  <div class="hover--actions" *ngIf="isAuthor">
+    <a href="javascript:void(0)" class="hover--action" [class.collection-card--drag-handle]="sortable" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="icon" placement="bottom" [ngbTooltip]="dragTooltip" *ngIf="sortable">{{t._.icon?.drag?.filled}}</span>
+      <span class="icon" *ngIf="!sortable">{{t._.icon?.more?.filled}}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+      <!-- <a href="javascript:void(0)" class="dropdown-item" (click)="openModal(updateCollectionModal, 'lg')">
+        <span class="icon">{{t._.icon?.edit?.filled}}</span>
+        <span>{{t._.action?.edit}}</span>
+      </a>
+      <a href="javascript:void(0)" class="dropdown-item" (click)="openModal(manageCollaboratorsModal)" *ngIf="isAuthor">
+        <span class="icon">{{t._.icon?.collaborators?.filled}}</span>
+        <span>{{t._.collection?.collaborators?.actions.manage}}</span>
+      </a>
+      <a href="javascript:void(0)" class="dropdown-item" (click)="openDeleteCollectionModal(collectionDeleteModal)" *ngIf="isAuthor">
+        <span class="icon">{{t._.icon?.delete?.filled}}</span>
+        <span>{{t._.action?.delete}}</span>
+      </a>
+      <a href="javascript:void(0)" class="dropdown-item" (click)="openLeaveCollectionModal(collectionLeaveModal)" *ngIf="isCollaborator">
+        <span class="icon">{{t._.icon?.delete?.border}}</span>
+        <span>{{t._.collection?.collaborators?.actions.leave}}</span>
+      </a> -->
+      <!-- <div class="dropdown-divider"></div> -->
+      <a [routerLink]="['/c', collection._id]" target="_blank" class="dropdown-item">
+        <span class="icon">{{t._.icon?.open?.filled}}</span>
+        <span>{{t._.action?.open_tab}}</span>
+      </a>
+      <!-- <a href="javascript:void(0)" (click)="copyItemLink()" class="dropdown-item">
+        <span class="icon">{{t._.icon?.copy?.filled}}</span>
+        <span>{{t._.action?.copy_link}}</span>
+      </a> -->
+      <div class="dropdown-divider"></div>
+      <div class="dropdown-header">{{t._.collection_create?.visibility_dropdown_title}}</div>
+      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PRIVATE'" (click)="updateVisibiliy('PRIVATE')">
+        <span class="icon">{{t._.icon?.private_collection?.border}}</span>
+        <div class="label-two-lines">
+          <span class="label">{{t._.collection?.visibility?.PRIVATE?.title}}</span>
+          <small>{{t._.collection?.visibility?.PRIVATE?.subtitle}}</small>
+        </div>
+      </a>
+      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PUBLIC'" (click)="updateVisibiliy('PUBLIC')">
+        <span class="icon">{{t._.icon?.public_collection?.border}}</span>
+        <div class="label-two-lines">
+          <span class="label">{{t._.collection?.visibility?.PUBLIC?.title}}</span>
+          <small>{{t._.collection?.visibility?.PUBLIC?.subtitle}}</small>
+        </div>
+      </a>
+      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'UNINDEXED'" (click)="updateVisibiliy('UNINDEXED')">
+        <span class="icon">{{t._.icon?.unindexed_collection?.border}}</span>
+        <div class="label-two-lines">
+          <span class="label">{{t._.collection?.visibility?.UNINDEXED?.title}}</span>
+          <small>{{t._.collection?.visibility?.UNINDEXED?.subtitle}}</small>
+        </div>
+      </a>
+      <div class="dropdown-divider"></div>
+      <ul class="dropdown-text">
+        <li [attr.title]="collection.createdAt | date:'EEEE, LLLL dd, y h:mm a'">
+          {{t.format(t._.collection?.created_by?.one, [collection._author?.name])}}
+        </li>
+        <li class="date" [attr.title]="collection.updatedAt | date:'EEEE, LLLL dd, y h:mm a'">
+          <ng-container *ngIf="(todayDate | date:'yyyy-MM-dd') > (collection.updatedAt | date:'yyyy-MM-dd')">
+            {{t.format(t._.item?.updated_on, [collection.updatedAt | date])}}
+          </ng-container>
+          <ng-container *ngIf="(todayDate | date:'yyyy-MM-dd') === (collection.updatedAt | date:'yyyy-MM-dd')">
+            {{t.format(t._.item?.updated_today_at, [collection.updatedAt | date:'h:mm a'])}}
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+  </div>
 </article>
+
+<ng-template #dragTooltip>
+  <markdown class="tooltip-content no-whitespace text-center" [data]="t._.action?.drag"></markdown>
+  <markdown class="tooltip-content no-whitespace text-center" [data]="t._.action?.click"></markdown>
+</ng-template>

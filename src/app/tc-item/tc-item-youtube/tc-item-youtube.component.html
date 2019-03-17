@@ -1,14 +1,14 @@
 <a class="collection-item--content is-small" [href]="item._content.url" target="_blank" rel="nofollow" *ngIf="item.displayMode == 'SMALL'">
-  <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain={{item._content.host}}" />
+  <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com" />
   <h3 class="collection-item--infos-title">{{item.title}}</h3>
 </a>
 
-<div class="collection-item--content" [class.is-medium]="item.displayMode == 'MEDIUM'" [class.is-large]="item.displayMode == 'LARGE'" *ngIf="item.displayMode != 'SMALL'">
+<div class="collection-item--content is-video is-medium" [class.is-extended]="displayVideo" *ngIf="item.displayMode == 'MEDIUM'">
 
   <a class="collection-item--infos" [href]="item._content.url" target="_blank" rel="nofollow">
     <h3 class="collection-item--infos-title">{{item.title}}</h3>
     <ul class="collection-item--infos-metas">
-      <li class="collection-item--infos-meta is-description" *ngIf="item._content.description">{{item._content.description}}</li>
+      <li class="collection-item--infos-meta is-description" *ngIf="item._content.snippet.description">{{itemYoutube.snippet?.description}}</li>
     </ul>
     <ul class="collection-item--infos-metas is-horizontal" *ngIf="item._content.value1 || item._content.value2">
       <li class="collection-item--infos-meta" *ngIf="item._content.value1">
@@ -23,11 +23,27 @@
     <div class="collection-item--infos-website">
       <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com" />
       <span class="collection-item--infos-host">YouTube</span>
+      <span class="collection-item--infos-author">{{itemYoutube.snippet?.channelTitle}}</span>
     </div>
   </a>
 
   <div class="collection-item--cover is-video" [class.is-extended]="displayVideo">
-    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo=true" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.maxres?.url}}" (click)="displayVideo=true" />
+
+    <div class="collection-item--cover-action" (click)="displayVideo=true" *ngIf="!displayVideo">
+      <span class="icon">{{ t._.icon?.play?.filled }}</span>
+      <span class="label">Play</span>
+    </div>
+
+    <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
+  </div>
+
+</div>
+
+<div class="collection-item--content is-video is-large" [class.is-extended]="displayVideo" *ngIf="item.displayMode == 'LARGE'">
+
+  <div class="collection-item--cover is-video is-extended">
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.maxres?.url}}" (click)="displayVideo=true" />
 
     <div class="collection-item--cover-action" (click)="displayVideo=true" *ngIf="!displayVideo">
       <span class="icon">{{ t._.icon?.play?.filled }}</span>
