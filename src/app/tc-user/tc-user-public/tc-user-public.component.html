@@ -6,7 +6,7 @@
         <div class="d-flex flex-column flex-md-row">
 
           <div *ngIf="user" class="avatar avatar--128 mb-3 mb-md-0 mr-md-4">
-            <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('140x140')"  onError="this.style.display='none';" alt="{{user?.name}} avatar">
+            <img *ngIf="user?._avatar" [src]="user?._avatar?.getPath('256x256')"  onError="this.style.display='none';" alt="{{user?.name}} avatar">
             {{user?.name.charAt(0)}}
           </div>
 

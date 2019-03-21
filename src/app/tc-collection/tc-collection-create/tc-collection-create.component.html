@@ -33,6 +33,19 @@
 
           <ul class="collection-form--colors">
             <li>
+              <a href="javascript:void(0)" class="collection-form--image">
+                <input (change)="onThumbnailFileChange($event)" [uploader]="uploader" class="collection-form--image-input" [attr.id]="'avatar_file_'+collection._id" name="file" ng2FileSelect type="file">
+                <span class="collection-form--image-uploader" *ngIf="!collection._thumbnail && !isUploadingImage">cloud_download</span>
+                <span class="collection-form--image-uploader loading-icon" *ngIf="isUploadingImage">{{t._.icon?.waiting?.filled}}</span>
+                <span class="collection-form--image-preview" *ngIf="collection._thumbnail && !isUploadingImage">
+                  <img [src]="collection._thumbnail?.getPath('96x96')" />
+                </span>
+                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="!collection._thumbnail && !isUploadingImage">{{t._.collection?.action?.upload_img}}</label>
+                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="isUploadingImage">{{t._.collection?.action?.uploading_img}}</label>
+                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="collection._thumbnail && !isUploadingImage">{{t._.collection?.action?.replace_img}}</label>
+              </a>
+            </li>
+            <li>
               <a href="javascript:void(0)" (click)="clickColor('CFD8DC')" [class.selected]="collection.color=='CFD8DC'" class="collection-form--color collection-color-grey">Grey</a>
             </li>
             <li>
@@ -55,18 +68,6 @@
             </li>
             <li>
               <a href="javascript:void(0)" (click)="clickColor('FF887A')" [class.selected]="collection.color=='FF887A'" class="collection-form--color collection-color-red">Red</a>
-            </li>
-            <li>
-              <a href="javascript:void(0)" class="collection-form--image">
-                <input (change)="onThumbnailFileChange($event)" [uploader]="uploader" class="collection-form--image-input" [attr.id]="'avatar_file_'+collection._id" name="file" ng2FileSelect type="file">
-                <span class="collection-form--image-uploader" *ngIf="!collection._thumbnail">cloud_download</span>
-                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="!collection._thumbnail">{{t._.collection?.action?.upload_img}}</label>
-
-                <span class="collection-form--image-preview" *ngIf="collection._thumbnail">
-                  <img [src]="collection._thumbnail?.getPath('96x96')" />
-                </span>
-                <label class="collection-form--image-label" [attr.for]="'avatar_file_'+collection._id" *ngIf="collection._thumbnail">{{t._.collection?.action?.replace_img}}</label>
-              </a>
             </li>
           </ul>
 

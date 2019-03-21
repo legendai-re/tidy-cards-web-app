@@ -5,7 +5,7 @@
 
   <a class="collection-card--content" [routerLink]="['/c', collection._id]">
     <div class="collection-card--cover" [style.background-color]="'#'+collection.color">
-      <img [src]="collection._thumbnail?.getPath('300x250')" onError="this.style.display='none';" *ngIf="collection._thumbnail" />
+      <img [src]="collection._thumbnail?.getPath('512x256')" onError="this.style.display='none';" *ngIf="collection._thumbnail" />
     </div>
 
     <div class="collection-card--infos">
@@ -45,7 +45,7 @@
     </div>
   </a>
 
-  <div class="hover--actions" *ngIf="isAuthor">
+  <div class="hover--actions d-none d-lg-flex" *ngIf="sortable">
     <a href="javascript:void(0)" class="hover--action" [class.collection-card--drag-handle]="sortable" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="icon" placement="bottom" [ngbTooltip]="dragTooltip" *ngIf="sortable">{{t._.icon?.drag?.filled}}</span>
       <span class="icon" *ngIf="!sortable">{{t._.icon?.more?.filled}}</span>
@@ -64,7 +64,7 @@
         <span>{{t._.action?.delete}}</span>
       </a>
       <a href="javascript:void(0)" class="dropdown-item" (click)="openLeaveCollectionModal(collectionLeaveModal)" *ngIf="isCollaborator">
-        <span class="icon">{{t._.icon?.delete?.border}}</span>
+        <span class="icon">{{t._.icon?.leave?.border}}</span>
         <span>{{t._.collection?.collaborators?.actions.leave}}</span>
       </a> -->
       <!-- <div class="dropdown-divider"></div> -->
@@ -76,27 +76,27 @@
         <span class="icon">{{t._.icon?.copy?.filled}}</span>
         <span>{{t._.action?.copy_link}}</span>
       </a> -->
-      <div class="dropdown-divider"></div>
-      <div class="dropdown-header">{{t._.collection_create?.visibility_dropdown_title}}</div>
-      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PRIVATE'" (click)="updateVisibiliy('PRIVATE')">
-        <span class="icon">{{t._.icon?.private_collection?.border}}</span>
-        <div class="label-two-lines">
-          <span class="label">{{t._.collection?.visibility?.PRIVATE?.title}}</span>
-          <small>{{t._.collection?.visibility?.PRIVATE?.subtitle}}</small>
-        </div>
-      </a>
-      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PUBLIC'" (click)="updateVisibiliy('PUBLIC')">
+      <div class="dropdown-divider" *ngIf="isAuthor"></div>
+      <div class="dropdown-header" *ngIf="isAuthor">{{t._.collection_create?.visibility_dropdown_title}}</div>
+      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PUBLIC'" (click)="updateVisibiliy('PUBLIC')" *ngIf="isAuthor">
         <span class="icon">{{t._.icon?.public_collection?.border}}</span>
         <div class="label-two-lines">
           <span class="label">{{t._.collection?.visibility?.PUBLIC?.title}}</span>
           <small>{{t._.collection?.visibility?.PUBLIC?.subtitle}}</small>
         </div>
       </a>
-      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'UNINDEXED'" (click)="updateVisibiliy('UNINDEXED')">
+      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'UNINDEXED'" (click)="updateVisibiliy('UNINDEXED')" *ngIf="isAuthor">
         <span class="icon">{{t._.icon?.unindexed_collection?.border}}</span>
         <div class="label-two-lines">
           <span class="label">{{t._.collection?.visibility?.UNINDEXED?.title}}</span>
           <small>{{t._.collection?.visibility?.UNINDEXED?.subtitle}}</small>
+        </div>
+      </a>
+      <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PRIVATE'" (click)="updateVisibiliy('PRIVATE')" *ngIf="isAuthor">
+        <span class="icon">{{t._.icon?.private_collection?.border}}</span>
+        <div class="label-two-lines">
+          <span class="label">{{t._.collection?.visibility?.PRIVATE?.title}}</span>
+          <small>{{t._.collection?.visibility?.PRIVATE?.subtitle}}</small>
         </div>
       </a>
       <div class="dropdown-divider"></div>

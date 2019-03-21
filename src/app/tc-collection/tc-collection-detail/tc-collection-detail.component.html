@@ -1,7 +1,7 @@
 <ng-container *ngIf="!isLoadingCollection && collection && collection._id">
 
   <div class="page-header" *ngIf="collection._thumbnail">
-    <img src="{{collection._thumbnail.getPath('1000x400')}}" alt="{{collection.title}}">
+    <img src="{{collection._thumbnail.getPath('1440x256')}}" alt="{{collection.title}}">
   </div>
 
   <div class="page-header is-color" [style.background-color]="'#'+collection.color" *ngIf="collection.color && !collection._thumbnail"></div>
@@ -16,11 +16,11 @@
             <li class="page-heading--meta">
               <a href="javascript:void(0)" class="thumbnails mr-1" (click)="openManageCollabModal(manageCollaboratorsModal)">
                 <div class="thumbnail avatar avatar--24">
-                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('40x40')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('48x48')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
                   <span class="avatar-char">{{collection._author.name.charAt(0)}}</span>
                 </div>
                 <div class="thumbnail avatar avatar--24" title="{{user.name}}" *ngFor="let user of (collection._collaborators.slice() | slice:collection._collaborators.length - 2)">
-                  <img *ngIf="user._avatar" [src]="user._avatar.getPath('40x40')" onError="this.style.display='none';" alt="{{user.name}} avatar">
+                  <img *ngIf="user._avatar" [src]="user._avatar.getPath('48x48')" onError="this.style.display='none';" alt="{{user.name}} avatar">
                   <span class="avatar-char">{{user.name.charAt(0)}}</span>
                 </div>
               </a>
@@ -124,7 +124,7 @@
                   <span>{{t._.action?.delete}}</span>
                 </a>
                 <a href="javascript:void(0)" class="dropdown-item" (click)="openLeaveCollectionModal(collectionLeaveModal)" *ngIf="isCollaborator">
-                  <span class="icon">{{t._.icon?.delete?.border}}</span>
+                  <span class="icon">{{t._.icon?.leave?.border}}</span>
                   <span>{{t._.collection?.collaborators?.actions.leave}}</span>
                 </a>
                 <div class="dropdown-divider"></div>
@@ -132,27 +132,27 @@
                   <span class="icon">{{t._.icon?.copy?.filled}}</span>
                   <span>{{t._.action?.copy_link}}</span>
                 </a>
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-header">{{t._.collection_create?.visibility_dropdown_title}}</div>
-                <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PRIVATE'" (click)="updateVisibiliy('PRIVATE')">
-                  <span class="icon">{{t._.icon?.private_collection?.border}}</span>
-                  <div class="label-two-lines">
-                    <span class="label">{{t._.collection?.visibility?.PRIVATE?.title}}</span>
-                    <small>{{t._.collection?.visibility?.PRIVATE?.subtitle}}</small>
-                  </div>
-                </a>
-                <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PUBLIC'" (click)="updateVisibiliy('PUBLIC')">
+                <div class="dropdown-divider" *ngIf="isAuthor"></div>
+                <div class="dropdown-header" *ngIf="isAuthor">{{t._.collection_create?.visibility_dropdown_title}}</div>
+                <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PUBLIC'" (click)="updateVisibiliy('PUBLIC')" *ngIf="isAuthor">
                   <span class="icon">{{t._.icon?.public_collection?.border}}</span>
                   <div class="label-two-lines">
                     <span class="label">{{t._.collection?.visibility?.PUBLIC?.title}}</span>
                     <small>{{t._.collection?.visibility?.PUBLIC?.subtitle}}</small>
                   </div>
                 </a>
-                <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'UNINDEXED'" (click)="updateVisibiliy('UNINDEXED')">
+                <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'UNINDEXED'" (click)="updateVisibiliy('UNINDEXED')" *ngIf="isAuthor">
                   <span class="icon">{{t._.icon?.unindexed_collection?.border}}</span>
                   <div class="label-two-lines">
                     <span class="label">{{t._.collection?.visibility?.UNINDEXED?.title}}</span>
                     <small>{{t._.collection?.visibility?.UNINDEXED?.subtitle}}</small>
+                  </div>
+                </a>
+                <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PRIVATE'" (click)="updateVisibiliy('PRIVATE')" *ngIf="isAuthor">
+                  <span class="icon">{{t._.icon?.private_collection?.border}}</span>
+                  <div class="label-two-lines">
+                    <span class="label">{{t._.collection?.visibility?.PRIVATE?.title}}</span>
+                    <small>{{t._.collection?.visibility?.PRIVATE?.subtitle}}</small>
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
@@ -170,12 +170,6 @@
                   </li>
                 </ul>
               </div>
-              <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="javascript:void(0)" (click)="openModal(updateCollectionModal, 'lg')">{{t._.action?.edit}}</a>
-                <a class="dropdown-item" href="javascript:void(0)" (click)="openManageCollabModal(manageCollaboratorsModal)" *ngIf="isAuthor">{{t._.collection?.collaborators?.actions.manage}}</a>
-                <a class="dropdown-item text-danger" href="javascript:void(0)" (click)="openDeleteCollectionModal(collectionDeleteModal)" *ngIf="isAuthor">{{t._.action?.delete}}</a>
-                <a class="dropdown-item text-danger" href="javascript:void(0)" (click)="openLeaveCollectionModal(collectionLeaveModal)" *ngIf="isCollaborator">{{t._.collection?.collaborators?.actions.leave}}</a>
-              </div> -->
             </div>
           </div>
 
@@ -259,7 +253,7 @@
             <div class="collection-container--footer-author">
 
                 <a href="javascript:void(0)" class="collection-container--thumbnail avatar avatar--64" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">
-                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('128x128')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
                   <span class="avatar-char">{{collection._author.name.charAt(0)}}</span>
                 </a>
                 <div class="collection-container--footer-author-infos">
@@ -392,7 +386,7 @@
         <ul class="collaborators--list">
           <li class="collaborators--list-item" *ngIf="!searchCollabIntent">
             <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{collection._author.name}}" [routerLink]="['/', collection._author.username]">
-              <img [src]="collection?._author?._avatar?.getPath('140x140')" onError="this.style.display='none';" alt="{{collection._author.name}} avatar">
+              <img [src]="collection?._author?._avatar?.getPath('96x96')" onError="this.style.display='none';" alt="{{collection._author.name}} avatar">
               <span class="avatar-char">{{collection?._author?.name.charAt(0)}}</span>
             </a>
             <div class="collaborators--list-item-infos">
@@ -407,7 +401,7 @@
           <ng-container *ngFor="let user of searchCollabsResult">
             <li class="collaborators--list-item" *ngIf="!searchCollabIsloading">
               <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{user.name}}" [routerLink]="['/', user.username]">
-                <img *ngIf="user._avatar" [src]="user._avatar.getPath('140x140')" onError="this.style.display='none';" alt="{{user.name}} avatar">
+                <img *ngIf="user._avatar" [src]="user._avatar.getPath('96x96')" onError="this.style.display='none';" alt="{{user.name}} avatar">
                 <span class="avatar-char">{{user?.name.charAt(0)}}</span>
               </a>
               <div class="collaborators--list-item-infos">
@@ -449,7 +443,7 @@
 
           <li class="collaborators--list-item" *ngIf="searchCollabIntent && searchCollabIsloading">
             <p class="collaborators--list-empty">
-              Loading...
+              Loading…
             </p>
           </li>
         </ul>

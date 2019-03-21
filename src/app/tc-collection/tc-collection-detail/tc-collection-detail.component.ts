@@ -211,7 +211,7 @@ export class TcCollectionDetailComponent implements OnInit, OnDestroy {
       value: {
         type: 'collection',
         color: this.collection.color,
-        image: this.collection._thumbnail ? this.collection._thumbnail.getPath('1000x400') : '',
+        image: this.collection._thumbnail ? this.collection._thumbnail.getPath('1440x256') : '',
         title: this.collection.title
       }
     });

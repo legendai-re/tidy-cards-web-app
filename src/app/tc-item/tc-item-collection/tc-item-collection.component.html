@@ -1,7 +1,7 @@
 <article class="card card-collection" *ngIf="collection">
     <a href="javascript:void(0)" [routerLink]="['/c', collection._id]" >
         <div *ngIf="collection._thumbnail" class="thumbnail card-collection-thumbnail">
-            <img [src]="collection._thumbnail?.getPath('300x250')" />
+            <img [src]="collection._thumbnail?.getPath('512x256')" />
         </div>
         <div *ngIf="!collection._thumbnail" [style.background-color]="'#'+collection.color" class="card-collection-color"></div>
     </a>
@@ -15,7 +15,7 @@
         <div class="card-collection-details">
             <a href="javascript:void(0)" [routerLink]="['/', collection._author?.username]" title="{{collection._author?.name}}">
                 <div class="card-avatar avatar avatar--64">
-                    <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('60x60')" alt="{{collection._author?.name}} avatar">
+                    <img *ngIf="collection._author?._avatar" [src]="collection._author?._avatar.getPath('64x64')" alt="{{collection._author?.name}} avatar">
                     {{collection._author?.name?.charAt(0)}}
                 </div>
             </a>

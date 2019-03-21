@@ -13,7 +13,7 @@
     <div class="d-flex mb-3">
 
       <div class="avatar avatar--128 mr-4">
-        <img *ngIf="!tmpUser._avatar && authService.currentUser._avatar" [src]="authService.currentUser._avatar?.getPath('140x140')" onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
+        <img *ngIf="!tmpUser._avatar && authService.currentUser._avatar" [src]="authService.currentUser._avatar?.getPath('256x256')" onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
         <img *ngIf="tmpUser._avatar" [src]="tmpUser._avatar?.getPath('original')" />
         {{authService.currentUser.name.charAt(0)}}
       </div>
