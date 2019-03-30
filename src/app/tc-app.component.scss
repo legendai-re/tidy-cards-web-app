@@ -150,7 +150,7 @@
   width: 100vw;
   height: 16rem;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(sm) {
     height: 8rem;
   }
 
@@ -166,6 +166,19 @@
       left: 0;
       right: 0;
       bottom: 0;
+    }
+  }
+
+  &:not(.is-color) {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      border-bottom: 1px solid rgba($black,.1);
     }
   }
 

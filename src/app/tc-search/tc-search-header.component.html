@@ -41,8 +41,11 @@
         <div class="user-card--container" *ngFor="let user of users">
           <a class="user-card" [routerLink]="['/', user.username]" title="{{user.name}}">
             <div class="user-card--avatar avatar avatar--40">
-              <img *ngIf="user._avatar" [src]="user._avatar?.getPath('96x96')" onError="this.style.display='none';" alt="{{user.name}} avatar">
-              {{user.name.charAt(0)}}
+              <picture *ngIf="user._avatar">
+                <source srcset="{{user._avatar?.getPath('48x48')}} 1x, {{user._avatar?.getPath('96x96')}} 2x">
+                <img [src]="user._avatar?.getPath('48x48')"  onError="this.style.display='none';" alt="{{user.name}} avatar">
+              </picture>
+              <span class="avatar-char">{{user.name.charAt(0)}}</span>
             </div>
             <div class="user-card--infos">
               <h3 class="user-card--infos--title">{{user.name}}</h3>

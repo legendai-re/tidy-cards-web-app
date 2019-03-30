@@ -1,7 +1,12 @@
 <ng-container *ngIf="!isLoadingCollection && collection && collection._id">
 
   <div class="page-header" *ngIf="collection._thumbnail">
-    <img src="{{collection._thumbnail.getPath('1440x256')}}" alt="{{collection.title}}">
+    <picture>
+      <source media="(max-width:256px)" srcset="{{collection._thumbnail?.getPath('256x128')}} 1x, {{collection._thumbnail?.getPath('512x256')}} 2x">
+      <source media="(max-width:512px)" srcset="{{collection._thumbnail?.getPath('512x256')}} 1x, {{collection._thumbnail?.getPath('1024x512')}} 2x">
+      <source media="(min-width:512px)" srcset="{{collection._thumbnail?.getPath('1440x256')}} 1x, {{collection._thumbnail?.getPath('2880x512')}} 2x">
+      <img src="{{collection._thumbnail.getPath('1440x256')}}" alt="{{collection.title}}">
+    </picture>
   </div>
 
   <div class="page-header is-color" [style.background-color]="'#'+collection.color" *ngIf="collection.color && !collection._thumbnail"></div>
@@ -16,11 +21,17 @@
             <li class="page-heading--meta">
               <a href="javascript:void(0)" class="thumbnails mr-1" (click)="openManageCollabModal(manageCollaboratorsModal)">
                 <div class="thumbnail avatar avatar--24">
-                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('48x48')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                  <picture *ngIf="collection._author._avatar">
+                    <source srcset="{{collection._author._avatar.getPath('24x24')}} 1x, {{collection._author._avatar.getPath('48x48')}} 2x">
+                    <img [src]="collection._author._avatar.getPath('24x24')"  onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                  </picture>
                   <span class="avatar-char">{{collection._author.name.charAt(0)}}</span>
                 </div>
                 <div class="thumbnail avatar avatar--24" title="{{user.name}}" *ngFor="let user of (collection._collaborators.slice() | slice:collection._collaborators.length - 2)">
-                  <img *ngIf="user._avatar" [src]="user._avatar.getPath('48x48')" onError="this.style.display='none';" alt="{{user.name}} avatar">
+                  <picture *ngIf="user._avatar">
+                    <source srcset="{{user._avatar.getPath('24x24')}} 1x, {{user._avatar.getPath('48x48')}} 2x">
+                    <img [src]="user._avatar.getPath('24x24')"  onError="this.style.display='none';" alt="{{user.name}} avatar">
+                  </picture>
                   <span class="avatar-char">{{user.name.charAt(0)}}</span>
                 </div>
               </a>
@@ -95,7 +106,7 @@
             <span class="muted d-none d-lg-flex" *ngIf="collection.starsCount!=1">{{collection.starsCount}} {{ t._.collection?.footer?.share?.people?.more }}</span>
           </div>
 
-          <div class="page-heading--actions" [class.mt-4]="collection.bio || collection.visibility == 'PRIVATE' || collection.isFeatured" *ngIf="haveEditRights">
+          <div class="page-heading--actions" [class.mt-4]="collection.bio || collection.visibility != 'PUBLIC' || collection.isFeatured" *ngIf="haveEditRights">
             <a class="btn is-like is-primary mr-2 d-none d-lg-flex" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')">
               <span class="icon">{{ t._.icon?.add?.filled }}</span>
               <span *ngIf="itemLoaded && collection._items.length > 0">{{t._.collection?.new_item_button}}</span>
@@ -253,7 +264,10 @@
             <div class="collection-container--footer-author">
 
                 <a href="javascript:void(0)" class="collection-container--thumbnail avatar avatar--64" title="{{collection._author?.name}}" [routerLink]="['/', collection._author.username]">
-                  <img *ngIf="collection._author._avatar" [src]="collection._author._avatar.getPath('128x128')" onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                  <picture *ngIf="collection._author._avatar">
+                    <source srcset="{{collection._author._avatar.getPath('64x64')}} 1x, {{collection._author._avatar.getPath('128x128')}} 2x">
+                    <img [src]="collection._author._avatar.getPath('64x64')"  onError="this.style.display='none';" alt="{{collection._author?.name}} avatar">
+                  </picture>
                   <span class="avatar-char">{{collection._author.name.charAt(0)}}</span>
                 </a>
                 <div class="collection-container--footer-author-infos">
@@ -401,7 +415,10 @@
           <ng-container *ngFor="let user of searchCollabsResult">
             <li class="collaborators--list-item" *ngIf="!searchCollabIsloading">
               <a href="javascript:void(0)" class="collaborators--list-item-thumbnail avatar avatar--40" title="{{user.name}}" [routerLink]="['/', user.username]">
-                <img *ngIf="user._avatar" [src]="user._avatar.getPath('96x96')" onError="this.style.display='none';" alt="{{user.name}} avatar">
+                <picture *ngIf="user._avatar">
+                  <source srcset="{{user._avatar.getPath('48x48')}} 1x, {{user._avatar.getPath('96x96')}} 2x">
+                  <img [src]="user._avatar.getPath('48x48')"  onError="this.style.display='none';" alt="{{user.name}} avatar">
+                </picture>
                 <span class="avatar-char">{{user?.name.charAt(0)}}</span>
               </a>
               <div class="collaborators--list-item-infos">

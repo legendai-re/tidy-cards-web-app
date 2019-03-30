@@ -58,6 +58,7 @@ export class TcCollectionCreateComponent implements OnInit {
         this.collection = new TcCollection();
         this.collection.visibility = TcCollection.VISIBILITY.PRIVATE.id;
         this.collection.color = 'FFFFFF';
+        this.actionIntent = true;
     }
 
     private initUpdateMode(){

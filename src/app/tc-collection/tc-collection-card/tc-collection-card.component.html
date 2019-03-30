@@ -1,11 +1,10 @@
 <article class="collection-card" *ngIf="collection">
-  <!-- <div class="collection-card--drag-handle" *ngIf="sortable">
-    <span class="material-icons move-item-button">drag_handle</span>
-  </div> -->
-
   <a class="collection-card--content" [routerLink]="['/c', collection._id]">
     <div class="collection-card--cover" [style.background-color]="'#'+collection.color">
-      <img [src]="collection._thumbnail?.getPath('512x256')" onError="this.style.display='none';" *ngIf="collection._thumbnail" />
+      <picture>
+        <source media="(max-width:617px)" [srcset]="collection._thumbnail?.getPath('256x128')">
+        <img [src]="collection._thumbnail?.getPath('512x256')" onError="this.style.display='none';" *ngIf="collection._thumbnail" />
+      </picture>
     </div>
 
     <div class="collection-card--infos">
