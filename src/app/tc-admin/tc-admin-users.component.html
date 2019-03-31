@@ -37,11 +37,14 @@
           <tr *ngFor="let user of users">
             <td>
               <div class="d-flex">
-                <div class="avatar avatar--32" style="margin: -.375rem .5rem -.375rem 0;">
+                <div class="avatar avatar--32" style="margin: 0 .5rem 0 0;">
                   <img *ngIf="user._avatar" [src]="user._avatar?.getPath('64x64')" alt="{{user.name}} avatar">
                   {{user.name.charAt(0)}}
                 </div>
-                <a [routerLink]="['/', user.username]">{{user.name}} <small class="text-muted">(@{{user.username}})</small></a>
+                <a [routerLink]="['/', user.username]" class="d-flex flex-column">
+                  <span>{{user.name}}</span>
+                  <small class="text-muted">(@{{user.username}})</small>
+                </a>
               </div>
             </td>
             <td>

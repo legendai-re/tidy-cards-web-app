@@ -49,35 +49,49 @@ export class TcItem {
 
   public static get ITEM_TYPES() {
     return {
-      'URL': {
-        'id': 'URL',
-        'available_display_modes': ['SMALL', 'MEDIUM', 'LARGE'],
-        'default_display_mode': 'MEDIUM'
+      "URL": {
+        "id": "URL",
+        "available_display_modes": [
+          "SMALL",
+          "MEDIUM"
+        ],
+        "default_display_mode": "MEDIUM"
       },
-      'IMAGE': {
-        'id': 'IMAGE',
-        'available_display_modes': ['SMALL', 'LARGE'],
-        'default_display_mode': 'LARGE'
+      "IMAGE": {
+        "id": "IMAGE",
+        "available_display_modes": [
+          "SMALL",
+          "LARGE"
+        ],
+        "default_display_mode": "LARGE"
       },
-      'YOUTUBE': {
-        'id': 'YOUTUBE',
-        'available_display_modes': ['SMALL', 'LARGE'],
-        'default_display_mode': 'LARGE'
+      "YOUTUBE": {
+        "id": "YOUTUBE",
+        "available_display_modes": [
+          "SMALL",
+          "MEDIUM",
+          "LARGE"
+        ],
+        "default_display_mode": "LARGE"
       },
-      'TWEET': {
-        'id': 'TWEET',
-        'available_display_modes': ['SMALL', 'LARGE'],
-        'default_display_mode': 'LARGE'
+      "TWEET": {
+        "id": "TWEET",
+        "available_display_modes": [
+          "SMALL",
+          "MEDIUM",
+          "LARGE"
+        ],
+        "default_display_mode": "LARGE"
       },
-      'TEXT': {
-        'id': 'TEXT',
-        'available_display_modes': [],
-        'default_display_mode': ''
+      "TEXT": {
+        "id": "TEXT",
+        "available_display_modes": [],
+        "default_display_mode": ""
       },
-      'COLLECTION': {
-        'id': 'COLLECTION',
-        'available_display_modes': [],
-        'default_display_mode': ''
+      "COLLECTION": {
+        "id": "COLLECTION",
+        "available_display_modes": [],
+        "default_display_mode": ""
       }
     };
   }

@@ -27,20 +27,20 @@ export class TcImage {
     }
 
     public static getTypes() {
-        return {
-            "AVATAR": {
-                "_id": 1,
-                "name": "AVATAR",
-                "path":"avatar",
-                "sizes": [{"x":40, "y":40}, {"x":60, "y":60}, {"x":140, "y":140}]
-            },
-            "COLLECTION_THUMBNAIL": {
-                "_id": 2,
-                "name": "COLLECTION_THUMBNAIL",
-                "path":"col_thumb",
-                "sizes": [{"x":300, "y":250}, {"x":1000, "y":400}]
-            }
-        };
+      return {
+        "AVATAR": {
+          "_id": 1,
+          "name": "AVATAR",
+          "path":"avatar",
+          "sizes": [{"x":24, "y":24}, {"x":32, "y":32}, {"x":40, "y":40}, {"x":48, "y":48}, {"x":60, "y":60}, {"x":64, "y":64}, {"x":96, "y":96}, {"x":128, "y":128}, {"x":140, "y":140}, {"x":256, "y":256}]
+        },
+        "COLLECTION_THUMBNAIL": {
+          "_id": 2,
+          "name": "COLLECTION_THUMBNAIL",
+          "path":"col_thumb",
+          "sizes": [{"x":96, "y":96}, {"x":256, "y":128}, {"x":300, "y":250}, {"x":512, "y":256}, {"x":1000, "y":400}, {"x":1024, "y":512}, {"x":1440, "y":256}, {"x":2880, "y":512}]
+        }
+      };
     }
 
     public getPath(size: string) {
