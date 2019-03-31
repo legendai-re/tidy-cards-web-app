@@ -50,9 +50,18 @@
     <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.medium?.url}}" (click)="displayVideo=true" *ngIf="!itemYoutube.snippet?.thumbnails?.maxres && !itemYoutube.snippet?.thumbnails?.standard && !itemYoutube.snippet?.thumbnails?.high && itemYoutube.snippet?.thumbnails?.medium" />
     <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.default?.url}}" (click)="displayVideo=true" *ngIf="!itemYoutube.snippet?.thumbnails?.maxres && !itemYoutube.snippet?.thumbnails?.standard && !itemYoutube.snippet?.thumbnails?.high && !itemYoutube.snippet?.thumbnails?.medium && itemYoutube.snippet?.thumbnails?.default" />
 
-    <div class="collection-item--cover-action" (click)="displayVideo=true" *ngIf="!displayVideo">
-      <span class="icon">{{ t._.icon?.play?.filled }}</span>
-      <span class="label">Play</span>
+    <div class="collection-item--cover-actions" (click)="displayVideo=true" *ngIf="!displayVideo">
+      <div class="collection-item--cover-action-details">
+        <span class="collection-item--cover-action-btn">{{ t._.icon?.play?.filled }}</span>
+        <div class="collection-item--cover-action-infos">
+          <h3 class="collection-item--infos-title">{{item.title}}</h3>
+          <div class="collection-item--infos-website">
+            <img class="collection-item--infos-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com" />
+            <span class="collection-item--infos-host">YouTube</span>
+            <span class="collection-item--infos-author">{{itemYoutube.snippet?.channelTitle}}</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
