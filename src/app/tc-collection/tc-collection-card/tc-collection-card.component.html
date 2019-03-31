@@ -71,10 +71,10 @@
         <span class="icon">{{t._.icon?.open?.filled}}</span>
         <span>{{t._.action?.open_tab}}</span>
       </a>
-      <!-- <a href="javascript:void(0)" (click)="copyItemLink()" class="dropdown-item">
+      <a href="javascript:void(0)" (click)="copyCollectionLink()" class="dropdown-item">
         <span class="icon">{{t._.icon?.copy?.filled}}</span>
         <span>{{t._.action?.copy_link}}</span>
-      </a> -->
+      </a>
       <div class="dropdown-divider" *ngIf="isAuthor"></div>
       <div class="dropdown-header" *ngIf="isAuthor">{{t._.collection_create?.visibility_dropdown_title}}</div>
       <a href="javascript:void(0)" class="dropdown-item" [class.is-set]="collection.visibility == 'PUBLIC'" (click)="updateVisibiliy('PUBLIC')" *ngIf="isAuthor">
