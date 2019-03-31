@@ -1,4 +1,4 @@
-<div class="header" [class.is-searching]="headerState == 'search'" [class.is-hidden]="noHeader" *ngIf="!headerService.noHeader">
+<div class="header" [class.is-searching]="headerState == 'search'" [class.d-none]="headerState == 'collection'" [class.d-lg-flex]="headerState == 'collection'" *ngIf="!headerService.noHeader">
   <a class="header-brand" href="javascript:void(0)" [routerLink]="['/']">
     <h1 class="header-brand--icon is-beta">{{t._?.app_name_capitals}}</h1>
   </a>
@@ -21,11 +21,15 @@
     </a>
   </nav>
 
-  <nav class="header-nav nav ml-auto ml-lg-3 mr-3" *ngIf="authService.isLoggedIn">
+  <nav class="header-nav nav ml-lg-3 d-none d-lg-flex" *ngIf="authService.isLoggedIn">
     <a class="nav-link cta" href="javascript:void(0)" (click)="openModal(createCollectionModal, 'lg')">{{t._.action?.create_collection}}</a>
   </nav>
 
-  <nav class="header-nav nav">
+  <a class="fab-btn d-lg-none" href="javascript:void(0)" (click)="openModal(createCollectionModal, 'lg')">
+    <span class="icon">{{ t._.icon?.add?.filled }}</span>
+  </a>
+
+  <nav class="header-nav nav ml-auto ml-lg-3">
     <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
       {{t._?.header?.signin_title}}
     </a>
@@ -77,6 +81,18 @@
   </nav>
 </div>
 
+<div class="header" [class.d-lg-none]="headerState == 'collection'" *ngIf="!headerService.noHeader && headerState == 'collection'">
+  <a class="header-brand" href="javascript:void(0)" [routerLink]="['/']" *ngIf="getHistoryLength() == 1">
+    <h1 class="header-brand--icon is-beta">{{t._?.app_name_capitals}}</h1>
+  </a>
+
+  <nav class="header-nav nav" *ngIf="getHistoryLength() > 1">
+    <a class="nav-link" href="javascript:void(0)" (click)="getPreviousUrl()">
+      <span class="icon mx-0">arrow_back</span>
+    </a>
+  </nav>
+</div>
+
 <ng-template #createCollectionModal let-c="close" let-d="dismiss">
   <tc-collection-create
     (newCollection)="onCollectionCreated($event)"
@@ -108,3 +124,33 @@
     </div>
   </div>
 </div>
+
+<nav class="footer-navbar nav d-lg-none" [class.d-none]="pageState == 'collection'" *ngIf="headerState != 'collection'">
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="authService.isLoggedIn">
+    <span class="icon">home</span>
+    <span>{{t._?.header?.dashboard_title}}</span>
+  </a>
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/discover']">
+    <span class="icon">explore</span>
+    <span>{{t._?.header?.discover_title}}</span>
+  </a>
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/c/last']">
+    <span class="icon">new_releases</span>
+    <span>{{t._?.header?.latest_title}}</span>
+  </a>
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/about']" *ngIf="!authService.isLoggedIn">
+    <span class="icon">info</span>
+    <span>{{t._?.header?.about_title}}</span>
+  </a>
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/', authService.currentUser.username]" *ngIf="authService.isLoggedIn">
+    <div class="nav-link--avatar avatar">
+      <img *ngIf="authService.currentUser._avatar" [src]="authService.currentUser._avatar.getPath('48x48')"  onError="this.style.display='none';" alt="{{authService.currentUser?.name}} avatar">
+      <span class="avatar-char">{{authService.currentUser.name.charAt(0)}}</span>
+    </div>
+    <span>{{authService.currentUser.name}}</span>
+  </a>
+  <a class="nav-link" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/signin']" *ngIf="!authService.isLoggedIn">
+    <span class="icon">person</span>
+    <span>{{t._?.header?.signin_title}}</span>
+  </a>
+</nav>

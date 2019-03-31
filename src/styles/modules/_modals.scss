@@ -52,6 +52,7 @@
   }
 
   @include media-breakpoint-down(md) {
+    min-width: 100vw;
     min-height: 100vh;
   }
 }

@@ -112,7 +112,7 @@
               <span *ngIf="itemLoaded && collection._items.length > 0">{{t._.collection?.new_item_button}}</span>
               <span *ngIf="itemLoaded && collection._items.length == 0">{{t._.collection?.first_item_button}}</span>
             </a>
-            <a class="collection-new-item-fab d-lg-none" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')">
+            <a class="fab-btn is-for-item d-lg-none" href="javascript:void(0)" (click)="openModal(newItemModal, 'lg')">
               <span class="icon">{{ t._.icon?.add?.filled }}</span>
             </a>
 

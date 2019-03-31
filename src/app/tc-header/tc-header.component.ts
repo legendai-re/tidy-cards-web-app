@@ -81,10 +81,18 @@ export class TcHeaderComponent implements OnInit, OnDestroy{
     });
   }
 
-  private updateHeader(event){
-    if(event.value.type === 'DEFAULT'){
+  public getHistoryLength() {
+    return window.history.length;
+  }
+
+  public getPreviousUrl() {
+    return window.history.back();
+  }
+
+  private updateHeader(event) {
+    if(event.value.type === 'DEFAULT') {
       this.setDefault();
-    }else if(event.value.type === 'SEARCH'){
+    }else if(event.value.type === 'SEARCH') {
       this.setSearchPage();
       let tmpThis = this;
       setTimeout(() => {
@@ -98,7 +106,7 @@ export class TcHeaderComponent implements OnInit, OnDestroy{
         this.noHeader = true;
         this.headerService.noHeader = true;
       }, 200)
-    }else if(event.value.type === 'collection'){
+    }else if(event.value.type === 'collection') {
       this.headerState = 'collection';
       this.type = event.value.type;
       this.color = event.value.color;

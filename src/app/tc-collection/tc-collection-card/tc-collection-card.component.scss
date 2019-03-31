@@ -138,6 +138,7 @@
   display: flex;
   color: $gray-600;
   margin: 0;
+  white-space: nowrap;
 
   &:not(:last-child) {
     &:after {
