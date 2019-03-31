@@ -28,14 +28,15 @@
   </a>
 
   <div class="collection-item--cover is-video" [class.is-extended]="displayVideo">
-    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.maxres?.url}}" (click)="displayVideo=true" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.medium?.url}}" (click)="displayVideo=true" *ngIf="itemYoutube.snippet?.thumbnails?.medium" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.default?.url}}" (click)="displayVideo=true" *ngIf="!itemYoutube.snippet?.thumbnails?.medium && itemYoutube.snippet?.thumbnails?.default" />
 
     <div class="collection-item--cover-action" (click)="displayVideo=true" *ngIf="!displayVideo">
       <span class="icon">{{ t._.icon?.play?.filled }}</span>
       <span class="label">Play</span>
     </div>
 
-    <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
+    <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
   </div>
 
 </div>
@@ -43,14 +44,18 @@
 <div class="collection-item--content is-video is-large" [class.is-extended]="displayVideo" *ngIf="item.displayMode == 'LARGE'">
 
   <div class="collection-item--cover is-video is-extended">
-    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.maxres?.url}}" (click)="displayVideo=true" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.maxres?.url}}" (click)="displayVideo=true" *ngIf="itemYoutube.snippet?.thumbnails?.maxres" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.standard?.url}}" (click)="displayVideo=true" *ngIf="!itemYoutube.snippet?.thumbnails?.maxres && itemYoutube.snippet?.thumbnails?.standard" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.high?.url}}" (click)="displayVideo=true" *ngIf="!itemYoutube.snippet?.thumbnails?.maxres && !itemYoutube.snippet?.thumbnails?.standard && itemYoutube.snippet?.thumbnails?.high" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.medium?.url}}" (click)="displayVideo=true" *ngIf="!itemYoutube.snippet?.thumbnails?.maxres && !itemYoutube.snippet?.thumbnails?.standard && !itemYoutube.snippet?.thumbnails?.high && itemYoutube.snippet?.thumbnails?.medium" />
+    <img [class.is-blurry]="displayVideo" src="{{itemYoutube.snippet?.thumbnails?.default?.url}}" (click)="displayVideo=true" *ngIf="!itemYoutube.snippet?.thumbnails?.maxres && !itemYoutube.snippet?.thumbnails?.standard && !itemYoutube.snippet?.thumbnails?.high && !itemYoutube.snippet?.thumbnails?.medium && itemYoutube.snippet?.thumbnails?.default" />
 
     <div class="collection-item--cover-action" (click)="displayVideo=true" *ngIf="!displayVideo">
       <span class="icon">{{ t._.icon?.play?.filled }}</span>
       <span class="label">Play</span>
     </div>
 
-    <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
+    <iframe class="collection-item--cover-player" [src]="itemYoutube.trustedEmbedUrl" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen *ngIf="displayVideo && itemYoutube.trustedEmbedUrl"></iframe>
   </div>
 
 </div>
