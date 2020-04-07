@@ -105,8 +105,10 @@ export class TcCollectionUserAllComponent implements OnInit {
     private loadCollections(){
         this.loadingCollections = true;
         let params = new URLSearchParams();
-        params.set('limit', TcDataLimit.COLLECTION.toString());
+        // params.set('limit', TcDataLimit.COLLECTION.toString());
+        params.set('limit', '128');
         params.set('skip', (TcDataLimit.COLLECTION * this.pageNb).toString());
+
         if(this.isCurrentUser){
             params.set('custom_sort', 'true');
         }else{
