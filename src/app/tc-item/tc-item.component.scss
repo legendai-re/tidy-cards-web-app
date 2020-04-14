@@ -161,6 +161,7 @@
   flex-direction: column;
   color: $gray-800;
   margin: 0 0 1rem;
+  word-break: break-word;
 
   &.is-description {
     max-height: 3.75rem;
