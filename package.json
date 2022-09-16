@@ -32,7 +32,7 @@
     "@types/node": "^6.0.113",
     "angular2-markdown": "^2.2.3",
     "angular2-uuid": "^1.1.1",
-    "bootstrap": "^4.1.1",
+    "bootstrap": "^4.3.1",
     "codelyzer": "^4.4.2",
     "core-js": "^2.5.7",
     "jquery": "^3.3.1",
